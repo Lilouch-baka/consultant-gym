@@ -1227,6 +1227,7 @@ button.row-card:active {
   position: sticky;
   bottom: 0;
   z-index: 5;
+  margin-top: auto !important;
   margin: 0 calc(-1 * var(--gutter));
   padding: 12px var(--gutter) calc(12px + var(--safe-bottom));
   background: var(--bg);
@@ -1311,6 +1312,221 @@ input[type='checkbox'][switch] {
   width: 44px;
   height: 26px;
   accent-color: var(--accent);
+}
+
+/* ---------- Journal entry builder ---------- */
+.je-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 72px;
+  gap: 6px;
+  align-items: center;
+}
+
+.je-head {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.je-head div:not(:first-child) {
+  text-align: right;
+}
+
+.je-account {
+  min-height: 46px;
+  padding: 0 6px 0 8px;
+  font-size: 13.5px !important;
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-width: 0;
+}
+
+.je-account.cr {
+  padding-left: 16px;
+}
+
+.je-account-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.je-account:disabled {
+  opacity: 1;
+}
+
+.je-amt {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  text-align: right;
+}
+
+.je-amt.filled {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+}
+
+.btn.dashed {
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.fx-card {
+  padding: 12px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.t-account {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.t-title {
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--text);
+}
+
+.t-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 40px;
+}
+
+.t-body > div {
+  padding: 4px 6px;
+}
+
+.t-body > div:first-child {
+  border-right: 2px solid var(--text);
+}
+
+.t-body > div:last-child {
+  text-align: right;
+}
+
+.t-bal {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(11, 26, 51, 0.35);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 480px;
+  max-height: 75dvh;
+  background: var(--bg);
+  border-radius: 18px 18px 0 0;
+  padding: 14px 16px calc(14px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: sheet-up 0.18s ease-out;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.sheet-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-list button {
+  min-height: 48px;
+  padding: 0 4px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-size: 15px;
+  text-align: left;
+}
+
+/* IFRS vs US GAAP flip card */
+.flip {
+  perspective: 900px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+}
+
+.flip-inner {
+  position: relative;
+  display: grid;
+  transition: transform 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+.flip.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flip-face.back {
+  transform: rotateY(180deg);
+  background: var(--surface-2);
+  border-color: var(--line-strong);
 }
 
 /* ---------- Misc ---------- */

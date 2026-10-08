@@ -79,7 +79,7 @@ export function buildSession(mode, { questions, reviews, layer, topic, difficult
     case 'partner':
       return dueThenNew(lens ? partner.filter((q) => q.lens === lens) : partner, reviews, now, 3);
     case 'accounting':
-      return dueThenNew(accounting.filter((q) => !topic || q.chapter === topic), reviews, now, 10);
+      return dueThenNew(accounting.filter((q) => !topic || q.chapter === Number(topic)), reviews, now, 10);
     case 'daily':
       return dailyQueue(questions, reviews, now);
     case 'layer':

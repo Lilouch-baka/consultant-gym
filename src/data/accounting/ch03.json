@@ -1,0 +1,342 @@
+[
+  {
+    "id": "A:03-001", "chapter": 3, "section_tag": "Recording", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Shareholders invest 50,000 in cash in a new company in exchange for ordinary shares. Record the entry.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 50000 }, { "account": "Share capital", "credit": 50000 }],
+      "effects": { "IS": [], "BS": [["Cash", 50000, "A"], ["Share capital", 50000, "E"]], "CFS": [["Financing: shares issued", 50000]] }
+    },
+    "explanation": { "reasoning": ["An asset (cash) increases: debit.", "Equity contributed by owners increases: credit share capital.", "No revenue is earned, so the income statement is untouched."] },
+    "why_it_matters": "Equity raised is financing, not performance. Separating contributed capital from earned profit is how you judge whether a company funds itself.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Financing cash flow", "dir": "up" }],
+    "common_trap": "Crediting revenue. Money from owners is never income.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "The Recording Process Illustrated", "page": "3-13" }
+  },
+  {
+    "id": "A:03-002", "chapter": 3, "section_tag": "Recording", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company buys equipment for 18,000 on 30-day credit terms. Record the entry.",
+    "answer": {
+      "lines": [{ "account": "Equipment", "debit": 18000 }, { "account": "Trade payables", "credit": 18000 }],
+      "effects": { "IS": [], "BS": [["Equipment", 18000, "A"], ["Trade payables", 18000, "L"]], "CFS": [], "note": "nothing paid yet" }
+    },
+    "explanation": { "reasoning": ["The equipment is an asset: debit.", "An obligation to the supplier arises: credit trade payables.", "Capex appears in investing cash flow only when it is paid."] },
+    "why_it_matters": "Capex bought on credit shows up in investing cash flow later than on the balance sheet. Check the non-cash investing note when capex and PP&E growth don't match.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }, { "label": "Payables", "dir": "up" }],
+    "common_trap": "Expensing equipment, or recording a cash outflow on the day of purchase.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "The Recording Process Illustrated", "page": "3-13" }
+  },
+  {
+    "id": "A:03-003", "chapter": 3, "section_tag": "Recording", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A consulting firm completes work worth 7,500 for a client and invoices it, payable in 30 days. Record the entry.",
+    "answer": {
+      "lines": [{ "account": "Trade receivables", "debit": 7500 }, { "account": "Service revenue", "credit": 7500 }],
+      "effects": { "IS": [["Service revenue", 7500]], "BS": [["Trade receivables", 7500, "A"], ["Retained earnings", 7500, "E"]], "CFS": [], "note": "cash comes later" }
+    },
+    "explanation": { "reasoning": ["The work is done, so revenue is earned now (accrual basis).", "The right to be paid is an asset: debit trade receivables."] },
+    "why_it_matters": "Revenue without cash raises receivables and DSO. Profit and operating cash flow diverge until the client pays.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "Net income", "dir": "up" }],
+    "common_trap": "Waiting for cash before recording revenue.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "The Recording Process Illustrated", "page": "3-13" }
+  },
+  {
+    "id": "A:03-004", "chapter": 3, "section_tag": "Recording", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A customer pays 4,000 of an invoice already recorded as a receivable. Record the entry.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 4000 }, { "account": "Trade receivables", "credit": 4000 }],
+      "effects": { "IS": [], "BS": [["Cash", 4000, "A"], ["Trade receivables", -4000, "A"]], "CFS": [["Operating: cash from customers", 4000]] }
+    },
+    "explanation": { "reasoning": ["One asset (cash) up, another (receivable) down.", "Revenue was recognised when the work was done, so no revenue now."] },
+    "why_it_matters": "Collections convert profit into cash. Strong collection lowers working capital and lifts operating cash flow without touching profit.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "DSO", "dir": "down" }],
+    "common_trap": "Crediting revenue a second time.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "The Recording Process Illustrated", "page": "3-13" }
+  },
+  {
+    "id": "A:03-005", "chapter": 3, "section_tag": "Deferral", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "On 1 November the company pays 2,400 for a 12-month insurance policy starting that day. Record the payment.",
+    "answer": {
+      "lines": [{ "account": "Prepaid expenses", "debit": 2400 }, { "account": "Cash", "credit": 2400 }],
+      "effects": { "IS": [], "BS": [["Prepaid expenses", 2400, "A"], ["Cash", -2400, "A"]], "CFS": [["Operating: insurance paid", -2400]] }
+    },
+    "explanation": { "reasoning": ["The cover has not been used yet, so the payment buys an asset (a prepayment).", "It becomes an expense month by month."] },
+    "why_it_matters": "Prepayments move cash out before the expense hits profit. Growing prepayments can depress CFO while profit is unaffected.",
+    "interactions": [{ "label": "Prepayments", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Expensing the full 2,400 immediately.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-006", "chapter": 3, "section_tag": "Adjusting entry", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The 2,400 twelve-month policy paid on 1 November is still recorded as a prepayment. Record the adjusting entry at 31 December.",
+    "answer": {
+      "lines": [{ "account": "Insurance expense", "debit": 400 }, { "account": "Prepaid expenses", "credit": 400 }],
+      "effects": { "IS": [["Insurance expense", -400]], "BS": [["Prepaid expenses", -400, "A"], ["Retained earnings", -400, "E"]], "CFS": [], "note": "cash left on 1 Nov" }
+    },
+    "explanation": { "reasoning": ["Monthly cost = 2,400 / 12 = 200.", "Two months used (Nov, Dec): 400 moves from the asset to expense.", "Remaining prepayment: 2,000 for 10 months."] },
+    "why_it_matters": "Adjusting entries match costs to the period that consumed them. Without them, profit swings with payment dates instead of activity.",
+    "interactions": [{ "label": "Net income", "dir": "down" }, { "label": "Prepayments", "dir": "down" }],
+    "common_trap": "Crediting cash. The cash moved in November; the adjustment never touches cash.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-007", "chapter": 3, "section_tag": "Adjusting entry", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "On 1 October a client pays 12,000 in advance for 12 months of service, recorded as unearned revenue. Record the adjusting entry at year end, 31 December.",
+    "answer": {
+      "lines": [{ "account": "Unearned revenue", "debit": 3000 }, { "account": "Service revenue", "credit": 3000 }],
+      "effects": { "IS": [["Service revenue", 3000]], "BS": [["Unearned revenue", -3000, "L"], ["Retained earnings", 3000, "E"]], "CFS": [], "note": "cash came in on 1 Oct" }
+    },
+    "explanation": { "reasoning": ["Revenue is recognised as the service is performed, not when cash arrives.", "3 of 12 months are done: 12,000 × 3/12 = 3,000 moves from the liability to revenue."] },
+    "why_it_matters": "Growing unearned revenue is cash collected before profit: a sign of customer demand and a working-capital advantage.",
+    "interactions": [{ "label": "Unearned revenue", "dir": "down" }, { "label": "Revenue", "dir": "up" }],
+    "common_trap": "Debiting cash at year end. The cash entry was made on 1 October.",
+    "ifrs_gaap": { "ifrs": "IFRS 15 calls this a contract liability; the label 'unearned revenue' is still allowed.", "us_gaap": "ASC 606 is converged with IFRS 15 here; same timing and the same contract-liability concept." },
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-008", "chapter": 3, "section_tag": "Adjusting entry", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Equipment costing 18,000 was bought on 1 July. Useful life 5 years, no residual value, straight-line. Record depreciation for the year to 31 December.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 1800 }, { "account": "Accumulated depreciation", "credit": 1800 }],
+      "effects": { "IS": [["Depreciation expense", -1800]], "BS": [["Equipment (net)", -1800, "A"], ["Retained earnings", -1800, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Annual charge = 18,000 / 5 = 3,600.", "Six months in use: 3,600 × 6/12 = 1,800.", "Credit the contra-asset so the original cost stays visible."] },
+    "why_it_matters": "Depreciation is non-cash but real: it is the cost of the capacity used. Comparing depreciation with capex shows whether the asset base is being renewed.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }, { "label": "Net PP&E", "dir": "down" }],
+    "common_trap": "Charging a full year for an asset held six months, or crediting the equipment account directly.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-009", "chapter": 3, "section_tag": "Accrual", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Staff earn 5,000 per five-day week, paid every Friday. The year ends on a Wednesday. Record the accrual for the unpaid days.",
+    "answer": {
+      "lines": [{ "account": "Salaries and wages expense", "debit": 3000 }, { "account": "Salaries and wages payable", "credit": 3000 }],
+      "effects": { "IS": [["Salaries and wages expense", -3000]], "BS": [["Salaries and wages payable", 3000, "L"], ["Retained earnings", -3000, "E"]], "CFS": [], "note": "paid next Friday" }
+    },
+    "explanation": { "reasoning": ["Daily cost = 5,000 / 5 = 1,000.", "Monday to Wednesday worked but unpaid: 3 days = 3,000.", "Expense now; liability until payday."] },
+    "why_it_matters": "Accrued liabilities let profit reflect costs actually incurred. Unusual falls in accruals can flatter operating cash flow or hide unrecorded costs.",
+    "interactions": [{ "label": "Accrued liabilities", "dir": "up" }, { "label": "Net income", "dir": "down" }],
+    "common_trap": "Accruing the whole week (5,000), or nothing because no cash was paid.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Accruals", "page": "3-24" }
+  },
+  {
+    "id": "A:03-010", "chapter": 3, "section_tag": "Accrual", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A 20,000 note payable at 6% a year was signed on 1 September; interest is due at maturity. Record the interest accrual at 31 December.",
+    "answer": {
+      "lines": [{ "account": "Interest expense", "debit": 400 }, { "account": "Interest payable", "credit": 400 }],
+      "effects": { "IS": [["Interest expense", -400]], "BS": [["Interest payable", 400, "L"], ["Retained earnings", -400, "E"]], "CFS": [], "note": "paid at maturity" }
+    },
+    "explanation": { "reasoning": ["Annual interest = 20,000 × 6% = 1,200.", "Four months (Sep–Dec): 1,200 × 4/12 = 400."] },
+    "why_it_matters": "Interest accrues with time whether or not it is paid. Unrecorded accrued interest understates both leverage and finance cost.",
+    "interactions": [{ "label": "Interest cover", "dir": "down" }, { "label": "Liabilities", "dir": "up" }],
+    "common_trap": "Counting three months (forgetting September) or adding interest to the note's principal.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Accruals", "page": "3-24" }
+  },
+  {
+    "id": "A:03-011", "chapter": 3, "section_tag": "Accrual", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "In December the firm completed 1,500 of work that will be invoiced in January; it already has an unconditional right to be paid. Record the year-end accrual.",
+    "answer": {
+      "lines": [{ "account": "Trade receivables", "debit": 1500 }, { "account": "Service revenue", "credit": 1500 }],
+      "effects": { "IS": [["Service revenue", 1500]], "BS": [["Trade receivables", 1500, "A"], ["Retained earnings", 1500, "E"]], "CFS": [], "note": "not yet billed or paid" }
+    },
+    "explanation": { "reasoning": ["Revenue belongs to the period in which the work was done.", "An unconditional right to consideration is a receivable; if the right still depended on further performance it would be a contract asset."] },
+    "why_it_matters": "Accrued and unbilled revenue relies on judgement. Rapid growth in unbilled amounts relative to revenue is a classic earnings-quality warning.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }, { "label": "Receivables", "dir": "up" }],
+    "common_trap": "Leaving the revenue for January because the invoice is issued then.",
+    "ifrs_gaap": { "ifrs": "IFRS 15: receivable if the right to payment is unconditional (only time must pass); otherwise a contract asset.", "us_gaap": "ASC 606 uses the same receivable vs contract-asset split; the book's US examples call it accounts receivable." },
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Accruals", "page": "3-24" }
+  },
+  {
+    "id": "A:03-012", "chapter": 3, "section_tag": "Adjusting entry", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Supplies on hand were 1,200 at the start of the year and 800 more were bought (recorded as an asset). A count at year end finds 300. Record the adjustment.",
+    "answer": {
+      "lines": [{ "account": "Supplies expense", "debit": 1700 }, { "account": "Supplies", "credit": 1700 }],
+      "effects": { "IS": [["Supplies expense", -1700]], "BS": [["Supplies", -1700, "A"], ["Retained earnings", -1700, "E"]], "CFS": [], "note": "cash left when bought" }
+    },
+    "explanation": { "reasoning": ["Available = 1,200 + 800 = 2,000.", "Used = 2,000 − 300 on hand = 1,700."] },
+    "why_it_matters": "Physical counts anchor the books to reality. Skipped counts are a common route to overstated assets.",
+    "interactions": [{ "label": "Opex", "dir": "up" }],
+    "common_trap": "Expensing only the 800 bought this year, or expensing the 300 left.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-013", "chapter": 3, "section_tag": "Closing", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "During the year the company declared dividends of 2,000, recorded in a separate dividends account. Record the closing entry for that account at year end.",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 2000 }, { "account": "Dividends declared", "credit": 2000 }],
+      "effects": { "IS": [], "BS": [["Retained earnings", -2000, "E"], ["Dividends declared (closed)", 2000, "E"]], "CFS": [], "note": "closing entries never move cash" }
+    },
+    "explanation": { "reasoning": ["Dividends are a temporary account that reduces equity; it is not an expense.", "Closing transfers its balance to retained earnings and resets it to zero for next year."] },
+    "why_it_matters": "Distributions come out of retained earnings, never profit. Confusing the two overstates the payout capacity you think a company has.",
+    "interactions": [{ "label": "Retained earnings", "dir": "down" }],
+    "common_trap": "Closing dividends to the income summary as if they were an expense.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Closing", "page": "3-31" }
+  },
+  {
+    "id": "A:03-014", "chapter": 3, "section_tag": "Debits and credits", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Debit and credit rules",
+    "answer": {
+      "meaning": "Debits increase assets, expenses and dividends; credits increase liabilities, equity and income.",
+      "formula": "Assets = Liabilities + Equity; Equity = contributed capital + retained earnings (income − expenses − dividends)",
+      "interpretation": "Every entry keeps the equation balanced: total debits = total credits.",
+      "high_signals": "A large debit balance in an income account (or credit in an asset) usually signals an error.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Reading a trial balance fast is the first step of any due-diligence or audit review.",
+    "interactions": [{ "label": "Accounting equation", "dir": "mixed" }],
+    "common_trap": "Thinking 'debit' means good or 'credit' means bad. They are just sides.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Debits and Credits", "page": "3-5" }
+  },
+  {
+    "id": "A:03-015", "chapter": 3, "section_tag": "Debits and credits", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "What is the normal balance of unearned revenue?",
+    "options": ["Credit, because it is a liability", "Debit, because it is revenue", "Debit, because it is an asset", "It has no normal balance"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Unearned revenue is an obligation to deliver service: a liability.", "Liabilities increase with credits."] },
+    "why_it_matters": "Classifying advance payments correctly keeps revenue honest and shows customer-funded working capital.",
+    "interactions": [{ "label": "Liabilities", "dir": "up" }],
+    "common_trap": "Treating it as revenue because of its name.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Basic Terminology", "page": "3-4" }
+  },
+  {
+    "id": "A:03-016", "chapter": 3, "section_tag": "Adjusting entries", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Which statement about year-end adjusting entries is true?",
+    "options": [
+      "They always involve one income statement account and one balance sheet account, and never cash",
+      "They always involve cash",
+      "They only affect the balance sheet",
+      "They are needed only under cash-basis accounting"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Adjustments align revenue and expense with the period (accruals and deferrals).", "Cash movements were already recorded when they happened."] },
+    "why_it_matters": "Knowing adjustments never touch cash lets you separate timing effects from real cash generation.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Crediting cash in an accrual adjustment.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Types of Adjusting Entries", "page": "3-20" }
+  },
+  {
+    "id": "A:03-017", "chapter": 3, "section_tag": "Trial balance", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Which error would NOT be revealed by a trial balance that balances?",
+    "options": [
+      "A purchase of supplies debited to equipment instead of supplies",
+      "A debit of 450 posted as 540 with the credit posted correctly",
+      "A debit posted but the related credit omitted",
+      "A credit balance listed in the debit column"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Posting to the wrong account on the correct side keeps debits equal to credits.", "The other errors make the columns disagree."] },
+    "why_it_matters": "A balanced trial balance proves arithmetic, not correctness. Misclassification (expense as asset) is exactly how profit gets overstated.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Assuming a balancing trial balance means the books are right.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Trial Balance", "page": "3-18" }
+  },
+  {
+    "id": "A:03-018", "chapter": 3, "section_tag": "Cash to accrual", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Cash received from customers 80,000. Trade receivables rose by 6,000 and unearned revenue rose by 2,000. Accrual-basis revenue?",
+    "answer": { "value": 84000, "unit": "", "tolerance": 0 },
+    "check": "80000 + 6000 - 2000",
+    "explanation": { "reasoning": ["Add the increase in receivables (earned, not yet collected).", "Deduct the increase in unearned revenue (collected, not yet earned).", "80,000 + 6,000 − 2,000 = 84,000"], "shortcut": "Cash + Δreceivables − Δunearned." },
+    "why_it_matters": "Converting cash to accruals is the reverse of the indirect cash flow statement. Both directions must be automatic.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "Adding the increase in unearned revenue.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Conversion from Cash Basis to Accrual Basis", "page": "3-40" }
+  },
+  {
+    "id": "A:03-019", "chapter": 3, "section_tag": "Deferral", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Rent of 3,600 for 12 months was paid on 1 April. Rent expense for the year to 31 December?",
+    "answer": { "value": 2700, "unit": "", "tolerance": 0 },
+    "check": "3600 / 12 * 9",
+    "explanation": { "reasoning": ["300 per month × 9 months (Apr–Dec) = 2,700", "Prepayment left: 900"], "shortcut": "Monthly amount first, then months elapsed." },
+    "why_it_matters": "Time-apportioning is behind every accrual and deferral.",
+    "interactions": [{ "label": "Prepayments", "dir": "down" }],
+    "common_trap": "Counting 8 months (forgetting April).",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Deferrals", "page": "3-20" }
+  },
+  {
+    "id": "A:03-020", "chapter": 3, "section_tag": "Adjusting entries", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Accruals vs deferrals",
+    "answer": {
+      "meaning": "Accruals record revenue or expense before cash moves; deferrals record cash before the revenue or expense is earned or incurred.",
+      "formula": "Accruals: accrued revenue (asset) / accrued expense (liability). Deferrals: prepaid expense (asset) / unearned revenue (liability).",
+      "interpretation": "Both make profit reflect the period's activity rather than its cash timing.",
+      "high_signals": "Large accruals: more estimates, more room for error or management.",
+      "low_signals": "Profit close to cash; simpler business."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The gap between profit and CFO is made of exactly these items.",
+    "interactions": [{ "label": "CFO / NI", "dir": "mixed" }],
+    "common_trap": "Mixing up prepaid expenses (asset) and accrued expenses (liability).",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Types of Adjusting Entries", "page": "3-20" }
+  },
+  {
+    "id": "A:03-021", "chapter": 3, "section_tag": "Errors", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company forgets to accrue 3,000 of wages earned at year end. What is the effect on the year's statements?",
+    "options": [
+      "Expenses and liabilities understated by 3,000; net income and equity overstated by 3,000; assets unaffected",
+      "Assets overstated by 3,000",
+      "Net income understated by 3,000",
+      "No effect, because the wages are paid next year"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The missing entry is Dr wages expense / Cr wages payable.", "So expense and liability are both too low; profit and retained earnings too high.", "No asset is involved."] },
+    "why_it_matters": "Missed accruals flatter this year's profit and hit next year's. Watch for profits that jump while accrued liabilities fall.",
+    "interactions": [{ "label": "Net income", "dir": "up" }, { "label": "Liabilities", "dir": "down" }],
+    "common_trap": "Thinking an unpaid cost has no effect until it is paid.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Adjusting Entries for Accruals", "page": "3-24" }
+  },
+  {
+    "id": "A:03-022", "chapter": 3, "section_tag": "Closing", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which account is NOT closed at year end?",
+    "options": ["Unearned revenue", "Service revenue", "Salaries and wages expense", "Dividends declared"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Temporary accounts (income, expenses, dividends) are closed to retained earnings.", "Balance sheet accounts such as unearned revenue carry forward."] },
+    "why_it_matters": "Knowing what carries forward tells you what next year's statements start with.",
+    "interactions": [{ "label": "Retained earnings", "dir": "mixed" }],
+    "common_trap": "Closing a liability because the word 'revenue' is in its name.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Closing", "page": "3-31" }
+  },
+  {
+    "id": "A:03-023", "chapter": 3, "section_tag": "Closing", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Closing entries",
+    "answer": {
+      "meaning": "Entries that transfer the balances of temporary accounts (income, expenses, dividends) to retained earnings, resetting them to zero.",
+      "formula": "Closing RE = Opening RE + Income − Expenses − Dividends",
+      "interpretation": "After closing, only balance sheet accounts remain (post-closing trial balance).",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "It is the bookkeeping version of the retained-earnings roll-forward you use in every three-statement model.",
+    "interactions": [{ "label": "Retained earnings", "dir": "up" }],
+    "common_trap": "Thinking closing entries change total equity. They only move amounts within it.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Closing", "page": "3-31" }
+  },
+  {
+    "id": "A:03-024", "chapter": 3, "section_tag": "Reversing entries", "difficulty": "medium", "format": "written", "style": "logical",
+    "prompt": "What does a reversing entry do, why is it optional, and when is it useful?",
+    "answer": {
+      "model_answer": "A reversing entry is made on the first day of the new period and is the exact opposite of a year-end accrual adjustment (for example, Dr wages payable / Cr wages expense). It is optional because it does not change the financial statements: the totals end up the same with or without it. Its value is practical: when the cash is later paid, the clerk can record the whole payment routinely as an expense without splitting it between the old liability and the new expense, which reduces errors.",
+      "rubric": ["Opposite of the accrual on day one", "No effect on reported totals", "Simplifies recording of the later payment"]
+    },
+    "explanation": { "reasoning": ["Reverse the accrual, then record the full payment as expense; the net expense in the new year is only the new-year portion."] },
+    "why_it_matters": "Understanding that bookkeeping shortcuts don't change economics helps you focus on what actually moves the numbers.",
+    "interactions": [{ "label": "Accrued expenses", "dir": "down" }],
+    "common_trap": "Thinking reversing entries are compulsory or that they change net income.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Appendix 3B: Using Reversing Entries", "page": "3-43" }
+  },
+  {
+    "id": "A:03-025", "chapter": 3, "section_tag": "Cash vs accrual", "difficulty": "hard", "format": "mcq", "style": "rhetorical",
+    "prompt": "A small business reports on a cash basis. Its owner says profit jumped 40% this year. What should you check first?",
+    "options": [
+      "Whether customers paid old invoices early or suppliers were paid late, which shifts cash-basis profit between years",
+      "The depreciation method",
+      "The tax rate",
+      "Whether the business uses FIFO"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cash-basis profit follows payment timing, not activity.", "Collecting last year's receivables or delaying payments inflates this year's figure.", "Convert to accruals using the change in receivables, payables, prepayments and accruals."] },
+    "why_it_matters": "When buying a small company, always convert cash-basis figures to accruals before valuing it.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Valuing a business on a cash-basis profit spike.",
+    "book_ref": { "book": "IA17", "chapter": 3, "section": "Theoretical Weaknesses of the Cash Basis", "page": "3-43" }
+  }
+]

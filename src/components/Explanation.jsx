@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { MoveChips, SectionLabel, Trap } from './ui.jsx';
 import { formatMs, formatNumber } from '../engine/answerCheck.js';
+import { bookRefLabel } from '../accounting/chapters.js';
 
 export function Verdict({ correct, ms, label }) {
   return (
@@ -43,6 +45,7 @@ export function AnswerGrid({ grid }) {
 // The core of the app: answer, reasoning, why it matters, moves with it, common trap.
 export default function Explanation({ q, verdict, hideAnswer }) {
   const ex = q.explanation || {};
+  const acc = q.track === 'accounting';
   let answerLine = null;
   if (!hideAnswer) {
     if (q.format === 'mcq') answerLine = q.options[q.answer.index];
@@ -69,7 +72,7 @@ export default function Explanation({ q, verdict, hideAnswer }) {
       )}
       {ex.reasoning && ex.reasoning.length > 0 && (
         <div className="stack" style={{ gap: 6 }}>
-          <SectionLabel>Reasoning</SectionLabel>
+          <SectionLabel>{acc ? 'The principle' : 'Reasoning'}</SectionLabel>
           <Reasoning steps={ex.reasoning} />
         </div>
       )}
@@ -83,7 +86,7 @@ export default function Explanation({ q, verdict, hideAnswer }) {
       )}
       {q.why_it_matters && (
         <div className="stack" style={{ gap: 6 }}>
-          <SectionLabel>Why it matters</SectionLabel>
+          <SectionLabel>{acc ? 'Analyst lens' : 'Why it matters'}</SectionLabel>
           <p className="body">{q.why_it_matters}</p>
         </div>
       )}
@@ -94,6 +97,44 @@ export default function Explanation({ q, verdict, hideAnswer }) {
         </div>
       )}
       <Trap>{q.common_trap}</Trap>
+      {q.ifrs_gaap && <FlipCard ifrs={q.ifrs_gaap.ifrs} gaap={q.ifrs_gaap.us_gaap} />}
+      {q.book_ref && (
+        <div className="row caption" style={{ gap: 8, fontSize: 13, alignItems: 'flex-start' }}>
+          <span style={{ flexShrink: 0, marginTop: 1 }}>
+            <Icon name="book" size={16} stroke={2} />
+          </span>
+          Book ref: {bookRefLabel(q.book_ref)}
+        </div>
+      )}
     </div>
+  );
+}
+
+// IFRS first (ACCA); tap to see the US GAAP treatment.
+export function FlipCard({ ifrs, gaap }) {
+  const [flipped, setFlipped] = useState(false);
+  return (
+    <button className={`flip ${flipped ? 'flipped' : ''}`} onClick={() => setFlipped((f) => !f)} aria-label={flipped ? 'US GAAP treatment. Tap for IFRS.' : 'IFRS treatment. Tap for US GAAP.'}>
+      <div className="flip-inner">
+        <div className="flip-face front" aria-hidden={flipped}>
+          <div className="row-between">
+            <span className="section-label">IFRS</span>
+            <span className="caption" style={{ fontSize: 12 }}>
+              tap for US GAAP
+            </span>
+          </div>
+          <div className="body">{ifrs}</div>
+        </div>
+        <div className="flip-face back" aria-hidden={!flipped}>
+          <div className="row-between">
+            <span className="section-label">US GAAP</span>
+            <span className="caption" style={{ fontSize: 12 }}>
+              tap for IFRS
+            </span>
+          </div>
+          <div className="body">{gaap}</div>
+        </div>
+      </div>
+    </button>
   );
 }

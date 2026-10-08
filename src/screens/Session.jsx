@@ -9,6 +9,7 @@ import { BackButton, ErrorNote, ProgressBar, RatingBar, RingTimer, SectionLabel,
 import Explanation, { Verdict } from '../components/Explanation.jsx';
 import GradeCard, { SelfGrade } from '../components/GradeCard.jsx';
 import PartnerItem from '../partner/PartnerItem.jsx';
+import JournalEntry from '../accounting/JournalEntry.jsx';
 import { askClaude } from '../ai/client.js';
 import { ANSWER_LIMIT, GRADE_SCHEMA, GRADE_SYSTEM, gradeContent, normalizeGrade } from '../ai/prompts.js';
 
@@ -118,7 +119,7 @@ export default function Session({ params }) {
 
       {!speed && q.track !== 'partner' && (
         <div className="chips">
-          <div className="tag">{q.track === 'accounting' ? `Accounting · ${q.chapter_title || q.topic}` : topicLabel(q)}</div>
+          <div className="tag">{q.track === 'accounting' ? `Accounting · Ch ${q.chapter}${q.section_tag ? ` · ${q.section_tag}` : ''}` : topicLabel(q)}</div>
           <div className="tag">{q.difficulty}</div>
           <div className="tag">{q.style}</div>
           {q.needs_review && <div className="tag review">Needs review</div>}
@@ -139,6 +140,7 @@ function sessionTitle(mode, params) {
 
 function QuestionView({ q, speed, onDone }) {
   if (q.format === 'partner') return <PartnerItem item={q} onDone={onDone} />;
+  if (q.format === 'journal_entry') return <JournalEntry q={q} onDone={onDone} />;
   if (q.format === 'mcq') return <McqView q={q} onDone={onDone} />;
   if (q.format === 'flashcard') return <FlashcardView q={q} onDone={onDone} />;
   if (q.format === 'mental_math') return <MentalMathView q={q} speed={speed} onDone={onDone} />;

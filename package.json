@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "npm run check && vite build",
     "preview": "vite preview",
-    "check": "node scripts/validate-questions.mjs",
+    "check": "node scripts/validate-questions.mjs && node scripts/validate-accounting.mjs",
     "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {

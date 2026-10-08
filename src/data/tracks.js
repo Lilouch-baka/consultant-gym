@@ -41,7 +41,14 @@ export async function loadPartner() {
   return { playbook, items };
 }
 
+// Financial accounting: one JSON file per chapter in ./accounting/, merged in chapter order.
+const accountingFiles = import.meta.glob('./accounting/*.json', { import: 'default' });
+
 export async function loadAccounting() {
-  const items = (await import('./accounting.json')).default;
-  return items.map((q) => ({ track: 'accounting', ...q }));
+  const keys = Object.keys(accountingFiles).sort();
+  const parts = await Promise.all(keys.map((k) => accountingFiles[k]()));
+  return parts
+    .flat()
+    .map((q) => ({ track: 'accounting', topic: `ch${String(q.chapter).padStart(2, '0')}`, ...q }))
+    .sort((a, b) => a.chapter - b.chapter);
 }

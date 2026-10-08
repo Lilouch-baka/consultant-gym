@@ -6,6 +6,7 @@ const PATHS = {
       <path d="M3 9h18M8 2v4M16 2v4" />
     </>
   ),
+  book: <path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM19 19v2H6" />,
   home: <path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />,
   layers: (
     <>

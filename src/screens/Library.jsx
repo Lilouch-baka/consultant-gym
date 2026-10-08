@@ -4,7 +4,8 @@ import { navigate } from '../router.js';
 import { LAYERS } from '../data/curriculum.js';
 import { LENSES } from '../data/tracks.js';
 import { dailyQueue, estimateMinutes } from '../engine/sessionBuilder.js';
-import { computeStats, pct } from '../engine/stats.js';
+import { computeStats, pct, trackMastery } from '../engine/stats.js';
+import { BOOKS, CHAPTERS } from '../accounting/chapters.js';
 import { ProgressBar, ScreenHeader, SectionLabel } from '../components/ui.jsx';
 import Icon from '../components/Icon.jsx';
 
@@ -124,9 +125,53 @@ function Accounting() {
   return <AccountingChapters items={accountingItems} />;
 }
 
-// Filled in with the accounting track (Stage 4).
 function AccountingChapters({ items }) {
-  return <div className="caption">{items.length} items</div>;
+  const { reviews } = useApp();
+  const byChapter = useMemo(() => {
+    const m = {};
+    for (const q of items) (m[q.chapter] ||= []).push(q);
+    return m;
+  }, [items]);
+  return (
+    <>
+      <button className="btn xl primary" onClick={() => navigate('/session', { mode: 'accounting' })}>
+        Practise 10 items
+      </button>
+      <div className="caption" style={{ lineHeight: 1.5 }}>
+        Source: {BOOKS.IA17.title}. Questions are written in the app’s own words; each one gives the book section and page so you can read more.
+      </div>
+      <div className="stack">
+        {CHAPTERS.map((c) => {
+          const qs = byChapter[c.n] || [];
+          const m = trackMastery(qs, reviews);
+          const je = qs.filter((q) => q.format === 'journal_entry').length;
+          return (
+            <button
+              key={c.n}
+              className="row-card"
+              disabled={!qs.length}
+              style={{ opacity: qs.length ? 1 : 0.55 }}
+              onClick={() => navigate('/session', { mode: 'accounting', topic: c.n })}
+            >
+              <div className="mono" style={{ fontSize: 13, color: 'var(--accent)', width: 22 }}>
+                {String(c.n).padStart(2, '0')}
+              </div>
+              <div className="stack" style={{ flex: 1, gap: 6 }}>
+                <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.3 }}>{c.title}</div>
+                <div className="caption" style={{ fontSize: 12 }}>
+                  {qs.length ? `${qs.length} items${je ? ` · ${je} journal entries` : ''}` : 'coming soon'}
+                </div>
+                {qs.length > 0 && <ProgressBar value={m} label={`Chapter ${c.n} mastery`} />}
+              </div>
+              <div className="mono" style={{ fontSize: 14, width: 40, textAlign: 'right' }}>
+                {qs.length ? pct(m) : ''}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </>
+  );
 }
 
 // ---------- Partner: layer map + question list ----------
