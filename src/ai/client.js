@@ -18,10 +18,24 @@ export class MentorError extends Error {
 function mapError(e) {
   if (e instanceof MentorError) return e;
   if (e instanceof Anthropic.AuthenticationError) {
-    return new MentorError('invalid_key', 'Your API key was rejected. Check it in Settings (it starts with sk-ant-).');
+    const msg = e.error?.error?.message || '';
+    if (/workspace/i.test(msg)) {
+      return new MentorError(
+        'invalid_key',
+        'This key is not scoped to a workspace (usually an Admin key). Create a normal key in the Anthropic console: Settings → API keys → Create key, then paste it here.',
+      );
+    }
+    return new MentorError('invalid_key', `Your API key was rejected${msg ? ` (${msg})` : ''}. Check it in Settings; it should start with sk-ant-api.`);
   }
   if (e instanceof Anthropic.PermissionDeniedError) {
-    return new MentorError('permission', `This API key is not allowed to use ${MODEL}.`);
+    const msg = e.error?.error?.message || '';
+    if (/workspace/i.test(msg)) {
+      return new MentorError(
+        'permission',
+        'This key is not scoped to a workspace (usually an Admin key). Create a normal key in the Anthropic console: Settings → API keys → Create key, then paste it here.',
+      );
+    }
+    return new MentorError('permission', `Anthropic refused the request${msg ? `: ${msg}` : '.'}`);
   }
   if (e instanceof Anthropic.RateLimitError) {
     return new MentorError('rate_limit', 'Rate limit reached. Wait a minute and try again.');
@@ -36,7 +50,8 @@ function mapError(e) {
   }
   if (e instanceof Anthropic.APIError) {
     if (e.status === 529 || e.status >= 500) return new MentorError('overloaded', 'The API is busy right now. Try again in a moment.');
-    return new MentorError('api', `API error ${e.status ?? ''}`);
+    const msg = e.error?.error?.message || '';
+    return new MentorError('api', `API error ${e.status ?? ''}${msg ? `: ${msg}` : ''}`);
   }
   return new MentorError('unknown', 'Something went wrong with the API call.');
 }

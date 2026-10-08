@@ -147,9 +147,9 @@ export function ErrorNote({ error }) {
   if (!error) return null;
   return (
     <div className="notice error" role="alert">
-      <strong>{error.code === 'no_key' ? 'No API key. ' : error.code === 'offline' ? 'Offline. ' : 'Mentor error. '}</strong>
+      <strong>{error.code === 'no_key' ? 'No API key. ' : error.code === 'offline' ? 'Offline. ' : 'API error. '}</strong>
       {error.message}
-      {(error.code === 'no_key' || error.code === 'invalid_key' || error.code === 'model' || error.code === 'permission') && (
+      {(error.code === 'no_key' || error.code === 'invalid_key' || error.code === 'permission') && !window.location.hash.startsWith('#/settings') && (
         <>
           {' '}
           <button className="btn sm" style={{ marginTop: 8, display: 'flex' }} onClick={() => navigate('/settings')}>

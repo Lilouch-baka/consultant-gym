@@ -234,6 +234,15 @@ function ApiKeySection() {
     e.preventDefault();
     const k = draft.trim();
     if (!k) return;
+    if (k.startsWith('sk-ant-admin')) {
+      setStatus('');
+      setError({
+        code: 'invalid_key',
+        message:
+          'This is an Admin key. It is not scoped to a workspace and cannot grade answers. In the Anthropic console go to Settings → API keys → Create key (choose a workspace) and paste that key (it starts with sk-ant-api).',
+      });
+      return;
+    }
     try {
       await setApiKey(k);
       setDraft('');
