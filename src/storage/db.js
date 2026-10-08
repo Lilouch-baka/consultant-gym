@@ -4,8 +4,9 @@ import { openDB } from 'idb';
 // Stores:
 //   reviews           one record per question: spaced-repetition state + answer history
 //   custom_questions  questions saved from the AI mentor
-//   mentor_log        graded written answers and challenges
-//   kv                settings and meta (streak, last export, ...)
+//   mentor_log        graded written answers (score 0-3, error tag, reason)
+//   kv                settings, meta (streak, last export), token usage, weekly diagnosis,
+//                     and the encrypted API key (see secrets.js)
 const dbPromise = openDB('consultant-gym', 1, {
   upgrade(db) {
     db.createObjectStore('reviews', { keyPath: 'qid' });
@@ -33,6 +34,10 @@ export async function kvGet(key) {
 
 export async function kvSet(key, value) {
   return (await dbPromise).put('kv', value, key);
+}
+
+export async function kvDel(key) {
+  return (await dbPromise).delete('kv', key);
 }
 
 export async function replaceAll({ reviews = [], custom_questions = [], mentor_log = [], kv = {} }) {

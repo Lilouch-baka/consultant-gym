@@ -2,15 +2,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useApp } from '../state.jsx';
 import { navigate } from '../router.js';
 import { buildSession, MODES } from '../engine/sessionBuilder.js';
-import { capFromScore, ratingCap } from '../engine/srs.js';
+import { ratingCap } from '../engine/srs.js';
 import { checkNumeric, formatMs, formatNumber, shuffle, timerSeconds } from '../engine/answerCheck.js';
 import { topicLabel, TOPIC_BY_ID, LAYER_BY_ID } from '../data/curriculum.js';
 import { BackButton, ErrorNote, ProgressBar, RatingBar, RingTimer, SectionLabel, Spinner } from '../components/ui.jsx';
 import Explanation, { Verdict } from '../components/Explanation.jsx';
-import GoDeeper from '../components/GoDeeper.jsx';
-import MentorReview from '../components/MentorReview.jsx';
+import GradeCard, { SelfGrade } from '../components/GradeCard.jsx';
 import { askClaude } from '../ai/client.js';
-import { GRADE_SCHEMA, MENTOR_SYSTEM, gradeMessages, normalizeGrade, questionContext } from '../ai/prompts.js';
+import { ANSWER_LIMIT, GRADE_SCHEMA, GRADE_SYSTEM, gradeContent, normalizeGrade } from '../ai/prompts.js';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -135,7 +134,6 @@ function AfterAnswer({ q, verdict, cap, capNote, onRate, hideAnswer }) {
   return (
     <>
       <Explanation q={q} verdict={verdict} hideAnswer={hideAnswer} />
-      <GoDeeper context={questionContext(q)} />
       <RatingBar cap={cap} onRate={onRate} note={capNote} />
     </>
   );
@@ -398,52 +396,47 @@ function MentalMathView({ q, speed, onDone }) {
   );
 }
 
-// ---------- Written (AI-graded) ----------
+// ---------- Written (AI-graded, with self-grading fallback) ----------
+// Score 0-3 maps straight onto the spaced-repetition rating (0 Again … 3 Easy).
 function WrittenView({ q, onDone }) {
-  const { settings, addMentorLog } = useApp();
+  const { settings, apiKey, addMentorLog, recordUsage } = useApp();
   const [text, setText] = useState('');
   const [phase, setPhase] = useState('writing'); // writing | grading | graded | self
-  const [review, setReview] = useState(null);
+  const [grade, setGrade] = useState(null);
   const [error, setError] = useState(null);
-  const [followUp, setFollowUp] = useState(null); // { text, phase, review, error }
   const start = useRef(Date.now());
   const [ms, setMs] = useState(0);
 
-  async function grade() {
+  async function submit() {
     setMs(Date.now() - start.current);
-    setPhase('grading');
     setError(null);
-    try {
-      const raw = await askClaude({ settings, system: MENTOR_SYSTEM, messages: gradeMessages(q, text), schema: GRADE_SCHEMA });
-      const g = normalizeGrade(raw);
-      setReview(g);
-      setPhase('graded');
-      addMentorLog({ kind: 'grade', qid: q.id, prompt: q.prompt, answer: text, ...g });
-    } catch (e) {
-      setError(e);
-      setPhase('writing');
+    if (!apiKey) {
+      setPhase('self');
+      return;
     }
-  }
-
-  async function gradeFollowUp() {
-    setFollowUp((f) => ({ ...f, phase: 'grading', error: null }));
+    setPhase('grading');
     try {
-      const fq = { ...q, prompt: review.follow_up, answer: { model_answer: '', rubric: [] }, explanation: {} };
-      const raw = await askClaude({
-        settings,
-        system: MENTOR_SYSTEM,
-        messages: gradeMessages(fq, followUp.text, `This is a follow-up to: "${q.prompt}"`),
+      const { result, usage } = await askClaude({
+        apiKey,
+        system: GRADE_SYSTEM,
+        content: gradeContent(q, text, settings.company),
         schema: GRADE_SCHEMA,
+        maxTokens: 300,
       });
-      const g = normalizeGrade(raw);
-      setFollowUp((f) => ({ ...f, phase: 'graded', review: g }));
-      addMentorLog({ kind: 'follow_up', qid: q.id, prompt: review.follow_up, answer: followUp.text, ...g });
+      recordUsage(usage);
+      setGrade(normalizeGrade(result));
+      setPhase('graded');
     } catch (e) {
-      setFollowUp((f) => ({ ...f, phase: 'writing', error: e }));
+      if (e.usage) recordUsage(e.usage);
+      setError(e);
+      setPhase('self'); // fall back to self-grading
     }
   }
 
-  const cap = review ? capFromScore(review.scores.correctness) : 3;
+  function finish({ score, tag, reason, source }) {
+    addMentorLog({ kind: 'grade', source, qid: q.id, layer: q.layer, topic: q.topic, score, tag, reason: reason || '', answer: text });
+    onDone({ correct: score >= 2, rating: score, ms });
+  }
 
   return (
     <>
@@ -463,10 +456,10 @@ function WrittenView({ q, onDone }) {
               onChange={(e) => setText(e.target.value)}
               placeholder={q.style === 'walkthrough' ? 'IS → CFS → BS, and prove it balances…' : 'Structure first: driver → effect → so what…'}
             />
+            {text.length > ANSWER_LIMIT && <div className="caption">Only the first {ANSWER_LIMIT.toLocaleString()} characters are sent for grading.</div>}
           </div>
-          <ErrorNote error={error} />
-          <button className="btn xl primary" disabled={!text.trim()} onClick={grade}>
-            Submit to mentor
+          <button className="btn xl primary" disabled={!text.trim()} onClick={submit}>
+            {apiKey ? 'Submit for grading' : 'Submit and self-grade'}
           </button>
           <button
             className="btn lg"
@@ -475,88 +468,41 @@ function WrittenView({ q, onDone }) {
               setPhase('self');
             }}
           >
-            {settings.apiKey ? 'Skip mentor: show model answer' : 'Show model answer and self-grade'}
+            Skip: show model answer
           </button>
-          {!settings.apiKey && <div className="caption">Add your API key in Settings to have the mentor grade written answers.</div>}
+          {!apiKey && <div className="caption">No API key saved, so you grade yourself against the model answer. Add a key in Settings for automatic grading.</div>}
         </>
       )}
 
       {phase === 'grading' && (
         <>
           <YourAnswer text={text} />
-          <Spinner label="The mentor is reading your answer…" />
+          <Spinner label="Grading…" />
         </>
       )}
 
-      {phase === 'graded' && review && (
+      {phase === 'graded' && grade && (
         <>
           <YourAnswer text={text} />
-          <MentorReview review={review} />
-          {!followUp && (
-            <div className="grid-2">
-              <button
-                className="btn lg"
-                onClick={() => {
-                  setReview(null);
-                  setPhase('writing');
-                }}
-              >
-                Try again
-              </button>
-              <button className="btn lg primary" disabled={!review.follow_up} onClick={() => setFollowUp({ text: '', phase: 'writing' })}>
-                Answer follow-up
-              </button>
-            </div>
-          )}
-          {followUp && (
-            <div className="stack-lg">
-              {followUp.phase === 'writing' && (
-                <>
-                  <div className="field">
-                    <label htmlFor="followup-answer">Your follow-up answer</label>
-                    <textarea
-                      id="followup-answer"
-                      className="textarea"
-                      rows={5}
-                      value={followUp.text}
-                      onChange={(e) => setFollowUp((f) => ({ ...f, text: e.target.value }))}
-                    />
-                  </div>
-                  <ErrorNote error={followUp.error} />
-                  <button className="btn lg primary" disabled={!followUp.text.trim()} onClick={gradeFollowUp}>
-                    Submit follow-up
-                  </button>
-                </>
-              )}
-              {followUp.phase === 'grading' && <Spinner label="Grading your follow-up…" />}
-              {followUp.phase === 'graded' && (
-                <>
-                  <SectionLabel>Follow-up review</SectionLabel>
-                  <MentorReview review={{ ...followUp.review, follow_up: '' }} />
-                </>
-              )}
-            </div>
-          )}
-          <AfterAnswer
-            q={q}
-            verdict={<div className="h3">App explanation</div>}
-            cap={cap}
-            capNote={`Mentor correctness ${review.scores.correctness}/5 sets your highest rating.`}
-            onRate={(rating) => onDone({ correct: review.scores.correctness >= 3, rating, ms })}
-          />
+          <GradeCard grade={grade} />
+          <Explanation q={q} verdict={null} />
+          <div className="grid-2">
+            <button className="btn lg" onClick={() => setPhase('self')}>
+              Disagree: self-grade
+            </button>
+            <button className="btn lg primary" onClick={() => finish({ ...grade, source: 'ai' })}>
+              Next
+            </button>
+          </div>
         </>
       )}
 
       {phase === 'self' && (
         <>
+          <ErrorNote error={error} />
           {text.trim() && <YourAnswer text={text} />}
-          <AfterAnswer
-            q={q}
-            verdict={<div className="h3">Compare with the model answer</div>}
-            cap={3}
-            capNote="Self-grade honestly against the model answer."
-            onRate={(rating) => onDone({ correct: rating >= 2, rating, ms })}
-          />
+          <Explanation q={q} verdict={<div className="h3">Compare with the model answer</div>} />
+          <SelfGrade onDone={(g) => finish({ ...g, source: 'self' })} />
         </>
       )}
     </>

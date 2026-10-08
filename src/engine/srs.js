@@ -48,14 +48,6 @@ export function ratingCap({ correct, ms, limitMs }) {
   return 3;
 }
 
-// Mentor correctness score (1-5) -> highest allowed rating.
-export function capFromScore(correctness) {
-  if (correctness <= 2) return 0;
-  if (correctness === 3) return 1;
-  if (correctness === 4) return 2;
-  return 3;
-}
-
 export function isDue(review, now = Date.now()) {
   return review && review.reps + review.lapses > 0 && review.due <= now;
 }

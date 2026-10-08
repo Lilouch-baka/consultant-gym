@@ -3,11 +3,10 @@ import * as db from './storage/db.js';
 import { SEED_QUESTIONS } from './data/questions.js';
 import { newReview, schedule } from './engine/srs.js';
 import { DEFAULT_COMPANY, sanitizeCompany } from './finance/model.js';
-import { DEFAULT_MODEL } from './ai/client.js';
+import { clearApiKey, loadApiKey, saveApiKey } from './storage/secrets.js';
 
+// The API key is NOT a setting: it lives encrypted in storage/secrets.js and only in memory here.
 export const DEFAULT_SETTINGS = {
-  apiKey: '',
-  model: DEFAULT_MODEL,
   theme: 'light',
   timers: { easy: 30, medium: 60, hard: 90 },
   company: DEFAULT_COMPANY,
@@ -40,15 +39,30 @@ export function AppProvider({ children }) {
   const [reviews, setReviews] = useState({});
   const [customQuestions, setCustomQuestions] = useState([]);
   const [mentorLog, setMentorLog] = useState([]);
+  const [apiKey, setApiKeyState] = useState('');
+  const [usage, setUsage] = useState({ session: { input: 0, output: 0, calls: 0 }, total: { input: 0, output: 0, calls: 0 } });
+  const [diagnosis, setDiagnosis] = useState(null);
 
   const load = useCallback(async () => {
-    const [s, m, rs, cq, ml] = await Promise.all([
+    const [s, m, rs, cq, ml, u, dg] = await Promise.all([
       db.kvGet('settings'),
       db.kvGet('meta'),
       db.getAll('reviews'),
       db.getAll('custom_questions'),
       db.getAll('mentor_log'),
+      db.kvGet('usage_total'),
+      db.kvGet('diagnosis'),
     ]);
+    // Migrate a key saved in plain text by the first version into encrypted storage.
+    if (s && s.apiKey) {
+      await saveApiKey(s.apiKey);
+      delete s.apiKey;
+      delete s.model;
+      await db.kvSet('settings', s);
+    }
+    setApiKeyState(await loadApiKey());
+    if (u) setUsage((prev) => ({ ...prev, total: u }));
+    setDiagnosis(dg || null);
     const merged = { ...DEFAULT_SETTINGS, ...(s || {}) };
     merged.timers = { ...DEFAULT_SETTINGS.timers, ...(s?.timers || {}) };
     merged.company = sanitizeCompany(s?.company || DEFAULT_COMPANY);
@@ -133,16 +147,41 @@ export function AppProvider({ children }) {
     });
   }, []);
 
+  // ---------- API key (encrypted at rest, only in memory here) ----------
+  const setApiKey = useCallback(async (plain) => {
+    await saveApiKey(plain);
+    setApiKeyState(plain);
+  }, []);
+
+  const removeApiKey = useCallback(async () => {
+    await clearApiKey();
+    setApiKeyState('');
+  }, []);
+
+  // ---------- token usage ----------
+  const recordUsage = useCallback((u) => {
+    if (!u) return;
+    setUsage((prev) => {
+      const add = (x) => ({ input: x.input + u.input, output: x.output + u.output, calls: x.calls + 1 });
+      const next = { session: add(prev.session), total: add(prev.total) };
+      db.kvSet('usage_total', next.total);
+      return next;
+    });
+  }, []);
+
+  const saveDiagnosis = useCallback(async (d) => {
+    await db.kvSet('diagnosis', d);
+    setDiagnosis(d);
+  }, []);
+
   const exportData = useCallback(async () => {
     const [rs, cq, ml] = await Promise.all([db.getAll('reviews'), db.getAll('custom_questions'), db.getAll('mentor_log')]);
-    // The API key is never exported.
-    // eslint-disable-next-line no-unused-vars
-    const { apiKey, ...safeSettings } = settings;
+    // Settings never contain the API key, and the encrypted key is not exported.
     return {
       app: 'consultant-gym',
-      version: 1,
+      version: 2,
       exportedAt: new Date().toISOString(),
-      settings: safeSettings,
+      settings,
       meta,
       reviews: rs,
       custom_questions: cq,
@@ -153,8 +192,9 @@ export function AppProvider({ children }) {
   const importData = useCallback(
     async (data) => {
       if (!data || data.app !== 'consultant-gym') throw new Error('This file is not a Consultant Gym export.');
-      const keepKey = settings.apiKey;
-      const nextSettings = { ...DEFAULT_SETTINGS, ...(data.settings || {}), apiKey: keepKey };
+      // eslint-disable-next-line no-unused-vars
+      const { apiKey: _ignored, model: _m, ...imported } = data.settings || {};
+      const nextSettings = { ...DEFAULT_SETTINGS, ...imported };
       await db.replaceAll({
         reviews: Array.isArray(data.reviews) ? data.reviews : [],
         custom_questions: Array.isArray(data.custom_questions) ? data.custom_questions : [],
@@ -163,10 +203,17 @@ export function AppProvider({ children }) {
       });
       await load();
     },
-    [settings.apiKey, load],
+    [load],
   );
 
   const value = {
+    apiKey,
+    setApiKey,
+    removeApiKey,
+    usage,
+    recordUsage,
+    diagnosis,
+    saveDiagnosis,
     ready,
     settings,
     updateSettings,

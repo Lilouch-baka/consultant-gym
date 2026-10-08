@@ -1,219 +1,127 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useApp } from '../state.jsx';
 import { navigate } from '../router.js';
-import { LAYERS, LAYER_BY_ID, FORMAT_LABEL } from '../data/curriculum.js';
-import { ErrorNote, ScreenHeader, SectionLabel, Spinner, ScoreBar } from '../components/ui.jsx';
-import GoDeeper from '../components/GoDeeper.jsx';
-import Explanation from '../components/Explanation.jsx';
+import { ErrorNote, ScreenHeader, SectionLabel, Spinner } from '../components/ui.jsx';
+import { ScoreSegments } from '../components/GradeCard.jsx';
 import Icon from '../components/Icon.jsx';
 import { askClaude } from '../ai/client.js';
-import { GENERATE_SCHEMA, MENTOR_SYSTEM, generateMessages, toBankQuestion } from '../ai/prompts.js';
+import { DIAGNOSIS_SYSTEM, ERROR_TAGS, diagnosisContent, summarizeLog } from '../ai/prompts.js';
+import { TOPIC_BY_ID } from '../data/curriculum.js';
+
+const DAY = 24 * 60 * 60 * 1000;
 
 export default function Mentor() {
-  const { settings, mentorLog, customQuestions } = useApp();
-  const [openLog, setOpenLog] = useState(null);
-
-  return (
-    <div className="screen with-tabs">
-      <ScreenHeader eyebrow={settings.apiKey ? `Model: ${settings.model}` : 'No API key yet'} title="Mentor" />
-
-      {!settings.apiKey && (
-        <div className="notice">
-          The mentor uses your own Anthropic API key. Add it in Settings; it stays on this device.{' '}
-          <button className="btn sm" style={{ marginTop: 8, display: 'flex' }} onClick={() => navigate('/settings')}>
-            Open Settings
-          </button>
-        </div>
-      )}
-
-      <button className="row-card" onClick={() => navigate('/challenge')} style={{ borderColor: 'var(--accent)' }}>
-        <span style={{ color: 'var(--accent)' }}>
-          <Icon name="briefcase" />
-        </span>
-        <div className="stack" style={{ flex: 1, gap: 2 }}>
-          <div style={{ fontSize: 15, fontWeight: 600 }}>Challenge me</div>
-          <div className="caption" style={{ fontSize: 12 }}>
-            A mini-case with real figures. Diagnose it in one paragraph.
-          </div>
-        </div>
-        <Icon name="chevron" size={18} />
-      </button>
-
-      <AskMeMore />
-
-      <div className="card pad-sm">
-        <GoDeeper context="General question from the Mentor tab. No specific question is on screen." label="Ask the mentor anything" placeholder="e.g. How do I sanity-check a DCF in 2 minutes?" />
-      </div>
-
-      <div className="stack">
-        <div className="row-between">
-          <h2 className="h2">Recent reviews</h2>
-          <div className="caption">{customQuestions.length} saved AI questions</div>
-        </div>
-        {mentorLog.length === 0 && <div className="empty">Your graded written answers and challenges will appear here.</div>}
-        {mentorLog.slice(0, 12).map((m) => (
-          <div key={m.id} className="card pad-sm">
-            <button
-              className="row"
-              style={{ background: 'none', border: 0, padding: 0, textAlign: 'left', minHeight: 44 }}
-              onClick={() => setOpenLog(openLog === m.id ? null : m.id)}
-              aria-expanded={openLog === m.id}
-            >
-              <div className="stack" style={{ flex: 1, gap: 2 }}>
-                <div style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4 }}>{(m.prompt || '').split('\n')[0].slice(0, 110)}</div>
-                <div className="caption mono" style={{ fontSize: 12 }}>
-                  {new Date(m.ts).toLocaleDateString('en-GB')} · C{m.scores?.correctness} S{m.scores?.structure} D{m.scores?.depth}
-                  {m.kind === 'challenge' ? ' · case' : ''}
-                </div>
-              </div>
-              <Icon name="chevron" size={18} />
-            </button>
-            {openLog === m.id && (
-              <div className="stack">
-                <ScoreBar label="Correctness" score={m.scores?.correctness || 0} />
-                <ScoreBar label="Structure" score={m.scores?.structure || 0} />
-                <ScoreBar label="Depth" score={m.scores?.depth || 0} />
-                <SectionLabel>Your answer</SectionLabel>
-                <p className="body answer-text">{m.answer}</p>
-                {m.wrong && (
-                  <>
-                    <SectionLabel tone="wrong">Wrong or missing</SectionLabel>
-                    <p className="body answer-text">{m.wrong}</p>
-                  </>
-                )}
-                {m.model_answer && (
-                  <>
-                    <SectionLabel>Model answer</SectionLabel>
-                    <p className="body answer-text">{m.model_answer}</p>
-                  </>
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function AskMeMore() {
-  const { settings, saveCustomQuestion } = useApp();
-  const [layer, setLayer] = useState(1);
-  const [topic, setTopic] = useState(LAYERS[0].topics[0].id);
-  const [difficulty, setDifficulty] = useState('medium');
-  const [format, setFormat] = useState('');
+  const { apiKey, mentorLog, diagnosis, saveDiagnosis, recordUsage } = useApp();
+  const graded = useMemo(() => mentorLog.filter((m) => typeof m.score === 'number'), [mentorLog]);
+  const summary = useMemo(() => summarizeLog(mentorLog), [mentorLog]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(null);
-  const [generated, setGenerated] = useState([]);
-  const [saved, setSaved] = useState({});
-  const [preview, setPreview] = useState(null);
+  const daysSince = diagnosis ? Math.floor((Date.now() - diagnosis.ts) / DAY) : null;
+  const maxTag = Math.max(1, ...Object.values(summary.tags));
 
-  async function generate() {
+  async function runDiagnosis() {
     setBusy(true);
     setError(null);
     try {
-      const res = await askClaude({ settings, system: MENTOR_SYSTEM, messages: generateMessages({ layer, topic, difficulty, format, count: 3 }), schema: GENERATE_SCHEMA, effort: 'high' });
-      const qs = (res.questions || []).map((g) => toBankQuestion(g, { layer, topic, difficulty })).filter(Boolean);
-      setGenerated(qs);
-      setSaved({});
+      const { result, usage } = await askClaude({ apiKey, system: DIAGNOSIS_SYSTEM, content: diagnosisContent(summary), maxTokens: 350 });
+      recordUsage(usage);
+      await saveDiagnosis({ ts: Date.now(), text: result, graded: summary.graded });
     } catch (e) {
+      if (e.usage) recordUsage(e.usage);
       setError(e);
     } finally {
       setBusy(false);
     }
   }
 
-  async function save(q) {
-    await saveCustomQuestion(q);
-    setSaved((s) => ({ ...s, [q.id]: true }));
-  }
-
   return (
-    <div className="card">
-      <div className="row" style={{ gap: 10 }}>
-        <span style={{ color: 'var(--accent)' }}>
-          <Icon name="sparkle" />
-        </span>
-        <div className="stack" style={{ gap: 2 }}>
-          <h2 className="h3">Ask me more</h2>
-          <div className="caption" style={{ fontSize: 12 }}>
-            Fresh questions in the app’s format. Save the good ones to your bank.
-          </div>
+    <div className="screen with-tabs">
+      <ScreenHeader eyebrow={apiKey ? 'Grading on' : 'Self-grading (no API key)'} title="Mentor" />
+
+      <section className="card" aria-labelledby="week-h">
+        <div className="row-between">
+          <h2 id="week-h" className="h3">
+            This week’s weak spots
+          </h2>
+          <div className="caption">last 7 days</div>
         </div>
+        {summary.graded === 0 ? (
+          <p className="caption" style={{ lineHeight: 1.5 }}>
+            No graded written answers in the last 7 days. Written questions appear in your daily review and in layer drills.
+          </p>
+        ) : (
+          <>
+            <div className="caption">{summary.graded} written answers graded</div>
+            <div className="stack" style={{ gap: 8 }}>
+              <SectionLabel>Error types</SectionLabel>
+              {ERROR_TAGS.filter((t) => summary.tags[t]).map((t) => (
+                <div key={t} className="row" style={{ gap: 10 }}>
+                  <div style={{ width: 104, fontSize: 14 }}>{t}</div>
+                  <div className="bar" style={{ flex: 1, height: 8 }}>
+                    <div style={{ width: `${(summary.tags[t] / maxTag) * 100}%`, background: 'var(--wrong-strong)' }} />
+                  </div>
+                  <div className="mono" style={{ width: 24, textAlign: 'right', fontSize: 14 }}>
+                    {summary.tags[t]}
+                  </div>
+                </div>
+              ))}
+              {Object.keys(summary.tags).length === 0 && <div className="caption">No errors tagged. Well done.</div>}
+            </div>
+            <div className="stack" style={{ gap: 8 }}>
+              <SectionLabel>Weakest topics</SectionLabel>
+              {summary.topics.slice(0, 3).map((t) => (
+                <div key={t.topic} className="row-between" style={{ alignItems: 'center' }}>
+                  <div style={{ fontSize: 14 }}>{t.topic}</div>
+                  <div className="mono caption" style={{ fontSize: 13 }}>
+                    avg {t.avgScore}/3 · {t.n}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="divider" />
+        <SectionLabel>AI diagnosis</SectionLabel>
+        {diagnosis ? (
+          <>
+            <p className="body answer-text">{diagnosis.text}</p>
+            <div className="caption">
+              {daysSince === 0 ? 'Today' : `${daysSince} day${daysSince === 1 ? '' : 's'} ago`} · based on {diagnosis.graded} graded answers
+            </div>
+          </>
+        ) : (
+          <p className="caption">Run it once a week. Only counts by topic and error type are sent, never your answers.</p>
+        )}
+        {busy && <Spinner label="Diagnosing…" />}
+        <ErrorNote error={error} />
+        <button className="btn lg primary" onClick={runDiagnosis} disabled={busy || !apiKey || summary.graded === 0}>
+          {diagnosis && daysSince < 7 ? 'Run again' : 'Run weekly diagnosis'}
+        </button>
+        {!apiKey && (
+          <button className="btn" onClick={() => navigate('/settings')}>
+            <Icon name="settings" size={18} /> Add an API key in Settings
+          </button>
+        )}
+      </section>
+
+      <div className="stack">
+        <h2 className="h2">Recent grades</h2>
+        {graded.length === 0 && <div className="empty">Your graded written answers will appear here.</div>}
+        {graded.slice(0, 15).map((m) => (
+          <div key={m.id} className="card pad-sm" style={{ gap: 8 }}>
+            <div className="row-between" style={{ alignItems: 'center' }}>
+              <div style={{ fontSize: 14, fontWeight: 500 }}>{TOPIC_BY_ID[m.topic]?.name || m.topic}</div>
+              <div className="row" style={{ gap: 6 }}>
+                {m.tag && <div className="tag review">{m.tag}</div>}
+                <div className="tag">{m.source === 'self' ? 'self' : 'AI'}</div>
+              </div>
+            </div>
+            <ScoreSegments score={m.score} />
+            {m.reason && <div className="caption" style={{ lineHeight: 1.5 }}>{m.reason}</div>}
+          </div>
+        ))}
       </div>
-      <div className="grid-2">
-        <div className="field">
-          <label htmlFor="amm-layer">Layer</label>
-          <select
-            id="amm-layer"
-            className="select"
-            value={layer}
-            onChange={(e) => {
-              const l = Number(e.target.value);
-              setLayer(l);
-              setTopic(LAYER_BY_ID[l].topics[0].id);
-            }}
-          >
-            {LAYERS.map((l) => (
-              <option key={l.id} value={l.id}>
-                {l.id}. {l.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="amm-topic">Topic</label>
-          <select id="amm-topic" className="select" value={topic} onChange={(e) => setTopic(e.target.value)}>
-            {LAYER_BY_ID[layer].topics.map((t) => (
-              <option key={t.id} value={t.id}>
-                {t.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="amm-diff">Difficulty</label>
-          <select id="amm-diff" className="select" value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="amm-format">Format</label>
-          <select id="amm-format" className="select" value={format} onChange={(e) => setFormat(e.target.value)}>
-            <option value="">Mixed</option>
-            {Object.entries(FORMAT_LABEL).map(([k, v]) => (
-              <option key={k} value={k}>
-                {v}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <button className="btn lg primary" onClick={generate} disabled={busy}>
-        Generate 3 questions
-      </button>
-      {busy && <Spinner label="Writing questions and checking the numbers…" />}
-      <ErrorNote error={error} />
-      {generated.map((q) => (
-        <div key={q.id} className="inner stack" style={{ gap: 8 }}>
-          <div className="chips">
-            <div className="tag">{FORMAT_LABEL[q.format]}</div>
-            <div className="tag">{q.style}</div>
-          </div>
-          <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>{q.prompt}</div>
-          <div className="grid-2">
-            <button className="btn sm" onClick={() => setPreview(preview === q.id ? null : q.id)}>
-              {preview === q.id ? 'Hide answer' : 'See answer'}
-            </button>
-            <button className="btn sm primary" disabled={saved[q.id]} onClick={() => save(q)}>
-              {saved[q.id] ? 'Saved' : 'Save to bank'}
-            </button>
-          </div>
-          {preview === q.id && <Explanation q={q} verdict={null} />}
-        </div>
-      ))}
     </div>
   );
 }

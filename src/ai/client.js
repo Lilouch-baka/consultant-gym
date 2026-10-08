@@ -1,14 +1,12 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-export const MODEL_OPTIONS = [
-  { id: 'claude-sonnet-5-5', label: 'Claude Sonnet 5.5 (default, fast)' },
-  { id: 'claude-opus-5-5', label: 'Claude Opus 5.5 (deepest, slower)' },
-  { id: 'claude-haiku-5-5', label: 'Claude Haiku 5.5 (cheapest)' },
-];
-export const DEFAULT_MODEL = 'claude-sonnet-5-5';
+export const MODEL = 'claude-sonnet-5-5';
+// USD per million tokens.
+export const PRICE = { input: 2, output: 10 };
 
-// Models that accept server-side refusal fallbacks ("default" routing).
-const FALLBACK_MODELS = new Set(['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-opus-5', 'claude-fable-5-1']);
+export function costUsd(inputTokens, outputTokens) {
+  return (inputTokens * PRICE.input + outputTokens * PRICE.output) / 1e6;
+}
 
 export class MentorError extends Error {
   constructor(code, message) {
@@ -23,10 +21,7 @@ function mapError(e) {
     return new MentorError('invalid_key', 'Your API key was rejected. Check it in Settings (it starts with sk-ant-).');
   }
   if (e instanceof Anthropic.PermissionDeniedError) {
-    return new MentorError('permission', 'This API key is not allowed to use that model. Pick another model in Settings.');
-  }
-  if (e instanceof Anthropic.NotFoundError) {
-    return new MentorError('model', 'Model not found. Check the model name in Settings.');
+    return new MentorError('permission', `This API key is not allowed to use ${MODEL}.`);
   }
   if (e instanceof Anthropic.RateLimitError) {
     return new MentorError('rate_limit', 'Rate limit reached. Wait a minute and try again.');
@@ -39,75 +34,58 @@ function mapError(e) {
   if (e instanceof Anthropic.APIConnectionError) {
     return new MentorError('offline', 'Could not reach the Anthropic API. Check your connection.');
   }
-  if (e instanceof Anthropic.InternalServerError || (e instanceof Anthropic.APIError && (e.status === 529 || e.status >= 500))) {
-    return new MentorError('overloaded', 'The API is busy right now. Try again in a moment.');
-  }
   if (e instanceof Anthropic.APIError) {
-    return new MentorError('api', `API error ${e.status ?? ''}: ${e.message}`);
+    if (e.status === 529 || e.status >= 500) return new MentorError('overloaded', 'The API is busy right now. Try again in a moment.');
+    return new MentorError('api', `API error ${e.status ?? ''}`);
   }
-  return new MentorError('unknown', e?.message || 'Something went wrong.');
-}
-
-function parseJson(text) {
-  try {
-    return JSON.parse(text);
-  } catch {
-    const start = text.indexOf('{');
-    const end = text.lastIndexOf('}');
-    if (start >= 0 && end > start) {
-      try {
-        return JSON.parse(text.slice(start, end + 1));
-      } catch {
-        // fall through
-      }
-    }
-    throw new MentorError('parse', 'The mentor replied in an unexpected format. Try again.');
-  }
+  return new MentorError('unknown', 'Something went wrong with the API call.');
 }
 
 /**
- * Call the Messages API directly from the browser.
+ * One small Messages API call from the browser.
+ * Thinking is switched off (between_tools) and output is capped, so calls stay cheap.
  * With `schema`, the reply is constrained to that JSON schema and returned parsed.
+ * Returns { result, usage: { input, output } }.
  */
-export async function askClaude({ settings, system, messages, schema, maxTokens = 16000, effort = 'medium' }) {
-  if (!settings.apiKey) throw new MentorError('no_key', 'Add your Anthropic API key in Settings to use the mentor.');
+export async function askClaude({ apiKey, system, content, schema, maxTokens = 300 }) {
+  if (!apiKey) throw new MentorError('no_key', 'No API key saved. Add one in Settings, or self-grade.');
   if (typeof navigator !== 'undefined' && navigator.onLine === false) {
-    throw new MentorError('offline', 'You are offline. The mentor needs an internet connection; everything else works offline.');
+    throw new MentorError('offline', 'You are offline. Self-grade this one; everything else works offline.');
   }
 
-  const client = new Anthropic({ apiKey: settings.apiKey, dangerouslyAllowBrowser: true, maxRetries: 1 });
-  const model = settings.model || DEFAULT_MODEL;
-  const output_config = { effort };
+  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 1, timeout: 30000, logLevel: 'off' });
+  const output_config = { effort: 'low' };
   if (schema) output_config.format = { type: 'json_schema', schema };
-  const params = { model, max_tokens: maxTokens, system, messages, output_config };
 
   let res;
   try {
-    if (FALLBACK_MODELS.has(model)) {
-      try {
-        res = await client.beta.messages.create({ ...params, betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' });
-      } catch (e) {
-        // If the account or model does not accept fallbacks, retry once without them.
-        if (e instanceof Anthropic.BadRequestError) res = await client.messages.create(params);
-        else throw e;
-      }
-    } else {
-      res = await client.messages.create(params);
-    }
+    res = await client.messages.create({
+      model: MODEL,
+      max_tokens: maxTokens,
+      thinking: { type: 'between_tools' },
+      output_config,
+      system,
+      messages: [{ role: 'user', content }],
+    });
   } catch (e) {
     throw mapError(e);
   }
 
-  if (res.stop_reason === 'refusal') {
-    throw new MentorError('refusal', 'The model declined this request. Rephrase it and try again.');
-  }
+  const usage = {
+    input: (res.usage?.input_tokens || 0) + (res.usage?.cache_creation_input_tokens || 0) + (res.usage?.cache_read_input_tokens || 0),
+    output: res.usage?.output_tokens || 0,
+  };
+  if (res.stop_reason === 'refusal') throw Object.assign(new MentorError('refusal', 'The model declined this request.'), { usage });
+
   const text = res.content
     .filter((b) => b.type === 'text')
     .map((b) => b.text)
     .join('')
     .trim();
-  if (res.stop_reason === 'max_tokens' && schema) {
-    throw new MentorError('truncated', 'The reply was cut off. Try again.');
+  if (!schema) return { result: text, usage };
+  try {
+    return { result: JSON.parse(text), usage };
+  } catch {
+    throw Object.assign(new MentorError('parse', 'The reply was cut off or malformed.'), { usage });
   }
-  return schema ? parseJson(text) : text;
 }

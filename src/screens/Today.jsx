@@ -92,8 +92,8 @@ export default function Today() {
         <button className="btn left" onClick={() => navigate('/session', { mode: 'mixed' })}>
           <Icon name="shuffle" size={18} /> Mixed exam
         </button>
-        <button className="btn left outline-accent" onClick={() => navigate('/challenge')}>
-          <Icon name="briefcase" size={18} /> Challenge me
+        <button className="btn left outline-accent" onClick={() => navigate('/mentor')}>
+          <Icon name="briefcase" size={18} /> Weak spots
         </button>
       </div>
     </div>

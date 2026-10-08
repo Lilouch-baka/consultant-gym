@@ -6,7 +6,6 @@ import { Layers, LayerDetail } from './screens/Layers.jsx';
 import Session from './screens/Session.jsx';
 import Progress from './screens/Progress.jsx';
 import Mentor from './screens/Mentor.jsx';
-import Challenge from './screens/Challenge.jsx';
 import RatioTree from './screens/RatioTree.jsx';
 import Settings from './screens/Settings.jsx';
 
@@ -16,7 +15,6 @@ const ROUTES = {
   '/layer': { C: LayerDetail, tab: '/layers' },
   '/tree': { C: RatioTree, tab: '/layers' },
   '/mentor': { C: Mentor, tab: '/mentor' },
-  '/challenge': { C: Challenge, tab: null },
   '/progress': { C: Progress, tab: '/progress' },
   '/settings': { C: Settings, tab: null },
   '/session': { C: Session, tab: null },

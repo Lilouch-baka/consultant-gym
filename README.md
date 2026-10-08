@@ -5,7 +5,7 @@ A finance mastery trainer for your iPhone: three-statement mechanics, ratio fami
 - **338 seed questions** across 5 layers and 36 topics, in four formats (multiple choice, flashcard, written, mental math)
 - **Spaced repetition** (simplified SM-2): wrong or slow answers come back sooner
 - **Ratio tree** (DuPont and ROIC) with live what-if sliders on a consistent sample company
-- **AI mentor** (your own Anthropic API key): grades written answers, generates new questions, sets mini-cases, answers follow-ups
+- **Claude grading** (optional, your own API key): grades written answers 0-3 with an error tag, plus a weekly weakness diagnosis. Everything else is graded on the phone.
 
 ---
 
@@ -41,16 +41,23 @@ Whenever files change (e.g. you add questions): open GitHub Desktop → write a 
 
 ---
 
-## 3. Add your Anthropic API key (for the mentor)
+## 3. Add your Anthropic API key (optional)
+
+The app works fully without a key: you grade written answers yourself. With a key, Claude (`claude-sonnet-5-5`) is used for **two things only**:
+
+- **Grading written answers**: a score of 0-3, a one-line reason, and an error tag (Concept / Formula / Arithmetic / Units-format / Misread / Guessed). The score sets your spaced-repetition rating (0 Again … 3 Easy).
+- **Weekly weakness diagnosis** (Mentor tab): only a summary is sent (counts by topic and error tag for the last 7 days), never your answers.
+
+Multiple choice, flashcards and numeric answers are always graded on the phone, with no API call. Each call sends only the question, your answer, the expected answer (plus Northwind figures when the question is about the sample company). Thinking is switched off and the reply is capped at about 150 words: a grade costs roughly $0.001.
 
 1. Go to <https://console.anthropic.com> → sign in → **API Keys** → **Create Key**. Copy it (starts with `sk-ant-`).
-2. Recommended: in the console under **Billing / Limits**, set a **monthly spend limit** (e.g. $10).
-3. In the app: **Today → gear icon (Settings) → Anthropic API key** → paste → **Save key**.
-4. Model: the default is **Claude Sonnet 5.5** (good quality, fast, moderate cost). Choose **Opus 5.5** for the deepest feedback, or **Haiku 5.5** for the cheapest.
+2. Recommended: in the console under **Billing / Limits**, set a **monthly spend limit** (e.g. $5).
+3. In the app: **Today → gear icon (Settings) → API key** → paste → **Save key** → **Test connection**.
+4. **Settings → API usage and cost** shows tokens and estimated cost for this session and in total ($2 per million input tokens, $10 per million output tokens).
 
-Where the key lives: only in this browser's storage on your phone. It is sent only to `api.anthropic.com`, and it is **never** included in progress exports. Anyone holding your unlocked phone could read it, which is why the spend limit matters.
+**Where the key lives.** A web app cannot use the iPhone Keychain, so the app does the closest thing a browser allows. The key is encrypted (AES-GCM) with a device key that the browser generates and marks non-exportable, so no script can read that device key out. Only the ciphertext is stored. The key is never in the source code, never logged, never in the progress export, and only ever sent to `api.anthropic.com`. Someone using the app on your unlocked phone could still make calls with it, which is why the spend limit matters. **Remove key** deletes it.
 
-If the mentor fails, the app tells you why: no key, invalid key, offline, no credit left, or rate limit.
+If there is no key, you are offline, or a call fails, the app tells you why and switches to self-grading (score yourself 0-3 and optionally pick the error tag, which also feeds the weekly summary).
 
 ---
 
@@ -60,7 +67,7 @@ Questions live in `src/data/questions/`, one JSON file per group of topics. Ever
 
 **Easiest way, no tools needed:** on github.com open the repository → `src/data/questions/` → a file → pencil icon (Edit) → paste a new question inside the list (mind the commas between questions) → **Commit changes**. The site rebuilds automatically. If you made a mistake, the build in the **Actions** tab turns red and its log tells you which question is wrong. The live site keeps the previous version until you fix it.
 
-You can also save good AI-generated questions straight from the app (**Mentor → Ask me more → Save to bank**). Those live on your phone and are included in exports.
+If a question is about the sample company, add `"uses_company": true` (or mention Northwind in the prompt) and the grader will receive the company's key figures.
 
 ### Templates
 
@@ -128,7 +135,7 @@ with `"explanation": { "reasoning": [] }`.
 ## How the study engine works
 
 - **Daily review**: every question that is due, plus up to 10 new ones (foundations first), capped at 25.
-- **Ratings**: Again / Hard / Good / Easy. A wrong answer can only be rated Again and comes back in the same session. A correct mental-math answer that used more than 75% of the timer is capped at Hard. For written answers, the mentor's correctness score (1-5) sets the highest rating allowed.
+- **Ratings**: Again / Hard / Good / Easy. A wrong answer can only be rated Again and comes back in the same session. A correct mental-math answer that used more than 75% of the timer is capped at Hard. Written answers are scored 0-3 (by Claude or by you), and the score is the rating: 0 Again, 1 Hard, 2 Good, 3 Easy.
 - **Mastery %** per topic and layer combines spacing (interval up to 21 days) and recent accuracy.
 - **Ratio tree**: every value comes from one set of statements (edit it in **Settings → Sample company**). What-ifs hold revenue and equity constant; any extra capital need is funded with debt, and interest is recalculated, so a single change ripples through margin, turnover and leverage.
 

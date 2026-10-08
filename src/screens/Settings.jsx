@@ -1,26 +1,16 @@
 import { useRef, useState } from 'react';
 import { useApp } from '../state.jsx';
-import { BackButton, SectionLabel } from '../components/ui.jsx';
+import { BackButton, ErrorNote, SectionLabel, Spinner } from '../components/ui.jsx';
 import Icon from '../components/Icon.jsx';
-import { MODEL_OPTIONS } from '../ai/client.js';
+import { MODEL, PRICE, askClaude, costUsd } from '../ai/client.js';
 import { COMPANY_FIELDS, DEFAULT_COMPANY, buildStatements, computeRatios, validateCompany } from '../finance/model.js';
 import { exportProgress, readJsonFile } from '../storage/backup.js';
 
 export default function Settings() {
   const app = useApp();
   const { settings, updateSettings, customQuestions, deleteCustomQuestion } = app;
-  const [keyDraft, setKeyDraft] = useState(settings.apiKey);
-  const [showKey, setShowKey] = useState(false);
-  const [keyMsg, setKeyMsg] = useState('');
-  const [modelDraft, setModelDraft] = useState(settings.model);
   const [msg, setMsg] = useState('');
   const fileRef = useRef(null);
-
-  function saveKey(e) {
-    e.preventDefault();
-    updateSettings({ apiKey: keyDraft.trim() });
-    setKeyMsg(keyDraft.trim() ? 'Key saved on this device.' : 'Key removed.');
-  }
 
   async function onImport(e) {
     const file = e.target.files?.[0];
@@ -54,76 +44,8 @@ export default function Settings() {
         </h1>
       </div>
 
-      <section className="card" aria-labelledby="ai-h">
-        <SectionLabel>
-          <span id="ai-h">AI mentor</span>
-        </SectionLabel>
-        <form className="field" onSubmit={saveKey}>
-          <label htmlFor="api-key">Anthropic API key</label>
-          <div className="row" style={{ gap: 8 }}>
-            <input
-              id="api-key"
-              className="input mono"
-              style={{ fontSize: 14 }}
-              type={showKey ? 'text' : 'password'}
-              autoComplete="off"
-              autoCapitalize="off"
-              spellCheck={false}
-              value={keyDraft}
-              placeholder="sk-ant-…"
-              onChange={(e) => setKeyDraft(e.target.value)}
-            />
-            <button type="button" className="icon-btn" aria-label={showKey ? 'Hide key' : 'Show key'} onClick={() => setShowKey((s) => !s)}>
-              <Icon name="eye" size={18} />
-            </button>
-          </div>
-          <button className="btn primary" type="submit">
-            Save key
-          </button>
-          {keyMsg && (
-            <div className="caption" role="status">
-              {keyMsg}
-            </div>
-          )}
-          <div className="caption" style={{ fontSize: 12, lineHeight: 1.5 }}>
-            Stored only in this browser on this device and sent only to api.anthropic.com. It is never included in exports. Use a key with a monthly spend limit.
-          </div>
-        </form>
-        <div className="field">
-          <label htmlFor="model">Model</label>
-          <select
-            id="model"
-            className="select"
-            value={MODEL_OPTIONS.some((m) => m.id === modelDraft) ? modelDraft : 'custom'}
-            onChange={(e) => {
-              if (e.target.value === 'custom') {
-                setModelDraft('');
-                return;
-              }
-              setModelDraft(e.target.value);
-              updateSettings({ model: e.target.value });
-            }}
-          >
-            {MODEL_OPTIONS.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.label}
-              </option>
-            ))}
-            <option value="custom">Other model id…</option>
-          </select>
-          {!MODEL_OPTIONS.some((m) => m.id === modelDraft) && (
-            <input
-              aria-label="Custom model id"
-              className="input mono"
-              style={{ fontSize: 14 }}
-              value={modelDraft}
-              placeholder="claude-…"
-              onChange={(e) => setModelDraft(e.target.value)}
-              onBlur={() => modelDraft.trim() && updateSettings({ model: modelDraft.trim() })}
-            />
-          )}
-        </div>
-      </section>
+      <ApiKeySection />
+      <UsageSection />
 
       <section className="card" aria-labelledby="look-h">
         <SectionLabel>
@@ -297,6 +219,136 @@ function CompanyEditor() {
           {saved}
         </div>
       )}
+    </section>
+  );
+}
+
+function ApiKeySection() {
+  const { apiKey, setApiKey, removeApiKey, recordUsage } = useApp();
+  const [draft, setDraft] = useState('');
+  const [status, setStatus] = useState('');
+  const [testing, setTesting] = useState(false);
+  const [error, setError] = useState(null);
+
+  async function save(e) {
+    e.preventDefault();
+    const k = draft.trim();
+    if (!k) return;
+    try {
+      await setApiKey(k);
+      setDraft('');
+      setError(null);
+      setStatus('Key saved, encrypted on this device.');
+    } catch {
+      setStatus('Could not save the key securely on this browser.');
+    }
+  }
+
+  async function test() {
+    setTesting(true);
+    setError(null);
+    setStatus('');
+    try {
+      const { usage } = await askClaude({ apiKey, content: 'Reply with the single word OK.', maxTokens: 10 });
+      recordUsage(usage);
+      setStatus(`Connected to ${MODEL}.`);
+    } catch (e) {
+      if (e.usage) recordUsage(e.usage);
+      setError(e);
+    } finally {
+      setTesting(false);
+    }
+  }
+
+  return (
+    <section className="card" aria-labelledby="ai-h">
+      <SectionLabel>
+        <span id="ai-h">Claude API</span>
+      </SectionLabel>
+      <div className="kv">
+        <span className="caption">Model</span>
+        <span className="mono" style={{ fontSize: 13 }}>
+          {MODEL}
+        </span>
+        <span className="caption">Key</span>
+        <span className="mono" style={{ fontSize: 13, color: apiKey ? 'var(--correct)' : 'var(--muted)' }}>
+          {apiKey ? `saved (…${apiKey.slice(-4)})` : 'not set'}
+        </span>
+      </div>
+      <form className="field" onSubmit={save}>
+        <label htmlFor="api-key">{apiKey ? 'Replace API key' : 'API key'}</label>
+        <input
+          id="api-key"
+          className="input mono"
+          style={{ fontSize: 14 }}
+          type="password"
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          value={draft}
+          placeholder="sk-ant-…"
+          onChange={(e) => setDraft(e.target.value)}
+        />
+        <button className="btn primary" type="submit" disabled={!draft.trim()}>
+          Save key
+        </button>
+      </form>
+      <div className="grid-2">
+        <button className="btn" onClick={test} disabled={!apiKey || testing}>
+          Test connection
+        </button>
+        <button
+          className="btn danger"
+          disabled={!apiKey}
+          onClick={async () => {
+            await removeApiKey();
+            setStatus('Key removed from this device.');
+          }}
+        >
+          <Icon name="trash" size={18} /> Remove key
+        </button>
+      </div>
+      {testing && <Spinner label="Testing…" />}
+      {status && (
+        <div className="caption" role="status">
+          {status}
+        </div>
+      )}
+      <ErrorNote error={error} />
+      <div className="caption" style={{ fontSize: 12, lineHeight: 1.5 }}>
+        Used only to grade written answers and for the weekly diagnosis. Everything else is graded on the phone. The key is encrypted with a device key that
+        cannot be exported, sent only to api.anthropic.com, never logged and never included in exports. Set a monthly spend limit on it in the Anthropic console.
+      </div>
+    </section>
+  );
+}
+
+function UsageSection() {
+  const { usage } = useApp();
+  const row = (label, u) => (
+    <div key={label} className="stack" style={{ gap: 4 }}>
+      <div className="row-between">
+        <span style={{ fontSize: 14, fontWeight: 500 }}>{label}</span>
+        <span className="mono" style={{ fontSize: 14 }}>
+          ${costUsd(u.input, u.output).toFixed(4)}
+        </span>
+      </div>
+      <div className="caption mono" style={{ fontSize: 12 }}>
+        {u.calls} calls · {u.input.toLocaleString()} in · {u.output.toLocaleString()} out tokens
+      </div>
+    </div>
+  );
+  return (
+    <section className="card" aria-labelledby="usage-h">
+      <SectionLabel>
+        <span id="usage-h">API usage and cost</span>
+      </SectionLabel>
+      {row('This session', usage.session)}
+      <div className="divider" />
+      {row('All time on this device', usage.total)}
+      <div className="caption" style={{ fontSize: 12 }}>
+        Estimate at ${PRICE.input}/M input and ${PRICE.output}/M output tokens. A session starts when you open the app.
+      </div>
     </section>
   );
 }

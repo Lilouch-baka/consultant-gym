@@ -4,7 +4,6 @@ import { navigate } from '../router.js';
 import { TREES, findPath } from '../finance/trees.js';
 import { applyScenario, buildStatements, computeRatios, isBaseScenario, NO_SCENARIO } from '../finance/model.js';
 import { BackButton, SectionLabel } from '../components/ui.jsx';
-import GoDeeper from '../components/GoDeeper.jsx';
 
 const EPS = 1e-9;
 
@@ -153,10 +152,6 @@ function NodeCard({ tree, node, path, base, now, scenario, setSlider, company })
   }
   const anyChange = path.some((n) => Math.abs(n.value(now) - n.value(base)) > EPS);
 
-  const context = `Ratio tree node: ${node.label}. Formula: ${node.formula}. Meaning: ${node.meaning}. Current value ${node.fmt(node.value(now))} (base ${node.fmt(
-    node.value(base),
-  )}). Sample company: revenue ${company.revenue}, ROE ${(base.roe * 100).toFixed(1)}%, ROIC ${(base.roic * 100).toFixed(1)}%, DSO ${base.dso.toFixed(0)} days, net debt/EBITDA ${base.netDebtToEbitda.toFixed(2)}x.`;
-
   return (
     <div className="card accent-border" style={{ padding: 18, gap: 14 }}>
       <div className="row-between">
@@ -247,15 +242,9 @@ function NodeCard({ tree, node, path, base, now, scenario, setSlider, company })
         </div>
       )}
 
-      <div className="grid-2">
-        <button className="btn" onClick={() => document.getElementById(`deeper-node`)?.focus()}>
-          Ask the mentor
-        </button>
-        <button className="btn primary" onClick={() => navigate('/session', { mode: 'topic', topic: node.topic })}>
-          Quiz me on {node.label.length > 14 ? 'this' : node.label}
-        </button>
-      </div>
-      <GoDeeper context={context} inputId="deeper-node" label="Go deeper" placeholder="e.g. Why does this hit cash before profit?" />
+      <button className="btn lg primary" onClick={() => navigate('/session', { mode: 'topic', topic: node.topic })}>
+        Quiz me on {node.label}
+      </button>
     </div>
   );
 }
