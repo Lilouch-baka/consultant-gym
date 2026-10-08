@@ -1529,6 +1529,82 @@ input[type='checkbox'][switch] {
   border-color: var(--line-strong);
 }
 
+/* Glossary long-press terms */
+.gloss {
+  text-decoration: underline dotted;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: help;
+  border-radius: 3px;
+}
+
+.gloss:active {
+  background: var(--accent-soft);
+}
+
+.gloss-term {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.gloss-fr {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 15px;
+  font-style: italic;
+}
+
+/* Resume and weekly report */
+.resume-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 12px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.report-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* Reduce Motion: the iPhone setting, or the in-app toggle */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root[data-motion='reduce'] *,
+:root[data-motion='reduce'] *::before,
+:root[data-motion='reduce'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 /* ---------- Misc ---------- */
 .empty {
   padding: 28px 16px;

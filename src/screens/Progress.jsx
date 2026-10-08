@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useApp, currentStreak } from '../state.jsx';
 import { navigate } from '../router.js';
-import { computeStats, pct } from '../engine/stats.js';
+import { computeStats, pct, weeklyReport } from '../engine/stats.js';
+import { CHAPTER_BY_N } from '../accounting/chapters.js';
 import { ProgressBar, ScreenHeader } from '../components/ui.jsx';
 import Icon from '../components/Icon.jsx';
 import { exportProgress } from '../storage/backup.js';
@@ -55,6 +56,8 @@ export default function Progress() {
           </div>
         </div>
       </div>
+
+      <WeeklyReport />
 
       <div className="card" style={{ padding: 18, gap: 14 }}>
         <h2 className="h3">Accuracy by difficulty</h2>
@@ -116,5 +119,72 @@ export default function Progress() {
         <Icon name="settings" size={18} /> Settings and import
       </button>
     </div>
+  );
+}
+
+// This week's error report: top error pattern and weakest theme, each one tap from a drill.
+function WeeklyReport() {
+  const { partnerAttempts, mentorLog, reviews, questions, accountingItems, partnerItems } = useApp();
+  const report = useMemo(
+    () =>
+      weeklyReport({
+        partnerAttempts,
+        mentorLog,
+        reviews,
+        fundamentals: questions,
+        accounting: accountingItems || [],
+        partnerItems,
+        chapterTitle: (n) => CHAPTER_BY_N[n]?.title || '',
+      }),
+    [partnerAttempts, mentorLog, reviews, questions, accountingItems, partnerItems],
+  );
+  const { error, weakest } = report;
+  if (!error && !weakest) return null;
+
+  return (
+    <section className="card" style={{ padding: 18, gap: 14 }} aria-labelledby="weekly-h">
+      <div className="row-between">
+        <h2 className="h3" id="weekly-h">
+          This week’s error report
+        </h2>
+        <span style={{ color: 'var(--accent)' }}>
+          <Icon name="target" size={18} stroke={2} />
+        </span>
+      </div>
+      {error && (
+        <div className="report-row">
+          <div className="stack" style={{ flex: 1, gap: 2 }}>
+            <div className="caption" style={{ fontSize: 12 }}>
+              Most common error
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 600 }}>{error.label}</div>
+            <div className="caption" style={{ fontSize: 12 }}>
+              {error.n} of {error.total} {error.source === 'partner' ? 'partner answers' : 'written answers'}
+            </div>
+          </div>
+          {error.ids.length > 0 && (
+            <button className="btn sm primary" onClick={() => navigate('/session', { mode: 'review', ids: error.ids.join(',') })}>
+              Drill {error.ids.length}
+            </button>
+          )}
+        </div>
+      )}
+      {weakest && (
+        <div className="report-row">
+          <div className="stack" style={{ flex: 1, gap: 2 }}>
+            <div className="caption" style={{ fontSize: 12 }}>
+              Weakest theme{report.thisWeek ? ' this week' : ''} · {weakest.track}
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 600 }}>{weakest.label}</div>
+            <div className="caption" style={{ fontSize: 12 }}>
+              {pct(weakest.accuracy)} recent accuracy · {pct(weakest.mastery)} mastery
+            </div>
+          </div>
+          <button className="btn sm primary" onClick={() => navigate('/session', weakest.drill)}>
+            Drill
+          </button>
+        </div>
+      )}
+    </section>
   );
 }

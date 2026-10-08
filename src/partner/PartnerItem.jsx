@@ -7,6 +7,8 @@ import { ErrorNote, RatingBar, SectionLabel, Spinner } from '../components/ui.js
 import Autocomplete from '../components/Autocomplete.jsx';
 import Icon from '../components/Icon.jsx';
 import { haptic } from '../components/haptics.js';
+import Glossed from '../components/Glossed.jsx';
+import DictationHint from '../components/DictationHint.jsx';
 import { buildRatioDictionary, suggest } from './dictionary.js';
 import { PYRAMID_FIELDS, liveChecks, offlinePatterns, pyramidLayers, ratioMatch } from './scoring.js';
 import { parseWorkedExample, relatedIds } from './workedExample.js';
@@ -151,7 +153,7 @@ export default function PartnerItem({ item, onDone }) {
       <div className="stack" style={{ gap: 10 }}>
         <SectionLabel>Partner question</SectionLabel>
         <h1 className="title" style={{ fontSize: 24, lineHeight: 1.3 }}>
-          {item.prompt}
+          <Glossed text={item.prompt} />
         </h1>
         <div className="row caption" style={{ gap: 8, fontSize: 14 }}>
           <Icon name="briefcase" size={16} stroke={2} />
@@ -232,6 +234,7 @@ export default function PartnerItem({ item, onDone }) {
       {!quick && (
         <section className="stack" style={{ gap: 12 }} aria-labelledby="s4">
           <StepHead n={4} id="s4" title="Answer — the partner pyramid" />
+          <DictationHint />
           {PYRAMID_FIELDS.map((f) =>
             f.collapsible ? (
               <details key={f.key} className="disclosure" open={!!draft.pyramid[f.key]}>

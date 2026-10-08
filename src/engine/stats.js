@@ -90,6 +90,45 @@ export function weeklyTopError(partnerAttempts, mentorLog, now = Date.now()) {
   return top ? { label: top[0], n: top[1], total, source } : null;
 }
 
+// Weekly error report: the top error with the items that produced it, and the weakest theme
+// across all three tracks (practised this week if possible), each with a drill.
+export function weeklyReport({ partnerAttempts, mentorLog, reviews, fundamentals, accounting, partnerItems, chapterTitle }, now = Date.now()) {
+  const since = now - 7 * DAY_MS;
+  const top = weeklyTopError(partnerAttempts, mentorLog, now);
+  let error = null;
+  if (top) {
+    const idByPid = Object.fromEntries(partnerItems.map((p) => [p.pid, p.id]));
+    const ids =
+      top.source === 'partner'
+        ? partnerAttempts.filter((a) => a.ts >= since && (a.patterns || []).includes(top.label)).map((a) => idByPid[a.pid])
+        : mentorLog.filter((m) => m.ts >= since && m.tag === top.label).map((m) => m.qid);
+    error = { ...top, ids: [...new Set(ids.filter(Boolean))] };
+  }
+
+  const groups = [];
+  const add = (label, track, items, drill) => groups.push({ label, track, items, drill });
+  const byTopic = {};
+  for (const q of fundamentals) (byTopic[q.topic] ||= []).push(q);
+  for (const t of ALL_TOPICS) if (byTopic[t.id]) add(t.name, 'Fundamentals', byTopic[t.id], { mode: 'topic', topic: t.id });
+  const byChapter = {};
+  for (const q of accounting) (byChapter[q.chapter] ||= []).push(q);
+  for (const [n, items] of Object.entries(byChapter)) add(`Ch ${n} · ${chapterTitle(Number(n))}`, 'Accounting', items, { mode: 'accounting', topic: n });
+  const byTheme = {};
+  for (const q of partnerItems) (byTheme[q.theme] ||= []).push(q);
+  for (const [theme, items] of Object.entries(byTheme)) add(theme, 'Partner', items, { mode: 'review', ids: items.map((q) => q.id).join(',') });
+
+  const touched = (items, from) => items.some((q) => (reviews[q.id]?.history || []).some((h) => h.ts >= from));
+  const pool = groups.filter((g) => touched(g.items, since));
+  const candidates = (pool.length ? pool : groups.filter((g) => touched(g.items, 0))).map((g) => {
+    const tried = g.items.filter((q) => reviews[q.id]?.history?.length);
+    const hist = tried.flatMap((q) => reviews[q.id].history.slice(-5));
+    return { ...g, mastery: mean(tried.map((q) => questionMastery(reviews[q.id]))), accuracy: hist.filter((h) => h.correct).length / hist.length };
+  });
+  // Weakest = lowest recent accuracy, ties broken by mastery.
+  const weakest = candidates.sort((a, b) => a.accuracy - b.accuracy || a.mastery - b.mastery)[0] || null;
+  return { error, weakest, thisWeek: pool.length > 0 };
+}
+
 export function pct(x) {
   if (x === null || x === undefined) return '–';
   return `${Math.round(x * 100)}%`;

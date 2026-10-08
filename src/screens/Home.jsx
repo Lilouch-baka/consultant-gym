@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import * as db from '../storage/db.js';
 import { useApp, currentStreak } from '../state.jsx';
 import { navigate } from '../router.js';
 import { estimateMinutes, mixQueue } from '../engine/sessionBuilder.js';
@@ -15,6 +16,14 @@ export default function Home() {
   const { questions, reviews, meta, partner, partnerItems, accountingItems, partnerAttempts, mentorLog } = useApp();
   const loaded = !!partner && accountingItems !== null;
   const accounting = accountingItems || [];
+  const [unfinished, setUnfinished] = useState(null);
+
+  useEffect(() => {
+    db.get('drafts', db.SESSION_DRAFT).then((d) => {
+      // Offer to resume for a week; older half-sessions are just dropped from Home.
+      if (d && d.idx < d.ids.length && Date.now() - d.savedAt < 7 * 86400000) setUnfinished(d);
+    });
+  }, []);
 
   const mix = useMemo(
     () => (loaded ? mixQueue({ fundamentals: questions, accounting, partner: partnerItems, reviews }) : null),
@@ -63,6 +72,21 @@ export default function Home() {
           {streak} {streak === 1 ? 'day' : 'days'}
         </div>
       </div>
+
+      {unfinished && (
+        <button className="resume-card" onClick={() => navigate('/session', { ...unfinished.params, resume: '1' })}>
+          <span style={{ color: 'var(--accent)', flexShrink: 0 }}>
+            <Icon name="play" size={20} stroke={2} />
+          </span>
+          <span className="stack" style={{ flex: 1, gap: 2, textAlign: 'left' }}>
+            <span style={{ fontSize: 15, fontWeight: 600 }}>Resume {unfinished.title}</span>
+            <span className="caption">
+              {unfinished.idx} of {unfinished.ids.length} done · {plural(unfinished.ids.length - unfinished.idx, 'question', 'questions')} left
+            </span>
+          </span>
+          <Icon name="chevron" size={18} />
+        </button>
+      )}
 
       <button className="mix-btn" disabled={!mix || !mix.length} onClick={() => navigate('/session', { mode: 'mix' })}>
         <div className="stack" style={{ flex: 1, gap: 2 }}>

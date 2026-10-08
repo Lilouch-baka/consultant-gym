@@ -26,6 +26,9 @@ const dbPromise = openDB('consultant-gym', 2, {
   },
 });
 
+// drafts key of the unfinished session, so Home can offer Resume.
+export const SESSION_DRAFT = 'session:current';
+
 export async function get(store, key) {
   return (await dbPromise).get(store, key);
 }

@@ -3,6 +3,7 @@ import Icon from '../components/Icon.jsx';
 import { RatingBar, SectionLabel } from '../components/ui.jsx';
 import Explanation, { Verdict } from '../components/Explanation.jsx';
 import { haptic } from '../components/haptics.js';
+import Glossed from '../components/Glossed.jsx';
 import { aliasHint, searchAccounts } from './chartOfAccounts.js';
 import { checkEntry, fmt, parseAmount, signed, tAccounts, totals } from './journal.js';
 
@@ -27,7 +28,7 @@ export default function JournalEntry({ q, onDone }) {
   return (
     <>
       <h1 className="question-text" style={{ fontSize: 20, lineHeight: 1.45 }}>
-        {q.prompt}
+        <Glossed text={q.prompt} />
       </h1>
 
       <div className="card pad-sm" style={{ gap: 10, borderRadius: 16 }}>

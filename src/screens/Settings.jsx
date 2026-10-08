@@ -60,6 +60,17 @@ export default function Settings() {
             Dark
           </button>
         </div>
+        <label className="toggle" style={{ fontSize: 15 }}>
+          <span>
+            Reduce motion <span className="caption">· also follows your iPhone setting</span>
+          </span>
+          <input type="checkbox" switch="" checked={!!settings.reduceMotion} onChange={(e) => updateSettings({ reduceMotion: e.target.checked })} />
+        </label>
+        {settings.hintsSeen?.dictation && (
+          <button className="btn sm" style={{ alignSelf: 'flex-start' }} onClick={() => updateSettings({ hintsSeen: {} })}>
+            Show tips again
+          </button>
+        )}
       </section>
 
       <section className="card" aria-labelledby="timer-h">

@@ -66,6 +66,8 @@ const PATHS = {
   ),
   trash: <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" />,
   refresh: <path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" />,
+  mic: <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3" />,
+  play: <path d="M7 4v16l13-8z" />,
 };
 
 export default function Icon({ name, size = 22, stroke = 1.8, className, style }) {

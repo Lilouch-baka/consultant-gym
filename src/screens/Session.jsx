@@ -8,6 +8,10 @@ import { topicLabel, TOPIC_BY_ID, LAYER_BY_ID } from '../data/curriculum.js';
 import { BackButton, ErrorNote, ProgressBar, RatingBar, RingTimer, SectionLabel, Spinner } from '../components/ui.jsx';
 import Explanation, { Verdict } from '../components/Explanation.jsx';
 import GradeCard, { SelfGrade } from '../components/GradeCard.jsx';
+import Glossed from '../components/Glossed.jsx';
+import DictationHint from '../components/DictationHint.jsx';
+import * as db from '../storage/db.js';
+import { SESSION_DRAFT } from '../storage/db.js';
 import PartnerItem from '../partner/PartnerItem.jsx';
 import JournalEntry from '../accounting/JournalEntry.jsx';
 import { askClaude } from '../ai/client.js';
@@ -20,7 +24,7 @@ export default function Session({ params }) {
   const mode = params.mode || 'daily';
   const speed = mode === 'speed';
   // Sessions that use the lazily loaded tracks wait until those tracks are in.
-  const needsTracks = mode === 'mix' || mode === 'partner' || mode === 'accounting' || !!params.ids;
+  const needsTracks = mode === 'mix' || mode === 'partner' || mode === 'accounting' || !!params.ids || !!params.resume;
   const tracksReady = !!partner && accountingItems !== null;
 
   const [queue, setQueue] = useState(null);
@@ -31,6 +35,20 @@ export default function Session({ params }) {
 
   useEffect(() => {
     if (!ready || queue || (needsTracks && !tracksReady)) return;
+    if (params.resume) {
+      db.get('drafts', SESSION_DRAFT).then((d) => {
+        const saved = d ? d.ids.map((id) => questionById[id]).filter(Boolean) : [];
+        const ok = d && d.idx < saved.length;
+        if (ok) {
+          setIdx(d.idx);
+          setResults(d.results || []);
+          requeued.current = new Set(d.requeued || []);
+          startedAt.current = d.startedAt || Date.now();
+        }
+        setQueue(ok ? saved : []);
+      });
+      return;
+    }
     let q;
     if (params.ids) q = params.ids.split(',').map((id) => questionById[id]).filter(Boolean);
     else
@@ -48,6 +66,28 @@ export default function Session({ params }) {
     // Build once per session; later review updates must not reshuffle the queue.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, tracksReady]);
+
+  // Save progress after every answer; clear it once the session is finished.
+  useEffect(() => {
+    if (!queue || !queue.length) return;
+    if (idx >= queue.length) {
+      db.del('drafts', SESSION_DRAFT);
+      return;
+    }
+    // eslint-disable-next-line no-unused-vars
+    const { resume: _r, ...rest } = params;
+    db.putKey('drafts', SESSION_DRAFT, {
+      params: rest,
+      title: sessionTitle(mode, params),
+      ids: queue.map((x) => x.id),
+      idx,
+      results,
+      requeued: [...requeued.current],
+      startedAt: startedAt.current,
+      savedAt: Date.now(),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queue, idx]);
 
   if (!queue) {
     return (
@@ -173,7 +213,7 @@ function McqView({ q, onDone }) {
 
   return (
     <>
-      <h1 className="question-text">{q.prompt}</h1>
+      <h1 className="question-text"><Glossed text={q.prompt} /></h1>
       <div className="stack">
         {order.map((oi, pos) => {
           let cls = 'option';
@@ -216,7 +256,7 @@ function FlashcardView({ q, onDone }) {
       <div className="card flashcard-face">
         <SectionLabel>Flashcard</SectionLabel>
         <h1 className="question-text" style={{ textAlign: 'center' }}>
-          {q.prompt}
+          <Glossed text={q.prompt} />
         </h1>
         {!flipped && <div className="caption">Say the meaning, formula and what high/low signals. Then flip.</div>}
       </div>
@@ -320,7 +360,7 @@ function MentalMathView({ q, speed, onDone }) {
   return (
     <>
       <RingTimer total={total} remaining={result ? total - result.ms / 1000 : remaining} />
-      <h1 className="question-text center">{q.prompt}</h1>
+      <h1 className="question-text center"><Glossed text={q.prompt} /></h1>
       <form
         className="field"
         onSubmit={(e) => {
@@ -423,6 +463,17 @@ function WrittenView({ q, onDone }) {
   const [error, setError] = useState(null);
   const start = useRef(Date.now());
   const [ms, setMs] = useState(0);
+  const draftKey = `written:${q.id}`;
+
+  // Half-written answers survive closing the app.
+  useEffect(() => {
+    db.get('drafts', draftKey).then((d) => d?.text && setText((t) => t || d.text));
+  }, [draftKey]);
+  useEffect(() => {
+    if (phase !== 'writing') return;
+    const t = setTimeout(() => (text.trim() ? db.putKey('drafts', draftKey, { qid: q.id, ts: Date.now(), text }) : db.del('drafts', draftKey)), 600);
+    return () => clearTimeout(t);
+  }, [text, phase, draftKey, q.id]);
 
   async function submit() {
     setMs(Date.now() - start.current);
@@ -452,6 +503,7 @@ function WrittenView({ q, onDone }) {
   }
 
   function finish({ score, tag, reason, source }) {
+    db.del('drafts', draftKey);
     addMentorLog({ kind: 'grade', source, qid: q.id, layer: q.layer, topic: q.topic, score, tag, reason: reason || '', answer: text });
     onDone({ correct: score >= 2, rating: score, ms });
   }
@@ -459,11 +511,12 @@ function WrittenView({ q, onDone }) {
   return (
     <>
       <h1 className="question-text answer-text" style={{ fontSize: q.prompt.length > 220 ? 18 : 20 }}>
-        {q.prompt}
+        <Glossed text={q.prompt} />
       </h1>
 
       {phase === 'writing' && (
         <>
+          <DictationHint />
           <div className="field">
             <label htmlFor="written-answer">Your answer</label>
             <textarea
@@ -581,7 +634,7 @@ function Summary({ title, results, startedAt }) {
         </button>
       )}
       <button className="btn xl primary" onClick={() => navigate('/')}>
-        Back to Today
+        Back to Home
       </button>
     </div>
   );

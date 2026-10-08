@@ -11,6 +11,8 @@ export const DEFAULT_SETTINGS = {
   companyMode: DEFAULT_COMPANY_MODE,
   partnerQuick: false,
   theme: 'light',
+  reduceMotion: false,
+  hintsSeen: {},
   timers: { easy: 30, medium: 60, hard: 90 },
   company: DEFAULT_COMPANY,
 };
@@ -33,6 +35,12 @@ export function applyTheme(theme) {
   document.documentElement.dataset.theme = t;
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', t === 'dark' ? '#0A1426' : '#FFFFFF');
+}
+
+// Reduce Motion: follows the iPhone setting automatically (CSS media query); this forces it on.
+export function applyMotion(reduce) {
+  if (reduce) document.documentElement.dataset.motion = 'reduce';
+  else delete document.documentElement.dataset.motion;
 }
 
 export function AppProvider({ children }) {
@@ -79,6 +87,7 @@ export function AppProvider({ children }) {
     merged.company = sanitizeCompany(s?.company || DEFAULT_COMPANY);
     setSettings(merged);
     applyTheme(merged.theme);
+    applyMotion(merged.reduceMotion);
     setMeta({ ...DEFAULT_META, ...(m || {}) });
     setReviews(Object.fromEntries(rs.map((r) => [r.qid, r])));
     setCustomQuestions(cq);
@@ -117,6 +126,7 @@ export function AppProvider({ children }) {
       const next = { ...prev, ...patch };
       db.kvSet('settings', next);
       if (patch.theme) applyTheme(next.theme);
+      if ('reduceMotion' in patch) applyMotion(next.reduceMotion);
       return next;
     });
   }, []);
