@@ -8,6 +8,9 @@ export function costUsd(inputTokens, outputTokens) {
   return (inputTokens * PRICE.input + outputTokens * PRICE.output) / 1e6;
 }
 
+const WORKSPACE_HELP =
+  'This key needs a workspace. Either fill in "Workspace ID" in Settings (from your workspace page in the Anthropic console, it starts with wrkspc_), or create a workspace API key there and use that instead';
+
 export class MentorError extends Error {
   constructor(code, message) {
     super(message);
@@ -19,22 +22,12 @@ function mapError(e) {
   if (e instanceof MentorError) return e;
   if (e instanceof Anthropic.AuthenticationError) {
     const msg = e.error?.error?.message || '';
-    if (/workspace/i.test(msg)) {
-      return new MentorError(
-        'invalid_key',
-        'This key is not scoped to a workspace (usually an Admin key). Create a normal key in the Anthropic console: Settings → API keys → Create key, then paste it here.',
-      );
-    }
+    if (/workspace/i.test(msg)) return new MentorError('invalid_key', WORKSPACE_HELP + ` (Anthropic said: ${msg})`);
     return new MentorError('invalid_key', `Your API key was rejected${msg ? ` (${msg})` : ''}. Check it in Settings; it should start with sk-ant-api.`);
   }
   if (e instanceof Anthropic.PermissionDeniedError) {
     const msg = e.error?.error?.message || '';
-    if (/workspace/i.test(msg)) {
-      return new MentorError(
-        'permission',
-        'This key is not scoped to a workspace (usually an Admin key). Create a normal key in the Anthropic console: Settings → API keys → Create key, then paste it here.',
-      );
-    }
+    if (/workspace/i.test(msg)) return new MentorError('permission', WORKSPACE_HELP + ` (Anthropic said: ${msg})`);
     return new MentorError('permission', `Anthropic refused the request${msg ? `: ${msg}` : '.'}`);
   }
   if (e instanceof Anthropic.RateLimitError) {
@@ -43,6 +36,7 @@ function mapError(e) {
   if (e instanceof Anthropic.BadRequestError) {
     const msg = e.error?.error?.message || e.message || '';
     if (/credit|balance|billing/i.test(msg)) return new MentorError('billing', 'Your Anthropic account has no credit left. Top up in the Anthropic console.');
+    if (/workspace/i.test(msg)) return new MentorError('invalid_key', WORKSPACE_HELP + ` (Anthropic said: ${msg})`);
     return new MentorError('bad_request', `The request was rejected: ${msg}`);
   }
   if (e instanceof Anthropic.APIConnectionError) {
@@ -62,13 +56,15 @@ function mapError(e) {
  * With `schema`, the reply is constrained to that JSON schema and returned parsed.
  * Returns { result, usage: { input, output } }.
  */
-export async function askClaude({ apiKey, system, content, schema, maxTokens = 300 }) {
+export async function askClaude({ apiKey, workspaceId, system, content, schema, maxTokens = 300 }) {
   if (!apiKey) throw new MentorError('no_key', 'No API key saved. Add one in Settings, or self-grade.');
   if (typeof navigator !== 'undefined' && navigator.onLine === false) {
     throw new MentorError('offline', 'You are offline. Self-grade this one; everything else works offline.');
   }
 
-  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 1, timeout: 30000, logLevel: 'off' });
+  // Identity-linked keys must name the workspace each request runs in.
+  const defaultHeaders = workspaceId ? { 'anthropic-workspace-id': workspaceId.trim() } : undefined;
+  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true, maxRetries: 1, timeout: 30000, logLevel: 'off', defaultHeaders });
   const output_config = { effort: 'low' };
   if (schema) output_config.format = { type: 'json_schema', schema };
 

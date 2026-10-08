@@ -224,8 +224,9 @@ function CompanyEditor() {
 }
 
 function ApiKeySection() {
-  const { apiKey, setApiKey, removeApiKey, recordUsage } = useApp();
+  const { apiKey, setApiKey, removeApiKey, recordUsage, settings, updateSettings } = useApp();
   const [draft, setDraft] = useState('');
+  const [wsDraft, setWsDraft] = useState(settings.workspaceId || '');
   const [status, setStatus] = useState('');
   const [testing, setTesting] = useState(false);
   const [error, setError] = useState(null);
@@ -234,20 +235,15 @@ function ApiKeySection() {
     e.preventDefault();
     const k = draft.trim();
     if (!k) return;
-    if (k.startsWith('sk-ant-admin')) {
-      setStatus('');
-      setError({
-        code: 'invalid_key',
-        message:
-          'This is an Admin key. It is not scoped to a workspace and cannot grade answers. In the Anthropic console go to Settings → API keys → Create key (choose a workspace) and paste that key (it starts with sk-ant-api).',
-      });
-      return;
-    }
     try {
       await setApiKey(k);
       setDraft('');
       setError(null);
-      setStatus('Key saved, encrypted on this device.');
+      setStatus(
+        k.startsWith('sk-ant-admin')
+          ? 'Key saved. Note: it looks like an Admin key, which usually cannot call Claude. Tap Test connection to check.'
+          : 'Key saved, encrypted on this device. Tap Test connection to check it.',
+      );
     } catch {
       setStatus('Could not save the key securely on this browser.');
     }
@@ -258,7 +254,7 @@ function ApiKeySection() {
     setError(null);
     setStatus('');
     try {
-      const { usage } = await askClaude({ apiKey, content: 'Reply with the single word OK.', maxTokens: 10 });
+      const { usage } = await askClaude({ apiKey, workspaceId: wsDraft.trim(), content: 'Reply with the single word OK.', maxTokens: 10 });
       recordUsage(usage);
       setStatus(`Connected to ${MODEL}.`);
     } catch (e) {
@@ -302,6 +298,25 @@ function ApiKeySection() {
           Save key
         </button>
       </form>
+      <div className="field">
+        <label htmlFor="ws-id">Workspace ID (only if Anthropic asks for it)</label>
+        <input
+          id="ws-id"
+          className="input mono"
+          style={{ fontSize: 14 }}
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          value={wsDraft}
+          placeholder="wrkspc_…"
+          onChange={(e) => setWsDraft(e.target.value)}
+          onBlur={() => updateSettings({ workspaceId: wsDraft.trim() })}
+        />
+        <div className="caption" style={{ fontSize: 12, lineHeight: 1.5 }}>
+          Some newer keys are linked to your user account and must name a workspace. Find the ID on the workspace page in the Anthropic console (Settings →
+          Workspaces). Leave empty for a normal workspace key.
+        </div>
+      </div>
       <div className="grid-2">
         <button className="btn" onClick={test} disabled={!apiKey || testing}>
           Test connection

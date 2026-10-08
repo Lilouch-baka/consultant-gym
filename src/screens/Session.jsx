@@ -418,6 +418,7 @@ function WrittenView({ q, onDone }) {
     try {
       const { result, usage } = await askClaude({
         apiKey,
+        workspaceId: settings.workspaceId,
         system: GRADE_SYSTEM,
         content: gradeContent(q, text, settings.company),
         schema: GRADE_SCHEMA,

@@ -7,6 +7,7 @@ import { clearApiKey, loadApiKey, saveApiKey } from './storage/secrets.js';
 
 // The API key is NOT a setting: it lives encrypted in storage/secrets.js and only in memory here.
 export const DEFAULT_SETTINGS = {
+  workspaceId: '',
   theme: 'light',
   timers: { easy: 30, medium: 60, hard: 90 },
   company: DEFAULT_COMPANY,

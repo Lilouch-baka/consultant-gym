@@ -11,7 +11,7 @@ import { TOPIC_BY_ID } from '../data/curriculum.js';
 const DAY = 24 * 60 * 60 * 1000;
 
 export default function Mentor() {
-  const { apiKey, mentorLog, diagnosis, saveDiagnosis, recordUsage } = useApp();
+  const { apiKey, settings, mentorLog, diagnosis, saveDiagnosis, recordUsage } = useApp();
   const graded = useMemo(() => mentorLog.filter((m) => typeof m.score === 'number'), [mentorLog]);
   const summary = useMemo(() => summarizeLog(mentorLog), [mentorLog]);
   const [busy, setBusy] = useState(false);
@@ -23,7 +23,7 @@ export default function Mentor() {
     setBusy(true);
     setError(null);
     try {
-      const { result, usage } = await askClaude({ apiKey, system: DIAGNOSIS_SYSTEM, content: diagnosisContent(summary), maxTokens: 350 });
+      const { result, usage } = await askClaude({ apiKey, workspaceId: settings.workspaceId, system: DIAGNOSIS_SYSTEM, content: diagnosisContent(summary), maxTokens: 350 });
       recordUsage(usage);
       await saveDiagnosis({ ts: Date.now(), text: result, graded: summary.graded });
     } catch (e) {
