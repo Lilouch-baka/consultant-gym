@@ -1,0 +1,275 @@
+[
+  {
+    "id": "A:15-001", "chapter": 15, "section_tag": "Share issue", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company issues 10,000 ordinary shares with a nominal value of 1 each at 15 per share, for cash. Record the issue.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 150000 }, { "account": "Share capital", "credit": 10000 }, { "account": "Share premium", "credit": 140000 }],
+      "effects": { "IS": [], "BS": [["Cash", 150000, "A"], ["Share capital", 10000, "E"], ["Share premium", 140000, "E"]], "CFS": [["Financing: shares issued", 150000]] }
+    },
+    "explanation": { "reasoning": ["Nominal value to share capital: 10,000.", "The excess to share premium: 140,000."] },
+    "why_it_matters": "Equity raises dilute existing owners; track share count and use of proceeds.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Share count", "dir": "up" }],
+    "common_trap": "Crediting the full 150,000 to share capital.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Issuance of Stock", "page": "15-6" }
+  },
+  {
+    "id": "A:15-002", "chapter": 15, "section_tag": "Issue costs", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Costs of 5,000 directly attributable to the share issue are paid in cash. Record them under IAS 32.",
+    "answer": {
+      "lines": [{ "account": "Share premium", "debit": 5000 }, { "account": "Cash", "credit": 5000 }],
+      "effects": { "IS": [], "BS": [["Cash", -5000, "A"], ["Share premium", -5000, "E"]], "CFS": [["Financing: issue costs", -5000]] }
+    },
+    "explanation": { "reasoning": ["Transaction costs of an equity issue are deducted from equity, not expensed."] },
+    "why_it_matters": "Issue costs bypass profit, so they don't show up in EPS but still reduce shareholders' money.",
+    "interactions": [{ "label": "Equity", "dir": "down" }],
+    "common_trap": "Expensing equity issue costs.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Issuance of Stock", "page": "15-6" }
+  },
+  {
+    "id": "A:15-003", "chapter": 15, "section_tag": "Treasury shares", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company buys back 2,000 of its own shares at 18 each and holds them as treasury shares. Record the buyback.",
+    "answer": {
+      "lines": [{ "account": "Treasury shares", "debit": 36000 }, { "account": "Cash", "credit": 36000 }],
+      "effects": { "IS": [], "BS": [["Cash", -36000, "A"], ["Treasury shares (deduction)", -36000, "E"]], "CFS": [["Financing: share buyback", -36000]] }
+    },
+    "explanation": { "reasoning": ["Own shares are not an asset; they are a deduction from equity at cost."] },
+    "why_it_matters": "Buybacks shrink equity and share count: EPS and ROE rise mechanically.",
+    "interactions": [{ "label": "Equity", "dir": "down" }, { "label": "EPS", "dir": "up" }],
+    "common_trap": "Recording treasury shares as an investment asset.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Purchase of Treasury Stock", "page": "15-14" }
+  },
+  {
+    "id": "A:15-004", "chapter": 15, "section_tag": "Treasury shares", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "1,000 of the treasury shares (cost 18 each) are reissued for 22 each in cash. Record the reissue.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 22000 }, { "account": "Treasury shares", "credit": 18000 }, { "account": "Share premium", "credit": 4000 }],
+      "effects": { "IS": [], "BS": [["Cash", 22000, "A"], ["Treasury shares", 18000, "E"], ["Share premium", 4000, "E"]], "CFS": [["Financing: shares reissued", 22000]] }
+    },
+    "explanation": { "reasoning": ["Transactions in own shares never create profit or loss.", "The 4,000 excess over cost goes to equity (share premium)."] },
+    "why_it_matters": "Companies cannot manufacture profit by trading their own shares.",
+    "interactions": [{ "label": "Equity", "dir": "up" }],
+    "common_trap": "Recording a 4,000 gain in profit.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Sale of Treasury Stock", "page": "15-15" }
+  },
+  {
+    "id": "A:15-005", "chapter": 15, "section_tag": "Dividends", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The board declares a cash dividend of 50,000, payable next month. Record the declaration.",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 50000 }, { "account": "Dividends payable", "credit": 50000 }],
+      "effects": { "IS": [], "BS": [["Dividends payable", 50000, "L"], ["Retained earnings", -50000, "E"]], "CFS": [], "note": "paid next month" }
+    },
+    "explanation": { "reasoning": ["Declaration creates a liability and reduces retained earnings.", "No expense: dividends are distributions."] },
+    "why_it_matters": "Dividends reduce equity, raising ROE and gearing ratios.",
+    "interactions": [{ "label": "Equity", "dir": "down" }],
+    "common_trap": "Expensing dividends.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Types of Dividends", "page": "15-18" }
+  },
+  {
+    "id": "A:15-006", "chapter": 15, "section_tag": "Dividends", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The 50,000 dividend declared last month is paid in cash. Record the payment.",
+    "answer": {
+      "lines": [{ "account": "Dividends payable", "debit": 50000 }, { "account": "Cash", "credit": 50000 }],
+      "effects": { "IS": [], "BS": [["Cash", -50000, "A"], ["Dividends payable", -50000, "L"]], "CFS": [["Financing: dividends paid", -50000]] }
+    },
+    "explanation": { "reasoning": ["Settling the liability: cash and dividends payable both fall."] },
+    "why_it_matters": "Dividends paid (not declared) drive financing cash flow.",
+    "interactions": [{ "label": "Cash", "dir": "down" }],
+    "common_trap": "Debiting retained earnings again.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Types of Dividends", "page": "15-18" }
+  },
+  {
+    "id": "A:15-007", "chapter": 15, "section_tag": "Stock dividend", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A US company with 100,000 shares (par 1) declares and distributes a 10% stock dividend when the market price is 20. Under US GAAP small stock dividends are recorded at fair value. Record it.",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 200000 }, { "account": "Share capital", "credit": 10000 }, { "account": "Share premium", "credit": 190000 }],
+      "effects": { "IS": [], "BS": [["Retained earnings", -200000, "E"], ["Share capital", 10000, "E"], ["Share premium", 190000, "E"]], "CFS": [], "note": "no cash" }
+    },
+    "explanation": { "reasoning": ["10,000 new shares × 20 = 200,000 moved out of retained earnings.", "Par 10,000 to share capital, the rest to paid-in capital. Total equity is unchanged."] },
+    "why_it_matters": "Stock dividends change no economics: same company, more slices. Adjust EPS and per-share history for them.",
+    "interactions": [{ "label": "Share count", "dir": "up" }, { "label": "Total equity", "dir": "mixed" }],
+    "common_trap": "Thinking shareholders received value.",
+    "ifrs_gaap": { "ifrs": "No specific IFRS rule; bonus issues are usually recorded at nominal value, transferred from share premium or reserves.", "us_gaap": "Small stock dividends (<20–25%) at fair value from retained earnings; large ones at par." },
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Stock Dividends and Stock Splits", "page": "15-21" }
+  },
+  {
+    "id": "A:15-008", "chapter": 15, "section_tag": "Splits", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "A company does a 2-for-1 share split. What happens to total equity?",
+    "options": ["Nothing; the number of shares doubles and the nominal value per share halves", "It doubles", "It halves", "Retained earnings fall"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A split changes the number of shares only.", "EPS and share price halve; past EPS is restated."] },
+    "why_it_matters": "Always use split-adjusted per-share data in historical comparisons.",
+    "interactions": [{ "label": "Share count", "dir": "up" }],
+    "common_trap": "Comparing pre- and post-split share prices directly.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Stock Dividends and Stock Splits", "page": "15-21" }
+  },
+  {
+    "id": "A:15-009", "chapter": 15, "section_tag": "Book value", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Total equity 1,200,000, of which preference share capital 200,000. 50,000 ordinary shares outstanding. Book value per ordinary share?",
+    "answer": { "value": 20, "unit": "", "tolerance": 0 },
+    "check": "(1200000 - 200000) / 50000",
+    "explanation": { "reasoning": ["Ordinary equity = 1,000,000", "1,000,000 / 50,000 = 20"], "shortcut": "Remove preference claims first." },
+    "why_it_matters": "Price ÷ book value per share = P/B, compared with ROE.",
+    "interactions": [{ "label": "P/B", "dir": "mixed" }],
+    "common_trap": "Including preference capital in ordinary book value.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Book Value per Share", "page": "15-30" }
+  },
+  {
+    "id": "A:15-010", "chapter": 15, "section_tag": "Preference shares", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "10,000 cumulative preference shares (nominal 100, 6% dividend) have dividends 2 years in arrears. How much must be paid to preference holders before any ordinary dividend this year?",
+    "answer": { "value": 180000, "unit": "", "tolerance": 0 },
+    "check": "10000 * 100 * 0.06 * 3",
+    "explanation": { "reasoning": ["Annual preference dividend = 60,000", "2 years in arrears + current year = 180,000"], "shortcut": "Annual amount × (years in arrears + 1)." },
+    "why_it_matters": "Dividends in arrears are not liabilities but must be disclosed; they block ordinary dividends.",
+    "interactions": [{ "label": "Ordinary dividend capacity", "dir": "down" }],
+    "common_trap": "Paying only the current year.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Dividend Preferences", "page": "15-29" }
+  },
+  {
+    "id": "A:15-011", "chapter": 15, "section_tag": "Classification", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company issues preference shares that must be redeemed for cash in 5 years and pay a fixed annual dividend. How are they classified under IAS 32?",
+    "options": [
+      "As a financial liability (the 'dividends' are interest expense)",
+      "As equity",
+      "Half equity, half liability by default",
+      "As a provision"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A contractual obligation to deliver cash makes it a liability, whatever its legal name.", "Substance over form."] },
+    "why_it_matters": "Redeemable preference shares are debt: include them in net debt and leverage.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }],
+    "common_trap": "Treating them as equity because they are called shares.",
+    "ifrs_gaap": { "ifrs": "IAS 32: classify by substance; mandatorily redeemable preference shares are liabilities.", "us_gaap": "ASC 480: mandatorily redeemable shares are liabilities; some redeemable shares are shown as 'mezzanine' (temporary) equity by SEC registrants." },
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "IFRS Insights", "page": "15-52" }
+  },
+  {
+    "id": "A:15-012", "chapter": 15, "section_tag": "Treasury shares", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Why are treasury shares not shown as an asset?",
+    "options": [
+      "A company cannot own a claim on itself; buying its own shares returns capital to shareholders",
+      "Because they have no market value",
+      "Because they are always cancelled",
+      "Because they are expensed"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Holding own shares does not give rights over anything outside the company.", "They are deducted from equity."] },
+    "why_it_matters": "Watch for companies that describe buybacks as 'investments'.",
+    "interactions": [{ "label": "Equity", "dir": "down" }],
+    "common_trap": "Counting treasury shares in total assets.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Reacquisition of Shares", "page": "15-12" }
+  },
+  {
+    "id": "A:15-013", "chapter": 15, "section_tag": "Components", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Components of equity (IFRS vs US terms)",
+    "answer": {
+      "meaning": "Contributed capital (share capital + share premium), retained earnings, other reserves (revaluation surplus, OCI reserves), less treasury shares; plus non-controlling interests in group accounts.",
+      "formula": "IFRS 'share premium' = US 'additional paid-in capital'; 'reserves' ≈ 'accumulated other comprehensive income'",
+      "interpretation": "Distinguishes money put in by owners from profits kept and value changes.",
+      "high_signals": "Equity mostly retained earnings: self-funded growth.",
+      "low_signals": "Equity mostly share premium with accumulated losses: dependent on raising capital."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The mix shows whether a company has created value or only raised it.",
+    "interactions": [{ "label": "ROE", "dir": "mixed" }],
+    "common_trap": "Treating share premium as profit available for dividends.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Components of Stockholders' Equity", "page": "15-5" }
+  },
+  {
+    "id": "A:15-014", "chapter": 15, "section_tag": "Property dividend", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company distributes shares it holds in another company (carrying amount 40,000, fair value 55,000) as a dividend. What happens?",
+    "options": [
+      "Remeasure the investment to fair value (gain 15,000), then record a dividend of 55,000",
+      "Record a dividend of 40,000 and no gain",
+      "Record a loss of 15,000",
+      "Nothing, because no cash is paid"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Non-cash dividends are measured at the fair value of the assets distributed.", "The difference from carrying amount goes to profit."] },
+    "why_it_matters": "Spin-offs and asset distributions can create one-off gains.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Distributing at carrying amount.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Types of Dividends", "page": "15-18" }
+  },
+  {
+    "id": "A:15-015", "chapter": 15, "section_tag": "Analysis", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 180; average shareholders' equity 1,200. Return on equity?",
+    "answer": { "value": 15, "unit": "%", "tolerance": 0 },
+    "check": "180 / 1200 * 100",
+    "explanation": { "reasoning": ["180 / 1,200 = 15%"], "shortcut": "18/120 = 3/20." },
+    "why_it_matters": "Compare ROE with the cost of equity to judge value creation.",
+    "interactions": [{ "label": "P/B", "dir": "up" }],
+    "common_trap": "Using total assets.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Analysis", "page": "15-27" }
+  },
+  {
+    "id": "A:15-016", "chapter": 15, "section_tag": "Distributions", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "What is a liquidating dividend?",
+    "options": [
+      "A distribution that exceeds accumulated profits, i.e. a return of contributed capital",
+      "A dividend paid in cash",
+      "A dividend paid on preference shares",
+      "A dividend paid in shares"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["It returns owners' capital rather than distributing earnings.", "Common in natural-resource companies running down reserves."] },
+    "why_it_matters": "A high 'yield' funded by capital return is not sustainable income.",
+    "interactions": [{ "label": "Equity", "dir": "down" }],
+    "common_trap": "Treating it as a normal yield.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Financial Condition and Dividend Distributions", "page": "15-17" }
+  },
+  {
+    "id": "A:15-017", "chapter": 15, "section_tag": "Splits vs dividends", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Share split vs stock (bonus) dividend",
+    "answer": {
+      "meaning": "Split: more shares, lower nominal value each, no change in equity accounts. Stock dividend: new shares issued, amounts moved between equity accounts (from retained earnings or reserves to share capital/premium).",
+      "formula": "Total equity is unchanged in both cases",
+      "interpretation": "Both lower the price per share without changing the company's value.",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Neither creates value; both require restating per-share history.",
+    "interactions": [{ "label": "Share count", "dir": "up" }],
+    "common_trap": "Thinking a stock dividend is income for shareholders.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Stock Dividends and Stock Splits", "page": "15-21" }
+  },
+  {
+    "id": "A:15-018", "chapter": 15, "section_tag": "Legal capital", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "In many jurisdictions (e.g. UK, Saudi Arabia), dividends can only be paid out of distributable profits. Which balance is usually NOT distributable?",
+    "options": ["Share premium", "Accumulated realised profits", "Retained earnings from prior years", "Current-year realised profit"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Share premium is contributed capital protected for creditors.", "Rules vary by country; check local company law."] },
+    "why_it_matters": "A profitable group can still be unable to pay dividends if the parent lacks distributable reserves.",
+    "interactions": [{ "label": "Dividend capacity", "dir": "down" }],
+    "common_trap": "Assuming all equity can be paid out.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Financial Condition and Dividend Distributions", "page": "15-17" }
+  },
+  {
+    "id": "A:15-019", "chapter": 15, "section_tag": "Buybacks", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company buys back shares at a price far above its book value per share. What happens to book value per share and ROE?",
+    "options": [
+      "Book value per share falls and ROE rises",
+      "Both rise",
+      "Both fall",
+      "Neither changes"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Paying more than BVPS removes more equity per share than the average, so BVPS falls.", "Lower equity with similar profit raises ROE."] },
+    "why_it_matters": "High-ROE companies with heavy buybacks can end up with tiny or negative book equity; ROE then loses meaning.",
+    "interactions": [{ "label": "ROE", "dir": "up" }, { "label": "BVPS", "dir": "down" }],
+    "common_trap": "Thinking buybacks always raise book value per share.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "Analysis", "page": "15-27" }
+  },
+  {
+    "id": "A:15-020", "chapter": 15, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A company has funded buybacks with debt for five years and now shows negative shareholders' equity. Is it insolvent? How should you analyse it?",
+    "answer": {
+      "model_answer": "Not necessarily. Negative book equity here results from returning more cash than accumulated profits, not from losses; the business may still generate strong, stable cash flow and have a market value far above its debt. Book equity is an accounting residual. Analyse it with cash-flow and market measures: net debt/EBITDA, interest cover, FCF/debt, maturity profile and refinancing risk, and enterprise value vs net debt. ROE and D/E become meaningless. The risk is less insolvency today than reduced flexibility if cash flows fall or rates rise.",
+      "rubric": ["Cause: distributions, not losses", "Book equity is a residual", "Use cash-flow and market metrics", "ROE/D-E meaningless", "Real risk: flexibility and refinancing"]
+    },
+    "explanation": { "reasoning": ["Diagnose the cause, then pick metrics that still work."] },
+    "why_it_matters": "Several blue-chip franchise companies operate this way successfully.",
+    "interactions": [{ "label": "Net debt / EBITDA", "dir": "up" }],
+    "common_trap": "Calling negative equity insolvency without looking at cash flow.",
+    "book_ref": { "book": "IA17", "chapter": 15, "section": "What Do the Numbers Mean? Buybacks—Good or Bad?", "page": "15-16" }
+  }
+]

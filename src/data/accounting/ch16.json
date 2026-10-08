@@ -1,0 +1,281 @@
+[
+  {
+    "id": "A:16-001", "chapter": 16, "section_tag": "Convertible debt", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company issues convertible bonds at par for 1,000,000 cash. The liability component (PV of cash flows at the rate for similar non-convertible debt) is 920,000. Record the issue under IAS 32.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 1000000 }, { "account": "Bonds payable", "credit": 920000 }, { "account": "Equity component of convertible bond", "credit": 80000 }],
+      "effects": { "IS": [], "BS": [["Cash", 1000000, "A"], ["Bonds payable", 920000, "L"], ["Equity component", 80000, "E"]], "CFS": [["Financing: convertible issued", 1000000]] }
+    },
+    "explanation": { "reasoning": ["A convertible is a compound instrument: a liability plus an equity conversion option.", "Liability at PV; the residual 80,000 is equity."] },
+    "why_it_matters": "The split means interest expense is charged at the market rate, not the low coupon, so cheap convertibles don't flatter profit under IFRS.",
+    "interactions": [{ "label": "Interest expense", "dir": "up" }, { "label": "Equity", "dir": "up" }],
+    "common_trap": "Recording the whole 1,000,000 as debt.",
+    "ifrs_gaap": { "ifrs": "IAS 32: split into liability and equity components at issue.", "us_gaap": "Since ASU 2020-06, most convertibles are recorded entirely as a liability (no separation), so interest expense is closer to the coupon." },
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Accounting for Convertible Debt", "page": "16-3" }
+  },
+  {
+    "id": "A:16-002", "chapter": 16, "section_tag": "Share options", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "100 employees each receive 100 share options with a grant-date fair value of 6, vesting after 4 years of service. All are expected to vest. Record the expense for year 1.",
+    "answer": {
+      "lines": [{ "account": "Share-based payment expense", "debit": 15000 }, { "account": "Share-based payment reserve", "credit": 15000 }],
+      "effects": { "IS": [["Share-based payment expense", -15000]], "BS": [["Share-based payment reserve", 15000, "E"], ["Retained earnings", -15000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Total fair value = 100 × 100 × 6 = 60,000.", "Spread over the 4-year vesting period: 15,000 a year.", "Equity-settled: credit equity, not a liability."] },
+    "why_it_matters": "Share-based pay is a real cost (dilution) even though it is non-cash; it is often excluded from 'adjusted' profit.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }, { "label": "Dilution", "dir": "up" }],
+    "common_trap": "Remeasuring equity-settled options to fair value each year.",
+    "ifrs_gaap": { "ifrs": "IFRS 2: estimate forfeitures and true up; graded-vesting awards expensed tranche by tranche.", "us_gaap": "ASC 718: may estimate forfeitures or account for them as they occur; straight-line allowed for graded vesting with service conditions." },
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Recognition—Stock Compensation", "page": "16-13" }
+  },
+  {
+    "id": "A:16-003", "chapter": 16, "section_tag": "Option exercise", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "1,000 vested options are exercised at 10 each (nominal value 1 per share). The share-based payment reserve for these options is 6,000. Record the exercise.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 10000 }, { "account": "Share-based payment reserve", "debit": 6000 }, { "account": "Share capital", "credit": 1000 }, { "account": "Share premium", "credit": 15000 }],
+      "effects": { "IS": [], "BS": [["Cash", 10000, "A"], ["SBP reserve", -6000, "E"], ["Share capital", 1000, "E"], ["Share premium", 15000, "E"]], "CFS": [["Financing: options exercised", 10000]] }
+    },
+    "explanation": { "reasoning": ["Cash received plus the reserve built up becomes share capital and premium.", "No profit effect at exercise."] },
+    "why_it_matters": "Option exercises raise cash and share count; buybacks are often used to offset this dilution.",
+    "interactions": [{ "label": "Share count", "dir": "up" }],
+    "common_trap": "Recognising a gain or loss at exercise.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Stock Compensation Plans", "page": "16-10" }
+  },
+  {
+    "id": "A:16-004", "chapter": 16, "section_tag": "Conversion", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "Convertible bonds with a liability carrying amount of 960,000 and an equity component of 80,000 are converted into 50,000 shares of nominal value 1. Record the conversion.",
+    "answer": {
+      "lines": [
+        { "account": "Bonds payable", "debit": 960000 },
+        { "account": "Equity component of convertible bond", "debit": 80000 },
+        { "account": "Share capital", "credit": 50000 },
+        { "account": "Share premium", "credit": 990000 }
+      ],
+      "effects": { "IS": [], "BS": [["Bonds payable", -960000, "L"], ["Equity component", -80000, "E"], ["Share capital", 50000, "E"], ["Share premium", 990000, "E"]], "CFS": [], "note": "non-cash conversion" }
+    },
+    "explanation": { "reasoning": ["On conversion, the liability's carrying amount and the equity component move into share capital and premium.", "No gain or loss."] },
+    "why_it_matters": "Conversion deleverages the company overnight without cash, but dilutes existing shareholders.",
+    "interactions": [{ "label": "Net debt", "dir": "down" }, { "label": "Share count", "dir": "up" }],
+    "common_trap": "Recognising a gain or loss based on the share price at conversion.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Accounting for Convertible Debt", "page": "16-3" }
+  },
+  {
+    "id": "A:16-005", "chapter": 16, "section_tag": "Diluted EPS", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "10,000 options with an exercise price of 20 are outstanding; the average share price is 25. Incremental shares under the treasury-stock method?",
+    "answer": { "value": 2000, "unit": "", "tolerance": 0 },
+    "check": "10000 - 10000 * 20 / 25",
+    "explanation": { "reasoning": ["Proceeds 200,000 buy back 200,000 / 25 = 8,000 shares", "Net new shares = 10,000 − 8,000 = 2,000"], "shortcut": "Options × (1 − exercise / average price)." },
+    "why_it_matters": "In-the-money options dilute EPS more as the share price rises.",
+    "interactions": [{ "label": "Diluted share count", "dir": "up" }],
+    "common_trap": "Adding all 10,000 options.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Diluted EPS—Options and Warrants", "page": "16-25" }
+  },
+  {
+    "id": "A:16-006", "chapter": 16, "section_tag": "Diluted EPS", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 1,000,000; 500,000 shares. Convertible bonds: interest expense 50,000, tax 25%, convertible into 100,000 shares. Diluted EPS (if-converted)?",
+    "answer": { "value": 1.73, "unit": "", "tolerance": 0.01 },
+    "check": "(1000000 + 50000 * 0.75) / (500000 + 100000)",
+    "explanation": { "reasoning": ["Add back after-tax interest: 37,500 → earnings 1,037,500", "Shares 600,000", "1,037,500 / 600,000 = 1.73 (basic 2.00)"], "shortcut": "Earnings + after-tax interest, over shares + conversion shares." },
+    "why_it_matters": "Diluted EPS is the relevant figure for valuation when convertibles are in the money.",
+    "interactions": [{ "label": "EPS", "dir": "down" }],
+    "common_trap": "Adding back pre-tax interest.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Diluted EPS—Convertible Securities", "page": "16-23" }
+  },
+  {
+    "id": "A:16-007", "chapter": 16, "section_tag": "Convertible split", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A 3-year convertible bond of 1,000,000 pays a 4% annual coupon. Similar debt without conversion rights yields 7%. Equity component at issue (issued at par)?",
+    "answer": { "value": 78729.5, "unit": "", "tolerance": 5 },
+    "check": "1000000 - (40000 * (1 - Math.pow(1.07, -3)) / 0.07 + 1000000 / Math.pow(1.07, 3))",
+    "explanation": { "reasoning": ["Liability = PV of coupons (40,000 × 2.6243 = 104,973) + PV of principal (816,298) = 921,270", "Equity = 1,000,000 − 921,270 = 78,730"], "shortcut": "Coupon gap 3% × 3 years × ~0.87 discount ≈ 78,000." },
+    "why_it_matters": "The equity component is the value of the conversion option; the liability accretes to face value via interest.",
+    "interactions": [{ "label": "Equity", "dir": "up" }],
+    "common_trap": "Discounting at the 4% coupon (gives no equity component).",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "IFRS Insights", "page": "16-58" }
+  },
+  {
+    "id": "A:16-008", "chapter": 16, "section_tag": "Antidilution", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Including a convertible security in diluted EPS would increase EPS. What should you do?",
+    "options": ["Exclude it: antidilutive securities are left out of diluted EPS", "Include it anyway", "Average the two EPS figures", "Report it as basic EPS"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Diluted EPS shows the maximum potential dilution; antidilutive items are ignored."] },
+    "why_it_matters": "Securities excluded today can become dilutive later if profit falls or the share price rises.",
+    "interactions": [{ "label": "EPS", "dir": "mixed" }],
+    "common_trap": "Including everything regardless of effect.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Antidilution Revisited", "page": "16-26" }
+  },
+  {
+    "id": "A:16-009", "chapter": 16, "section_tag": "Options", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Options with an exercise price of 30 are outstanding; the average share price for the year is 25. Are they included in diluted EPS?",
+    "options": ["No: they are out of the money and would be antidilutive", "Yes, all of them", "Yes, at half", "Only if they vest this year"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["No rational holder would exercise at 30 when shares trade at 25."] },
+    "why_it_matters": "A share-price rally can suddenly bring large option overhangs into the dilution count.",
+    "interactions": [{ "label": "Diluted share count", "dir": "mixed" }],
+    "common_trap": "Counting out-of-the-money options.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Diluted EPS—Options and Warrants", "page": "16-25" }
+  },
+  {
+    "id": "A:16-010", "chapter": 16, "section_tag": "Share-based payment", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Equity-settled share-based payment",
+    "answer": {
+      "meaning": "Employees are paid in shares or options; the cost is measured at grant-date fair value and expensed over the vesting period.",
+      "formula": "Annual expense = number expected to vest × grant-date fair value × (period elapsed / vesting period) − amount already recognised",
+      "interpretation": "Credit equity; no remeasurement of fair value after grant (only of numbers expected to vest).",
+      "high_signals": "SBC large relative to revenue: heavy hidden dilution.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "In tech, SBC can exceed 10% of revenue; treat it as a real cost in valuation.",
+    "interactions": [{ "label": "Dilution", "dir": "up" }],
+    "common_trap": "Adding SBC back to 'cash earnings' without counting dilution.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Measurement—Stock Compensation", "page": "16-11" }
+  },
+  {
+    "id": "A:16-011", "chapter": 16, "section_tag": "Cash-settled", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Employees receive share-appreciation rights paid in CASH. How are they accounted for?",
+    "options": [
+      "As a liability remeasured to fair value at each reporting date, with changes in profit",
+      "As equity at grant-date fair value",
+      "Only when paid",
+      "In OCI"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cash-settled awards create an obligation to pay cash.", "The liability tracks the share price, so expense is volatile."] },
+    "why_it_matters": "Cash-settled awards make profit swing with the share price; check the note.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Treating cash-settled awards like equity-settled ones.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Appendix 16A: Accounting for Stock-Appreciation Rights", "page": "16-30" }
+  },
+  {
+    "id": "A:16-012", "chapter": 16, "section_tag": "Warrants", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Bonds are issued with detachable warrants for a single price. How are the proceeds treated?",
+    "options": [
+      "Allocated between the bonds (liability) and the warrants (equity), typically measuring the liability first and giving the residual to equity under IFRS",
+      "All to the bonds",
+      "All to the warrants",
+      "All to revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Detachable warrants are separate instruments with their own value.", "Under IFRS the liability is measured first; the residual is equity."] },
+    "why_it_matters": "The allocation creates a discount on the bonds, raising future interest expense.",
+    "interactions": [{ "label": "Interest expense", "dir": "up" }],
+    "common_trap": "Ignoring the warrants' value.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Stock Warrants Issued with Other Securities", "page": "16-7" }
+  },
+  {
+    "id": "A:16-013", "chapter": 16, "section_tag": "Contingent shares", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "An acquisition agreement promises extra shares to the sellers if the target reaches an earnings target. When are these shares included in diluted EPS?",
+    "options": [
+      "When the condition would be met if the end of the reporting period were the end of the contingency period",
+      "Always",
+      "Never",
+      "Only after they are issued"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Contingently issuable shares count if the conditions are currently satisfied."] },
+    "why_it_matters": "Earn-out shares are a hidden dilution source after acquisitions.",
+    "interactions": [{ "label": "Diluted share count", "dir": "up" }],
+    "common_trap": "Ignoring earn-out shares until issued.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Contingent Issue Agreement", "page": "16-26" }
+  },
+  {
+    "id": "A:16-014", "chapter": 16, "section_tag": "Restricted shares", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "An executive is granted restricted shares worth 120,000 at grant date, vesting after 3 years of service. How is the expense recognised?",
+    "options": ["40,000 a year over the 3-year service period", "120,000 at grant", "Nothing until vesting", "At the share price on vesting"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Grant-date fair value spread over the service (vesting) period."] },
+    "why_it_matters": "Restricted shares dilute even when the share price falls, unlike options.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Expensing at grant.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Restricted Stock", "page": "16-14" }
+  },
+  {
+    "id": "A:16-015", "chapter": 16, "section_tag": "EPS", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Diluted EPS",
+    "answer": {
+      "meaning": "EPS adjusted for all dilutive potential ordinary shares (options, warrants, convertibles, contingent shares).",
+      "formula": "(Earnings to ordinary shareholders + after-tax effects of conversions) ÷ (weighted shares + dilutive potential shares)",
+      "interpretation": "Worst-case per-share earnings if all dilutive instruments were converted.",
+      "high_signals": "Large gap between basic and diluted EPS: heavy dilution overhang.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Valuation per share should use diluted shares.",
+    "interactions": [{ "label": "P/E", "dir": "up" }],
+    "common_trap": "Using basic share count for market cap and EV.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Diluted Earnings per Share", "page": "16-22" }
+  },
+  {
+    "id": "A:16-016", "chapter": 16, "section_tag": "Presentation", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 33, which EPS figures must a listed company present on the face of the income statement?",
+    "options": [
+      "Basic and diluted EPS for profit from continuing operations and for total profit",
+      "Only basic EPS",
+      "Only diluted EPS",
+      "Only adjusted EPS"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Both basic and diluted, for continuing operations and total profit (discontinued EPS can be in notes)."] },
+    "why_it_matters": "Continuing diluted EPS is the cleanest base for forecasting.",
+    "interactions": [{ "label": "EPS", "dir": "mixed" }],
+    "common_trap": "Relying on company-defined 'adjusted EPS'.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "EPS Presentation and Disclosure", "page": "16-27" }
+  },
+  {
+    "id": "A:16-017", "chapter": 16, "section_tag": "Dilution", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company's share price doubles while its option programme is unchanged. What happens to diluted share count?",
+    "options": [
+      "It rises: more options are in the money and the treasury-stock buyback covers fewer of them",
+      "It falls",
+      "It is unchanged",
+      "It halves"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Incremental shares = options × (1 − exercise price / share price).", "A higher price raises that fraction."] },
+    "why_it_matters": "Rising share prices increase dilution: use diluted shares at the current price in valuation.",
+    "interactions": [{ "label": "Diluted shares", "dir": "up" }],
+    "common_trap": "Using an old diluted share count after a rally.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Diluted EPS—Options and Warrants", "page": "16-25" }
+  },
+  {
+    "id": "A:16-018", "chapter": 16, "section_tag": "ESPP", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Employees may buy shares at a 15% discount to market through a share-purchase plan. Under IFRS 2, what is the accounting?",
+    "options": [
+      "The discount is a share-based payment expense",
+      "No expense, because employees pay cash",
+      "The discount is a reduction of revenue",
+      "The discount goes to OCI"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The discount is compensation for services.", "US GAAP exempts some broad-based plans with small discounts (≤5%)."] },
+    "why_it_matters": "Employee share plans are a recurring, often overlooked, cost.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Assuming plans paid for by employees cost nothing.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "Employee Stock-Purchase Plans", "page": "16-16" }
+  },
+  {
+    "id": "A:16-019", "chapter": 16, "section_tag": "Pro forma EPS", "difficulty": "medium", "format": "written", "style": "rhetorical",
+    "prompt": "Management highlights 'adjusted EPS' that is 30% above IFRS diluted EPS. What questions do you ask?",
+    "answer": {
+      "model_answer": "What is excluded and why: amortisation of acquired intangibles, share-based pay, restructuring, impairments, fair-value movements, tax items? Are the exclusions recurring (restructuring every year) or real costs (SBC)? Is the share count diluted? Is the reconciliation to IFRS clear and consistent over time? Do peers use the same definition? How does adjusted EPS convert to cash (FCF per share)? Then build my own normalised EPS: keep recurring costs and SBC, exclude only truly one-off items, and use diluted shares.",
+      "rubric": ["List of typical exclusions", "Recurring vs one-off test", "SBC as real cost", "Consistency and reconciliation", "Cash conversion", "Own normalised EPS"]
+    },
+    "explanation": { "reasoning": ["Interrogate each adjustment, then rebuild the figure."] },
+    "why_it_matters": "Valuations based on management's adjusted EPS systematically overpay.",
+    "interactions": [{ "label": "P/E", "dir": "up" }],
+    "common_trap": "Using adjusted EPS without reconciling it.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "What Do the Numbers Mean? Pro Forma EPS Confusion", "page": "16-30" }
+  },
+  {
+    "id": "A:16-020", "chapter": 16, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A software company reports positive 'free cash flow' every year, but its share count grows 4% a year. Explain the link and the valuation consequence.",
+    "answer": {
+      "model_answer": "Share-based pay is added back to CFO as non-cash, so reported FCF looks strong. But employees are being paid in shares, which grows the share count by 4% a year and dilutes existing owners. If the company used cash instead, FCF would be lower by the SBC amount; if it buys back shares to offset dilution, that cash is a real cost too. For valuation: either deduct SBC from FCF, or value per share on a forecast diluted share count that keeps growing. Ignoring it overstates per-share value by roughly the present value of all future dilution.",
+      "rubric": ["SBC add-back inflates FCF", "Dilution is the real cost", "Buybacks to offset are cash costs", "Two valuation fixes", "Size of overstatement"]
+    },
+    "explanation": { "reasoning": ["Connect the non-cash add-back to the dilution, then fix the valuation."] },
+    "why_it_matters": "This is one of the most common errors in tech valuations.",
+    "interactions": [{ "label": "FCF per share", "dir": "down" }],
+    "common_trap": "Valuing on FCF before SBC with today's share count.",
+    "book_ref": { "book": "IA17", "chapter": 16, "section": "What Do the Numbers Mean? What's the Debate About?", "page": "16-12" }
+  }
+]

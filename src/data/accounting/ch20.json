@@ -1,0 +1,207 @@
+[
+  {
+    "id": "A:20-001", "chapter": 20, "section_tag": "Defined contribution", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Under a defined contribution plan, the company pays its required contribution of 30,000 for the year in cash. Record it.",
+    "answer": {
+      "lines": [{ "account": "Pension expense", "debit": 30000 }, { "account": "Cash", "credit": 30000 }],
+      "effects": { "IS": [["Pension expense", -30000]], "BS": [["Cash", -30000, "A"], ["Retained earnings", -30000, "E"]], "CFS": [["Operating: paid to pension plan", -30000]] }
+    },
+    "explanation": { "reasoning": ["The company's obligation is limited to its contributions.", "Expense = contribution due for the period; no further liability."] },
+    "why_it_matters": "DC plans put investment risk on employees; no balance-sheet volatility for the company.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Recognising a pension liability for a DC plan that is fully paid.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Defined Contribution Plan", "page": "20-4" }
+  },
+  {
+    "id": "A:20-002", "chapter": 20, "section_tag": "IAS 19", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "For a defined benefit plan this year: service cost 50,000, net interest on the net liability 6,000, employer contributions paid 40,000, and an actuarial remeasurement loss of 20,000. Record the year's entry under IAS 19.",
+    "answer": {
+      "lines": [
+        { "account": "Pension expense", "debit": 56000 },
+        { "account": "Other comprehensive income reserve", "debit": 20000 },
+        { "account": "Cash", "credit": 40000 },
+        { "account": "Net defined benefit liability", "credit": 36000 }
+      ],
+      "effects": { "IS": [["Pension cost (service + net interest)", -56000]], "BS": [["Cash", -40000, "A"], ["Net DB liability", 36000, "L"], ["Retained earnings", -56000, "E"], ["OCI reserve", -20000, "E"]], "CFS": [["Operating: contributions paid", -40000]] }
+    },
+    "explanation": { "reasoning": ["Service cost and net interest go to profit (56,000).", "Remeasurements go to OCI and are never recycled (20,000).", "Net liability grows by 56,000 + 20,000 − 40,000 = 36,000."] },
+    "why_it_matters": "Large OCI remeasurements show pension risk that never appears in EPS; deficits are debt-like.",
+    "interactions": [{ "label": "Pension deficit", "dir": "up" }, { "label": "OCI", "dir": "down" }],
+    "common_trap": "Putting remeasurements in profit, or expensing only the cash contributions.",
+    "ifrs_gaap": { "ifrs": "IAS 19: service cost + net interest in profit; remeasurements in OCI (no recycling); past service cost immediately in profit.", "us_gaap": "ASC 715: expected return on assets reduces expense; actuarial gains/losses go to OCI and are amortised into profit using the corridor approach." },
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "IFRS Insights", "page": "20-68" }
+  },
+  {
+    "id": "A:20-003", "chapter": 20, "section_tag": "Past service cost", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company improves pension benefits for past service, increasing the defined benefit obligation by 15,000 immediately. Record it under IAS 19.",
+    "answer": {
+      "lines": [{ "account": "Pension expense", "debit": 15000 }, { "account": "Net defined benefit liability", "credit": 15000 }],
+      "effects": { "IS": [["Past service cost", -15000]], "BS": [["Net DB liability", 15000, "L"], ["Retained earnings", -15000, "E"]], "CFS": [], "note": "non-cash now" }
+    },
+    "explanation": { "reasoning": ["IAS 19 recognises past service cost immediately in profit when the amendment occurs."] },
+    "why_it_matters": "Plan amendments can create large one-off charges (or credits when benefits are cut).",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Spreading it over future years (the old US approach).",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Prior Service Cost (PSC)", "page": "20-13" }
+  },
+  {
+    "id": "A:20-004", "chapter": 20, "section_tag": "Plan types", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Defined contribution vs defined benefit plans",
+    "answer": {
+      "meaning": "DC: the employer pays fixed contributions; employees bear investment and longevity risk. DB: the employer promises a benefit (e.g. % of final salary); the employer bears the risks.",
+      "formula": "DB net liability (asset) = defined benefit obligation (PV of promised benefits) − fair value of plan assets",
+      "interpretation": "DB plans create volatile, debt-like obligations.",
+      "high_signals": "Large DB deficit vs market cap: material hidden leverage.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Old industrial companies can carry pension deficits that rival their financial debt.",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Ignoring pension deficits in EV.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Defined Benefit Plan", "page": "20-5" }
+  },
+  {
+    "id": "A:20-005", "chapter": 20, "section_tag": "Funded status", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Defined benefit obligation 1,000; plan assets at fair value 850. Net defined benefit liability?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0 },
+    "check": "1000 - 850",
+    "explanation": { "reasoning": ["1,000 − 850 = 150 deficit"], "shortcut": "Obligation − assets." },
+    "why_it_matters": "Add the after-tax deficit to net debt in valuation.",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Recognising only the unfunded part paid this year.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Funded Status", "page": "20-13" }
+  },
+  {
+    "id": "A:20-006", "chapter": 20, "section_tag": "Net interest", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Opening net defined benefit liability 150; discount rate 4%. Net interest cost for the year under IAS 19 (ignore contributions during the year)?",
+    "answer": { "value": 6, "unit": "", "tolerance": 0 },
+    "check": "150 * 0.04",
+    "explanation": { "reasoning": ["Net interest = net liability × discount rate = 6"], "shortcut": "IAS 19 applies one rate to the net position." },
+    "why_it_matters": "IAS 19 removed the 'expected return' that flattered profit when assumptions were optimistic.",
+    "interactions": [{ "label": "Finance costs", "dir": "up" }],
+    "common_trap": "Using an expected return on assets above the discount rate.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Components of Pension Expense", "page": "20-9" }
+  },
+  {
+    "id": "A:20-007", "chapter": 20, "section_tag": "Remeasurement", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 19, where do actuarial gains and losses go?",
+    "options": ["Other comprehensive income, never recycled to profit", "Profit immediately", "Amortised through profit using a corridor", "Share premium"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 19 (2011) removed the corridor; remeasurements are in OCI."] },
+    "why_it_matters": "Pension risk shows up in equity, not EPS; watch OCI and the deficit trend.",
+    "interactions": [{ "label": "OCI", "dir": "mixed" }],
+    "common_trap": "Applying the US corridor under IFRS.",
+    "ifrs_gaap": { "ifrs": "Remeasurements in OCI permanently.", "us_gaap": "Gains/losses in OCI, then amortised to profit if they exceed 10% of the larger of obligation or assets (corridor)." },
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Corridor Amortization", "page": "20-18" }
+  },
+  {
+    "id": "A:20-008", "chapter": 20, "section_tag": "Assumptions", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Corporate bond yields fall by 1 percentage point. What happens to a DB pension obligation?",
+    "options": ["It rises, because the discount rate used falls", "It falls", "No change", "It becomes an asset"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 19 discounts at high-quality corporate bond yields.", "Lower rates raise the present value of future benefits."] },
+    "why_it_matters": "Falling rates widened pension deficits for years; rising rates shrank them.",
+    "interactions": [{ "label": "Pension deficit", "dir": "up" }],
+    "common_trap": "Thinking only asset returns matter.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Measures of the Liability", "page": "20-7" }
+  },
+  {
+    "id": "A:20-009", "chapter": 20, "section_tag": "Sensitivity", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A DBO of 1,000 has a duration of about 15 years. Approximately how much does it rise if the discount rate falls by 1 point?",
+    "answer": { "value": 150, "unit": "", "tolerance": 10 },
+    "check": "1000 * 15 * 0.01",
+    "explanation": { "reasoning": ["% change ≈ duration × rate change = 15 × 1% = 15%", "≈ 150"], "shortcut": "Duration × Δrate × obligation." },
+    "why_it_matters": "Sensitivity disclosures let you stress-test a pension deficit quickly.",
+    "interactions": [{ "label": "Pension deficit", "dir": "up" }],
+    "common_trap": "Assuming a 1-point change moves the obligation by 1%.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Within the Notes to the Financial Statements", "page": "20-28" }
+  },
+  {
+    "id": "A:20-010", "chapter": 20, "section_tag": "Assumptions", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which assumption is NOT an actuarial assumption used to measure a DB obligation?",
+    "options": ["The company's share price", "Discount rate", "Future salary increases", "Life expectancy"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Actuarial assumptions are demographic (mortality, turnover) and financial (discount rate, salary growth, inflation)."] },
+    "why_it_matters": "Small changes in mortality or discount rate move large obligations.",
+    "interactions": [{ "label": "Pension obligation", "dir": "mixed" }],
+    "common_trap": "Overlooking mortality assumptions.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "The Role of Actuaries in Pension Accounting", "page": "20-6" }
+  },
+  {
+    "id": "A:20-011", "chapter": 20, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "How do you treat a 300 million pension deficit when valuing a company and assessing its leverage?",
+    "answer": {
+      "model_answer": "Treat the deficit as debt-like: add it to net debt in the EV-to-equity bridge, usually net of the tax deduction the company will get when it pays contributions (e.g. 300 × (1 − 25%) = 225). For leverage, rating agencies add the after-tax deficit to debt and adjust EBITDA (remove pension interest, include only service cost). Check the funding plan (deficit-recovery contributions are a cash drain), sensitivity to discount rates and longevity, and whether assets are risky (equities) relative to liabilities. Ignoring it overstates equity value by the deficit.",
+      "rubric": ["Debt-like item", "After-tax adjustment", "Rating-agency style leverage adjustment", "Deficit-recovery cash flows", "Sensitivity and asset risk"]
+    },
+    "explanation": { "reasoning": ["Bridge from EV to equity, then leverage and cash impacts."] },
+    "why_it_matters": "Pension deficits have sunk deals and companies (e.g. UK retailers).",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Leaving the deficit out of EV.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Assets and Liabilities", "page": "20-25" }
+  },
+  {
+    "id": "A:20-012", "chapter": 20, "section_tag": "US vs IFRS", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A plan's assets are expected to earn 7% while the discount rate is 4%. Why would US GAAP pension expense be lower than under IFRS?",
+    "options": [
+      "US GAAP deducts an expected return on assets (7%), while IAS 19 credits only interest at the discount rate (4%) on assets",
+      "IFRS ignores service cost",
+      "US GAAP ignores interest cost",
+      "They are identical"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Higher assumed returns reduce US pension expense.", "IAS 19's net interest uses the discount rate for assets too; the excess return goes to OCI when earned."] },
+    "why_it_matters": "US pension income can be an accounting artefact of optimistic return assumptions.",
+    "interactions": [{ "label": "Pension expense", "dir": "down" }],
+    "common_trap": "Comparing pension costs across GAAPs without adjusting.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Components of Pension Expense", "page": "20-9" }
+  },
+  {
+    "id": "A:20-013", "chapter": 20, "section_tag": "OPEB", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "A company promises retirees free healthcare for life. How is this accounted for?",
+    "options": [
+      "As a defined benefit obligation (other post-employment benefit), measured actuarially and usually unfunded",
+      "Expensed when medical bills are paid",
+      "As a defined contribution plan",
+      "Disclosed only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The employer bears the cost risk, so it is a DB-type obligation.", "Healthcare cost trends are a key assumption."] },
+    "why_it_matters": "Unfunded OPEB liabilities can be huge in US industrials and are often overlooked.",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Pay-as-you-go accounting.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Appendix 20A: Accounting for Postretirement Benefits", "page": "20-34" }
+  },
+  {
+    "id": "A:20-014", "chapter": 20, "section_tag": "Net liability", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Net defined benefit liability (asset)",
+    "answer": {
+      "meaning": "The deficit (or surplus) of a defined benefit plan recognised on the balance sheet.",
+      "formula": "PV of defined benefit obligation − fair value of plan assets (surplus capped by the asset ceiling)",
+      "interpretation": "Changes come from service cost, net interest, remeasurements, contributions and benefits paid.",
+      "high_signals": "Growing deficit despite contributions: assumptions or investments moving against the company.",
+      "low_signals": "Surplus: may be only partly recoverable (asset ceiling)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The number to add to net debt (after tax) in valuation.",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Assuming a surplus is fully available to the company.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Funded Status", "page": "20-13" }
+  },
+  {
+    "id": "A:20-015", "chapter": 20, "section_tag": "Cash vs expense", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Pension expense in profit is 56,000 but contributions paid are 40,000. What is the effect on CFO compared with profit?",
+    "options": [
+      "CFO is 16,000 higher than if contributions equalled the expense; the gap adds to the pension liability",
+      "CFO is 16,000 lower",
+      "No difference",
+      "CFO includes the remeasurement"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Only cash contributions hit CFO.", "Underfunding relative to cost builds the deficit (deferred cash out)."] },
+    "why_it_matters": "Companies can flatter CFO by under-contributing; deficit-recovery payments come later.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Pension deficit", "dir": "up" }],
+    "common_trap": "Assuming pension expense equals cash paid.",
+    "book_ref": { "book": "IA17", "chapter": 20, "section": "Using a Pension Worksheet", "page": "20-11" }
+  }
+]

@@ -35,6 +35,7 @@ export const ACCOUNTS = [
   { name: 'Biological assets', type: 'asset' },
   { name: 'Derivative asset', type: 'asset' },
   { name: 'Net defined benefit asset', type: 'asset' },
+  { name: 'Lease receivable', type: 'asset', aliases: ['Net investment in the lease'] },
 
   // ----- Liabilities
   { name: 'Trade payables', type: 'liability', aliases: ['Accounts payable', 'Creditors'] },
@@ -120,6 +121,7 @@ export const ACCOUNTS = [
   { name: 'Mineral resources', type: 'asset', aliases: ['Mine', 'Natural resources', 'Oil and gas properties'] },
   { name: 'Loss on purchase commitments', type: 'loss', aliases: ['Onerous contract loss'] },
   { name: 'Insurance claim receivable', type: 'asset' },
+  { name: 'Construction contract costs', type: 'expense', aliases: ['Contract costs', 'Construction expenses'] },
   { name: 'Freight-in', type: 'expense', aliases: ['Transportation-in', 'Carriage inwards'] },
   { name: 'Purchase returns and allowances', type: 'contra_expense' },
   { name: 'Purchase discounts', type: 'contra_expense' },

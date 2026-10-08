@@ -1,0 +1,307 @@
+[
+  {
+    "id": "A:21-001", "chapter": 21, "section_tag": "Lessee initial", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A lessee signs a 5-year lease for equipment. The present value of the lease payments is 100,000. Record the lease at commencement under IFRS 16.",
+    "answer": {
+      "lines": [{ "account": "Right-of-use asset", "debit": 100000 }, { "account": "Lease liability", "credit": 100000 }],
+      "effects": { "IS": [], "BS": [["Right-of-use asset", 100000, "A"], ["Lease liability", 100000, "L"]], "CFS": [], "note": "non-cash at commencement" }
+    },
+    "explanation": { "reasoning": ["IFRS 16 puts almost every lease on the balance sheet.", "Liability = PV of payments; ROU asset = liability + direct costs + prepayments − incentives."] },
+    "why_it_matters": "Leases are debt in substance; since 2019 they show up in net debt and EBITDA.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Expensing the payments as rent with nothing on the balance sheet.",
+    "ifrs_gaap": { "ifrs": "IFRS 16: single lessee model — every lease is a finance-style lease (except short-term/low-value exemptions).", "us_gaap": "ASC 842: lessee classifies finance vs operating; both go on the balance sheet, but an operating lease has one straight-line lease cost." },
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-002", "chapter": 21, "section_tag": "Lessee payment", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "The lease liability is 100,000 at an 8% rate. At the end of year 1 the lessee pays 25,000. Record the payment including interest.",
+    "answer": {
+      "lines": [{ "account": "Interest expense", "debit": 8000 }, { "account": "Lease liability", "debit": 17000 }, { "account": "Cash", "credit": 25000 }],
+      "effects": { "IS": [["Interest expense", -8000]], "BS": [["Cash", -25000, "A"], ["Lease liability", -17000, "L"], ["Retained earnings", -8000, "E"]], "CFS": [["Financing: lease principal", -17000], ["Operating or financing: interest", -8000]] }
+    },
+    "explanation": { "reasoning": ["Interest = 100,000 × 8% = 8,000.", "The rest (17,000) reduces the liability."] },
+    "why_it_matters": "Under IFRS 16 the principal part moves to financing cash flows, so CFO and EBITDA rise versus the old rent model.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "CFO", "dir": "up" }],
+    "common_trap": "Charging the full payment to the liability or to expense.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-003", "chapter": 21, "section_tag": "ROU depreciation", "difficulty": "easy", "format": "journal_entry", "style": "calculation",
+    "prompt": "The right-of-use asset of 100,000 is depreciated straight-line over the 5-year lease term. Record year 1 depreciation.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 20000 }, { "account": "Accumulated depreciation", "credit": 20000 }],
+      "effects": { "IS": [["Depreciation", -20000]], "BS": [["Accumulated depreciation (ROU)", -20000, "A"], ["Retained earnings", -20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Depreciate over the shorter of lease term and useful life (unless ownership transfers).", "100,000 / 5 = 20,000."] },
+    "why_it_matters": "Depreciation + interest is front-loaded compared with flat rent, so early-year profit is lower.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Using the asset's full economic life when the lease is shorter.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-004", "chapter": 21, "section_tag": "Short-term leases", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A company rents a storage unit for 6 months and elects the short-term lease exemption. It pays this month's 3,000. Record it.",
+    "answer": {
+      "lines": [{ "account": "Lease expense", "debit": 3000 }, { "account": "Cash", "credit": 3000 }],
+      "effects": { "IS": [["Lease expense", -3000]], "BS": [["Cash", -3000, "A"], ["Retained earnings", -3000, "E"]], "CFS": [["Operating: lease payments", -3000]] }
+    },
+    "explanation": { "reasoning": ["Leases of 12 months or less (and low-value assets under IFRS) may be expensed straight-line."] },
+    "why_it_matters": "Heavy use of short-term leases keeps commitments off the balance sheet; read the note.",
+    "interactions": [{ "label": "EBITDA", "dir": "down" }],
+    "common_trap": "Capitalising a lease that qualifies for the exemption (allowed, but not required).",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Short-Term Leases", "page": "21-30" }
+  },
+  {
+    "id": "A:21-005", "chapter": 21, "section_tag": "Direct costs", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The lessee pays 2,000 of legal fees that would not have been incurred without the lease (initial direct costs). Record them.",
+    "answer": {
+      "lines": [{ "account": "Right-of-use asset", "debit": 2000 }, { "account": "Cash", "credit": 2000 }],
+      "effects": { "IS": [], "BS": [["Right-of-use asset", 2000, "A"], ["Cash", -2000, "A"]], "CFS": [["Investing or operating: direct costs", -2000]] }
+    },
+    "explanation": { "reasoning": ["Initial direct costs are added to the ROU asset and depreciated, not expensed."] },
+    "why_it_matters": "Small detail, but it shows how the ROU asset can differ from the lease liability.",
+    "interactions": [{ "label": "ROU asset", "dir": "up" }],
+    "common_trap": "Adding direct costs to the lease liability.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-006", "chapter": 21, "section_tag": "Sales-type lessor", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A manufacturer leases a machine it made (cost 80,000) under a finance lease. The PV of lease payments (and fair value) is 100,000. Record the lease at commencement as lessor.",
+    "answer": {
+      "lines": [
+        { "account": "Lease receivable", "debit": 100000 },
+        { "account": "Cost of sales", "debit": 80000 },
+        { "account": "Sales revenue", "credit": 100000 },
+        { "account": "Inventory", "credit": 80000 }
+      ],
+      "effects": { "IS": [["Sales revenue", 100000], ["Cost of sales", -80000]], "BS": [["Lease receivable", 100000, "A"], ["Inventory", -80000, "A"], ["Retained earnings", 20000, "E"]], "CFS": [], "note": "cash comes through lease payments" }
+    },
+    "explanation": { "reasoning": ["Manufacturer/dealer lessors recognise selling profit at commencement.", "The asset is replaced by a lease receivable; interest income follows."] },
+    "why_it_matters": "Equipment makers can boost sales with leasing; check receivable quality and residual risk.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }, { "label": "Receivables", "dir": "up" }],
+    "common_trap": "Keeping the machine in PP&E and recording rental income.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessor Accounting—Sales-Type Leases", "page": "21-14" }
+  },
+  {
+    "id": "A:21-007", "chapter": 21, "section_tag": "Lessor receipt", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "The lessor's lease receivable is 100,000 at 8%. It receives the year-end payment of 25,000. Record the receipt.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 25000 }, { "account": "Interest income", "credit": 8000 }, { "account": "Lease receivable", "credit": 17000 }],
+      "effects": { "IS": [["Interest income", 8000]], "BS": [["Cash", 25000, "A"], ["Lease receivable", -17000, "A"], ["Retained earnings", 8000, "E"]], "CFS": [["Operating: lease receipts", 25000]] }
+    },
+    "explanation": { "reasoning": ["Interest = 100,000 × 8% = 8,000; the rest reduces the receivable."] },
+    "why_it_matters": "The mirror image of the lessee: interest income declines as the receivable falls.",
+    "interactions": [{ "label": "Interest income", "dir": "up" }],
+    "common_trap": "Recognising the whole receipt as revenue.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessor Accounting—Sales-Type Leases", "page": "21-14" }
+  },
+  {
+    "id": "A:21-008", "chapter": 21, "section_tag": "Classification", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which indicates that a lessor should classify a lease as a finance (sales-type) lease?",
+    "options": [
+      "The lease term covers the major part of the asset's economic life",
+      "The lease is cancellable at any time without penalty",
+      "The lessee pays monthly",
+      "The asset is a building"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Indicators: ownership transfer, bargain purchase option, major part of life, PV ≈ substantially all fair value, specialised asset.", "If substantially all risks and rewards transfer, it is a finance lease."] },
+    "why_it_matters": "Lessor classification decides whether profit is recognised upfront or rent is recognised over time.",
+    "interactions": [{ "label": "Revenue timing", "dir": "mixed" }],
+    "common_trap": "Thinking IFRS 16 removed lessor classification (it did not).",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lease Classification", "page": "21-7" }
+  },
+  {
+    "id": "A:21-009", "chapter": 21, "section_tag": "Measurement", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Annual lease payments of 10,000 in arrears for 3 years, discount rate 10%. Initial lease liability (to the nearest unit)?",
+    "answer": { "value": 24869, "unit": "", "tolerance": 5 },
+    "check": "10000 / 1.1 + 10000 / 1.21 + 10000 / 1.331",
+    "explanation": { "reasoning": ["9,091 + 8,264 + 7,513 = 24,869", "Annuity factor (3 yrs, 10%) ≈ 2.487"], "shortcut": "Payment × annuity factor." },
+    "why_it_matters": "Lease liabilities are present values; a higher discount rate lowers reported debt.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }],
+    "common_trap": "Recording the undiscounted 30,000.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-010", "chapter": 21, "section_tag": "Discount rate", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which discount rate does a lessee use to measure the lease liability?",
+    "options": [
+      "The rate implicit in the lease if readily determinable, otherwise the lessee's incremental borrowing rate",
+      "Always the risk-free rate",
+      "The lessor's cost of equity",
+      "Zero"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["In practice most lessees use their incremental borrowing rate."] },
+    "why_it_matters": "Rate choice directly changes the liability and the split between interest and depreciation.",
+    "interactions": [{ "label": "Lease liability", "dir": "mixed" }],
+    "common_trap": "Using a group-wide rate for leases of very different terms.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-011", "chapter": 21, "section_tag": "Impact", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A retailer moves from expensing rent to IFRS 16. What happens to EBITDA and net debt?",
+    "options": ["Both increase", "EBITDA falls, net debt rises", "Both fall", "No change to either"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Rent leaves EBITDA; depreciation and interest replace it below EBITDA.", "Lease liabilities join net debt."] },
+    "why_it_matters": "Net debt/EBITDA can look similar but EV/EBITDA must include lease liabilities in EV for consistency.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "Net debt", "dir": "up" }],
+    "common_trap": "Using post-IFRS 16 EBITDA with pre-IFRS 16 EV (missing leases).",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "IFRS Insights", "page": "21-80" }
+  },
+  {
+    "id": "A:21-012", "chapter": 21, "section_tag": "Profile", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Compared with a flat rent expense, how does total IFRS 16 lease cost (interest + depreciation) behave over a lease?",
+    "options": ["Higher in early years, lower later (front-loaded)", "Flat each year", "Lower in early years", "Zero until the end"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Interest is highest when the liability is largest.", "Depreciation is straight-line."] },
+    "why_it_matters": "Companies with young lease portfolios show lower profit than under rent accounting.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Assuming total expense is unchanged each year.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Operating Leases", "page": "21-18" }
+  },
+  {
+    "id": "A:21-013", "chapter": 21, "section_tag": "US operating", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Under US GAAP ASC 842, how does a lessee present an operating lease in the income statement?",
+    "options": [
+      "A single straight-line lease cost in operating expenses (ROU asset and liability are still on the balance sheet)",
+      "Separate interest and depreciation",
+      "Off balance sheet with rent expense",
+      "As a reduction of revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["ASC 842 keeps the operating-lease income statement pattern but puts the lease on the balance sheet."] },
+    "why_it_matters": "US and IFRS EBITDA are not comparable for lease-heavy companies (retail, airlines).",
+    "interactions": [{ "label": "EBITDA", "dir": "down" }],
+    "common_trap": "Comparing EBITDA of a US and an IFRS retailer without adjustment.",
+    "ifrs_gaap": { "ifrs": "Interest and depreciation for all leases (EBITDA excludes lease cost).", "us_gaap": "Operating leases: single lease cost inside EBITDA; finance leases: interest + amortisation." },
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Operating Leases", "page": "21-18" }
+  },
+  {
+    "id": "A:21-014", "chapter": 21, "section_tag": "Residual values", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "What does a lessee include in the lease liability for a residual value guarantee?",
+    "options": ["The amount it expects to pay under the guarantee", "The full guaranteed amount always", "Nothing", "The asset's fair value"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Lessees include amounts expected to be payable under residual value guarantees.", "Lessors include the guaranteed and unguaranteed residual in their net investment."] },
+    "why_it_matters": "Guarantees shift asset-value risk to the lessee; they are contingent debt.",
+    "interactions": [{ "label": "Lease liability", "dir": "up" }],
+    "common_trap": "Ignoring guarantees in leverage.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Accounting for Residual Values", "page": "21-23" }
+  },
+  {
+    "id": "A:21-015", "chapter": 21, "section_tag": "Lease term", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A 5-year shop lease has an option to extend for 5 more years. The shop has expensive fit-outs and is a top performer. What lease term is used?",
+    "options": [
+      "10 years, if extension is reasonably certain given economic incentives",
+      "Always 5 years",
+      "Always 10 years",
+      "Indefinite"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Include optional periods when exercise is reasonably certain (fit-outs, location importance)."] },
+    "why_it_matters": "Lease-term judgements can double the reported liability.",
+    "interactions": [{ "label": "Lease liability", "dir": "up" }],
+    "common_trap": "Using only the non-cancellable period.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lease Classification", "page": "21-7" }
+  },
+  {
+    "id": "A:21-016", "chapter": 21, "section_tag": "Definition", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Lease (IFRS 16 definition)",
+    "answer": {
+      "meaning": "A contract that conveys the right to control the use of an identified asset for a period in exchange for consideration.",
+      "formula": "Identified asset + right to obtain substantially all economic benefits + right to direct the use",
+      "interpretation": "If the supplier can substitute the asset freely, there is no lease (it is a service).",
+      "high_signals": "Embedded leases in supply or outsourcing contracts.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Structuring a contract as a 'service' keeps it off the balance sheet.",
+    "interactions": [{ "label": "Net debt", "dir": "mixed" }],
+    "common_trap": "Only looking at contracts labelled 'lease'.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "The Leasing Environment", "page": "21-3" }
+  },
+  {
+    "id": "A:21-017", "chapter": 21, "section_tag": "Sale-leaseback", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company sells its head office to an investor (a valid sale under IFRS 15) and leases it back for 10 years. How much gain can it recognise?",
+    "options": [
+      "Only the gain relating to the rights transferred to the buyer; the part relating to the retained right of use is not recognised",
+      "The full gain immediately",
+      "No gain ever",
+      "The gain spread equally over 10 years"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The seller-lessee measures the ROU asset as the retained portion of the old carrying amount.", "If the transfer is not a sale, it is a financing."] },
+    "why_it_matters": "Sale-leasebacks raise cash but add lease debt; profit is limited.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }, { "label": "Cash", "dir": "up" }],
+    "common_trap": "Booking the full gain as if the building were gone.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Appendix 21B: Sale-Leasebacks", "page": "21-35" }
+  },
+  {
+    "id": "A:21-018", "chapter": 21, "section_tag": "Lessor operating", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "How does a lessor account for an operating lease of a building?",
+    "options": [
+      "Keeps the building on its balance sheet, depreciates it and recognises rental income (usually straight-line)",
+      "Derecognises the building and records a receivable",
+      "Records sales revenue for the building",
+      "Records nothing until the end"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Risks and rewards stay with the lessor."] },
+    "why_it_matters": "Real-estate companies earn rent and keep asset risk.",
+    "interactions": [{ "label": "Rental income", "dir": "up" }],
+    "common_trap": "Mixing up lessor operating and finance lease models.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessor Accounting—Operating Leases", "page": "21-20" }
+  },
+  {
+    "id": "A:21-019", "chapter": 21, "section_tag": "Variable payments", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A shop lease charges 5% of sales instead of fixed rent. How is this treated?",
+    "options": [
+      "Payments linked to sales are expensed as incurred, not included in the lease liability",
+      "Included in the liability at expected sales",
+      "Capitalised as goodwill",
+      "Ignored"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Only payments that depend on an index or rate (or are in-substance fixed) go into the liability."] },
+    "why_it_matters": "Turnover-based rents keep leases off-balance-sheet and appear in EBITDA.",
+    "interactions": [{ "label": "EBITDA", "dir": "down" }],
+    "common_trap": "Comparing retailers' lease debt without checking variable-rent structures.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-020", "chapter": 21, "section_tag": "Interest", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Lease liability at the start of year 2 is 83,000 at 8%. Interest expense for year 2?",
+    "answer": { "value": 6640, "unit": "", "tolerance": 0 },
+    "check": "83000 * 0.08",
+    "explanation": { "reasoning": ["83,000 × 8% = 6,640"], "shortcut": "Opening liability × rate." },
+    "why_it_matters": "Interest falls each year as the liability amortises.",
+    "interactions": [{ "label": "Interest expense", "dir": "down" }],
+    "common_trap": "Using the original liability every year.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Lessee Accounting—Finance Leases", "page": "21-11" }
+  },
+  {
+    "id": "A:21-021", "chapter": 21, "section_tag": "Presentation", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 16, where are the principal portions of lease payments shown in the cash flow statement?",
+    "options": ["Financing activities", "Operating activities", "Investing activities", "Not shown"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Principal: financing. Interest: per the entity's IAS 7 policy. Short-term/variable payments: operating."] },
+    "why_it_matters": "FCF definitions must subtract lease payments, or retailers look far more cash-generative than they are.",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Ignoring lease payments in FCF.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Presentation, Disclosure, and Analysis", "page": "21-30" }
+  },
+  {
+    "id": "A:21-022", "chapter": 21, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "You compare two retailers: one owns its stores, the other leases them all. How do you make their EBITDA, leverage and FCF comparable?",
+    "answer": {
+      "model_answer": "For the leaser under IFRS 16: EBITDA excludes rent, so include lease liabilities in net debt and EV (EV/EBITDA consistent). For FCF, subtract lease payments (principal + interest) to get FCF after leases, comparable with the owner's FCF after capex. Alternatively use EBITDAR-style metrics or pre-IFRS 16 (rent-adjusted) EBITDA with leases excluded from debt — but be consistent on both numerator and denominator. Also compare ROIC with ROU assets in invested capital, and check lease terms, variable rents and short-term exemptions that leave commitments off the balance sheet.",
+      "rubric": ["Consistent EV and EBITDA", "Lease liabilities in net debt", "FCF after lease payments", "Pre/post IFRS 16 consistency", "ROIC with ROU assets", "Off-balance-sheet residuals"]
+    },
+    "explanation": { "reasoning": ["Align each metric's numerator and denominator."] },
+    "why_it_matters": "Lease-heavy vs asset-owning comparisons are a staple of retail and airline analysis.",
+    "interactions": [{ "label": "EV / EBITDA", "dir": "mixed" }],
+    "common_trap": "Mixing post-IFRS 16 EBITDA with EV that excludes lease debt.",
+    "book_ref": { "book": "IA17", "chapter": 21, "section": "Presentation, Disclosure, and Analysis", "page": "21-30" }
+  }
+]

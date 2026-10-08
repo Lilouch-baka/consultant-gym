@@ -1,0 +1,275 @@
+[
+  {
+    "id": "A:14-001", "chapter": 14, "section_tag": "Bonds at par", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company issues bonds with a face value of 500,000 at par for cash. Record the issue.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 500000 }, { "account": "Bonds payable", "credit": 500000 }],
+      "effects": { "IS": [], "BS": [["Cash", 500000, "A"], ["Bonds payable", 500000, "L"]], "CFS": [["Financing: bonds issued", 500000]] }
+    },
+    "explanation": { "reasoning": ["At par, the coupon equals the market rate, so price = face value."] },
+    "why_it_matters": "Gross debt rises but net debt is unchanged until the cash is spent.",
+    "interactions": [{ "label": "Gross debt", "dir": "up" }],
+    "common_trap": "Recording income from the issue.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Issuing Bonds", "page": "14-3" }
+  },
+  {
+    "id": "A:14-002", "chapter": 14, "section_tag": "Bonds at discount", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "3-year bonds with face value 100,000 and a 6% annual coupon are issued when the market rate is 8%, for 94,846 cash. Record the issue under IFRS (net presentation).",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 94846 }, { "account": "Bonds payable", "credit": 94846 }],
+      "effects": { "IS": [], "BS": [["Cash", 94846, "A"], ["Bonds payable (amortised cost)", 94846, "L"]], "CFS": [["Financing: bonds issued", 94846]] }
+    },
+    "explanation": { "reasoning": ["The coupon is below the market rate, so investors pay less than face value.", "IFRS carries the liability at amortised cost (net of the discount)."] },
+    "why_it_matters": "The discount is extra interest spread over the life of the bond; cash interest understates the true cost.",
+    "interactions": [{ "label": "Debt", "dir": "up" }],
+    "common_trap": "Recording the bond at face value with the difference as a loss.",
+    "ifrs_gaap": { "ifrs": "Financial liability at amortised cost; the discount is part of the carrying amount (usually no separate account).", "us_gaap": "Same economics; the discount is commonly shown in a separate contra-liability account (Discount on bonds payable)." },
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Valuation and Accounting for Bonds Payable", "page": "14-5" }
+  },
+  {
+    "id": "A:14-003", "chapter": 14, "section_tag": "Effective interest", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "For the bonds issued at 94,846 (8% effective rate, 6,000 cash coupon), record year-1 interest and the coupon payment.",
+    "answer": {
+      "lines": [{ "account": "Interest expense", "debit": 7588 }, { "account": "Cash", "credit": 6000 }, { "account": "Bonds payable", "credit": 1588 }],
+      "effects": { "IS": [["Interest expense", -7588]], "BS": [["Cash", -6000, "A"], ["Bonds payable", 1588, "L"], ["Retained earnings", -7588, "E"]], "CFS": [["Operating (or financing): interest paid", -6000]] }
+    },
+    "explanation": { "reasoning": ["Interest expense = 94,846 × 8% = 7,588.", "Cash coupon = 100,000 × 6% = 6,000.", "The 1,588 difference increases the carrying amount towards face value."] },
+    "why_it_matters": "Interest expense exceeds cash interest for discount bonds, so interest cover based on expense is more conservative than on cash.",
+    "interactions": [{ "label": "Interest expense", "dir": "up" }, { "label": "Debt carrying amount", "dir": "up" }],
+    "common_trap": "Expensing only the 6,000 coupon.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Effective-Interest Method", "page": "14-9" }
+  },
+  {
+    "id": "A:14-004", "chapter": 14, "section_tag": "Bonds at premium", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "3-year bonds, face 100,000, 8% annual coupon, were issued at 105,346 when the market rate was 6%. Record year-1 interest and the coupon payment (effective-interest method, round to the nearest unit).",
+    "answer": {
+      "lines": [{ "account": "Interest expense", "debit": 6321 }, { "account": "Bonds payable", "debit": 1679 }, { "account": "Cash", "credit": 8000 }],
+      "effects": { "IS": [["Interest expense", -6321]], "BS": [["Cash", -8000, "A"], ["Bonds payable", -1679, "L"], ["Retained earnings", -6321, "E"]], "CFS": [["Operating (or financing): interest paid", -8000]] }
+    },
+    "explanation": { "reasoning": ["Interest expense = 105,346 × 6% = 6,321.", "Coupon 8,000; the 1,679 difference reduces the carrying amount towards 100,000."] },
+    "why_it_matters": "For premium bonds, cash interest exceeds the expense; part of each coupon is really a repayment of principal.",
+    "interactions": [{ "label": "Interest expense", "dir": "down" }],
+    "common_trap": "Expensing the full 8,000 coupon.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Effective-Interest Method", "page": "14-9" }
+  },
+  {
+    "id": "A:14-005", "chapter": 14, "section_tag": "Extinguishment", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Bonds with a carrying amount of 98,000 are redeemed early for 101,000 cash. Record the redemption.",
+    "answer": {
+      "lines": [{ "account": "Bonds payable", "debit": 98000 }, { "account": "Loss on debt extinguishment", "debit": 3000 }, { "account": "Cash", "credit": 101000 }],
+      "effects": { "IS": [["Loss on extinguishment", -3000]], "BS": [["Cash", -101000, "A"], ["Bonds payable", -98000, "L"], ["Retained earnings", -3000, "E"]], "CFS": [["Financing: debt repaid", -101000]] }
+    },
+    "explanation": { "reasoning": ["Loss = price paid − carrying amount = 101,000 − 98,000 = 3,000."] },
+    "why_it_matters": "Early-redemption losses are often paid to refinance at lower rates; judge them against the interest saved.",
+    "interactions": [{ "label": "Gross debt", "dir": "down" }],
+    "common_trap": "Comparing the price with face value instead of carrying amount.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Extinguishment of Debt", "page": "14-13" }
+  },
+  {
+    "id": "A:14-006", "chapter": 14, "section_tag": "Notes payable", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company borrows 50,000 from a bank on a 3-year note at a market interest rate. Record the borrowing.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 50000 }, { "account": "Notes payable", "credit": 50000 }],
+      "effects": { "IS": [], "BS": [["Cash", 50000, "A"], ["Notes payable", 50000, "L"]], "CFS": [["Financing: borrowing", 50000]] }
+    },
+    "explanation": { "reasoning": ["At a market rate, the note's face value equals its present value."] },
+    "why_it_matters": "Borrowing is financing; it never boosts operating performance.",
+    "interactions": [{ "label": "Gross debt", "dir": "up" }],
+    "common_trap": "Putting borrowings in operating cash flow.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Notes Issued at Face Value", "page": "14-15" }
+  },
+  {
+    "id": "A:14-007", "chapter": 14, "section_tag": "Issue costs", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Bonds with face value 200,000 are issued at par; transaction costs of 4,000 are paid. Record the net proceeds under IFRS 9.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 196000 }, { "account": "Bonds payable", "credit": 196000 }],
+      "effects": { "IS": [], "BS": [["Cash", 196000, "A"], ["Bonds payable", 196000, "L"]], "CFS": [["Financing: bonds issued (net)", 196000]] }
+    },
+    "explanation": { "reasoning": ["Transaction costs reduce the initial carrying amount.", "They are expensed over the life through a higher effective interest rate."] },
+    "why_it_matters": "The effective rate on new debt is above the coupon once fees are included.",
+    "interactions": [{ "label": "Effective interest rate", "dir": "up" }],
+    "common_trap": "Expensing issue costs immediately or recording them as an asset.",
+    "ifrs_gaap": { "ifrs": "IFRS 9: deduct transaction costs from the initial carrying amount of the liability.", "us_gaap": "Since ASU 2015-03, debt issuance costs are also shown as a deduction from the debt (not an asset)." },
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Valuation and Accounting for Bonds Payable", "page": "14-5" }
+  },
+  {
+    "id": "A:14-008", "chapter": 14, "section_tag": "Bond pricing", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Market interest rates rise after a company issues fixed-rate bonds. What happens to the bonds' market price?",
+    "options": ["It falls", "It rises", "It stays at face value", "It doubles"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Fixed coupons become less attractive than new bonds paying more.", "The carrying amount at amortised cost does not change."] },
+    "why_it_matters": "When rates rise, debt's fair value falls below book; EV built from book debt may overstate the debt claim.",
+    "interactions": [{ "label": "Debt fair value", "dir": "down" }],
+    "common_trap": "Thinking the balance sheet amount moves with market rates (it doesn't at amortised cost).",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Valuation and Accounting for Bonds Payable", "page": "14-5" }
+  },
+  {
+    "id": "A:14-009", "chapter": 14, "section_tag": "Zero-coupon", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A zero-coupon bond pays 1,000,000 in 5 years. Market rate 7%. Issue price?",
+    "answer": { "value": 712986.18, "unit": "", "tolerance": 30 },
+    "check": "1000000 / Math.pow(1.07, 5)",
+    "explanation": { "reasoning": ["1,000,000 / 1.07⁵ = 1,000,000 / 1.40255 = 712,986"], "shortcut": "1.07⁵ ≈ 1.40 → ≈ 714,000." },
+    "why_it_matters": "Zero-coupon debt pays no cash interest, but interest expense still accrues (non-cash, added to the debt).",
+    "interactions": [{ "label": "Interest expense (non-cash)", "dir": "up" }],
+    "common_trap": "Thinking zero-coupon debt has no interest cost.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Notes Not Issued at Face Value", "page": "14-15" }
+  },
+  {
+    "id": "A:14-010", "chapter": 14, "section_tag": "Amortised cost", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A bond was issued at 94,846 with an 8% effective rate and a 6,000 coupon. What is its carrying amount at the end of year 1?",
+    "answer": { "value": 96434, "unit": "", "tolerance": 2 },
+    "check": "94846 * 1.08 - 6000",
+    "explanation": { "reasoning": ["Opening 94,846 + interest 7,588 − coupon 6,000 = 96,434"], "shortcut": "Opening × (1 + effective rate) − cash paid." },
+    "why_it_matters": "Amortised cost rolls forward like a loan balance; it reaches face value at maturity.",
+    "interactions": [{ "label": "Debt", "dir": "up" }],
+    "common_trap": "Adding the coupon instead of the interest expense.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Effective-Interest Method", "page": "14-9" }
+  },
+  {
+    "id": "A:14-011", "chapter": 14, "section_tag": "Method", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which amortisation method does IFRS 9 require for bond discounts and premiums?",
+    "options": ["The effective-interest method", "Straight-line", "Either, at the company's choice", "None: discounts are expensed at issue"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IFRS requires the effective-interest method.", "US GAAP allows straight-line only if the result is not materially different."] },
+    "why_it_matters": "The effective-interest method gives a constant rate on the carrying amount, the true cost of borrowing.",
+    "interactions": [{ "label": "Interest expense", "dir": "mixed" }],
+    "common_trap": "Using straight-line under IFRS.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Effective-Interest Method", "page": "14-9" }
+  },
+  {
+    "id": "A:14-012", "chapter": 14, "section_tag": "Fair value option", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company measures its own bonds at fair value. Its credit rating falls and the bonds' fair value drops. Under IFRS 9, where does the gain from its own worsening credit go?",
+    "options": [
+      "Other comprehensive income (not profit), to avoid reporting profits from becoming riskier",
+      "Profit or loss",
+      "Share premium",
+      "It is ignored"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Gains from deteriorating own credit are counter-intuitive.", "IFRS 9 sends the own-credit portion to OCI (with no recycling)."] },
+    "why_it_matters": "Banks once reported big profits as their credit worsened; check OCI for own-credit effects.",
+    "interactions": [{ "label": "OCI", "dir": "up" }],
+    "common_trap": "Counting own-credit gains as operating profit.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Fair Value Option", "page": "14-20" }
+  },
+  {
+    "id": "A:14-013", "chapter": 14, "section_tag": "Bond terms", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Bond terminology",
+    "answer": {
+      "meaning": "Face (par) value: amount repaid at maturity. Coupon (stated) rate: sets cash interest. Market (effective) rate: investors' required yield.",
+      "formula": "Coupon < market → discount; coupon > market → premium; equal → par",
+      "interpretation": "Price = PV of coupons + PV of face value at the market rate.",
+      "high_signals": "Deep discount: high credit risk or low coupon.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Bond yields are a direct read of the market's view of a company's credit.",
+    "interactions": [{ "label": "Cost of debt", "dir": "mixed" }],
+    "common_trap": "Using the coupon rate to discount cash flows.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Types of Bonds", "page": "14-4" }
+  },
+  {
+    "id": "A:14-014", "chapter": 14, "section_tag": "Effective interest", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Effective-interest method",
+    "answer": {
+      "meaning": "Interest expense each period = carrying amount at the start × effective (market) rate at issue; the difference from cash paid amortises the discount or premium.",
+      "formula": "Closing carrying amount = opening × (1 + r) − cash paid",
+      "interpretation": "Gives a constant rate of interest on the outstanding balance.",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The same method values leases, loans and receivables at amortised cost.",
+    "interactions": [{ "label": "Interest expense", "dir": "mixed" }],
+    "common_trap": "Multiplying face value by the effective rate.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Effective-Interest Method", "page": "14-9" }
+  },
+  {
+    "id": "A:14-015", "chapter": 14, "section_tag": "Off-balance-sheet", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Which is an example of off-balance-sheet financing that analysts should add back to debt?",
+    "options": [
+      "Debt of an unconsolidated joint venture that the company guarantees",
+      "Trade payables",
+      "Bonds payable",
+      "Lease liabilities under IFRS 16"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Guaranteed debt of unconsolidated entities is an obligation not on the balance sheet.", "IFRS 16 lease liabilities are already on balance sheet."] },
+    "why_it_matters": "Guarantees, take-or-pay contracts and recourse factoring can make true leverage much higher than reported.",
+    "interactions": [{ "label": "Adjusted net debt", "dir": "up" }],
+    "common_trap": "Assuming everything debt-like is on the balance sheet.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Off-Balance-Sheet Financing", "page": "14-22" }
+  },
+  {
+    "id": "A:14-016", "chapter": 14, "section_tag": "Analysis", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Profit before tax 320, interest expense 80. Times interest earned (EBIT ÷ interest)?",
+    "answer": { "value": 5, "unit": "x", "tolerance": 0 },
+    "check": "(320 + 80) / 80",
+    "explanation": { "reasoning": ["EBIT = 320 + 80 = 400", "400 / 80 = 5x"], "shortcut": "Add interest back to profit before tax first." },
+    "why_it_matters": "Lenders want a buffer; below about 2–3x leaves little room.",
+    "interactions": [{ "label": "Interest cover", "dir": "up" }],
+    "common_trap": "Dividing profit before tax by interest (gives 4x).",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Presentation and Analysis of Long-Term Debt", "page": "14-24" }
+  },
+  {
+    "id": "A:14-017", "chapter": 14, "section_tag": "Covenants", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "What is a debt covenant?",
+    "options": [
+      "A condition in a loan agreement (e.g. maximum net debt/EBITDA) whose breach can let lenders demand repayment",
+      "The interest rate on the bond",
+      "The bond's credit rating",
+      "A tax rule on interest"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Covenants protect lenders; breaches trigger renegotiation, fees or acceleration."] },
+    "why_it_matters": "Covenant headroom, not reported leverage, often decides a company's room to manoeuvre.",
+    "interactions": [{ "label": "Liquidity risk", "dir": "up" }],
+    "common_trap": "Ignoring covenant definitions (they often use adjusted EBITDA).",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Presentation and Analysis of Long-Term Debt", "page": "14-24" }
+  },
+  {
+    "id": "A:14-018", "chapter": 14, "section_tag": "Restructuring", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A struggling borrower's lender agrees to cut the principal and interest rate substantially. Under IFRS 9, if the modification is substantial, what does the borrower do?",
+    "options": [
+      "Derecognise the old liability, recognise the new one at fair value, and record a gain in profit",
+      "Keep the old liability unchanged",
+      "Credit share capital",
+      "Record a loss"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A substantial modification (≥10% change in PV of cash flows) is treated as an extinguishment.", "The difference is a gain for the debtor."] },
+    "why_it_matters": "Restructuring gains are non-recurring and signal distress, not strength.",
+    "interactions": [{ "label": "Net income", "dir": "up" }, { "label": "Credit risk", "dir": "up" }],
+    "common_trap": "Reading the gain as an operating improvement.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Appendix 14A: Troubled-Debt Restructuring", "page": "14-26" }
+  },
+  {
+    "id": "A:14-019", "chapter": 14, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "In an EV calculation, should you use the book value or the fair value of a company's fixed-rate debt? Explain.",
+    "answer": {
+      "model_answer": "Conceptually EV should use the market (fair) value of all claims, because EV is what a buyer would pay for the whole capital structure. When rates rise, fixed-rate debt issued at low coupons has a fair value well below book; using book overstates the debt claim and understates the equity-implied value of operations. In practice book value is used when the two are close or debt is floating-rate, and many deals refinance at par (change-of-control clauses), in which case the repayment amount (often face value) is what the buyer must fund. Disclose which convention you use and check the fair-value note.",
+      "rubric": ["Market value of claims in principle", "Rate effect on fixed-rate debt", "Practical book-value convention", "Change-of-control/repayment view", "Consistency and disclosure"]
+    },
+    "explanation": { "reasoning": ["Theory, then when it matters, then practice."] },
+    "why_it_matters": "In high-rate periods the gap can be several turns of EBITDA for long-dated low-coupon debt.",
+    "interactions": [{ "label": "EV", "dir": "mixed" }],
+    "common_trap": "Mixing market-value equity with face-value debt without thinking.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Fair Value Option", "page": "14-20" }
+  },
+  {
+    "id": "A:14-020", "chapter": 14, "section_tag": "Mortgages", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A mortgage is repaid in equal monthly instalments. Over time, how does each instalment's split change?",
+    "options": [
+      "The interest portion falls and the principal portion rises",
+      "The interest portion rises",
+      "The split never changes",
+      "Only principal is paid in the early years"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Interest is charged on the falling balance, so less of each payment is interest over time."] },
+    "why_it_matters": "Debt service is fixed but interest expense falls; profit rises while cash outflow is unchanged.",
+    "interactions": [{ "label": "Interest expense", "dir": "down" }],
+    "common_trap": "Treating the whole instalment as interest expense.",
+    "book_ref": { "book": "IA17", "chapter": 14, "section": "Mortgage Notes Payable", "page": "14-20" }
+  }
+]

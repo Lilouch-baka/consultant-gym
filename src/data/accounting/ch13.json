@@ -1,0 +1,279 @@
+[
+  {
+    "id": "A:13-001", "chapter": 13, "section_tag": "Sales tax", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A shop sells goods for 1,000 plus 10% sales tax (VAT), collected in cash. Record the sale (ignore cost of sales).",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 1100 }, { "account": "Sales revenue", "credit": 1000 }, { "account": "Sales tax payable", "credit": 100 }],
+      "effects": { "IS": [["Sales revenue", 1000]], "BS": [["Cash", 1100, "A"], ["Sales tax payable", 100, "L"], ["Retained earnings", 1000, "E"]], "CFS": [["Operating: cash from customers", 1100]] }
+    },
+    "explanation": { "reasoning": ["Tax collected for the government is not revenue; the company is an agent.", "It is a liability until paid over."] },
+    "why_it_matters": "Tax collected sits temporarily in cash: it inflates cash balances and CFO around payment dates.",
+    "interactions": [{ "label": "Current liabilities", "dir": "up" }],
+    "common_trap": "Recording 1,100 as revenue.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Sales Taxes Payable", "page": "13-8" }
+  },
+  {
+    "id": "A:13-002", "chapter": 13, "section_tag": "Payroll", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Gross wages are 10,000. Income tax of 1,500 and employee social-security contributions of 700 are withheld; the rest is paid in cash. Record the payroll.",
+    "answer": {
+      "lines": [{ "account": "Salaries and wages expense", "debit": 10000 }, { "account": "Payroll taxes payable", "credit": 2200 }, { "account": "Cash", "credit": 7800 }],
+      "effects": { "IS": [["Salaries and wages expense", -10000]], "BS": [["Cash", -7800, "A"], ["Payroll taxes payable", 2200, "L"], ["Retained earnings", -10000, "E"]], "CFS": [["Operating: paid to employees", -7800]] }
+    },
+    "explanation": { "reasoning": ["The expense is the gross wage.", "Withholdings are owed to the tax authorities: a liability.", "Net pay = 10,000 − 2,200 = 7,800."] },
+    "why_it_matters": "Unpaid payroll taxes are a priority claim in distress; growing balances can signal cash strain.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Expensing only the net pay.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Employee-Related Liabilities", "page": "13-9" }
+  },
+  {
+    "id": "A:13-003", "chapter": 13, "section_tag": "Payroll", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The employer's own social-security contribution on the payroll is 900, payable next month. Record it.",
+    "answer": {
+      "lines": [{ "account": "Payroll tax expense", "debit": 900 }, { "account": "Payroll taxes payable", "credit": 900 }],
+      "effects": { "IS": [["Payroll tax expense", -900]], "BS": [["Payroll taxes payable", 900, "L"], ["Retained earnings", -900, "E"]], "CFS": [], "note": "paid next month" }
+    },
+    "explanation": { "reasoning": ["Employer contributions are an extra cost on top of gross wages."] },
+    "why_it_matters": "Total employment cost exceeds gross salary; use it when sizing cost-reduction programmes.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Deducting the employer's contribution from employees' pay.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Employee-Related Liabilities", "page": "13-9" }
+  },
+  {
+    "id": "A:13-004", "chapter": 13, "section_tag": "Warranties", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Sales of 200,000 carry a standard one-year assurance warranty. Expected warranty costs are 3% of sales. Record the provision at year end (no claims yet).",
+    "answer": {
+      "lines": [{ "account": "Warranty expense", "debit": 6000 }, { "account": "Warranty provision", "credit": 6000 }],
+      "effects": { "IS": [["Warranty expense", -6000]], "BS": [["Warranty provision", 6000, "L"], ["Retained earnings", -6000, "E"]], "CFS": [], "note": "cash paid when claims arrive" }
+    },
+    "explanation": { "reasoning": ["An assurance-type warranty is a cost of the sale: provide when the sale is made (IAS 37).", "200,000 × 3% = 6,000."] },
+    "why_it_matters": "Falling warranty provisions as % of sales lift margins; check against actual claims history.",
+    "interactions": [{ "label": "Provisions", "dir": "up" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Expensing warranty costs only when repairs are made.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Loss Contingencies", "page": "13-18" }
+  },
+  {
+    "id": "A:13-005", "chapter": 13, "section_tag": "Litigation", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Lawyers say the company will probably lose a lawsuit; the best estimate of the settlement is 150,000. Record the provision.",
+    "answer": {
+      "lines": [{ "account": "Litigation expense", "debit": 150000 }, { "account": "Provision", "credit": 150000 }],
+      "effects": { "IS": [["Litigation expense", -150000]], "BS": [["Provision", 150000, "L"], ["Retained earnings", -150000, "E"]], "CFS": [], "note": "paid on settlement" }
+    },
+    "explanation": { "reasoning": ["Present obligation from a past event, probable outflow, reliable estimate: recognise a provision.", "Measure at the best estimate."] },
+    "why_it_matters": "Provisions are judgements; releases later can boost profit. Track movements in the provisions note.",
+    "interactions": [{ "label": "Provisions", "dir": "up" }, { "label": "Net income", "dir": "down" }],
+    "common_trap": "Only disclosing because the case is not yet decided.",
+    "ifrs_gaap": { "ifrs": "IAS 37: recognise if probable (more likely than not, >50%); if a range with equal likelihood, use the midpoint.", "us_gaap": "ASC 450: recognise if probable (a higher threshold, 'likely to occur'); if no best estimate in a range, use the low end." },
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Loss Contingencies", "page": "13-18" }
+  },
+  {
+    "id": "A:13-006", "chapter": 13, "section_tag": "Bonuses", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Employees have earned bonuses of 12,000 for the year under a formula in their contracts; they will be paid in March. Record the year-end accrual.",
+    "answer": {
+      "lines": [{ "account": "Salaries and wages expense", "debit": 12000 }, { "account": "Salaries and wages payable", "credit": 12000 }],
+      "effects": { "IS": [["Bonus expense", -12000]], "BS": [["Salaries and wages payable", 12000, "L"], ["Retained earnings", -12000, "E"]], "CFS": [], "note": "paid in March" }
+    },
+    "explanation": { "reasoning": ["The bonus was earned this year: accrue it.", "A legal or constructive obligation exists at year end."] },
+    "why_it_matters": "Bonus accruals that swing with profit dampen earnings volatility; under-accrual flatters a weak year.",
+    "interactions": [{ "label": "Staff costs", "dir": "up" }],
+    "common_trap": "Expensing bonuses when paid.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Employee-Related Liabilities", "page": "13-9" }
+  },
+  {
+    "id": "A:13-007", "chapter": 13, "section_tag": "Refinancing", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A loan is due 3 months after year end. Two weeks after year end (before the statements are issued) the company signs an agreement to refinance it for 5 years. How is the loan classified under IFRS?",
+    "options": [
+      "Current, because the refinancing agreement did not exist at the reporting date",
+      "Non-current, because it was refinanced before issue",
+      "Half and half",
+      "It is removed from the balance sheet"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 1 looks at the right to defer settlement that exists at year end.", "Post-year-end refinancing is a non-adjusting event (disclose)."] },
+    "why_it_matters": "A large current debt figure may be about to be refinanced; read the subsequent-events note before panicking (or relaxing).",
+    "interactions": [{ "label": "Current ratio", "dir": "down" }],
+    "common_trap": "Applying the US rule under IFRS.",
+    "ifrs_gaap": { "ifrs": "Non-current only if, at the reporting date, there is a right to defer settlement for at least 12 months.", "us_gaap": "ASC 470: may be non-current if refinanced (or a financing agreement is signed) before the statements are issued." },
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Short-Term Obligations Expected to Be Refinanced", "page": "13-15" }
+  },
+  {
+    "id": "A:13-008", "chapter": 13, "section_tag": "Contingencies", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "A lawsuit against the company is possible but not probable to succeed. What does IAS 37 require?",
+    "options": ["Disclose it as a contingent liability (unless the possibility of outflow is remote)", "Recognise a provision", "Ignore it", "Recognise it in OCI"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Probable → provision; possible → disclosure; remote → nothing."] },
+    "why_it_matters": "Contingent-liability notes can contain risks larger than the company's equity.",
+    "interactions": [{ "label": "Risk", "dir": "up" }],
+    "common_trap": "Provisioning for every possible claim, or disclosing nothing.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Loss Contingencies", "page": "13-18" }
+  },
+  {
+    "id": "A:13-009", "chapter": 13, "section_tag": "Contingencies", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "The company expects to win a lawsuit it filed, receiving 500,000, but the case is ongoing. How is it treated under IFRS?",
+    "options": [
+      "Disclose as a contingent asset if an inflow is probable; recognise only when it is virtually certain",
+      "Recognise the 500,000 now",
+      "Recognise 50% now",
+      "Record it in OCI"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Gains are recognised only when virtually certain.", "Asymmetric with losses, which are provided when probable."] },
+    "why_it_matters": "Expected legal wins are upside not in the numbers; don't double count them in valuations that already assume them.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Recognising probable gains.",
+    "ifrs_gaap": { "ifrs": "Contingent asset: disclose if probable; recognise when virtually certain.", "us_gaap": "Gain contingencies are not recognised until realised or realisable; disclosure must avoid misleading implications." },
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Gain Contingencies", "page": "13-17" }
+  },
+  {
+    "id": "A:13-010", "chapter": 13, "section_tag": "Measurement", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "1,000 products are under warranty. 10% are expected to have minor defects costing 50 each and 5% major defects costing 400 each. Warranty provision (expected value)?",
+    "answer": { "value": 25000, "unit": "", "tolerance": 0 },
+    "check": "1000 * 0.1 * 50 + 1000 * 0.05 * 400",
+    "explanation": { "reasoning": ["Minor: 100 × 50 = 5,000", "Major: 50 × 400 = 20,000", "Total 25,000"], "shortcut": "Large populations → probability-weighted expected value." },
+    "why_it_matters": "Provisions for large populations use expected values; single obligations use the most likely outcome.",
+    "interactions": [{ "label": "Provisions", "dir": "up" }],
+    "common_trap": "Using the most likely outcome (no defect) and providing nothing.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Loss Contingencies", "page": "13-18" }
+  },
+  {
+    "id": "A:13-011", "chapter": 13, "section_tag": "Compensated absences", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "20 employees each have 3 days of unused paid holiday that carries forward. Daily pay is 200. Accrued liability?",
+    "answer": { "value": 12000, "unit": "", "tolerance": 0 },
+    "check": "20 * 3 * 200",
+    "explanation": { "reasoning": ["20 × 3 × 200 = 12,000"], "shortcut": "People × days × daily rate." },
+    "why_it_matters": "Accumulating holiday is a real liability that grows with headcount.",
+    "interactions": [{ "label": "Accrued liabilities", "dir": "up" }],
+    "common_trap": "Ignoring unused holiday because no cash is due yet.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Employee-Related Liabilities", "page": "13-9" }
+  },
+  {
+    "id": "A:13-012", "chapter": 13, "section_tag": "Discounting", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A decommissioning provision will be paid in 20 years. How is it measured under IAS 37?",
+    "options": [
+      "At the present value of the expected outflow; the discount unwinds each year as a finance cost",
+      "At the undiscounted amount",
+      "At zero until the work starts",
+      "At the current cost of the work, undiscounted"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Provisions are discounted when the time value of money is material.", "The unwinding is shown in finance costs, not operating costs."] },
+    "why_it_matters": "Discount-rate changes can move large provisions (oil, utilities) and equity significantly.",
+    "interactions": [{ "label": "Finance costs", "dir": "up" }],
+    "common_trap": "Booking the unwinding in operating expenses.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Loss Contingencies", "page": "13-18" }
+  },
+  {
+    "id": "A:13-013", "chapter": 13, "section_tag": "Restructuring", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "The board approves a plan to close a factory next year, but nothing has been announced or started by year end. Can a restructuring provision be recognised?",
+    "options": [
+      "No: a constructive obligation requires a detailed formal plan AND a valid expectation raised in those affected (announcement or start)",
+      "Yes, as soon as the board decides",
+      "Yes, for all future losses of the factory",
+      "Only if the auditors agree"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A board decision alone does not create an obligation; management could still reverse it.", "Future operating losses are never provided for."] },
+    "why_it_matters": "Early restructuring provisions were once used to create reserves for later release; IAS 37 limits this.",
+    "interactions": [{ "label": "Provisions", "dir": "mixed" }],
+    "common_trap": "Providing for future operating losses of the business being closed.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "IFRS Insights", "page": "13-54" }
+  },
+  {
+    "id": "A:13-014", "chapter": 13, "section_tag": "Recognition", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Provision recognition criteria (IAS 37)",
+    "answer": {
+      "meaning": "Recognise a provision when there is a present obligation (legal or constructive) from a past event, an outflow is probable, and the amount can be reliably estimated.",
+      "formula": "Measure at the best estimate; discount if material; review each year",
+      "interpretation": "If not all three are met → contingent liability (disclose) or nothing (if remote).",
+      "high_signals": "Large or rising provisions: real risks, or reserves being built.",
+      "low_signals": "Releases boosting profit: check whether the original estimate was inflated."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The provisions note shows additions, uses and releases: the trail of earnings management if any.",
+    "interactions": [{ "label": "Liabilities", "dir": "up" }],
+    "common_trap": "Recognising provisions for future costs with no past event (e.g. future repairs).",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Contingencies", "page": "13-17" }
+  },
+  {
+    "id": "A:13-015", "chapter": 13, "section_tag": "Definition", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Current liability",
+    "answer": {
+      "meaning": "A liability expected to be settled in the normal operating cycle or within 12 months, held for trading, or with no right at year end to defer settlement for 12 months.",
+      "formula": "Includes trade payables, accruals, current tax, current portion of long-term debt, short-term borrowings, unearned revenue",
+      "interpretation": "Measures near-term claims on cash.",
+      "high_signals": "Rising current debt: refinancing needs.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Liquidity analysis compares current liabilities with cash, CFO and committed facilities.",
+    "interactions": [{ "label": "Current ratio", "dir": "down" }],
+    "common_trap": "Forgetting the current portion of long-term debt.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Current Liabilities", "page": "13-3" }
+  },
+  {
+    "id": "A:13-016", "chapter": 13, "section_tag": "Analysis", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Current assets 300, current liabilities 200 (ratio 1.5x). The company pays 50 of trade payables in cash. New current ratio?",
+    "answer": { "value": 1.67, "unit": "x", "tolerance": 0.01 },
+    "check": "(300 - 50) / (200 - 50)",
+    "explanation": { "reasoning": ["Both sides fall by 50: 250 / 150 = 1.67x"], "shortcut": "When the ratio is above 1, paying down liabilities raises it." },
+    "why_it_matters": "Year-end payments to suppliers can window-dress the current ratio.",
+    "interactions": [{ "label": "Current ratio", "dir": "up" }],
+    "common_trap": "Thinking the ratio is unchanged because working capital is unchanged.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Analysis of Current Liabilities", "page": "13-30" }
+  },
+  {
+    "id": "A:13-017", "chapter": 13, "section_tag": "Advances", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A retailer sells gift cards. How are unredeemed cards treated?",
+    "options": [
+      "As a contract liability until redeemed; expected breakage (cards never used) is recognised as revenue in proportion to redemptions",
+      "As revenue when sold",
+      "As revenue only when they expire",
+      "As an asset"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cash received for future goods is a liability.", "Under IFRS 15, expected breakage is recognised in line with the pattern of redemptions."] },
+    "why_it_matters": "Breakage assumptions can quietly lift revenue; check the estimate when it changes.",
+    "interactions": [{ "label": "Unearned revenue", "dir": "up" }],
+    "common_trap": "Recognising revenue at the point of selling the card.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Customer Advances and Deposits", "page": "13-6" }
+  },
+  {
+    "id": "A:13-018", "chapter": 13, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A company's profit beat expectations by 8% this year. The provisions note shows 'releases of unused provisions' equal to 7% of profit. How do you read it?",
+    "answer": {
+      "model_answer": "Most of the beat comes from releasing provisions, not from operations. That can be legitimate (a lawsuit settled for less than expected), but it can also be a 'cookie jar': provisions over-estimated in good years and released to meet targets. Check: which provisions were released and why; history of releases vs additions; whether the provisions were booked by previous management (big bath); timing relative to targets and bonuses; cash utilisation of provisions. For valuation, exclude the release from underlying profit and treat any pattern as a governance concern.",
+      "rubric": ["Beat is mostly releases", "Legitimate vs cookie jar", "Specific checks in the note", "Incentive timing", "Exclude from underlying profit"]
+    },
+    "explanation": { "reasoning": ["Quantify the release vs the beat, then test the reason."] },
+    "why_it_matters": "Provision releases are one of the easiest levers to hit a number.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Taking the beat at face value.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Presentation of Contingencies", "page": "13-29" }
+  },
+  {
+    "id": "A:13-019", "chapter": 13, "section_tag": "Dividends", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "The board declares a cash dividend on 15 December, payable on 15 January. At 31 December the dividend is…",
+    "options": ["A current liability", "Not recorded until paid", "An expense", "A contingent liability"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Declaration creates an obligation to shareholders.", "Dividends declared after year end are disclosed, not recognised (IAS 10)."] },
+    "why_it_matters": "Declared dividends reduce net cash available; include them in near-term cash needs.",
+    "interactions": [{ "label": "Current liabilities", "dir": "up" }],
+    "common_trap": "Recognising dividends declared after year end.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Dividends Payable", "page": "13-6" }
+  },
+  {
+    "id": "A:13-020", "chapter": 13, "section_tag": "Notes payable", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company signs a one-year note with a face value of 10,000 and no stated interest, receiving 9,400 in cash. What is the effective cost?",
+    "options": [
+      "About 6.4% (600 of interest on 9,400 received)",
+      "6.0% (600 on 10,000)",
+      "0%, because the note has no interest rate",
+      "10%"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The 600 discount is interest.", "Effective rate = 600 / 9,400 = 6.38%."] },
+    "why_it_matters": "Zero-coupon or discounted borrowings still carry interest; it is just hidden in the discount.",
+    "interactions": [{ "label": "Interest expense", "dir": "up" }],
+    "common_trap": "Thinking non-interest-bearing notes are free.",
+    "book_ref": { "book": "IA17", "chapter": 13, "section": "Notes Payable", "page": "13-4" }
+  }
+]

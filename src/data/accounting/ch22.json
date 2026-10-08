@@ -1,0 +1,250 @@
+[
+  {
+    "id": "A:22-001", "chapter": 22, "section_tag": "Errors", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "This year the company discovers it forgot to record 10,000 of depreciation last year (material). Correct the error retrospectively (ignore tax).",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 10000 }, { "account": "Accumulated depreciation", "credit": 10000 }],
+      "effects": { "IS": [], "BS": [["Accumulated depreciation", -10000, "A"], ["Retained earnings (opening)", -10000, "E"]], "CFS": [], "note": "prior year restated" }
+    },
+    "explanation": { "reasoning": ["Prior-period errors are corrected by restating comparatives and opening retained earnings.", "This year's profit is not charged."] },
+    "why_it_matters": "Restatements damage credibility; check whether past profits were overstated and how management incentives worked.",
+    "interactions": [{ "label": "Equity", "dir": "down" }],
+    "common_trap": "Charging the correction to this year's profit.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Accounting Errors", "page": "22-19" }
+  },
+  {
+    "id": "A:22-002", "chapter": 22, "section_tag": "Change in principle", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company changes its inventory cost formula from FIFO to weighted average. Opening inventory would have been 6,000 lower under the new method. Record the retrospective adjustment (ignore tax).",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 6000 }, { "account": "Inventory", "credit": 6000 }],
+      "effects": { "IS": [], "BS": [["Inventory", -6000, "A"], ["Retained earnings (opening)", -6000, "E"]], "CFS": [], "note": "comparatives restated" }
+    },
+    "explanation": { "reasoning": ["Changes in accounting policy are applied retrospectively unless impracticable.", "The cumulative effect goes to opening retained earnings."] },
+    "why_it_matters": "Policy changes can flatter trends; compare restated figures, not old reported ones.",
+    "interactions": [{ "label": "Comparability", "dir": "mixed" }],
+    "common_trap": "Running the cumulative effect through this year's income statement.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Principle", "page": "22-4" }
+  },
+  {
+    "id": "A:22-003", "chapter": 22, "section_tag": "Errors", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Last year a 20,000 repair was wrongly capitalised as equipment. Ignoring depreciation and tax, correct it this year.",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 20000 }, { "account": "Equipment", "credit": 20000 }],
+      "effects": { "IS": [], "BS": [["Equipment", -20000, "A"], ["Retained earnings (opening)", -20000, "E"]], "CFS": [], "note": "restated: prior CFO down, investing up" }
+    },
+    "explanation": { "reasoning": ["The expense belonged to last year, so restate opening retained earnings.", "Restated comparatives also move 20,000 from investing to operating cash flows."] },
+    "why_it_matters": "Capitalising expenses inflates EBITDA and CFO (WorldCom).",
+    "interactions": [{ "label": "EBITDA (prior)", "dir": "down" }],
+    "common_trap": "Expensing the 20,000 in the current year.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Accounting Errors", "page": "22-19" }
+  },
+  {
+    "id": "A:22-004", "chapter": 22, "section_tag": "Change in estimate", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A machine with a carrying amount of 60,000 is now expected to last 4 more years (not 6), with no residual value. Record this year's depreciation.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 15000 }, { "account": "Accumulated depreciation", "credit": 15000 }],
+      "effects": { "IS": [["Depreciation", -15000]], "BS": [["Accumulated depreciation", -15000, "A"], ["Retained earnings", -15000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Changes in estimates are prospective: current and future periods only.", "60,000 / 4 = 15,000."] },
+    "why_it_matters": "Extending useful lives quietly lifts profit; watch for estimate changes in the notes.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Restating prior years for a change in estimate.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Estimates", "page": "22-16" }
+  },
+  {
+    "id": "A:22-005", "chapter": 22, "section_tag": "Classification", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "A company revises its estimate of bad debts from 2% to 3% of receivables. How is this treated?",
+    "options": ["Change in estimate: prospective", "Change in policy: retrospective", "Error: restate", "No accounting"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["New information changes an estimate; there is no restatement."] },
+    "why_it_matters": "Estimate changes are common levers to hit targets.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Restating for new information.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Estimates", "page": "22-16" }
+  },
+  {
+    "id": "A:22-006", "chapter": 22, "section_tag": "Classification", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "When it is hard to tell whether a change is a change in policy or in estimate, how should it be treated?",
+    "options": ["As a change in estimate (prospective)", "As a policy change", "As an error", "Management may choose freely"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 8 says to treat unclear cases as changes in estimates."] },
+    "why_it_matters": "Prospective treatment means past trends are not restated; adjust your comparisons yourself.",
+    "interactions": [{ "label": "Comparability", "dir": "down" }],
+    "common_trap": "Restating when unclear.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Estimates", "page": "22-16" }
+  },
+  {
+    "id": "A:22-007", "chapter": 22, "section_tag": "Policy change", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "When can a company voluntarily change an accounting policy under IAS 8?",
+    "options": [
+      "Only if the new policy gives reliable and more relevant information",
+      "Whenever profit would increase",
+      "Every year",
+      "Only with tax authority approval"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Voluntary changes must improve relevance; required changes follow new standards."] },
+    "why_it_matters": "Frequent policy changes are a quality warning.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Thinking policy changes are free choices.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Principle", "page": "22-4" }
+  },
+  {
+    "id": "A:22-008", "chapter": 22, "section_tag": "Impracticability", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company changes policy but cannot determine the effect on periods before last year. What does it do?",
+    "options": [
+      "Apply the new policy from the earliest date practicable and disclose why",
+      "Not change the policy",
+      "Apply it only to future transactions without disclosure",
+      "Restate everything with estimates"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Impracticability allows a partial or prospective approach, with disclosure."] },
+    "why_it_matters": "Breaks in time series must be flagged when building historical models.",
+    "interactions": [{ "label": "Comparability", "dir": "down" }],
+    "common_trap": "Assuming all prior periods are restated.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Impracticability", "page": "22-14" }
+  },
+  {
+    "id": "A:22-009", "chapter": 22, "section_tag": "Counterbalancing", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Closing inventory in year 1 was overstated by 5,000 and not corrected. What is the effect on year 2 profit and on retained earnings at the end of year 2?",
+    "options": [
+      "Year 2 profit understated by 5,000; retained earnings at end of year 2 correct",
+      "Both overstated by 5,000",
+      "Year 2 profit overstated; retained earnings understated",
+      "No effect on year 2"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Year 1 closing = year 2 opening inventory; overstated opening inventory raises year 2 cost of sales.", "The error reverses (counterbalances) over two years."] },
+    "why_it_matters": "Inventory errors flip profit between years; one year's beat can be next year's miss.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Thinking the error persists in retained earnings forever.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Counterbalancing Errors", "page": "22-25" }
+  },
+  {
+    "id": "A:22-010", "chapter": 22, "section_tag": "Error analysis", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Reported profit was 500. An accrual of 30 for wages was missed, and prepaid insurance of 10 was wrongly expensed. Corrected profit?",
+    "answer": { "value": 480, "unit": "", "tolerance": 0 },
+    "check": "500 - 30 + 10",
+    "explanation": { "reasoning": ["Missing accrual: expense too low → profit −30", "Prepaid wrongly expensed: expense too high → profit +10", "500 − 30 + 10 = 480"], "shortcut": "Ask: was expense too high or too low?" },
+    "why_it_matters": "Accrual errors move profit without cash; they show up in working capital.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Getting the sign of each error wrong.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Error Analysis", "page": "22-24" }
+  },
+  {
+    "id": "A:22-011", "chapter": 22, "section_tag": "Error analysis", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Year 1 closing inventory was understated by 8. Reported profits: year 1 = 100, year 2 = 120. Corrected year 2 profit?",
+    "answer": { "value": 112, "unit": "", "tolerance": 0 },
+    "check": "120 - 8",
+    "explanation": { "reasoning": ["Understated year 1 closing → understated year 2 opening → year 2 cost of sales too low → year 2 profit overstated by 8", "120 − 8 = 112 (year 1 corrected = 108)"], "shortcut": "Opening inventory errors have the opposite effect on profit." },
+    "why_it_matters": "Two-year totals are unaffected; trends are distorted.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Adding 8 to year 2.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Counterbalancing Errors", "page": "22-25" }
+  },
+  {
+    "id": "A:22-012", "chapter": 22, "section_tag": "Errors", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Policy change vs estimate change vs error",
+    "answer": {
+      "meaning": "Policy change: a different principle (e.g. FIFO → weighted average) — retrospective. Estimate change: new information about a judgement (life, bad debts) — prospective. Error: misuse of information that existed — retrospective restatement.",
+      "formula": "Retrospective: adjust opening retained earnings and comparatives. Prospective: current and future only.",
+      "interpretation": "Disclosure explains the nature and amount.",
+      "high_signals": "Restatements or frequent estimate changes: weaker controls or managed earnings.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Knowing which bucket a change sits in tells you whether history is comparable.",
+    "interactions": [{ "label": "Earnings quality", "dir": "mixed" }],
+    "common_trap": "Treating an error as a change in estimate to avoid restating.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Accounting Changes", "page": "22-3" }
+  },
+  {
+    "id": "A:22-013", "chapter": 22, "section_tag": "Policy change", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A change in policy increases prior years' cumulative profit by 40 before tax. Tax rate 25%. Adjustment to opening retained earnings?",
+    "answer": { "value": 30, "unit": "", "tolerance": 0 },
+    "check": "40 * 0.75",
+    "explanation": { "reasoning": ["Net of tax: 40 × (1 − 25%) = 30"], "shortcut": "Cumulative effects are shown net of tax." },
+    "why_it_matters": "Equity effects of policy changes are after tax.",
+    "interactions": [{ "label": "Equity", "dir": "up" }],
+    "common_trap": "Ignoring the tax effect.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Principle", "page": "22-4" }
+  },
+  {
+    "id": "A:22-014", "chapter": 22, "section_tag": "Depreciation method", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company switches from reducing-balance to straight-line depreciation. How is this treated under IFRS?",
+    "options": [
+      "As a change in estimate (the pattern of consumption), applied prospectively",
+      "As a change in policy, applied retrospectively",
+      "As an error",
+      "Not allowed"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 16 treats the depreciation method as an estimate of consumption.", "US GAAP calls it a change in estimate effected by a change in principle, also prospective."] },
+    "why_it_matters": "A method change can boost profit from day one without restating history.",
+    "interactions": [{ "label": "EBIT", "dir": "up" }],
+    "common_trap": "Restating for a depreciation method change.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Accounting Estimates", "page": "22-16" }
+  },
+  {
+    "id": "A:22-015", "chapter": 22, "section_tag": "Reporting entity", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under US GAAP, which is a 'change in reporting entity'?",
+    "options": [
+      "Presenting consolidated statements in place of individual company statements",
+      "Changing the useful life of assets",
+      "Correcting an arithmetic mistake",
+      "Writing off a bad debt"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Changes in the group of entities reported are applied retrospectively under US GAAP."] },
+    "why_it_matters": "Group structure changes break trends; check like-for-like disclosures.",
+    "interactions": [{ "label": "Comparability", "dir": "mixed" }],
+    "common_trap": "Comparing pre- and post-restructuring numbers directly.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Changes in Reporting Entity", "page": "22-18" }
+  },
+  {
+    "id": "A:22-016", "chapter": 22, "section_tag": "Errors", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which is a prior-period error?",
+    "options": [
+      "Last year's revenue included a sale that did not meet recognition criteria, based on facts known then",
+      "A lawsuit settled for more than the provision recorded last year",
+      "A change in the warranty rate based on new claims data",
+      "Inflation turned out higher than expected"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Errors come from misuse or omission of information available at the time.", "Settling for more than the estimate is a change in estimate."] },
+    "why_it_matters": "Restatements signal control failures; estimates turning out differently do not.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Calling estimate differences errors.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Accounting Errors", "page": "22-19" }
+  },
+  {
+    "id": "A:22-017", "chapter": 22, "section_tag": "Error analysis", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company failed to accrue 12 of interest expense at the end of year 1 and paid it in year 2 (expensing it then). What are the effects?",
+    "options": [
+      "Year 1 profit overstated by 12, year 2 understated by 12; end-of-year-2 balance sheet correct",
+      "Both years overstated",
+      "Only year 2 affected",
+      "Retained earnings permanently wrong"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Accrual errors counterbalance when the item is settled."] },
+    "why_it_matters": "Year-end cut-off games move profit between years.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Thinking the error never reverses.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Counterbalancing Errors", "page": "22-25" }
+  },
+  {
+    "id": "A:22-018", "chapter": 22, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A company extends useful lives of its fleet and changes its revenue policy in the same year, and profit jumps 20%. How do you analyse this?",
+    "answer": {
+      "model_answer": "Separate operating performance from accounting effects. (1) Quantify the useful-life change (prospective, so it boosts this and future years' EBIT; check whether peers use similar lives and whether capex/maintenance supports it). (2) The policy change should be retrospective — compare restated prior-year numbers, and ask why the new policy is 'more relevant'. (3) Recompute growth on a like-for-like basis (old estimates, consistent policy). (4) Check cash: CFO and FCF are unaffected by both, so if cash didn't grow the profit jump is accounting. (5) Note timing — two favourable changes at once, especially near targets or a capital raise, signals earnings management.",
+      "rubric": ["Separate accounting vs operating", "Quantify useful-life effect", "Use restated comparatives", "Like-for-like growth", "Cash check", "Incentives and timing"]
+    },
+    "explanation": { "reasoning": ["Strip accounting changes out, then judge underlying growth and motives."] },
+    "why_it_matters": "Accounting changes can manufacture growth that markets later reverse.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Taking the 20% at face value.",
+    "book_ref": { "book": "IA17", "chapter": 22, "section": "Motivations for Change of Accounting Method", "page": "22-18" }
+  }
+]

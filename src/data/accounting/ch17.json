@@ -1,0 +1,273 @@
+[
+  {
+    "id": "A:17-001", "chapter": 17, "section_tag": "Amortised cost", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company buys a 5-year government bond for 100,000 at par, intending to hold it to collect the contractual cash flows. Record the purchase.",
+    "answer": {
+      "lines": [{ "account": "Investments at amortised cost", "debit": 100000 }, { "account": "Cash", "credit": 100000 }],
+      "effects": { "IS": [], "BS": [["Investments at amortised cost", 100000, "A"], ["Cash", -100000, "A"]], "CFS": [["Investing: purchase of investments", -100000]] }
+    },
+    "explanation": { "reasoning": ["Business model 'hold to collect' + cash flows solely principal and interest → amortised cost (IFRS 9)."] },
+    "why_it_matters": "Amortised-cost portfolios hide market-value losses when rates rise (the SVB problem); check fair-value disclosures.",
+    "interactions": [{ "label": "Investments", "dir": "up" }],
+    "common_trap": "Classifying by intention to hold 'long-term' rather than the business model and cash-flow test.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Held-to-Maturity Securities (Amortized Cost)", "page": "17-4" }
+  },
+  {
+    "id": "A:17-002", "chapter": 17, "section_tag": "FVTPL", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Listed shares held for trading rise in value by 3,000 by year end. Record the remeasurement.",
+    "answer": {
+      "lines": [{ "account": "Investments at FVTPL", "debit": 3000 }, { "account": "Gain on fair value", "credit": 3000 }],
+      "effects": { "IS": [["Fair value gain", 3000]], "BS": [["Investments at FVTPL", 3000, "A"], ["Retained earnings", 3000, "E"]], "CFS": [], "note": "unrealised" }
+    },
+    "explanation": { "reasoning": ["Trading assets are measured at fair value through profit or loss.", "Unrealised gains hit profit immediately."] },
+    "why_it_matters": "Fair-value gains add volatility and are not operating income; separate them in analysis.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Waiting for the sale to recognise the gain.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Trading Securities (Fair Value Through Net Income)", "page": "17-10" }
+  },
+  {
+    "id": "A:17-003", "chapter": 17, "section_tag": "Equity method", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "The company owns 30% of an associate (significant influence). The associate's profit for the year is 200,000. Record the company's share.",
+    "answer": {
+      "lines": [{ "account": "Investment in associate", "debit": 60000 }, { "account": "Share of profit of associate", "credit": 60000 }],
+      "effects": { "IS": [["Share of profit of associate", 60000]], "BS": [["Investment in associate", 60000, "A"], ["Retained earnings", 60000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Equity method: the investment grows with the investor's share of profit: 30% × 200,000 = 60,000."] },
+    "why_it_matters": "Associate profits are non-cash until dividends are paid; exclude them from EBITDA-based valuation and value the stake separately.",
+    "interactions": [{ "label": "Net income", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }],
+    "common_trap": "Recording income only when dividends are received.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings Between 20% and 50% (Equity Method)", "page": "17-14" }
+  },
+  {
+    "id": "A:17-004", "chapter": 17, "section_tag": "Equity method", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The associate pays the company a cash dividend of 15,000. Record it under the equity method.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 15000 }, { "account": "Investment in associate", "credit": 15000 }],
+      "effects": { "IS": [], "BS": [["Cash", 15000, "A"], ["Investment in associate", -15000, "A"]], "CFS": [["Operating or investing: dividend received", 15000]] }
+    },
+    "explanation": { "reasoning": ["The profit was already recognised; the dividend returns part of the investment as cash.", "Not income."] },
+    "why_it_matters": "Compare dividends received with share of profit to see how much associate income converts to cash.",
+    "interactions": [{ "label": "Cash", "dir": "up" }],
+    "common_trap": "Crediting dividend income (double counting).",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings Between 20% and 50% (Equity Method)", "page": "17-14" }
+  },
+  {
+    "id": "A:17-005", "chapter": 17, "section_tag": "FVOCI", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A bond held in a 'hold to collect and sell' business model (FVOCI) falls in fair value by 2,000 due to higher market rates. Record the remeasurement (ignore credit losses and tax).",
+    "answer": {
+      "lines": [{ "account": "Other comprehensive income reserve", "debit": 2000 }, { "account": "Investments at FVOCI", "credit": 2000 }],
+      "effects": { "IS": [], "BS": [["Investments at FVOCI", -2000, "A"], ["OCI reserve", -2000, "E"]], "CFS": [], "note": "unrealised" }
+    },
+    "explanation": { "reasoning": ["FVOCI debt: fair-value changes go to OCI; interest and credit losses go to profit.", "On sale, the OCI amount is recycled to profit."] },
+    "why_it_matters": "Large OCI losses on bond portfolios show what would hit profit if the bonds were sold.",
+    "interactions": [{ "label": "OCI", "dir": "down" }, { "label": "Equity", "dir": "down" }],
+    "common_trap": "Booking the loss in profit.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Available-for-Sale Securities (Fair Value Through Other Comprehensive Income)", "page": "17-6" }
+  },
+  {
+    "id": "A:17-006", "chapter": 17, "section_tag": "Effective interest", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A bond with face value 10,000 and a 7% annual coupon was bought for 9,500 (effective rate 8%) and is held at amortised cost. Record year-1 interest when the coupon is received.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 700 }, { "account": "Investments at amortised cost", "debit": 60 }, { "account": "Interest income", "credit": 760 }],
+      "effects": { "IS": [["Interest income", 760]], "BS": [["Cash", 700, "A"], ["Investments at amortised cost", 60, "A"], ["Retained earnings", 760, "E"]], "CFS": [["Operating or investing: interest received", 700]] }
+    },
+    "explanation": { "reasoning": ["Interest income = 9,500 × 8% = 760.", "Cash coupon = 700; the 60 difference increases the carrying amount towards face value."] },
+    "why_it_matters": "Income from discounted bonds exceeds the cash received.",
+    "interactions": [{ "label": "Finance income", "dir": "up" }],
+    "common_trap": "Recording only the 700 coupon as income.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Held-to-Maturity Securities (Amortized Cost)", "page": "17-4" }
+  },
+  {
+    "id": "A:17-007", "chapter": 17, "section_tag": "Classification", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 9, which two tests determine whether a debt investment is measured at amortised cost?",
+    "options": [
+      "The business model is to hold assets to collect contractual cash flows, and the cash flows are solely payments of principal and interest (SPPI)",
+      "Management's intention and the size of the investment",
+      "Whether it is listed and whether it pays dividends",
+      "Its maturity and credit rating"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Business model + SPPI → amortised cost.", "Hold to collect and sell + SPPI → FVOCI; otherwise FVTPL."] },
+    "why_it_matters": "Classification decides whether rate movements hit profit, OCI, or neither.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "mixed" }],
+    "common_trap": "Using the old IAS 39 'held-to-maturity' intention test.",
+    "ifrs_gaap": { "ifrs": "IFRS 9: amortised cost, FVOCI or FVTPL based on business model and SPPI.", "us_gaap": "ASC 320: held-to-maturity, available-for-sale or trading based on intent and ability." },
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Debt Investment Classifications", "page": "17-3" }
+  },
+  {
+    "id": "A:17-008", "chapter": 17, "section_tag": "Significant influence", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "An investor holding 20%–50% of the voting shares is presumed to have…",
+    "options": ["Significant influence, so it uses the equity method", "Control, so it consolidates", "No influence, so it uses fair value", "Joint control"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["20–50% creates a rebuttable presumption of significant influence (IAS 28).", "Board seats and key transactions are other indicators."] },
+    "why_it_matters": "Associates' debt is not consolidated; look through large associates for hidden leverage.",
+    "interactions": [{ "label": "Hidden leverage", "dir": "up" }],
+    "common_trap": "Using shareholding percentage without checking actual influence.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings Between 20% and 50% (Equity Method)", "page": "17-14" }
+  },
+  {
+    "id": "A:17-009", "chapter": 17, "section_tag": "Equity method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "An associate stake cost 500,000. The associate earned 200,000 (30% share) and paid the investor dividends of 15,000. Carrying amount at year end?",
+    "answer": { "value": 545000, "unit": "", "tolerance": 0 },
+    "check": "500000 + 0.3 * 200000 - 15000",
+    "explanation": { "reasoning": ["500,000 + 60,000 − 15,000 = 545,000"], "shortcut": "Cost + share of profit − dividends." },
+    "why_it_matters": "Equity-method balances drift away from market value; value stakes separately using market data where possible.",
+    "interactions": [{ "label": "Investments", "dir": "up" }],
+    "common_trap": "Adding the dividends.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings Between 20% and 50% (Equity Method)", "page": "17-14" }
+  },
+  {
+    "id": "A:17-010", "chapter": 17, "section_tag": "FVOCI equity", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company sells an equity investment it had designated at FVOCI, with 40,000 of cumulative gains in OCI. What happens to the 40,000?",
+    "options": [
+      "It is never recycled to profit; it may be transferred within equity to retained earnings",
+      "It is recycled to profit as a gain",
+      "It is reversed",
+      "It becomes share premium"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The FVOCI election for equities is irrevocable and gains never pass through profit.", "Debt FVOCI gains, by contrast, are recycled."] },
+    "why_it_matters": "Selling a strategic stake at a profit won't lift EPS under this election.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Expecting a gain on disposal in profit.",
+    "ifrs_gaap": { "ifrs": "Equity FVOCI: no recycling, no impairment in profit; dividends in profit.", "us_gaap": "Equity securities with readily determinable fair values: changes in net income; no OCI election." },
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Reclassification Adjustments", "page": "17-21" }
+  },
+  {
+    "id": "A:17-011", "chapter": 17, "section_tag": "Impairment", "difficulty": "hard", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 9, a debt investment's credit risk has increased significantly since purchase but it is not yet credit-impaired. What loss allowance is required?",
+    "options": ["Lifetime expected credit losses (stage 2)", "12-month expected credit losses (stage 1)", "No allowance until default", "The full carrying amount"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Stage 1: 12-month ECL. Stage 2 (significant increase in credit risk): lifetime ECL. Stage 3: lifetime ECL and interest on net amount."] },
+    "why_it_matters": "Stage 2 transfers can cause big jumps in banks' provisions in a downturn.",
+    "interactions": [{ "label": "Provisions", "dir": "up" }],
+    "common_trap": "Waiting for default.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Impairment of Value", "page": "17-18" }
+  },
+  {
+    "id": "A:17-012", "chapter": 17, "section_tag": "Categories", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "IFRS 9 measurement categories",
+    "answer": {
+      "meaning": "Amortised cost (hold to collect, SPPI); FVOCI (hold to collect and sell, SPPI, or elected equities); FVTPL (everything else, including trading and derivatives).",
+      "formula": "Amortised cost: interest at effective rate + ECL · FVOCI debt: FV changes in OCI, recycled · FVTPL: all FV changes in profit",
+      "interpretation": "The category decides where value changes appear.",
+      "high_signals": "Large amortised-cost bond holdings with big unrealised losses: hidden fragility.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Banks' and insurers' earnings depend heavily on these classifications.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "mixed" }],
+    "common_trap": "Thinking amortised-cost assets carry no market risk.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Summary of Reporting Treatment of Securities", "page": "17-25" }
+  },
+  {
+    "id": "A:17-013", "chapter": 17, "section_tag": "Reclassification", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "When can debt investments be reclassified between IFRS 9 categories?",
+    "options": [
+      "Only when the business model for managing them changes, which is expected to be very rare",
+      "Whenever management wishes",
+      "Every year end",
+      "Never"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Reclassification follows a change in business model, applied prospectively.", "Equity investments and FVTPL-designated items cannot be reclassified."] },
+    "why_it_matters": "Restrictions stop companies moving assets to avoid recognising losses.",
+    "interactions": [{ "label": "Earnings management", "dir": "down" }],
+    "common_trap": "Assuming reclassification is a free choice.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Transfers Related to Debt Securities", "page": "17-24" }
+  },
+  {
+    "id": "A:17-014", "chapter": 17, "section_tag": "Derivatives", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "How are derivatives measured when they are not designated in a hedge?",
+    "options": ["At fair value through profit or loss", "At cost", "At amortised cost", "Only disclosed"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Derivatives can have zero cost but large value changes.", "Fair value through profit is the only sensible measure."] },
+    "why_it_matters": "Speculative derivative positions make profit volatile and can hide large risks.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Thinking a zero-cost derivative has no balance-sheet effect.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Basic Principles in Accounting for Derivatives", "page": "17-29" }
+  },
+  {
+    "id": "A:17-015", "chapter": 17, "section_tag": "Hedging", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company uses an interest-rate swap as a cash-flow hedge of its floating-rate debt. Where does the effective part of the swap's fair-value change go?",
+    "options": ["Other comprehensive income (cash-flow hedge reserve), recycled to profit when the hedged interest affects profit", "Profit immediately", "Share premium", "Nowhere; hedges are not recognised"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cash-flow hedge accounting defers the effective portion in OCI.", "Ineffectiveness goes straight to profit."] },
+    "why_it_matters": "The hedge reserve shows future effects on profit and the true fixed/floating mix of debt.",
+    "interactions": [{ "label": "OCI", "dir": "mixed" }],
+    "common_trap": "Confusing cash-flow hedges with fair-value hedges.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Cash Flow Hedge", "page": "17-35" }
+  },
+  {
+    "id": "A:17-016", "chapter": 17, "section_tag": "Hedging", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Fair-value hedge vs cash-flow hedge",
+    "answer": {
+      "meaning": "Fair-value hedge: protects the value of a recognised asset/liability (e.g. swapping fixed-rate debt to floating). Cash-flow hedge: protects future variable cash flows (e.g. fixing floating interest or forecast purchases).",
+      "formula": "FV hedge: both hedge and hedged item through profit. CF hedge: effective part in OCI, recycled later.",
+      "interpretation": "Hedge accounting aligns timing so economic hedges don't create artificial volatility.",
+      "high_signals": "Large hedge reserves: big future cash flows locked in.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Hedge notes reveal how exposed earnings are to rates, FX and commodity prices.",
+    "interactions": [{ "label": "Risk", "dir": "down" }],
+    "common_trap": "Assuming all derivatives are speculation.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Derivatives Used for Hedging", "page": "17-32" }
+  },
+  {
+    "id": "A:17-017", "chapter": 17, "section_tag": "FVTPL", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "A trading portfolio cost 50,000 and has a fair value of 54,000 at year end. Gain recognised in profit?",
+    "answer": { "value": 4000, "unit": "", "tolerance": 0 },
+    "check": "54000 - 50000",
+    "explanation": { "reasoning": ["54,000 − 50,000 = 4,000 unrealised gain in profit"], "shortcut": "FV − carrying amount." },
+    "why_it_matters": "Trading gains are volatile; don't capitalise them at an operating multiple.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Putting trading gains in OCI.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Trading Securities (Fair Value Through Net Income)", "page": "17-10" }
+  },
+  {
+    "id": "A:17-018", "chapter": 17, "section_tag": "Control", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 10, when must an investee be consolidated?",
+    "options": [
+      "When the investor controls it: power over relevant activities, exposure to variable returns, and ability to use that power to affect returns",
+      "Only above 50% ownership",
+      "Only if it is in the same country",
+      "Only if it pays dividends"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Control, not just ownership percentage, drives consolidation.", "De facto control is possible below 50%."] },
+    "why_it_matters": "Consolidation brings 100% of debt and EBITDA on balance sheet; non-consolidation keeps them off.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }],
+    "common_trap": "Using 50% as the only test.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings of More Than 50% (Consolidation)", "page": "17-16" }
+  },
+  {
+    "id": "A:17-019", "chapter": 17, "section_tag": "Embedded derivatives", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company issues a bond whose repayment is linked to the gold price. What does it need to consider?",
+    "options": [
+      "Whether the gold-linked feature is an embedded derivative not closely related to the host debt, requiring separation at fair value",
+      "Nothing: it is a normal bond",
+      "Classifying the whole bond as equity",
+      "Recording the bond at the gold price"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Commodity-linked returns are not closely related to a debt host.", "For financial liabilities, such derivatives are separated and measured at FVTPL (for financial assets, IFRS 9 instead classifies the whole asset)."] },
+    "why_it_matters": "Embedded features can create profit volatility in seemingly plain debt.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Ignoring the linked feature.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Embedded Derivatives", "page": "17-37" }
+  },
+  {
+    "id": "A:17-020", "chapter": 17, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A holding company's profit is 40% 'share of profit of associates' and its EBITDA excludes them. How do you value it and assess its cash generation?",
+    "answer": {
+      "model_answer": "Split it into the consolidated business and the associate stakes. Value the consolidated operations on their own EBITDA and net debt. Value associates separately: at market value if listed, or at a multiple of their earnings × ownership share, not via EBITDA (they are below EBITDA and their debt is not in net debt). Cash generation: associate profit is non-cash until dividends arrive; compare dividends received with share of profit over several years. Also check associates' leverage (look-through debt) and any guarantees. A sum-of-the-parts approach with a holding-company discount is usual.",
+      "rubric": ["Separate operations from stakes", "Value associates separately", "Not via EBITDA/net debt", "Dividend cash conversion", "Look-through leverage/guarantees", "SOTP and discount"]
+    },
+    "explanation": { "reasoning": ["Respect where each item sits (above/below EBITDA, in/out of net debt)."] },
+    "why_it_matters": "Holding structures are common in Gulf and European conglomerates.",
+    "interactions": [{ "label": "EV", "dir": "mixed" }],
+    "common_trap": "Applying an EBITDA multiple to profit that includes associates.",
+    "book_ref": { "book": "IA17", "chapter": 17, "section": "Holdings Between 20% and 50% (Equity Method)", "page": "17-14" }
+  }
+]

@@ -1,0 +1,221 @@
+[
+  {
+    "id": "A:24-001", "chapter": 24, "section_tag": "Subsequent events", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "After year end, but before the accounts are authorised, a major customer goes bankrupt. The customer was already in financial difficulty at year end. What is the treatment?",
+    "options": [
+      "Adjusting event: increase the loss allowance at year end",
+      "Non-adjusting event: disclose only",
+      "Ignore it",
+      "Recognise in next year's accounts only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["It gives evidence of conditions that existed at year end."] },
+    "why_it_matters": "Late adjustments can move year-end profit materially.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Treating all post-year-end events as disclosure only.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Post-Balance-Sheet Events (Subsequent Events)", "page": "24-9" }
+  },
+  {
+    "id": "A:24-002", "chapter": 24, "section_tag": "Subsequent events", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Two weeks after year end, a factory is destroyed by fire. What is the treatment?",
+    "options": ["Non-adjusting: disclose nature and estimated effect if material", "Adjusting: impair the factory at year end", "Ignore", "Restate the prior year"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The condition (fire) arose after year end."] },
+    "why_it_matters": "Material non-adjusting events change forecasts even though the balance sheet doesn't move.",
+    "interactions": [{ "label": "Forecast risk", "dir": "up" }],
+    "common_trap": "Adjusting year-end figures for new conditions.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Post-Balance-Sheet Events (Subsequent Events)", "page": "24-9" }
+  },
+  {
+    "id": "A:24-003", "chapter": 24, "section_tag": "Subsequent events", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Adjusting vs non-adjusting events after the reporting period",
+    "answer": {
+      "meaning": "Adjusting events give evidence of conditions at the reporting date (e.g. settlement of a year-end lawsuit, sale of inventory below cost). Non-adjusting events reflect conditions arising later (e.g. fire, acquisition, share issue).",
+      "formula": "Window: reporting date → date accounts are authorised for issue",
+      "interpretation": "Dividends declared after year end are non-adjusting (no liability at year end).",
+      "high_signals": "Going-concern doubts after year end override the normal rule.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Read the subsequent events note before relying on the balance sheet.",
+    "interactions": [{ "label": "Balance sheet", "dir": "mixed" }],
+    "common_trap": "Accruing dividends declared after year end.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Post-Balance-Sheet Events (Subsequent Events)", "page": "24-9" }
+  },
+  {
+    "id": "A:24-004", "chapter": 24, "section_tag": "Related parties", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company buys raw materials from a supplier owned by its CEO's spouse. What is required?",
+    "options": [
+      "Disclose the relationship, the transactions and balances, even if priced at market",
+      "Nothing if priced at market",
+      "Eliminate the transactions",
+      "Only internal approval"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Close family members of key management are related parties (IAS 24)."] },
+    "why_it_matters": "Related-party deals can transfer value away from minority shareholders; common in family groups.",
+    "interactions": [{ "label": "Governance risk", "dir": "up" }],
+    "common_trap": "Thinking market pricing removes the disclosure requirement.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Disclosure of Special Transactions or Events", "page": "24-8" }
+  },
+  {
+    "id": "A:24-005", "chapter": 24, "section_tag": "Segments", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 8, which test makes an operating segment reportable?",
+    "options": [
+      "Revenue, profit/loss or assets of at least 10% of the combined total",
+      "At least 5 employees",
+      "Revenue above 1 million",
+      "Management's preference only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["10% thresholds; reportable segments must cover at least 75% of external revenue.", "Segments follow the internal reports reviewed by the chief operating decision maker."] },
+    "why_it_matters": "Segment data powers sum-of-the-parts valuations.",
+    "interactions": [{ "label": "Transparency", "dir": "up" }],
+    "common_trap": "Assuming segments follow legal entities.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Reporting for Diversified (Conglomerate) Companies", "page": "24-11" }
+  },
+  {
+    "id": "A:24-006", "chapter": 24, "section_tag": "Segments", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Reportable segments cover external revenue of 600 out of total external revenue of 1,000. How much more external revenue must be added from other segments to meet the 75% rule?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0 },
+    "check": "1000 * 0.75 - 600",
+    "explanation": { "reasoning": ["75% × 1,000 = 750", "750 − 600 = 150 more"], "shortcut": "0.75 × total − covered." },
+    "why_it_matters": "The 75% rule stops companies hiding most activities in 'Other'.",
+    "interactions": [{ "label": "Transparency", "dir": "up" }],
+    "common_trap": "Applying 75% to total segment revenue including inter-segment sales.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Reporting for Diversified (Conglomerate) Companies", "page": "24-11" }
+  },
+  {
+    "id": "A:24-007", "chapter": 24, "section_tag": "Segments", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "How would you use segment disclosures to analyse a conglomerate, and what tricks would you watch for?",
+    "answer": {
+      "model_answer": "Use segments to compute growth, margins and ROIC by business, to value each with peer multiples (sum of the parts), and to see where capital goes (segment capex vs returns). Watch for: (1) frequent resegmentation that breaks trends; (2) large unallocated corporate costs that make segments look more profitable; (3) inter-segment pricing that shifts profit; (4) aggregation of dissimilar businesses to hide a weak unit; (5) segment profit measures that are non-GAAP (e.g. adjusted EBITDA) that don't reconcile cleanly. Reconcile segment totals to group figures every time.",
+      "rubric": ["SOTP and per-segment metrics", "Capital allocation", "Resegmentation", "Unallocated costs", "Transfer pricing", "Aggregation", "Reconciliation"]
+    },
+    "explanation": { "reasoning": ["Use segments for valuation, then test their reliability."] },
+    "why_it_matters": "Conglomerate discounts often hide value or losses in segments.",
+    "interactions": [{ "label": "Valuation", "dir": "mixed" }],
+    "common_trap": "Taking segment margins at face value.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Reporting for Diversified (Conglomerate) Companies", "page": "24-11" }
+  },
+  {
+    "id": "A:24-008", "chapter": 24, "section_tag": "Interim", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 34, how is income tax expense measured in interim reports?",
+    "options": [
+      "Using the estimated weighted-average annual effective tax rate applied to interim pre-tax income",
+      "Using the statutory rate only",
+      "Recognised only at year end",
+      "As cash paid"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Each interim period is a discrete period, but tax uses the expected annual rate."] },
+    "why_it_matters": "Quarterly ETR changes often reflect revised annual estimates, not the quarter itself.",
+    "interactions": [{ "label": "Interim EPS", "dir": "mixed" }],
+    "common_trap": "Comparing quarterly ETRs as if they were independent.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Interim Reports", "page": "24-15" }
+  },
+  {
+    "id": "A:24-009", "chapter": 24, "section_tag": "Interim", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A retailer earns 40% of its annual revenue in Q4. What does this mean for interim analysis?",
+    "options": [
+      "Compare each quarter with the same quarter last year, not with the previous quarter",
+      "Annualise Q1 by multiplying by 4",
+      "Interim results are meaningless",
+      "Average all quarters"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Seasonality makes sequential comparisons misleading."] },
+    "why_it_matters": "Seasonal working capital also swings: inventory builds before Q4.",
+    "interactions": [{ "label": "Working capital", "dir": "mixed" }],
+    "common_trap": "Annualising one quarter.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Interim Reports", "page": "24-15" }
+  },
+  {
+    "id": "A:24-010", "chapter": 24, "section_tag": "Audit report", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "An auditor issues a 'qualified' opinion. What does it mean?",
+    "options": [
+      "The statements are fairly presented except for a specific material matter",
+      "The statements are fully reliable",
+      "The statements are materially and pervasively misstated",
+      "The auditor could not form any opinion"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Unmodified (clean), qualified (except for), adverse (pervasive misstatement), disclaimer (cannot conclude).", "Key audit matters and going-concern paragraphs add context."] },
+    "why_it_matters": "Anything other than clean is a red flag; read key audit matters for judgement-heavy areas.",
+    "interactions": [{ "label": "Reliability", "dir": "down" }],
+    "common_trap": "Ignoring emphasis-of-matter or going-concern paragraphs.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Auditor's and Management's Reports", "page": "24-21" }
+  },
+  {
+    "id": "A:24-011", "chapter": 24, "section_tag": "MD&A", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "What is the main purpose of management's commentary (MD&A)?",
+    "options": [
+      "To explain performance, financial position, liquidity, risks and outlook through management's eyes",
+      "To replace the notes",
+      "To present audited forecasts",
+      "To list related parties"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["It gives context: drivers, trends, known uncertainties."] },
+    "why_it_matters": "Compare MD&A messages with the numbers; inconsistent stories are warnings.",
+    "interactions": [{ "label": "Insight", "dir": "up" }],
+    "common_trap": "Taking management's narrative as audited.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Management's Reports", "page": "24-24" }
+  },
+  {
+    "id": "A:24-012", "chapter": 24, "section_tag": "Fraud", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Fraud triangle",
+    "answer": {
+      "meaning": "Fraud tends to occur when three factors combine: pressure/incentive (targets, debt covenants, bonuses), opportunity (weak controls, complex transactions, dominant CEO), and rationalisation ('we'll fix it next quarter').",
+      "formula": "Pressure + Opportunity + Rationalisation",
+      "interpretation": "Look for all three in governance and incentives disclosures.",
+      "high_signals": "Aggressive guidance + weak board + auditor changes.",
+      "low_signals": "Independent board, strong audit committee, conservative policies."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Governance analysis complements numbers-based red flags.",
+    "interactions": [{ "label": "Fraud risk", "dir": "up" }],
+    "common_trap": "Only looking for fraud in the numbers.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Current Reporting Issues: Fraudulent Financial Reporting", "page": "24-26" }
+  },
+  {
+    "id": "A:24-013", "chapter": 24, "section_tag": "Notes", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which is the full disclosure principle?",
+    "options": [
+      "Disclose information important enough to influence the judgement of an informed reader, balancing cost and detail",
+      "Disclose every transaction",
+      "Disclose only what the law requires",
+      "Disclose only good news"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Notes explain policies, judgements, estimates, commitments and contingencies."] },
+    "why_it_matters": "The notes are where analysts find what the statements hide.",
+    "interactions": [{ "label": "Transparency", "dir": "up" }],
+    "common_trap": "Reading only the primary statements.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Full Disclosure Principle", "page": "24-3" }
+  },
+  {
+    "id": "A:24-014", "chapter": 24, "section_tag": "Notes", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Which note gives the best early warning about future cash obligations not yet on the balance sheet?",
+    "options": ["Commitments and contingencies", "Share capital", "Basis of preparation", "Revenue by geography"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Capital commitments, purchase obligations, guarantees and contingent liabilities appear here."] },
+    "why_it_matters": "Off-balance-sheet obligations change leverage and liquidity analysis.",
+    "interactions": [{ "label": "Hidden debt", "dir": "up" }],
+    "common_trap": "Assuming the balance sheet shows all obligations.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Notes to the Financial Statements", "page": "24-6" }
+  },
+  {
+    "id": "A:24-015", "chapter": 24, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "You have 30 minutes with a new company's annual report. Which notes and sections do you read first, and why?",
+    "answer": {
+      "model_answer": "(1) Auditor's report — opinion, key audit matters, going-concern language. (2) Accounting policies and critical judgements/estimates — revenue recognition, capitalisation, useful lives, provisions. (3) Revenue and segment notes — drivers, mix, concentration. (4) Debt, leases and commitments/contingencies — maturities, covenants, off-balance-sheet obligations. (5) Cash flow statement and its reconciliation — cash conversion, working capital. (6) Related parties and subsequent events. (7) Tax reconciliation and impairment tests (assumptions vs reality). Then skim MD&A for management's story and test it against what the notes show.",
+      "rubric": ["Auditor's report first", "Policies and judgements", "Segments/revenue", "Debt, leases, commitments", "Cash flow reconciliation", "Related parties/subsequent events", "Tax and impairment", "MD&A vs notes"]
+    },
+    "explanation": { "reasoning": ["Prioritise the areas where judgement and risk are highest."] },
+    "why_it_matters": "A fast, structured read is a core consulting and analyst skill.",
+    "interactions": [{ "label": "Insight", "dir": "up" }],
+    "common_trap": "Starting with the chairman's letter.",
+    "book_ref": { "book": "IA17", "chapter": 24, "section": "Notes to the Financial Statements", "page": "24-6" }
+  }
+]

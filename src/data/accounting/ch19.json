@@ -1,0 +1,295 @@
+[
+  {
+    "id": "A:19-001", "chapter": 19, "section_tag": "Current tax", "difficulty": "easy", "format": "journal_entry", "style": "calculation",
+    "prompt": "Taxable profit for the year is 400,000 and the tax rate is 25%. No tax has been paid yet. Record current tax.",
+    "answer": {
+      "lines": [{ "account": "Income tax expense", "debit": 100000 }, { "account": "Income tax payable", "credit": 100000 }],
+      "effects": { "IS": [["Current tax expense", -100000]], "BS": [["Income tax payable", 100000, "L"], ["Retained earnings", -100000, "E"]], "CFS": [], "note": "paid later" }
+    },
+    "explanation": { "reasoning": ["Current tax = taxable profit × rate = 100,000."] },
+    "why_it_matters": "Cash taxes, not the income-statement charge, matter for FCF.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Applying the rate to accounting profit for current tax.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Fundamentals of Accounting for Income Taxes", "page": "19-3" }
+  },
+  {
+    "id": "A:19-002", "chapter": 19, "section_tag": "DTL", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Accelerated tax depreciation makes an asset's tax base 80,000 lower than its carrying amount at year end (new difference this year). Tax rate 25%. Record deferred tax.",
+    "answer": {
+      "lines": [{ "account": "Income tax expense", "debit": 20000 }, { "account": "Deferred tax liability", "credit": 20000 }],
+      "effects": { "IS": [["Deferred tax expense", -20000]], "BS": [["Deferred tax liability", 20000, "L"], ["Retained earnings", -20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Taxable temporary difference: more tax will be payable when the difference reverses.", "80,000 × 25% = 20,000."] },
+    "why_it_matters": "A growing DTL from capex means cash taxes are below the P&L charge; for growing firms it may never reverse in total.",
+    "interactions": [{ "label": "Cash taxes", "dir": "down" }, { "label": "Deferred tax liability", "dir": "up" }],
+    "common_trap": "Calling a taxable temporary difference a deferred tax asset.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Future Taxable Amounts and Deferred Taxes", "page": "19-4" }
+  },
+  {
+    "id": "A:19-003", "chapter": 19, "section_tag": "DTA", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A warranty provision of 40,000 is expensed now but is deductible for tax only when paid. Tax rate 25%. Record deferred tax (recovery is probable).",
+    "answer": {
+      "lines": [{ "account": "Deferred tax asset", "debit": 10000 }, { "account": "Income tax expense", "credit": 10000 }],
+      "effects": { "IS": [["Deferred tax credit", 10000]], "BS": [["Deferred tax asset", 10000, "A"], ["Retained earnings", 10000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Deductible temporary difference: future tax will be lower.", "40,000 × 25% = 10,000."] },
+    "why_it_matters": "DTAs depend on future profits; in loss-making companies their recoverability is a key judgement.",
+    "interactions": [{ "label": "Deferred tax asset", "dir": "up" }],
+    "common_trap": "Recording a DTL for a deductible difference.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Future Deductible Amounts and Deferred Taxes", "page": "19-8" }
+  },
+  {
+    "id": "A:19-004", "chapter": 19, "section_tag": "Tax losses", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "The company made a tax loss of 200,000 that can be carried forward. Future taxable profits are probable. Tax rate 25%. Record the deferred tax asset.",
+    "answer": {
+      "lines": [{ "account": "Deferred tax asset", "debit": 50000 }, { "account": "Income tax expense", "credit": 50000 }],
+      "effects": { "IS": [["Tax credit", 50000]], "BS": [["Deferred tax asset", 50000, "A"], ["Retained earnings", 50000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Unused tax losses create a DTA to the extent future taxable profit is probable (IAS 12).", "200,000 × 25% = 50,000, which reduces the reported loss after tax."] },
+    "why_it_matters": "Recognising (or derecognising) loss DTAs can swing reported profit sharply; read the tax note.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Recognising DTAs for losses with no evidence of future profit.",
+    "ifrs_gaap": { "ifrs": "IAS 12: recognise a DTA only to the extent it is probable that taxable profit will be available.", "us_gaap": "ASC 740: recognise the full DTA, then a valuation allowance if it is more likely than not that some will not be realised." },
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Loss Carryforward", "page": "19-19" }
+  },
+  {
+    "id": "A:19-005", "chapter": 19, "section_tag": "Rate change", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A deferred tax liability of 100,000 relates to temporary differences of 400,000 at 25%. The enacted rate falls to 20%. Record the remeasurement.",
+    "answer": {
+      "lines": [{ "account": "Deferred tax liability", "debit": 20000 }, { "account": "Income tax expense", "credit": 20000 }],
+      "effects": { "IS": [["Deferred tax credit", 20000]], "BS": [["Deferred tax liability", -20000, "L"], ["Retained earnings", 20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["New DTL = 400,000 × 20% = 80,000.", "Reduce by 20,000 through tax expense (unless it relates to items in OCI)."] },
+    "why_it_matters": "Tax-rate changes create one-off profit effects; exclude them from underlying earnings (e.g. the 2017 US tax reform).",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Leaving deferred tax at the old rate.",
+    "ifrs_gaap": { "ifrs": "Use rates enacted or substantively enacted at the reporting date.", "us_gaap": "Use rates enacted (signed into law) at the reporting date." },
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Tax Rate Considerations", "page": "19-16" }
+  },
+  {
+    "id": "A:19-006", "chapter": 19, "section_tag": "Tax in OCI", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Land is revalued upwards by 100,000 through OCI. The gain will be taxable on sale at 25%. Record the deferred tax.",
+    "answer": {
+      "lines": [{ "account": "Revaluation surplus", "debit": 25000 }, { "account": "Deferred tax liability", "credit": 25000 }],
+      "effects": { "IS": [], "BS": [["Deferred tax liability", 25000, "L"], ["Revaluation surplus", -25000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Deferred tax follows the item it relates to: OCI items carry their tax in OCI.", "Net revaluation surplus = 75,000."] },
+    "why_it_matters": "Tax on OCI items never touches profit; total tax in the note includes both.",
+    "interactions": [{ "label": "OCI", "dir": "down" }],
+    "common_trap": "Charging the tax to the income statement.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "IFRS Insights", "page": "19-60" }
+  },
+  {
+    "id": "A:19-007", "chapter": 19, "section_tag": "Differences", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Temporary vs permanent differences",
+    "answer": {
+      "meaning": "Temporary differences are between an item's carrying amount and its tax base; they reverse and create deferred tax. Permanent differences (e.g. non-deductible fines, tax-exempt income) never reverse and change the effective tax rate instead.",
+      "formula": "Deferred tax = temporary difference × tax rate expected on reversal",
+      "interpretation": "Permanent differences explain ETR vs statutory rate gaps.",
+      "high_signals": "Large permanent benefits: low ETR that may not last.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Forecast ETR from the reconciliation note, not from last year's ratio alone.",
+    "interactions": [{ "label": "Effective tax rate", "dir": "mixed" }],
+    "common_trap": "Recognising deferred tax on permanent differences.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Specific Differences", "page": "19-13" }
+  },
+  {
+    "id": "A:19-008", "chapter": 19, "section_tag": "Differences", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Which is a permanent difference?",
+    "options": ["A regulatory fine that is not tax-deductible", "Accelerated tax depreciation", "A warranty provision deductible when paid", "Unearned revenue taxed on receipt"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The fine will never be deductible, so it never reverses.", "The others reverse over time."] },
+    "why_it_matters": "Permanent items raise the ETR and should be forecast separately.",
+    "interactions": [{ "label": "Effective tax rate", "dir": "up" }],
+    "common_trap": "Booking deferred tax on a fine.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Specific Differences", "page": "19-13" }
+  },
+  {
+    "id": "A:19-009", "chapter": 19, "section_tag": "ETR", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Profit before tax 1,000; total tax expense 280. Effective tax rate?",
+    "answer": { "value": 28, "unit": "%", "tolerance": 0 },
+    "check": "280 / 1000 * 100",
+    "explanation": { "reasoning": ["280 / 1,000 = 28%"], "shortcut": "Tax expense over profit before tax." },
+    "why_it_matters": "Compare ETR with the statutory rate and with cash taxes paid.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Dividing by profit after tax.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Income Statement Presentation", "page": "19-12" }
+  },
+  {
+    "id": "A:19-010", "chapter": 19, "section_tag": "Reconciliation", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Profit before tax 1,000; statutory rate 25%; non-deductible expenses 40. Tax expense?",
+    "answer": { "value": 260, "unit": "", "tolerance": 0 },
+    "check": "(1000 + 40) * 0.25",
+    "explanation": { "reasoning": ["Tax at statutory rate: 250", "Plus tax on non-deductible expenses: 40 × 25% = 10", "Total 260 (ETR 26%)"], "shortcut": "Add permanent differences back, then apply the rate." },
+    "why_it_matters": "The tax reconciliation note is how you forecast ETR.",
+    "interactions": [{ "label": "Effective tax rate", "dir": "up" }],
+    "common_trap": "Deducting the non-deductible expense.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Note Disclosure", "page": "19-24" }
+  },
+  {
+    "id": "A:19-011", "chapter": 19, "section_tag": "DTL", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "An asset's carrying amount is 900 and its tax base is 700. Tax rate 25%. Deferred tax balance?",
+    "answer": { "value": 50, "unit": "", "tolerance": 0 },
+    "check": "(900 - 700) * 0.25",
+    "explanation": { "reasoning": ["Taxable temporary difference 200", "DTL = 200 × 25% = 50"], "shortcut": "Difference × rate; asset above tax base → liability." },
+    "why_it_matters": "The balance sheet approach compares carrying amounts with tax bases.",
+    "interactions": [{ "label": "Deferred tax liability", "dir": "up" }],
+    "common_trap": "Calling it a DTA.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "The Asset-Liability Method", "page": "19-28" }
+  },
+  {
+    "id": "A:19-012", "chapter": 19, "section_tag": "Presentation", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "How are deferred tax balances classified on the balance sheet?",
+    "options": ["As non-current, under both IFRS and US GAAP", "As current if they reverse within 12 months", "Split by expected reversal", "Netted against cash"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 12 and (since 2017) ASC 740 require non-current classification.", "Offsetting is allowed only for the same tax authority and entity."] },
+    "why_it_matters": "Deferred taxes don't affect current ratios.",
+    "interactions": [{ "label": "Current ratio", "dir": "mixed" }],
+    "common_trap": "Classifying deferred tax as current.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Balance Sheet", "page": "19-23" }
+  },
+  {
+    "id": "A:19-013", "chapter": 19, "section_tag": "Measurement", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Is deferred tax discounted to present value?",
+    "options": ["No; IAS 12 and ASC 740 prohibit discounting", "Yes, always", "Only if reversal is beyond 5 years", "Only for DTAs"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Discounting would require detailed scheduling of reversals; standards prohibit it."] },
+    "why_it_matters": "Long-dated DTLs are overstated in economic terms; analysts sometimes treat part of them as equity.",
+    "interactions": [{ "label": "Liabilities", "dir": "up" }],
+    "common_trap": "Assuming deferred tax is a present value.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Tax Rate Considerations", "page": "19-16" }
+  },
+  {
+    "id": "A:19-014", "chapter": 19, "section_tag": "Tax base", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "What is the tax base of an asset?",
+    "options": [
+      "The amount that will be deductible for tax against future taxable benefits when the asset is recovered",
+      "Its fair value",
+      "Its original cost",
+      "Its carrying amount"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["E.g. machine cost 1,000 with tax depreciation of 300 taken: tax base 700."] },
+    "why_it_matters": "Tax bases drive every deferred tax calculation, including in acquisitions.",
+    "interactions": [{ "label": "Deferred tax", "dir": "mixed" }],
+    "common_trap": "Using carrying amount or cost.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "The Asset-Liability Method", "page": "19-28" }
+  },
+  {
+    "id": "A:19-015", "chapter": 19, "section_tag": "Valuation allowance", "difficulty": "hard", "format": "mcq", "style": "diagnosis",
+    "prompt": "A US company's net income doubles because it released a large valuation allowance on deferred tax assets. How do you treat this?",
+    "options": [
+      "As a one-off, non-cash tax benefit: exclude it from underlying earnings, though it signals improved profit expectations",
+      "As recurring operating profit",
+      "As a cash inflow",
+      "As revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Release means management now expects to use past losses.", "It is a non-recurring accounting gain; cash taxes will be lower in future."] },
+    "why_it_matters": "P/E on a profit inflated by a tax release is meaningless.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Capitalising a one-off tax credit.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Deferred Tax Asset—Valuation Allowance", "page": "19-11" }
+  },
+  {
+    "id": "A:19-016", "chapter": 19, "section_tag": "Total tax", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Current tax 100 and deferred tax expense 20. Profit before tax 500. Effective tax rate?",
+    "answer": { "value": 24, "unit": "%", "tolerance": 0 },
+    "check": "(100 + 20) / 500 * 100",
+    "explanation": { "reasoning": ["Total tax = 120", "120 / 500 = 24%", "Cash tax rate ≈ 100 / 500 = 20%"], "shortcut": "Current + deferred over PBT." },
+    "why_it_matters": "ROIC uses a cash tax rate when deferred taxes are persistent; this gap matters for valuation.",
+    "interactions": [{ "label": "NOPAT", "dir": "mixed" }],
+    "common_trap": "Using only current tax.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Income Statement Presentation", "page": "19-12" }
+  },
+  {
+    "id": "A:19-017", "chapter": 19, "section_tag": "Uncertain positions", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRIC 23, how does a company account for an uncertain tax treatment?",
+    "options": [
+      "Assess whether the tax authority will probably accept it; if not, reflect the uncertainty using the most likely amount or expected value",
+      "Ignore it until audited",
+      "Always assume the authority will reject it",
+      "Disclose only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Assume the authority examines everything with full knowledge.", "Measure using whichever method better predicts the outcome."] },
+    "why_it_matters": "Large uncertain-tax provisions signal aggressive structuring and potential future cash outflows.",
+    "interactions": [{ "label": "Tax liabilities", "dir": "up" }],
+    "common_trap": "Assuming the position won't be examined.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Evolving Issue: Uncertain Tax Positions", "page": "19-28" }
+  },
+  {
+    "id": "A:19-018", "chapter": 19, "section_tag": "Method", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Balance-sheet (asset-liability) method of deferred tax",
+    "answer": {
+      "meaning": "Deferred tax is computed from temporary differences between carrying amounts and tax bases on the balance sheet, at the rates expected to apply on reversal.",
+      "formula": "Tax expense = current tax + change in deferred tax balances (excluding items in OCI/equity and acquisitions)",
+      "interpretation": "Deferred tax represents future tax consequences of today's balances.",
+      "high_signals": "Large DTAs relative to equity: dependence on future profits.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "It is how tax interacts with every other balance-sheet item in a model.",
+    "interactions": [{ "label": "Deferred tax", "dir": "mixed" }],
+    "common_trap": "Calculating deferred tax only from income-statement timing differences.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "The Asset-Liability Method", "page": "19-28" }
+  },
+  {
+    "id": "A:19-019", "chapter": 19, "section_tag": "Goodwill", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "In an acquisition, goodwill is not deductible for tax. Is a deferred tax liability recognised on the goodwill?",
+    "options": [
+      "No: IAS 12 prohibits recognising deferred tax on the initial recognition of goodwill",
+      "Yes, always",
+      "Yes, but only in OCI",
+      "Only if the acquirer chooses"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Recognising a DTL would increase goodwill, which would increase the DTL, and so on.", "The initial-recognition exception avoids this circularity."] },
+    "why_it_matters": "Deferred tax does arise on fair-value uplifts to other acquired assets; that increases goodwill.",
+    "interactions": [{ "label": "Goodwill", "dir": "mixed" }],
+    "common_trap": "Booking a DTL on non-deductible goodwill.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "IFRS Insights", "page": "19-60" }
+  },
+  {
+    "id": "A:19-020", "chapter": 19, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A company's effective tax rate is 12% versus a 25% statutory rate. What would you check before forecasting 12%?",
+    "answer": {
+      "model_answer": "Read the tax reconciliation: (1) one-offs — DTA recognition or valuation-allowance releases, rate-change remeasurements, settlements of prior-year positions; (2) structural items — profits in low-tax jurisdictions, tax incentives (e.g. R&D credits, special zones), non-taxable income (share of associates, dividends); (3) their sustainability — expiry dates of incentives, global minimum tax (Pillar Two 15%), changes in profit mix; (4) cash taxes paid vs expense; (5) uncertain tax provisions. Forecast with the structural rate, adding back one-offs, and stress-test for incentive expiry and minimum tax.",
+      "rubric": ["Use the reconciliation", "Separate one-offs from structural", "Sustainability and Pillar Two", "Cash taxes", "Uncertain positions", "Forecast approach"]
+    },
+    "explanation": { "reasoning": ["Decompose the gap, test persistence, then forecast."] },
+    "why_it_matters": "A 13-point tax gap is worth a lot of valuation; get it wrong and EPS forecasts miss badly.",
+    "interactions": [{ "label": "Effective tax rate", "dir": "mixed" }],
+    "common_trap": "Extrapolating a low ETR without understanding it.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Note Disclosure", "page": "19-24" }
+  },
+  {
+    "id": "A:19-021", "chapter": 19, "section_tag": "DTL analysis", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A growing utility's deferred tax liability keeps rising every year because of accelerated tax depreciation on new capex. How might an analyst view part of this DTL?",
+    "options": [
+      "As closer to equity than debt, since it may never reverse while the company keeps investing",
+      "As short-term debt due next year",
+      "As cash",
+      "As revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Reversals on old assets are offset by new differences on new capex.", "The balance behaves like a permanent, interest-free deferral."] },
+    "why_it_matters": "Treating it all as debt overstates leverage for capital-intensive growers.",
+    "interactions": [{ "label": "Adjusted leverage", "dir": "down" }],
+    "common_trap": "Adding the full DTL to net debt.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "What Do the Numbers Mean? Real Liabilities", "page": "19-8" }
+  },
+  {
+    "id": "A:19-022", "chapter": 19, "section_tag": "Loss carryback", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Where tax law allows a current loss to be carried BACK against prior years' profits, what does the company recognise?",
+    "options": ["A current tax refund receivable and a tax benefit in the loss year", "A deferred tax liability", "Nothing until cash is refunded", "An increase in share capital"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The refund is certain and relates to the loss year.", "Carryforwards instead create deferred tax assets."] },
+    "why_it_matters": "Carrybacks give immediate cash in downturns, supporting liquidity.",
+    "interactions": [{ "label": "Cash", "dir": "up" }],
+    "common_trap": "Treating a carryback like a carryforward.",
+    "book_ref": { "book": "IA17", "chapter": 19, "section": "Appendix 19B: Accounting for Net Operating Loss Carrybacks", "page": "19-36" }
+  }
+]

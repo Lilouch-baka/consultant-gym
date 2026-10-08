@@ -1,0 +1,345 @@
+[
+  {
+    "id": "A:18-001", "chapter": 18, "section_tag": "Allocation", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A company sells equipment plus a 2-year service contract for 1,200 cash. Stand-alone selling prices are 1,000 (equipment) and 500 (service). The equipment is delivered today. Record the sale.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 1200 }, { "account": "Sales revenue", "credit": 800 }, { "account": "Unearned revenue", "credit": 400 }],
+      "effects": { "IS": [["Sales revenue", 800]], "BS": [["Cash", 1200, "A"], ["Unearned revenue", 400, "L"], ["Retained earnings", 800, "E"]], "CFS": [["Operating: cash from customers", 1200]] }
+    },
+    "explanation": { "reasoning": ["Two performance obligations; allocate the 1,200 price by relative stand-alone prices (1,000 : 500).", "Equipment 800 recognised now; service 400 deferred and recognised over 2 years."] },
+    "why_it_matters": "Allocation choices move revenue between today and the future; bundle discounts are spread over all obligations.",
+    "interactions": [{ "label": "Revenue", "dir": "mixed" }, { "label": "Unearned revenue", "dir": "up" }],
+    "common_trap": "Recognising the whole 1,200 on delivery, or allocating the discount only to the service.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Allocating the Transaction Price to Separate Performance Obligations—Step 4", "page": "18-15" }
+  },
+  {
+    "id": "A:18-002", "chapter": 18, "section_tag": "Returns", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "50 units are sold for 100 each in cash with a 30-day right of return. 10% are expected to be returned. Record the sale (ignore cost of sales).",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 5000 }, { "account": "Sales revenue", "credit": 4500 }, { "account": "Refund liability", "credit": 500 }],
+      "effects": { "IS": [["Sales revenue", 4500]], "BS": [["Cash", 5000, "A"], ["Refund liability", 500, "L"], ["Retained earnings", 4500, "E"]], "CFS": [["Operating: cash from customers", 5000]] }
+    },
+    "explanation": { "reasoning": ["Expected returns are variable consideration.", "Revenue = 5,000 × 90% = 4,500; the rest is a refund liability. (An asset for goods expected back would be recorded against cost of sales.)"] },
+    "why_it_matters": "Return estimates directly change revenue; check refund-liability trends.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }],
+    "common_trap": "Recognising 5,000 of revenue and expensing returns later.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Sales Returns and Allowances", "page": "18-19" }
+  },
+  {
+    "id": "A:18-003", "chapter": 18, "section_tag": "Principal vs agent", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A travel website sells a 1,000 airline ticket, collects the cash, keeps a 10% commission and owes 900 to the airline. The website never controls the seat. Record the sale.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 1000 }, { "account": "Service revenue", "credit": 100 }, { "account": "Trade payables", "credit": 900 }],
+      "effects": { "IS": [["Commission revenue", 100]], "BS": [["Cash", 1000, "A"], ["Payable to airline", 900, "L"], ["Retained earnings", 100, "E"]], "CFS": [["Operating: cash received", 1000]] }
+    },
+    "explanation": { "reasoning": ["An agent arranges for another party to provide the service; it reports revenue net (its commission).", "A principal controls the good or service before transfer and reports gross."] },
+    "why_it_matters": "Gross vs net changes revenue tenfold here but not profit; EV/Sales multiples are meaningless without checking.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }, { "label": "Margin %", "dir": "up" }],
+    "common_trap": "Reporting 1,000 of revenue as an agent.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Principal-Agent Relationships", "page": "18-24" }
+  },
+  {
+    "id": "A:18-004", "chapter": 18, "section_tag": "Warranties", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A customer buys an optional 3-year extended warranty for 300 cash, sold separately from the product. Record the sale of the warranty.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 300 }, { "account": "Unearned revenue", "credit": 300 }],
+      "effects": { "IS": [], "BS": [["Cash", 300, "A"], ["Unearned revenue", 300, "L"]], "CFS": [["Operating: cash from customers", 300]] }
+    },
+    "explanation": { "reasoning": ["A service-type warranty is a separate performance obligation.", "Revenue is recognised over the 3-year coverage period."] },
+    "why_it_matters": "Extended warranties are high-margin deferred revenue; assurance warranties are a cost provision instead.",
+    "interactions": [{ "label": "Unearned revenue", "dir": "up" }],
+    "common_trap": "Recognising the 300 immediately, or treating it like an assurance warranty provision.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Warranties", "page": "18-27" }
+  },
+  {
+    "id": "A:18-005", "chapter": 18, "section_tag": "Over time", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A 1,000,000 construction contract is satisfied over time. Costs to date are 300,000 (already expensed as contract costs) of an estimated 750,000 total. Nothing has been billed. Record revenue for the year using cost-to-cost progress.",
+    "answer": {
+      "lines": [{ "account": "Contract asset", "debit": 400000 }, { "account": "Sales revenue", "credit": 400000 }],
+      "effects": { "IS": [["Contract revenue", 400000]], "BS": [["Contract asset", 400000, "A"], ["Retained earnings", 400000, "E"]], "CFS": [], "note": "not yet billed" }
+    },
+    "explanation": { "reasoning": ["Progress = 300,000 / 750,000 = 40%.", "Revenue = 40% × 1,000,000 = 400,000; with 300,000 costs, profit 100,000.", "Unbilled revenue is a contract asset."] },
+    "why_it_matters": "Over-time revenue depends on cost estimates; rising contract assets with weak cash are a classic contractor red flag.",
+    "interactions": [{ "label": "Contract assets", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }],
+    "common_trap": "Waiting for completion, or recognising revenue equal to billings.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Percentage-of-Completion Method", "page": "18-37" }
+  },
+  {
+    "id": "A:18-006", "chapter": 18, "section_tag": "Billing", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "On the same contract the company now issues an invoice for 350,000, giving it an unconditional right to payment. Record the billing.",
+    "answer": {
+      "lines": [{ "account": "Trade receivables", "debit": 350000 }, { "account": "Contract asset", "credit": 350000 }],
+      "effects": { "IS": [], "BS": [["Trade receivables", 350000, "A"], ["Contract asset", -350000, "A"]], "CFS": [], "note": "cash collected later" }
+    },
+    "explanation": { "reasoning": ["Billing converts a conditional right (contract asset) into an unconditional one (receivable).", "No new revenue."] },
+    "why_it_matters": "Track contract assets vs receivables: unbilled amounts carry more risk than billed ones.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }],
+    "common_trap": "Recording revenue again when billing.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Presentation", "page": "18-30" }
+  },
+  {
+    "id": "A:18-007", "chapter": 18, "section_tag": "Upfront fees", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A gym charges a non-refundable joining fee of 120 at the start of a 12-month membership. The fee gives no separate service. Record the receipt of the joining fee.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 120 }, { "account": "Unearned revenue", "credit": 120 }],
+      "effects": { "IS": [], "BS": [["Cash", 120, "A"], ["Unearned revenue", 120, "L"]], "CFS": [["Operating: cash from customers", 120]] }
+    },
+    "explanation": { "reasoning": ["The fee is an advance payment for future services, not a separate obligation.", "Recognise it over the membership period."] },
+    "why_it_matters": "Upfront fees recognised immediately would flatter growth companies' revenue.",
+    "interactions": [{ "label": "Unearned revenue", "dir": "up" }],
+    "common_trap": "Recognising non-refundable fees as revenue on receipt.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Nonrefundable Upfront Fees", "page": "18-29" }
+  },
+  {
+    "id": "A:18-008", "chapter": 18, "section_tag": "Five steps", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "What is the correct order of the IFRS 15 five-step model?",
+    "options": [
+      "Identify the contract → identify performance obligations → determine the price → allocate the price → recognise revenue when obligations are satisfied",
+      "Determine the price → identify the contract → recognise revenue → allocate → identify obligations",
+      "Identify obligations → recognise revenue → identify contract → determine price → allocate",
+      "Allocate → determine price → identify contract → identify obligations → recognise"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Contract, obligations, price, allocation, recognition."] },
+    "why_it_matters": "Every revenue question can be broken into these steps.",
+    "interactions": [{ "label": "Revenue", "dir": "mixed" }],
+    "common_trap": "Recognising revenue before identifying obligations.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Overview of the Five-Step Process: Boeing Example", "page": "18-4" }
+  },
+  {
+    "id": "A:18-009", "chapter": 18, "section_tag": "Step 2", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Distinct performance obligation",
+    "answer": {
+      "meaning": "A promised good or service is distinct if the customer can benefit from it on its own (or with readily available resources) AND it is separately identifiable from other promises in the contract.",
+      "formula": "Capable of being distinct + distinct in the context of the contract",
+      "interpretation": "Highly integrated items (e.g. components of a custom building) form one obligation.",
+      "high_signals": "Many separate obligations: more revenue timing judgement.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Splitting or bundling obligations moves revenue between periods.",
+    "interactions": [{ "label": "Revenue timing", "dir": "mixed" }],
+    "common_trap": "Treating every line on the invoice as a separate obligation.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Identifying Separate Performance Obligations—Step 2", "page": "18-10" }
+  },
+  {
+    "id": "A:18-010", "chapter": 18, "section_tag": "Allocation", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A bundle sells for 1,200. Stand-alone prices: product 1,000, service 500. How much of the price is allocated to the service?",
+    "answer": { "value": 400, "unit": "", "tolerance": 0 },
+    "check": "1200 * 500 / 1500",
+    "explanation": { "reasoning": ["Service share = 500 / 1,500 = 1/3", "1,200 × 1/3 = 400"], "shortcut": "Price × own SSP / total SSP." },
+    "why_it_matters": "The bundle discount is spread proportionately unless evidence shows it relates to one item.",
+    "interactions": [{ "label": "Deferred revenue", "dir": "up" }],
+    "common_trap": "Allocating the stand-alone price (500) to the service.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Allocating the Transaction Price to Separate Performance Obligations—Step 4", "page": "18-15" }
+  },
+  {
+    "id": "A:18-011", "chapter": 18, "section_tag": "Variable consideration", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A contractor will earn a 50,000 bonus if it finishes by June. It estimates a 60% chance. Under IFRS 15, how much of the bonus is included in the transaction price now?",
+    "options": [
+      "Only the amount for which a significant revenue reversal is highly probable not to occur — possibly nothing until the outcome is more certain",
+      "30,000 (60% × 50,000) automatically",
+      "50,000 because it is more likely than not",
+      "The bonus is never included"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Estimate variable consideration (most likely amount suits a binary bonus), then apply the constraint.", "At 60% the risk of reversal is high, so little or none is included yet."] },
+    "why_it_matters": "The constraint stops companies booking uncertain bonuses early; aggressive estimates are a red flag.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }],
+    "common_trap": "Including expected value without applying the constraint.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Determining the Transaction Price—Step 3", "page": "18-11" }
+  },
+  {
+    "id": "A:18-012", "chapter": 18, "section_tag": "Over time", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which is one of the IFRS 15 criteria for recognising revenue over time?",
+    "options": [
+      "The asset created has no alternative use to the seller and the seller has an enforceable right to payment for work done to date",
+      "The contract lasts more than one year",
+      "The customer pays in instalments",
+      "The seller prefers smoother revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Over time if: the customer consumes benefits as performed; the customer controls the asset as created; or no alternative use + enforceable right to payment.", "Otherwise revenue is at a point in time."] },
+    "why_it_matters": "Over-time vs point-in-time can shift years of revenue for developers and manufacturers.",
+    "interactions": [{ "label": "Revenue timing", "dir": "mixed" }],
+    "common_trap": "Using contract length as the test.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Recognizing Revenue When (or as) Each Performance Obligation Is Satisfied—Step 5", "page": "18-17" }
+  },
+  {
+    "id": "A:18-013", "chapter": 18, "section_tag": "Bill-and-hold", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company invoices a customer at year end but keeps the goods in its warehouse at the customer's request. When can it recognise revenue?",
+    "options": [
+      "Only if control has passed: substantive reason, goods identified separately as the customer's, ready for transfer, and not usable for other customers",
+      "Immediately on invoicing",
+      "Never under IFRS",
+      "Only when cash is received"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Bill-and-hold is allowed only when all control indicators are met.", "Otherwise it is a classic way to pull revenue into the year."] },
+    "why_it_matters": "Year-end bill-and-hold sales were central to several revenue frauds.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Treating an invoice as proof of a sale.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Bill-and-Hold Arrangements", "page": "18-24" }
+  },
+  {
+    "id": "A:18-014", "chapter": 18, "section_tag": "Repurchase", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company 'sells' inventory for 1,000,000 and agrees to buy it back in 6 months for 1,040,000. How is this accounted for?",
+    "options": [
+      "As a financing arrangement: keep the inventory, record a 1,000,000 liability and 40,000 of interest over 6 months",
+      "As a sale of 1,000,000",
+      "As a sale with a 40,000 loss",
+      "As a lease"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A forward obligation to repurchase at a higher price means control never passed.", "It is a secured borrowing."] },
+    "why_it_matters": "Repo-style 'sales' hide debt and inflate revenue (the Lehman Repo 105 story).",
+    "interactions": [{ "label": "Hidden debt", "dir": "up" }, { "label": "Revenue", "dir": "down" }],
+    "common_trap": "Recording revenue on a sale that must be reversed.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Repurchase Agreements", "page": "18-22" }
+  },
+  {
+    "id": "A:18-015", "chapter": 18, "section_tag": "Consignment", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "A manufacturer ships goods to a retailer on consignment. When does the manufacturer recognise revenue?",
+    "options": ["When the retailer sells the goods to an end customer", "When the goods are shipped", "When the retailer receives them", "At month end"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The manufacturer keeps control until the retailer sells.", "The retailer earns a commission (agent)."] },
+    "why_it_matters": "Shipping into the channel is not selling; watch distributor inventory levels.",
+    "interactions": [{ "label": "Revenue timing", "dir": "mixed" }],
+    "common_trap": "Booking revenue on shipment.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Consignments", "page": "18-25" }
+  },
+  {
+    "id": "A:18-016", "chapter": 18, "section_tag": "Over time", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Contract price 2,000,000. Costs incurred to date 600,000; estimated total costs 1,500,000. Revenue to date using cost-to-cost?",
+    "answer": { "value": 800000, "unit": "", "tolerance": 0 },
+    "check": "2000000 * 600000 / 1500000",
+    "explanation": { "reasoning": ["Progress = 600,000 / 1,500,000 = 40%", "Revenue = 40% × 2,000,000 = 800,000"], "shortcut": "Costs to date / total costs × price." },
+    "why_it_matters": "Raising the estimate of total costs lowers progress and revenue; cost overruns hit profit fast.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "Using billings as the measure of progress.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Percentage-of-Completion Method", "page": "18-37" }
+  },
+  {
+    "id": "A:18-017", "chapter": 18, "section_tag": "Loss contracts", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A fixed-price contract for 1,000 is expected to cost 1,100 in total. Profit to date recognised so far is zero. How much loss must be recognised now?",
+    "answer": { "value": 100, "unit": "", "tolerance": 0 },
+    "check": "1100 - 1000",
+    "explanation": { "reasoning": ["An expected loss on the whole contract is recognised immediately (onerous contract).", "Full expected loss: 1,100 − 1,000 = 100."], "shortcut": "Total cost − price, all at once." },
+    "why_it_matters": "Loss-making contracts hit profit as soon as the loss is foreseen, which is why contractor profit warnings come suddenly.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Spreading the loss over the contract.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Long-Term Contract Losses", "page": "18-43" }
+  },
+  {
+    "id": "A:18-018", "chapter": 18, "section_tag": "Presentation", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Contract asset vs receivable vs contract liability",
+    "answer": {
+      "meaning": "Receivable: unconditional right to payment (only time must pass). Contract asset: right to payment conditional on something other than time (e.g. further performance). Contract liability: payment received or due before performance.",
+      "formula": "Net position per contract: performance > billings → contract asset; billings > performance → contract liability",
+      "interpretation": "Contract assets carry more risk than receivables.",
+      "high_signals": "Fast-growing contract assets with flat cash: revenue ahead of billing/cash.",
+      "low_signals": "Large contract liabilities: customers prepaying (good for cash)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The ratio of contract assets to revenue is a key quality check for project businesses.",
+    "interactions": [{ "label": "Working capital", "dir": "mixed" }],
+    "common_trap": "Lumping contract assets into receivables when computing DSO.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Presentation", "page": "18-30" }
+  },
+  {
+    "id": "A:18-019", "chapter": 18, "section_tag": "Financing component", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A customer pays three years before delivery. The seller benefits from the financing. What does IFRS 15 require?",
+    "options": [
+      "Adjust the price for the significant financing component: recognise interest expense on the advance and more revenue at delivery",
+      "Ignore timing; revenue equals cash received",
+      "Recognise revenue when cash is received",
+      "Recognise interest income"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A significant financing component exists when payment timing differs materially from delivery (practical expedient below 12 months).", "With payment in advance, the seller is borrowing from the customer."] },
+    "why_it_matters": "Large advance payments include an implicit interest cost; revenue at delivery is grossed up.",
+    "interactions": [{ "label": "Interest expense", "dir": "up" }, { "label": "Revenue", "dir": "up" }],
+    "common_trap": "Thinking financing components only apply when customers pay late.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Determining the Transaction Price—Step 3", "page": "18-11" }
+  },
+  {
+    "id": "A:18-020", "chapter": 18, "section_tag": "Consideration payable", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A food maker pays a supermarket 'slotting fees' for shelf space without receiving a distinct good or service. How are these fees treated?",
+    "options": ["As a reduction of revenue", "As advertising expense", "As an intangible asset", "As cost of sales"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Consideration payable to a customer reduces the transaction price unless it buys a distinct service at fair value."] },
+    "why_it_matters": "Trade promotions and rebates reduce net revenue; rising rebates show retailer power (see Almarai/SADAFCO).",
+    "interactions": [{ "label": "Revenue", "dir": "down" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Expensing customer payments as marketing.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Determining the Transaction Price—Step 3", "page": "18-11" }
+  },
+  {
+    "id": "A:18-021", "chapter": 18, "section_tag": "Licences", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A brand owner licenses its trademark for 5 years and keeps actively supporting and changing the brand. When is licence revenue recognised?",
+    "options": [
+      "Over the 5 years: it is a right to access intellectual property that the licensor keeps affecting",
+      "All at the start: it is a right to use static IP",
+      "Only at the end of the licence",
+      "Only when royalties are received"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Right to access (IP changes with the licensor's activities) → over time.", "Right to use (functional IP like software as is) → point in time."] },
+    "why_it_matters": "Licence classification can front-load or spread revenue dramatically.",
+    "interactions": [{ "label": "Revenue timing", "dir": "mixed" }],
+    "common_trap": "Recognising all brand licence revenue upfront.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Appendix 18B: Revenue Recognition for Franchises", "page": "18-46" }
+  },
+  {
+    "id": "A:18-022", "chapter": 18, "section_tag": "Step 1", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which is required for a contract to exist under IFRS 15 step 1?",
+    "options": [
+      "Approved by the parties, identifiable rights and payment terms, commercial substance, and collection is probable",
+      "A written contract signed by lawyers",
+      "Payment in advance",
+      "A contract longer than one year"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Contracts can be written, oral or implied by practice.", "If collection is not probable, there is no contract for IFRS 15 yet."] },
+    "why_it_matters": "Selling to customers who probably can't pay doesn't create revenue.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }],
+    "common_trap": "Requiring a signed paper contract.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Identifying the Contract with Customers—Step 1", "page": "18-9" }
+  },
+  {
+    "id": "A:18-023", "chapter": 18, "section_tag": "Presentation", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "On a contract, revenue recognised to date is 900 and amounts billed to date are 1,050. What is the contract position?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0 },
+    "check": "1050 - 900",
+    "explanation": { "reasoning": ["Billings exceed performance by 150", "Contract liability of 150"], "shortcut": "Billed − earned = liability (if positive)." },
+    "why_it_matters": "Billing ahead of work is customer-funded working capital, a sign of bargaining power.",
+    "interactions": [{ "label": "Contract liabilities", "dir": "up" }],
+    "common_trap": "Calling it a contract asset.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Presentation", "page": "18-30" }
+  },
+  {
+    "id": "A:18-024", "chapter": 18, "section_tag": "Red flags", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "List the revenue-recognition red flags you would look for in a company that beat its revenue target every quarter for three years.",
+    "answer": {
+      "model_answer": "(1) Revenue concentrated in the last weeks of each quarter. (2) Receivables and contract assets growing faster than revenue (DSO up). (3) Rising distributor/channel inventory, generous return rights or extended payment terms (channel stuffing). (4) Bill-and-hold or consignment arrangements. (5) Gross vs net presentation changes, or principal judgements that increased revenue. (6) Changes in estimates of variable consideration, returns or progress on long contracts. (7) Credit notes and returns just after quarter end. (8) CFO lagging profit. (9) Management incentives tied to revenue. Each should be tested in the notes, MD&A and cash flow statement.",
+      "rubric": ["Quarter-end concentration", "DSO / contract assets", "Channel stuffing indicators", "Bill-and-hold / consignment", "Gross vs net", "Estimate changes", "Post-period credit notes", "Cash conversion", "Incentives"]
+    },
+    "explanation": { "reasoning": ["Group red flags by timing, working capital, contracts, estimates and incentives."] },
+    "why_it_matters": "Revenue manipulation is the most common type of accounting fraud.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Accepting consistent beats as proof of quality.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Disclosure", "page": "18-34" }
+  },
+  {
+    "id": "A:18-025", "chapter": 18, "section_tag": "Gross vs net", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "Two marketplaces have the same profit, but one reports revenue gross (principal) and the other net (agent). How does this affect their ratios and valuation?",
+    "answer": {
+      "model_answer": "The principal reports the full transaction value as revenue and the supplier cost in cost of sales; the agent reports only its commission. Same profit and cash, but the principal's revenue is several times larger, its margins (gross, EBIT %) much lower, and its asset turnover higher. EV/Sales and growth rates therefore look very different; P/E, EV/EBITDA and FCF yield do not. Compare on gross merchandise value with take-rates, or on profit-based multiples, and check whether the principal really controls the goods (inventory risk, pricing discretion) or is an agent in substance.",
+      "rubric": ["Revenue scale difference", "Margins and turnover differ", "EV/Sales misleading", "Profit-based multiples unaffected", "GMV/take-rate comparison", "Control indicators"]
+    },
+    "explanation": { "reasoning": ["Trace the presentation choice through each ratio."] },
+    "why_it_matters": "Platform valuations based on revenue multiples are highly sensitive to this judgement.",
+    "interactions": [{ "label": "EV / Sales", "dir": "mixed" }, { "label": "Margin %", "dir": "mixed" }],
+    "common_trap": "Comparing EV/Sales between a principal and an agent.",
+    "book_ref": { "book": "IA17", "chapter": 18, "section": "Principal-Agent Relationships", "page": "18-24" }
+  }
+]

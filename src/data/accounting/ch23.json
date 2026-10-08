@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A:23-001", "chapter": 23, "section_tag": "Classification", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Buying a new delivery truck for cash is which kind of cash flow?",
+    "options": ["Investing", "Operating", "Financing", "Non-cash"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Purchases of long-term assets are investing outflows."] },
+    "why_it_matters": "Capex sits in investing, so FCF = CFO − capex.",
+    "interactions": [{ "label": "FCF", "dir": "down" }],
+    "common_trap": "Putting capex in operating.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Classification of Cash Flows", "page": "23-4" }
+  },
+  {
+    "id": "A:23-002", "chapter": 23, "section_tag": "Classification", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Repaying a bank loan's principal is which kind of cash flow?",
+    "options": ["Financing", "Operating", "Investing", "Not reported"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Borrowing and repaying debt principal are financing flows."] },
+    "why_it_matters": "Financing flows show how the company funds itself and returns cash.",
+    "interactions": [{ "label": "Net debt", "dir": "down" }],
+    "common_trap": "Treating debt repayment as operating.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Classification of Cash Flows", "page": "23-4" }
+  },
+  {
+    "id": "A:23-003", "chapter": 23, "section_tag": "Interest and dividends", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Where can interest paid be classified?",
+    "options": [
+      "IFRS: operating or financing (policy choice, applied consistently); US GAAP: operating",
+      "Always financing under both",
+      "Always investing",
+      "IFRS: investing only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 7 allows choices for interest and dividends; US GAAP fixes them.", "IFRS 18 (from 2027) narrows these choices for most companies."] },
+    "why_it_matters": "An IFRS company classifying interest as financing shows higher CFO than a US peer.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }],
+    "common_trap": "Comparing CFO across GAAPs without checking interest classification.",
+    "ifrs_gaap": { "ifrs": "Interest/dividends paid: operating or financing. Interest/dividends received: operating or investing.", "us_gaap": "Interest paid, interest and dividends received: operating. Dividends paid: financing." },
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "IFRS Insights", "page": "23-70" }
+  },
+  {
+    "id": "A:23-004", "chapter": 23, "section_tag": "Indirect method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 200, depreciation 50, receivables up 30, inventory down 10, payables up 20. Cash from operations?",
+    "answer": { "value": 250, "unit": "", "tolerance": 0 },
+    "check": "200 + 50 - 30 + 10 + 20",
+    "explanation": { "reasoning": ["Start 200, add back depreciation +50", "Receivables up: −30; inventory down: +10; payables up: +20", "= 250"], "shortcut": "Asset up = cash down; liability up = cash up." },
+    "why_it_matters": "The indirect method shows exactly where profit and cash diverge.",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Getting working-capital signs backwards.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Adjustments to Net Income", "page": "23-24" }
+  },
+  {
+    "id": "A:23-005", "chapter": 23, "section_tag": "Indirect method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 100 includes a 15 gain on selling equipment (proceeds 40). What adjustment is made for the gain in CFO, and what investing inflow is shown? Enter the investing inflow.",
+    "answer": { "value": 40, "unit": "", "tolerance": 0 },
+    "check": "40",
+    "explanation": { "reasoning": ["Deduct the 15 gain from net income in operating activities.", "Show the full 40 proceeds in investing."], "shortcut": "Gains out of CFO, proceeds into investing." },
+    "why_it_matters": "Leaving gains in CFO double-counts the sale.",
+    "interactions": [{ "label": "CFO", "dir": "down" }],
+    "common_trap": "Showing only the gain as investing cash.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Adjustments to Net Income", "page": "23-24" }
+  },
+  {
+    "id": "A:23-006", "chapter": 23, "section_tag": "Direct method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Sales 1,000; trade receivables rose from 120 to 150. Cash collected from customers?",
+    "answer": { "value": 970, "unit": "", "tolerance": 0 },
+    "check": "1000 - (150 - 120)",
+    "explanation": { "reasoning": ["Collections = sales − increase in receivables", "1,000 − 30 = 970"], "shortcut": "Sales − ΔAR." },
+    "why_it_matters": "The direct method shows customer cash, which is hardest to fake.",
+    "interactions": [{ "label": "CFO", "dir": "down" }],
+    "common_trap": "Adding the receivables increase.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Direct Method", "page": "23-17" }
+  },
+  {
+    "id": "A:23-007", "chapter": 23, "section_tag": "Direct method", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Cost of sales 600; inventory rose by 40; trade payables rose by 25. Cash paid to suppliers?",
+    "answer": { "value": 615, "unit": "", "tolerance": 0 },
+    "check": "600 + 40 - 25",
+    "explanation": { "reasoning": ["Purchases = 600 + 40 = 640", "Paid = purchases − increase in payables = 640 − 25 = 615"], "shortcut": "COGS + ΔInventory − ΔAP." },
+    "why_it_matters": "Supplier payments show whether payables are being stretched.",
+    "interactions": [{ "label": "CFO", "dir": "down" }],
+    "common_trap": "Forgetting the inventory step.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Direct Method", "page": "23-17" }
+  },
+  {
+    "id": "A:23-008", "chapter": 23, "section_tag": "Methods", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Direct vs indirect method for operating cash flows",
+    "answer": {
+      "meaning": "Direct: lists major gross cash receipts and payments (from customers, to suppliers, to employees). Indirect: starts from profit and adjusts for non-cash items and working-capital changes.",
+      "formula": "Both give the same CFO total; only operating activities differ",
+      "interpretation": "Most companies use indirect; IFRS encourages direct.",
+      "high_signals": "Large non-cash add-backs or working-capital swings: profit and cash disconnecting.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Indirect is best for spotting earnings quality issues; direct for forecasting cash.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }],
+    "common_trap": "Thinking the methods give different totals.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Format of the Statement of Cash Flows", "page": "23-6" }
+  },
+  {
+    "id": "A:23-009", "chapter": 23, "section_tag": "Non-cash", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company acquires a building by issuing shares worth 5 million. How does this appear in the cash flow statement?",
+    "options": [
+      "Not in the cash flows; it is disclosed as a significant non-cash transaction",
+      "Investing outflow 5m and financing inflow 5m",
+      "Operating outflow",
+      "Financing outflow"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["No cash moved, so it is excluded and disclosed in the notes."] },
+    "why_it_matters": "Big acquisitions or leases can be missing from investing cash flows; check non-cash notes.",
+    "interactions": [{ "label": "Capex", "dir": "mixed" }],
+    "common_trap": "Grossing it up as two cash flows.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Significant Noncash Activities", "page": "23-31" }
+  },
+  {
+    "id": "A:23-010", "chapter": 23, "section_tag": "FCF", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "CFO 500; capex 180; lease principal paid 40. Free cash flow after leases?",
+    "answer": { "value": 280, "unit": "", "tolerance": 0 },
+    "check": "500 - 180 - 40",
+    "explanation": { "reasoning": ["500 − 180 − 40 = 280"], "shortcut": "CFO − capex − lease payments." },
+    "why_it_matters": "Post-IFRS 16, FCF must deduct lease principal to be comparable.",
+    "interactions": [{ "label": "FCF", "dir": "down" }],
+    "common_trap": "Ignoring lease principal (in financing).",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Usefulness of the Statement of Cash Flows", "page": "23-3" }
+  },
+  {
+    "id": "A:23-011", "chapter": 23, "section_tag": "Quality", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "CFO 180; net income 240. Cash conversion (CFO / net income) in %?",
+    "answer": { "value": 75, "unit": "%", "tolerance": 0 },
+    "check": "180 / 240 * 100",
+    "explanation": { "reasoning": ["180 / 240 = 75%"], "shortcut": "Below 100% for several years is a warning." },
+    "why_it_matters": "Persistent low conversion suggests aggressive accruals.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Judging one year in isolation.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Usefulness of the Statement of Cash Flows", "page": "23-3" }
+  },
+  {
+    "id": "A:23-012", "chapter": 23, "section_tag": "Receivables", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Under the indirect method, how is a write-off of a receivable against the allowance treated?",
+    "options": [
+      "No cash effect; using net receivables, the change in net receivables plus bad debt expense handles it",
+      "Added back as a cash inflow",
+      "Investing outflow",
+      "Financing outflow"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Write-offs move between gross receivables and the allowance; net receivables are unchanged.", "Bad debt expense is non-cash, captured through the change in net receivables."] },
+    "why_it_matters": "Avoid double-counting non-cash credit losses.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }],
+    "common_trap": "Treating write-offs as cash flows.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Accounts Receivable (Net)", "page": "23-27" }
+  },
+  {
+    "id": "A:23-013", "chapter": 23, "section_tag": "Working capital", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "A company stretches supplier payments at year end. What happens to CFO this year?",
+    "options": ["Increases (payables up)", "Decreases", "No change", "Moves to financing"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Higher payables mean less cash paid this year.", "It reverses when suppliers are paid."] },
+    "why_it_matters": "Year-end window dressing of CFO is common; check payables days.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "DPO", "dir": "up" }],
+    "common_trap": "Treating a one-off payables stretch as sustainable cash generation.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Other Working Capital Changes", "page": "23-29" }
+  },
+  {
+    "id": "A:23-014", "chapter": 23, "section_tag": "Supply-chain finance", "difficulty": "hard", "format": "mcq", "style": "diagnosis",
+    "prompt": "A company uses a reverse factoring (supplier finance) programme so it pays the bank 120 days after invoice instead of 60. Why is CFO potentially overstated?",
+    "options": [
+      "Payables stay operating even though the bank is effectively lending; the cash outflow is delayed and the debt-like liability is not in net debt",
+      "Because interest income rises",
+      "Because revenue increases",
+      "It is not; CFO is unaffected"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Extending payment terms raises payables and CFO.", "New disclosure rules require details of supplier finance arrangements."] },
+    "why_it_matters": "Supplier finance hid debt in failures like Carillion; add it to net debt.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Hidden debt", "dir": "up" }],
+    "common_trap": "Ignoring supplier finance in leverage.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Other Working Capital Changes", "page": "23-29" }
+  },
+  {
+    "id": "A:23-015", "chapter": 23, "section_tag": "Net losses", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company reports a net loss but positive CFO. Which explanation fits?",
+    "options": [
+      "Large non-cash charges (depreciation, impairment) and/or working-capital release",
+      "The loss is wrong",
+      "Financing inflows were counted in CFO",
+      "It is impossible"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Non-cash expenses reduce profit but not cash.", "Collecting receivables or reducing inventory releases cash."] },
+    "why_it_matters": "Capital-heavy or shrinking businesses often show this pattern; judge sustainability.",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Assuming losses always burn cash.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Net Losses", "page": "23-30" }
+  },
+  {
+    "id": "A:23-016", "chapter": 23, "section_tag": "Capex", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Net PP&E opening 800, closing 900; depreciation 120; no disposals. Capex?",
+    "answer": { "value": 220, "unit": "", "tolerance": 0 },
+    "check": "900 - 800 + 120",
+    "explanation": { "reasoning": ["Closing = opening + capex − depreciation", "Capex = 900 − 800 + 120 = 220"], "shortcut": "ΔNet PP&E + depreciation." },
+    "why_it_matters": "Reconstructing capex checks that cash flow figures tie to the balance sheet.",
+    "interactions": [{ "label": "Capex", "dir": "up" }],
+    "common_trap": "Using only the change in PP&E (100).",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Use of a Worksheet", "page": "23-32" }
+  },
+  {
+    "id": "A:23-017", "chapter": 23, "section_tag": "Cash equivalents", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which counts as a cash equivalent?",
+    "options": [
+      "A 2-month treasury bill held for short-term cash needs",
+      "Listed shares held for trading",
+      "A 2-year bank deposit",
+      "Inventory"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Short-term (usually 3 months or less from acquisition), highly liquid, insignificant risk of value change."] },
+    "why_it_matters": "What counts as cash affects net debt; long deposits are investments.",
+    "interactions": [{ "label": "Net debt", "dir": "down" }],
+    "common_trap": "Counting equities as cash.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Cash and Cash Equivalents", "page": "23-6" }
+  },
+  {
+    "id": "A:23-018", "chapter": 23, "section_tag": "Indirect method", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 300; depreciation 80; impairment 40; deferred tax expense 15; receivables +60; inventory +25; unearned revenue +30. CFO?",
+    "answer": { "value": 380, "unit": "", "tolerance": 0 },
+    "check": "300 + 80 + 40 + 15 - 60 - 25 + 30",
+    "explanation": { "reasoning": ["Non-cash: +80 +40 +15 = +135", "Working capital: −60 −25 +30 = −55", "300 + 135 − 55 = 380"], "shortcut": "Add non-cash charges, then working-capital signs." },
+    "why_it_matters": "Deferred revenue growth is a healthy cash source for subscription businesses.",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Subtracting the unearned revenue increase.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Adjustments to Net Income", "page": "23-24" }
+  },
+  {
+    "id": "A:23-019", "chapter": 23, "section_tag": "Classification", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Cash paid to buy shares in a subsidiary is which flow, and cash paid to buy back the company's own shares is which flow?",
+    "options": ["Investing; financing", "Financing; investing", "Both investing", "Both operating"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Acquisitions are investing.", "Buybacks return capital to owners (financing)."] },
+    "why_it_matters": "Separate growth spending (acquisitions) from shareholder returns.",
+    "interactions": [{ "label": "Capital allocation", "dir": "mixed" }],
+    "common_trap": "Confusing own shares with investments in others.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Classification of Cash Flows", "page": "23-4" }
+  },
+  {
+    "id": "A:23-020", "chapter": 23, "section_tag": "Patterns", "difficulty": "medium", "format": "mcq", "style": "diagnosis",
+    "prompt": "CFO negative, CFI negative, CFF strongly positive. Which company profile fits best?",
+    "options": [
+      "A young growth company funding losses and investment with new debt or equity",
+      "A mature cash cow",
+      "A company in run-off selling assets",
+      "A company paying large dividends"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Burning cash and investing, financed externally."] },
+    "why_it_matters": "Sign patterns quickly reveal life-cycle stage and funding risk.",
+    "interactions": [{ "label": "Funding risk", "dir": "up" }],
+    "common_trap": "Calling any negative CFO a failing company.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Usefulness of the Statement of Cash Flows", "page": "23-3" }
+  },
+  {
+    "id": "A:23-021", "chapter": 23, "section_tag": "Quality", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A company's CFO jumped 40% while profit grew 5%. What would you check before celebrating?",
+    "answer": {
+      "model_answer": "Find the source of the jump in the indirect reconciliation. (1) Working capital: payables stretched, supplier finance, factoring of receivables (cash from customers pulled forward), inventory cuts — often one-off. (2) Classification: interest or dividends moved to financing/investing, lease payments now in financing (IFRS 16), capitalised costs (development, software) moving spending into investing. (3) Customer prepayments or deferred revenue spikes. (4) Tax timing or deferral. (5) Securitisation or sale of receivables. Then compute FCF after capex and leases and look at multi-year averages; sustainable improvements show in margins and cash conversion over several years.",
+      "rubric": ["Use the reconciliation", "Working capital one-offs", "Factoring/supplier finance", "Classification shifts", "Capitalisation into investing", "Multi-year FCF view"]
+    },
+    "explanation": { "reasoning": ["Separate timing and classification effects from genuine improvements."] },
+    "why_it_matters": "CFO can be managed just like earnings.",
+    "interactions": [{ "label": "Earnings quality", "dir": "mixed" }],
+    "common_trap": "Treating CFO as unmanipulable.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Other Working Capital Changes", "page": "23-29" }
+  },
+  {
+    "id": "A:23-022", "chapter": 23, "section_tag": "Format", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Three sections of the cash flow statement",
+    "answer": {
+      "meaning": "Operating: cash from the main revenue-producing activities. Investing: buying and selling long-term assets and investments. Financing: transactions with owners and lenders.",
+      "formula": "Opening cash + CFO + CFI + CFF (+ FX effect) = closing cash",
+      "interpretation": "FCF links operating and investing; financing shows funding and returns.",
+      "high_signals": "Strong CFO funding both capex and shareholder returns.",
+      "low_signals": "Dividends funded by borrowing."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The bridge every valuation model ties to.",
+    "interactions": [{ "label": "Cash", "dir": "mixed" }],
+    "common_trap": "Forgetting the FX effect on cash balances.",
+    "book_ref": { "book": "IA17", "chapter": 23, "section": "Format of the Statement of Cash Flows", "page": "23-6" }
+  }
+]
