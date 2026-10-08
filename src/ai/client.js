@@ -35,7 +35,12 @@ function mapError(e) {
   }
   if (e instanceof Anthropic.BadRequestError) {
     const msg = e.error?.error?.message || e.message || '';
-    if (/credit|balance|billing/i.test(msg)) return new MentorError('billing', 'Your Anthropic account has no credit left. Top up in the Anthropic console.');
+    if (/credit|balance|billing|spend|limit/i.test(msg)) {
+      return new MentorError(
+        'billing',
+        `Anthropic refused this on billing grounds: "${msg}". Check that your credits are in the same organisation as this key, and that the key's workspace has no spend limit blocking it (Anthropic console → Settings → Workspaces → Limits).`,
+      );
+    }
     if (/workspace/i.test(msg)) return new MentorError('invalid_key', WORKSPACE_HELP + ` (Anthropic said: ${msg})`);
     return new MentorError('bad_request', `The request was rejected: ${msg}`);
   }
