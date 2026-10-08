@@ -9,8 +9,9 @@ import { exportProgress } from '../storage/backup.js';
 
 export default function Progress() {
   const app = useApp();
-  const { questions, reviews, meta } = app;
-  const stats = useMemo(() => computeStats(questions, reviews), [questions, reviews]);
+  const { allItems, reviews, meta } = app;
+  // All tracks count towards accuracy; "weakest topics" stays on the fundamentals curriculum.
+  const stats = useMemo(() => computeStats(allItems, reviews), [allItems, reviews]);
   const [msg, setMsg] = useState('');
   const daysSinceExport = meta.lastExport ? Math.floor((Date.now() - meta.lastExport) / 86400000) : null;
   const showExportReminder = stats.totalAnswered > 0 && (daysSinceExport === null || daysSinceExport >= 7);
