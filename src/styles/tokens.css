@@ -1,0 +1,72 @@
+/* Design tokens. Light "consulting" theme is the default; dark is a navy variant. */
+:root,
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --surface: #f7f8fa;
+  --surface-2: #eef1f6;
+  --line: #d9dee6;
+  --line-strong: #b9c2cf;
+  --text: #0b1a33;
+  --text-2: #2e3a4f;
+  --muted: #5a6578;
+  --accent: #0b2d5c; /* navy */
+  --accent-hover: #123e7a;
+  --accent-soft: #e5ebf4;
+  --on-accent: #ffffff;
+  --label: #0b2d5c;
+  --correct: #17703f;
+  --correct-bg: #e7f4ec;
+  --wrong: #b42318;
+  --wrong-strong: #b42318;
+  --wrong-bg: #fdecea;
+  --wrong-body: #5c1d16;
+  --tree-line: #a3adbd;
+  --root-node-bg: #0b2d5c;
+  --root-node-text: #ffffff;
+  --shadow: 0 1px 2px rgba(11, 26, 51, 0.06);
+  --bar-hard: #b42318;
+  --bar-medium: #0b2d5c;
+  --bar-easy: #17703f;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0a1426;
+  --surface: #101d35;
+  --surface-2: #172847;
+  --line: #24375a;
+  --line-strong: #3a5079;
+  --text: #eef2f8;
+  --text-2: #cdd6e4;
+  --muted: #9aa8bd;
+  --accent: #8db4f2;
+  --accent-hover: #a8c6f6;
+  --accent-soft: #1b3561;
+  --on-accent: #0a1426;
+  --label: #8db4f2;
+  --correct: #5cc690;
+  --correct-bg: #0f2a1f;
+  --wrong: #f08778;
+  --wrong-strong: #ef6f5e;
+  --wrong-bg: #2e1618;
+  --wrong-body: #ecd3cf;
+  --tree-line: #3d5179;
+  --root-node-bg: #8db4f2;
+  --root-node-text: #0a1426;
+  --shadow: none;
+  --bar-hard: #f08778;
+  --bar-medium: #8db4f2;
+  --bar-easy: #5cc690;
+  color-scheme: dark;
+}
+
+:root {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+  --r-lg: 18px;
+  --r-md: 12px;
+  --r-sm: 8px;
+  --gutter: 20px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}

@@ -1,0 +1,539 @@
+[
+  {
+    "id": "L1-060",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Under IFRS (IAS 7), where can interest paid be shown in the cash flow statement?",
+    "options": [
+      "Operating or financing activities, as an accounting policy choice applied consistently",
+      "Only in investing activities",
+      "Only in financing activities, as under US GAAP",
+      "It is not shown; interest is non-cash"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "IAS 7 allows interest paid in operating or financing activities.",
+        "US GAAP requires interest paid in operating activities.",
+        "So CFO is not comparable across companies until you adjust for this choice."
+      ]
+    },
+    "why_it_matters": "Two identical companies can report different CFO just because of classification. Always check before comparing cash conversion.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }, { "label": "FCF definitions", "dir": "mixed" }],
+    "common_trap": "Assuming interest is always in operating cash flow."
+  },
+  {
+    "id": "L1-061",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A company pays 10 of interest in cash. Tax is 25%. Walk me through the three statements (interest classified in operating cash flow).",
+    "answer": {
+      "model_answer": "Income statement: interest expense −10, pre-tax income −10, tax −2.5, net income −7.5.\nCash flow statement: net income −7.5 flows through CFO; no add-back because interest is a cash cost. CFO −7.5.\nBalance sheet: cash −7.5, retained earnings −7.5. It balances.",
+      "rubric": ["Interest −10, tax −2.5, NI −7.5", "Cash −7.5 (after the tax shield)", "RE −7.5 and balance check"],
+      "grid": {
+        "IS": "Interest −10 · tax −2.5 · NI −7.5",
+        "CFS": "NI −7.5, no add-back → CFO −7.5",
+        "BS": "Cash −7.5 = RE −7.5 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": ["Interest is deductible, so the after-tax cost is 10 × (1 − 25%) = 7.5.", "It is a cash expense: nothing to add back."]
+    },
+    "why_it_matters": "The interest tax shield is why debt is cheaper than equity, and why after-tax cost of debt goes into WACC.",
+    "interactions": [{ "label": "Net margin", "dir": "down" }, { "label": "Interest cover", "dir": "down" }],
+    "common_trap": "Saying cash falls by the full 10, ignoring the tax saving."
+  },
+  {
+    "id": "L1-062",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Debt of 500 at 6% interest, tax rate 25%. What is the annual after-tax interest cost?",
+    "answer": { "value": 22.5, "unit": "", "tolerance": 0.1 },
+    "check": "500 * 0.06 * 0.75",
+    "explanation": {
+      "reasoning": ["Pre-tax interest = 500 × 6% = 30", "After tax = 30 × 0.75 = 22.5"],
+      "shortcut": "6% × 0.75 = 4.5% after tax; 4.5% of 500 = 22.5."
+    },
+    "why_it_matters": "After-tax cost of debt is what matters for value and for buyback accretion maths.",
+    "interactions": [{ "label": "Net income", "dir": "down" }, { "label": "Cost of debt (after tax)", "dir": "up" }],
+    "common_trap": "Forgetting the tax shield."
+  },
+  {
+    "id": "L1-063",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "A company repays 50 of debt principal. What happens?",
+    "options": [
+      "IS: nothing. CFS: financing −50. BS: cash −50, debt −50",
+      "IS: expense −50. CFS: operating −50. BS: cash −50, equity −50",
+      "IS: nothing. CFS: operating −50. BS: cash −50, debt −50",
+      "IS: interest saving. CFS: financing +50. BS: debt −50"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Principal repayment is not an expense.", "It is a financing outflow.", "Assets (cash) and liabilities (debt) fall together."]
+    },
+    "why_it_matters": "Debt service = interest (in profit) + principal (not in profit). Lenders look at both; profit alone hides principal repayments.",
+    "interactions": [{ "label": "Gross debt", "dir": "down" }, { "label": "Debt / equity", "dir": "down" }],
+    "common_trap": "Treating principal repayment as an expense."
+  },
+  {
+    "id": "L1-064",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A company has 1,000 of floating-rate debt. Rates rise by 2 percentage points and tax is 25%. How much does net income change?",
+    "answer": { "value": -15, "unit": "", "tolerance": 0 },
+    "check": "-1000 * 0.02 * 0.75",
+    "explanation": {
+      "reasoning": ["Extra interest = 1,000 × 2% = 20", "After tax = 20 × 0.75 = 15", "Net income falls by 15"],
+      "shortcut": "Debt × rate change × (1 − t)."
+    },
+    "why_it_matters": "Interest-rate sensitivity is a key risk for leveraged companies, and the reason for hedging policies.",
+    "interactions": [{ "label": "Interest cover", "dir": "down" }, { "label": "Net margin", "dir": "down" }],
+    "common_trap": "Answering 20 (before tax) or a positive number."
+  },
+  {
+    "id": "L1-065",
+    "layer": 1,
+    "topic": "debt_interest",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "A company accrues 12 of PIK (paid-in-kind) interest on a loan, deductible at 25%. What happens?",
+    "options": [
+      "IS: interest −12, NI −9. CFS: add back non-cash PIK +12, so CFO +3. BS: debt +12, cash +3, RE −9",
+      "IS: interest −12. CFS: financing −12. BS: cash −12, debt unchanged",
+      "IS: nothing until the loan is repaid. BS: debt +12",
+      "IS: interest −12, NI −9. CFS: CFO −9. BS: cash −9, RE −9"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "PIK interest is added to the loan balance instead of being paid in cash.",
+        "It is still an expense: NI falls by 12 × 0.75 = 9.",
+        "It is non-cash, so it is added back; the only cash effect is the tax saving of 3.",
+        "BS: debt +12, cash +3 → assets +3 = liabilities +12 + equity −9 ✓."
+      ]
+    },
+    "why_it_matters": "PIK debt preserves cash today but compounds the debt. Common in LBOs and stressed situations.",
+    "interactions": [{ "label": "Gross debt", "dir": "up" }, { "label": "Net debt / EBITDA", "dir": "up" }, { "label": "Interest cover (cash)", "dir": "up" }],
+    "common_trap": "Treating PIK as a cash payment."
+  },
+  {
+    "id": "L1-066",
+    "layer": 1,
+    "topic": "dividends",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "A company pays a cash dividend of 40. Which statement is correct?",
+    "options": [
+      "No income statement effect; financing outflow of 40; retained earnings and cash fall by 40",
+      "Expense of 40 on the income statement",
+      "Operating outflow of 40",
+      "Retained earnings rise by 40"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Dividends are a distribution of profit to owners, not an expense.",
+        "They are a financing cash flow (IFRS allows operating, but financing is usual).",
+        "They reduce retained earnings."
+      ]
+    },
+    "why_it_matters": "Distributions come out of equity and cash, not profit. Excess payouts weaken the balance sheet without showing up in EPS.",
+    "interactions": [{ "label": "Equity", "dir": "down" }, { "label": "Cash", "dir": "down" }, { "label": "ROE", "dir": "up" }],
+    "common_trap": "Deducting dividends in the income statement."
+  },
+  {
+    "id": "L1-067",
+    "layer": 1,
+    "topic": "dividends",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net income 200 and a payout ratio of 40%. What are total dividends?",
+    "answer": { "value": 80, "unit": "", "tolerance": 0 },
+    "check": "200 * 0.4",
+    "explanation": {
+      "reasoning": ["Dividends = 200 × 40% = 80", "Retained = 120"],
+      "shortcut": "Payout × NI."
+    },
+    "why_it_matters": "The retention ratio (1 − payout) drives sustainable growth: g = ROE × retention.",
+    "interactions": [{ "label": "Retention ratio", "dir": "down" }, { "label": "Sustainable growth", "dir": "down" }],
+    "common_trap": "Confusing payout ratio with dividend yield."
+  },
+  {
+    "id": "L1-068",
+    "layer": 1,
+    "topic": "dividends",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "For three years a company has paid dividends larger than its free cash flow, while net debt has risen. What is the right reading?",
+    "options": [
+      "The dividend is being funded with borrowing and is not sustainable at current FCF",
+      "The company is very profitable, so the dividend is safe",
+      "Dividends above FCF are normal and harmless",
+      "The company is under-levered and should pay more"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Dividends must come from FCF, existing cash, or new funding.",
+        "Rising net debt shows the gap is being borrowed.",
+        "Unless FCF recovers, the dividend will be cut or leverage will keep climbing."
+      ]
+    },
+    "why_it_matters": "Dividend cover by FCF (not by earnings) is what a CFO and rating agency look at.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }, { "label": "Dividend cover (FCF)", "dir": "down" }],
+    "common_trap": "Judging dividend safety by EPS cover only."
+  },
+  {
+    "id": "L1-069",
+    "layer": 1,
+    "topic": "dividends",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Dividend payout ratio",
+    "answer": {
+      "meaning": "The share of earnings paid out as dividends.",
+      "formula": "Dividends ÷ Net income (or DPS ÷ EPS)",
+      "interpretation": "Mature, cash-generative firms pay out more; growth firms retain more to reinvest.",
+      "high_signals": "Mature business with few reinvestment opportunities; risk of cuts if earnings fall; check FCF cover.",
+      "low_signals": "Reinvesting for growth, or conserving cash (high leverage, uncertainty)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Payout and reinvestment are two sides of capital allocation: g = ROIC × reinvestment rate.",
+    "interactions": [{ "label": "Retention", "dir": "down" }, { "label": "Growth", "dir": "down" }],
+    "common_trap": "Assuming a high payout is always good for shareholders."
+  },
+  {
+    "id": "L1-070",
+    "layer": 1,
+    "topic": "buybacks",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "A company buys back shares for 100 cash. What happens?",
+    "options": [
+      "IS: nothing. CFS: financing −100. BS: cash −100, equity −100 (treasury shares)",
+      "IS: expense −100. CFS: operating −100. BS: cash −100",
+      "IS: nothing. CFS: investing −100. BS: cash −100, investments +100",
+      "IS: nothing. CFS: financing −100. BS: cash −100, debt −100"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "A buyback returns capital to shareholders, like a dividend.",
+        "Own shares are not an asset; they are deducted from equity (treasury shares or cancellation).",
+        "Financing outflow on the CFS."
+      ]
+    },
+    "why_it_matters": "Buybacks shrink equity, which mechanically raises ROE and the equity multiplier.",
+    "interactions": [{ "label": "Equity", "dir": "down" }, { "label": "Share count", "dir": "down" }, { "label": "ROE", "dir": "up" }, { "label": "EPS", "dir": "up" }],
+    "common_trap": "Recording own shares as an investment asset."
+  },
+  {
+    "id": "L1-071",
+    "layer": 1,
+    "topic": "buybacks",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net income is 100 with 50 shares (EPS 2.00). The company buys back 10% of its shares with idle cash that earned nothing. Net income is unchanged. New EPS?",
+    "answer": { "value": 2.22, "unit": "", "tolerance": 0.02 },
+    "check": "100 / 45",
+    "explanation": {
+      "reasoning": ["Shares after buyback = 45", "EPS = 100 / 45 = 2.22", "EPS +11%"],
+      "shortcut": "Removing 10% of shares lifts EPS by 1/0.9 − 1 ≈ 11%."
+    },
+    "why_it_matters": "EPS accretion from buybacks is arithmetic, not value creation. The question is the price paid versus intrinsic value.",
+    "interactions": [{ "label": "EPS", "dir": "up" }, { "label": "ROE", "dir": "up" }, { "label": "Cash", "dir": "down" }],
+    "common_trap": "Answering 2.20 (adding 10% instead of dividing by 0.9)."
+  },
+  {
+    "id": "L1-072",
+    "layer": 1,
+    "topic": "buybacks",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A company trades at a P/E of 20 and funds a buyback with debt at 6% pre-tax, tax 25%. Earnings yield minus after-tax cost of debt, in percentage points?",
+    "answer": { "value": 0.5, "unit": "%", "tolerance": 0.1 },
+    "check": "100 / 20 - 6 * 0.75",
+    "explanation": {
+      "reasoning": ["Earnings yield = 1 / 20 = 5%", "After-tax cost of debt = 6% × 0.75 = 4.5%", "Spread = +0.5 points, so the buyback is (just) EPS-accretive"],
+      "shortcut": "Accretive if 1/PE > Kd × (1 − t)."
+    },
+    "why_it_matters": "This is the quick test bankers use. Accretion does not equal value creation: leverage also raises risk and the cost of equity.",
+    "interactions": [{ "label": "EPS", "dir": "up" }, { "label": "Net debt", "dir": "up" }, { "label": "Interest cover", "dir": "down" }],
+    "common_trap": "Comparing the earnings yield with the pre-tax cost of debt."
+  },
+  {
+    "id": "L1-073",
+    "layer": 1,
+    "topic": "buybacks",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "The CEO says the buyback 'creates value because EPS goes up 8%'. Challenge that.",
+    "answer": {
+      "model_answer": "EPS accretion is arithmetic: fewer shares and, if debt-funded, a cost of funding below the earnings yield. Value is created only if (1) the shares are bought below intrinsic value, transferring value from selling to remaining shareholders; (2) the cash would otherwise be wasted on value-destroying investments; or (3) the extra debt moves the capital structure closer to optimal (interest tax shield) without raising distress costs. Against that: a debt-funded buyback raises financial risk, so the cost of equity rises and the P/E should fall; the EPS gain can be offset entirely. Also check whether the buyback merely offsets dilution from employee share schemes, and whether management bonuses are tied to EPS.",
+      "rubric": ["Accretion ≠ value", "Price vs intrinsic value", "Alternative uses of cash", "Leverage raises risk and cost of equity", "Dilution offset / incentive check"]
+    },
+    "explanation": {
+      "reasoning": ["Separate accounting effect from economic effect.", "Value = cash flows and risk, not share count.", "Identify the conditions under which a buyback adds value."]
+    },
+    "why_it_matters": "Boards often confuse EPS accretion with value creation. A CFO must be able to explain the difference clearly.",
+    "interactions": [{ "label": "EPS", "dir": "up" }, { "label": "Cost of equity", "dir": "up" }, { "label": "P/E", "dir": "down" }],
+    "common_trap": "Accepting EPS accretion as proof of value creation."
+  },
+  {
+    "id": "L1-074",
+    "layer": 1,
+    "topic": "buybacks",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Holding operations constant, a debt-funded buyback will…",
+    "options": [
+      "Raise ROE and the equity multiplier, and lower interest cover",
+      "Raise ROIC, because invested capital falls",
+      "Lower ROE, because interest cost rises",
+      "Leave all ratios unchanged"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Equity falls and debt rises, so the equity multiplier rises.",
+        "Net income falls slightly (more interest), but equity falls proportionally more, so ROE usually rises.",
+        "ROIC is unaffected: invested capital (debt + equity) is unchanged, just the mix.",
+        "More interest means lower interest cover."
+      ]
+    },
+    "why_it_matters": "This is the classic pattern behind 'ROE up, ROIC flat or down': financial engineering rather than better operations.",
+    "interactions": [{ "label": "ROE", "dir": "up" }, { "label": "Equity multiplier", "dir": "up" }, { "label": "Interest cover", "dir": "down" }, { "label": "ROIC", "dir": "mixed" }],
+    "common_trap": "Thinking ROIC rises. Invested capital includes debt, so its total does not change."
+  },
+  {
+    "id": "L1-075",
+    "layer": 1,
+    "topic": "impairments",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A company impairs goodwill by 100. The impairment is not tax-deductible. Walk me through the three statements.",
+    "answer": {
+      "model_answer": "Income statement: impairment −100; no tax effect, so net income −100.\nCash flow statement: net income −100, add back the non-cash impairment +100, so CFO is unchanged.\nBalance sheet: goodwill −100, retained earnings −100. It balances. Cash is unchanged.",
+      "rubric": ["NI −100, no tax effect", "Add back non-cash charge", "No cash effect", "Goodwill −100 = RE −100"],
+      "grid": {
+        "IS": "Impairment −100 · no tax · NI −100",
+        "CFS": "NI −100 + impairment 100 → CFO 0",
+        "BS": "Goodwill −100 = RE −100 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": ["Goodwill impairment is non-cash.", "It is usually not deductible for tax, so there is no tax shield.", "It reduces assets and equity equally."]
+    },
+    "why_it_matters": "Non-cash does not mean irrelevant: an impairment confirms that the cash spent on an acquisition earned less than expected.",
+    "interactions": [{ "label": "Net income", "dir": "down" }, { "label": "Equity", "dir": "down" }, { "label": "Future ROE", "dir": "up" }],
+    "common_trap": "Adding a tax saving, or saying cash falls."
+  },
+  {
+    "id": "L1-076",
+    "layer": 1,
+    "topic": "impairments",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "When must goodwill be tested for impairment under IFRS (IAS 36)?",
+    "options": [
+      "At least annually, and whenever there is an indication of impairment",
+      "Only when the acquired business is sold",
+      "Every five years",
+      "Never; goodwill is amortised over 10 years under IFRS"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Goodwill is not amortised under IFRS; it is tested annually at cash-generating-unit level.",
+        "The test compares carrying amount with recoverable amount (higher of value in use and fair value less costs of disposal).",
+        "UK and some other local GAAPs do amortise goodwill."
+      ]
+    },
+    "why_it_matters": "Impairment timing involves judgement: management can delay write-downs with optimistic forecasts.",
+    "interactions": [{ "label": "Goodwill", "dir": "down" }, { "label": "Equity", "dir": "down" }],
+    "common_trap": "Saying IFRS amortises goodwill."
+  },
+  {
+    "id": "L1-077",
+    "layer": 1,
+    "topic": "impairments",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "A company impairs 60% of the goodwill from an acquisition made three years ago. What is the most useful conclusion?",
+    "options": [
+      "The acquisition is earning much less than assumed when the price was paid: capital was destroyed",
+      "Nothing, because the impairment is non-cash",
+      "The company's cash position has weakened by the impairment amount",
+      "The acquired business will now be more profitable"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "The cash was spent at acquisition; the impairment admits that expected cash flows no longer support the price.",
+        "It is evidence of poor capital allocation (overpaying or misjudging the target).",
+        "Future reported returns will look better only because the asset base is lower."
+      ]
+    },
+    "why_it_matters": "Use impairments to judge management's M&A track record before trusting their next deal.",
+    "interactions": [{ "label": "ROIC (incl. goodwill)", "dir": "down" }, { "label": "Equity", "dir": "down" }],
+    "common_trap": "Dismissing it as 'only non-cash'."
+  },
+  {
+    "id": "L1-078",
+    "layer": 1,
+    "topic": "impairments",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A company impairs PP&E by 200. Operations are unchanged. What happens to next year's reported ROA and ROIC?",
+    "options": [
+      "Both rise mechanically: the asset base is smaller and depreciation falls",
+      "Both fall because of the loss",
+      "No change, because impairments are non-cash",
+      "ROA rises and ROIC falls"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "The denominator (assets, invested capital) falls by 200.",
+        "Future depreciation on the impaired assets falls, so EBIT and NOPAT rise.",
+        "Both effects lift return ratios even though the business is unchanged."
+      ]
+    },
+    "why_it_matters": "'Kitchen-sink' impairments by new management flatter future returns. Adjust by adding back cumulative impairments when judging ROIC.",
+    "interactions": [{ "label": "ROIC", "dir": "up" }, { "label": "ROA", "dir": "up" }, { "label": "Depreciation", "dir": "down" }],
+    "common_trap": "Assuming returns fall after a write-down."
+  },
+  {
+    "id": "L1-079",
+    "layer": 1,
+    "topic": "leases",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "IFRS 16 lease accounting",
+    "answer": {
+      "meaning": "Lessees put almost all leases on the balance sheet: a right-of-use asset and a lease liability (PV of lease payments).",
+      "formula": "Expense = depreciation of the ROU asset + interest on the lease liability (replacing rent)",
+      "interpretation": "EBITDA and CFO rise; net debt rises; lease principal moves to financing cash flow.",
+      "high_signals": "Large lease liabilities: debt-like obligations (retail, airlines); include them in leverage and EV.",
+      "low_signals": "Asset-light on leases or owns its assets."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Lease-heavy companies look very different before and after IFRS 16. Consistency between EV and EBITDA is essential.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "Net debt", "dir": "up" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Comparing a post-IFRS 16 EBITDA with a pre-IFRS 16 net debt figure."
+  },
+  {
+    "id": "L1-080",
+    "layer": 1,
+    "topic": "leases",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A retailer moves from expensing rent (old IAS 17 operating leases) to IFRS 16. Which set of effects is right?",
+    "options": [
+      "EBITDA up, net debt up, CFO up, financing outflows up",
+      "EBITDA down, net debt up, CFO down",
+      "EBITDA up, net debt unchanged, CFO unchanged",
+      "No change to any metric; only disclosure changes"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Rent (an operating cost) is replaced by depreciation and interest, both below EBITDA: EBITDA rises.",
+        "The lease liability is debt-like: net debt rises.",
+        "Lease principal repayments move to financing; CFO rises (interest may be operating or financing).",
+        "Total cash is unchanged: it is a reclassification."
+      ]
+    },
+    "why_it_matters": "Covenants, multiples and FCF definitions must specify whether they are pre- or post-IFRS 16.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "Net debt", "dir": "up" }, { "label": "CFO", "dir": "up" }, { "label": "Total cash", "dir": "mixed" }],
+    "common_trap": "Thinking IFRS 16 changes total cash flow."
+  },
+  {
+    "id": "L1-081",
+    "layer": 1,
+    "topic": "leases",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A lease requires 100 a year at the end of each of the next 5 years. The discount rate is 5%. Initial lease liability?",
+    "answer": { "value": 432.9, "unit": "", "tolerance": 3 },
+    "check": "100 * (1 - Math.pow(1.05, -5)) / 0.05",
+    "explanation": {
+      "reasoning": ["Annuity factor at 5%, 5 years = (1 − 1.05^−5) / 0.05 = 4.329", "Liability = 100 × 4.329 = 432.9"],
+      "shortcut": "5 payments of 100 = 500 undiscounted; at 5% knock off roughly 2.5 years of interest on the average balance: 500 − ~67 ≈ 433."
+    },
+    "why_it_matters": "The lease liability is the PV of committed payments: the debt-like amount to add to net debt and EV.",
+    "interactions": [{ "label": "Lease liability", "dir": "up" }, { "label": "ROU asset", "dir": "up" }],
+    "common_trap": "Using the undiscounted total of 500."
+  },
+  {
+    "id": "L1-082",
+    "layer": 1,
+    "topic": "leases",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Pre-IFRS 16, net debt is 200 and EBITDA 100. IFRS 16 adds lease liabilities of 400 and adds 80 of former rent back to EBITDA. New net debt / EBITDA?",
+    "answer": { "value": 3.33, "unit": "x", "tolerance": 0.05 },
+    "check": "(200 + 400) / (100 + 80)",
+    "explanation": {
+      "reasoning": ["Net debt = 200 + 400 = 600", "EBITDA = 100 + 80 = 180", "600 / 180 = 3.33x (was 2.0x)"],
+      "shortcut": "Leases capitalised at 5x rent push leverage up whenever the starting ratio is below 5x."
+    },
+    "why_it_matters": "Lease-heavy companies look far more levered under IFRS 16. Covenants usually freeze the old definitions.",
+    "interactions": [{ "label": "Net debt / EBITDA", "dir": "up" }, { "label": "EBITDA", "dir": "up" }],
+    "common_trap": "Adding leases to net debt but forgetting to add rent back to EBITDA (or the reverse)."
+  },
+  {
+    "id": "L1-083",
+    "layer": 1,
+    "topic": "leases",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "logical",
+    "prompt": "Why must you be consistent about leases when calculating EV/EBITDA?",
+    "answer": {
+      "model_answer": "Numerator and denominator must refer to the same capital providers. Post-IFRS 16 EBITDA excludes the lease cost (it is now depreciation and interest), so the cash flows that pay lessors sit above EBITDA; the lessors' claim (lease liabilities) must then be in EV. If you use post-IFRS 16 EBITDA with an EV that excludes leases, the multiple looks too low and the company looks cheap. Either use EV including leases with EBITDA (post-IFRS 16), or EV excluding leases with EBITDAR minus rent (pre-IFRS 16 style EBITDA). Apply the same convention to all peers.",
+      "rubric": ["Numerator/denominator consistency", "Post-IFRS 16 EBITDA excludes rent", "Include lease liabilities in EV", "Alternative pre-IFRS 16 approach", "Same convention for peers"]
+    },
+    "explanation": {
+      "reasoning": ["EV is the value to all capital providers whose cash flows are counted in the denominator.", "Leases are a capital provider after IFRS 16.", "Mismatch → biased multiple."]
+    },
+    "why_it_matters": "Mismatched multiples can mis-price lease-heavy businesses (retail, airlines, restaurants) by a turn or more of EBITDA.",
+    "interactions": [{ "label": "EV", "dir": "up" }, { "label": "EBITDA", "dir": "up" }, { "label": "EV / EBITDA", "dir": "mixed" }],
+    "common_trap": "Mixing a post-IFRS 16 EBITDA with an EV that excludes leases."
+  }
+]

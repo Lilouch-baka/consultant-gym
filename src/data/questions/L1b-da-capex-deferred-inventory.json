@@ -1,0 +1,573 @@
+[
+  {
+    "id": "L1-030",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why is depreciation added back on the cash flow statement?",
+    "options": [
+      "It reduced net income but no cash left the business in the period",
+      "It is a source of cash, like borrowing",
+      "It represents cash set aside to replace assets",
+      "Because it is tax-deductible"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "The cash left when the asset was bought (capex, investing cash flow).",
+        "Depreciation spreads that cost over the asset's life as a non-cash expense.",
+        "Adding it back undoes a deduction that was not a cash payment. It does not create cash itself; only its tax effect does."
+      ]
+    },
+    "why_it_matters": "Depreciation is not a source of funding. Confusing the two leads to overstating cash available for debt service.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "EBITDA − EBIT gap", "dir": "up" }],
+    "common_trap": "Saying depreciation 'generates cash' or that it is a fund for replacing assets."
+  },
+  {
+    "id": "L1-031",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A machine costs 100, has a residual value of 10 and a 6-year life. Straight-line depreciation per year?",
+    "answer": { "value": 15, "unit": "", "tolerance": 0 },
+    "check": "(100 - 10) / 6",
+    "explanation": {
+      "reasoning": ["Depreciable amount = 100 − 10 = 90", "90 / 6 = 15 per year"],
+      "shortcut": "Subtract residual first, then divide by life."
+    },
+    "why_it_matters": "Useful life and residual value are management estimates. Changing them moves EBIT without any change in the business.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }, { "label": "PP&E", "dir": "down" }],
+    "common_trap": "Dividing the full cost by the life and ignoring residual value."
+  },
+  {
+    "id": "L1-032",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "An airline extends the useful life of its fleet from 15 to 20 years. What happens this year (ignore tax)?",
+    "options": [
+      "Depreciation falls, so EBIT and net income rise; EBITDA and cash flow are unchanged",
+      "EBITDA rises because depreciation falls",
+      "Cash flow rises because depreciation falls",
+      "Nothing, because a change in estimate is applied retrospectively"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Depreciation sits below EBITDA, so EBITDA cannot change.",
+        "Lower depreciation lifts EBIT and net income.",
+        "Before tax, no cash changes: the aircraft were already paid for.",
+        "Under IAS 8 a change in estimate is applied prospectively, not retrospectively."
+      ]
+    },
+    "why_it_matters": "Accounting estimate changes can flatter EBIT. Analysts compare depreciation/PP&E across peers to spot them.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "Net income", "dir": "up" }, { "label": "EBITDA", "dir": "mixed" }],
+    "common_trap": "Thinking lower depreciation means more cash. Before tax effects, cash is identical."
+  },
+  {
+    "id": "L1-033",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Tax-deductible depreciation rises by 20 and the tax rate is 30%. By how much does cash from operations change?",
+    "answer": { "value": 6, "unit": "", "tolerance": 0 },
+    "check": "20 * 0.3",
+    "explanation": {
+      "reasoning": ["Net income falls by 20 × (1 − 30%) = 14", "Add back depreciation 20", "CFO change = −14 + 20 = +6, the tax shield"],
+      "shortcut": "Change in CFO = depreciation × tax rate = 20 × 0.3 = 6."
+    },
+    "why_it_matters": "The depreciation tax shield is real cash. Accelerated tax depreciation is a valuable incentive for capital-heavy businesses.",
+    "interactions": [{ "label": "Net income", "dir": "down" }, { "label": "CFO", "dir": "up" }, { "label": "Cash taxes", "dir": "down" }],
+    "common_trap": "Answering 20 (adding back the full depreciation without the net-income effect)."
+  },
+  {
+    "id": "L1-034",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "Why might you prefer EBIT to EBITDA when comparing a capital-intensive manufacturer with an asset-light software company?",
+    "answer": {
+      "model_answer": "EBITDA ignores the cost of the assets that produce the profit. For a manufacturer, D&A is a reasonable proxy for the capex needed just to stand still, so EBITDA overstates the cash the business can really distribute. The software company has little D&A, so its EBITDA is closer to its EBIT. Comparing EBITDA margins or EV/EBITDA multiples makes the manufacturer look cheaper and more profitable than it is. EBIT (or EBITDA − capex, or FCF) puts both on a like-for-like basis. Caveats: D&A can differ from true maintenance capex (inflation, old asset bases), capitalised software development blurs the picture, and IFRS 16 moves lease costs into D&A and interest, which inflates EBITDA for lease-heavy companies.",
+      "rubric": ["EBITDA ignores capex need", "D&A as proxy for maintenance capex", "Multiples comparability", "Alternatives: EBIT, EBITDA − capex, FCF", "Caveats: capitalised development, IFRS 16, inflation"]
+    },
+    "explanation": {
+      "reasoning": [
+        "Ask what each metric leaves out.",
+        "EBITDA leaves out the asset cost, which is large for one company and small for the other.",
+        "The comparison needs a metric that charges for capital consumed."
+      ]
+    },
+    "why_it_matters": "Using EBITDA multiples across business models with different capital intensity is a classic valuation error.",
+    "interactions": [{ "label": "EV/EBITDA", "dir": "down" }, { "label": "EV/EBIT", "dir": "mixed" }, { "label": "Capex / sales", "dir": "up" }],
+    "common_trap": "Saying EBITDA is better because it is closer to cash. It is closer to operating cash before capex, not to free cash."
+  },
+  {
+    "id": "L1-035",
+    "layer": 1,
+    "topic": "d_and_a",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "EBITDA",
+    "answer": {
+      "meaning": "Earnings before interest, tax, depreciation and amortisation: a proxy for operating cash profit before capex, working capital and tax.",
+      "formula": "EBIT + D&A (or revenue − cash operating costs)",
+      "interpretation": "Used for leverage covenants (net debt/EBITDA) and EV/EBITDA multiples. Not defined by IFRS, so check each company's adjustments.",
+      "high_signals": "Strong operating cash generation before investment needs; check capex and working capital before concluding.",
+      "low_signals": "Weak operating economics; little capacity to service debt."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "It is the language of lenders and private equity, so you must know both its uses and its blind spots.",
+    "interactions": [{ "label": "Net debt / EBITDA", "dir": "down" }, { "label": "EV / EBITDA", "dir": "down" }],
+    "common_trap": "Treating 'adjusted EBITDA' as comparable across companies without reading the adjustments."
+  },
+  {
+    "id": "L1-036",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Where does capital expenditure appear in the cash flow statement?",
+    "options": ["Investing activities", "Operating activities", "Financing activities", "It does not appear; it is only in the balance sheet"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Capex buys long-term assets, so it is an investing outflow.",
+        "It reaches the income statement later through depreciation."
+      ]
+    },
+    "why_it_matters": "Free cash flow = CFO − capex. You need both lines to judge what cash the business really generates.",
+    "interactions": [{ "label": "FCF", "dir": "down" }, { "label": "PP&E", "dir": "up" }],
+    "common_trap": "Putting capex in operating cash flow."
+  },
+  {
+    "id": "L1-037",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A company buys a machine for 100 cash, depreciated straight-line over 5 years with no residual value. Tax is 25%. Walk me through the statements at purchase and at the end of year 1.",
+    "answer": {
+      "model_answer": "At purchase: no income statement effect. CFS: investing −100. BS: cash −100, PP&E +100, so it balances.\nEnd of year 1: depreciation 20. IS: EBIT −20, tax −5, net income −15. CFS: net income −15, add back depreciation +20, so CFO +5. BS: cash +5, PP&E −20 (to 80), retained earnings −15. Assets −15 = equity −15, so it balances.\nCumulative: cash −95, PP&E +80, retained earnings −15.",
+      "rubric": ["No IS at purchase; CFI −100", "Dep 20, tax 5, NI −15", "CFO +5", "PP&E 80, RE −15", "Balance check"],
+      "grid": {
+        "IS": "Purchase: none. Year 1: dep −20, tax −5, NI −15",
+        "CFS": "Purchase: CFI −100. Year 1: NI −15 + dep 20 → CFO +5",
+        "BS": "Cash −95 cumulative, PP&E 80, RE −15 → assets −15 = equity −15 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "Capex is capitalised, not expensed.",
+        "Each year 1/5 of the cost is depreciated.",
+        "Depreciation saves tax, which is the only cash effect after purchase."
+      ]
+    },
+    "why_it_matters": "This is the standard modelling-test walkthrough. Interviewers look for the purchase/depreciation split and the balance check.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }, { "label": "FCF", "dir": "down" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Expensing the 100 in year 1."
+  },
+  {
+    "id": "L1-038",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Capex ÷ D&A",
+    "answer": {
+      "meaning": "Compares what a company spends on fixed assets with what it consumes (depreciation).",
+      "formula": "Capital expenditure ÷ Depreciation & amortisation",
+      "interpretation": "Around 1x = maintaining the asset base. Above 1x = expanding. Below 1x for long = asset base ageing.",
+      "high_signals": "Growth investment or a catch-up after underinvestment; FCF depressed today.",
+      "low_signals": "Harvesting or underinvesting: FCF flattered now, catch-up capex or lost competitiveness later."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "A quick check on whether free cash flow is sustainable, especially before an acquisition or LBO.",
+    "interactions": [{ "label": "FCF", "dir": "down" }, { "label": "Fixed asset turnover", "dir": "mixed" }],
+    "common_trap": "Reading low capex as efficiency. It may be deferred spending."
+  },
+  {
+    "id": "L1-039",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Total capex is 120 and D&A is 80. If maintenance capex is approximated by D&A, what is growth capex?",
+    "answer": { "value": 40, "unit": "", "tolerance": 0 },
+    "check": "120 - 80",
+    "explanation": {
+      "reasoning": ["Maintenance ≈ D&A = 80", "Growth capex = 120 − 80 = 40"],
+      "shortcut": "Capex minus D&A."
+    },
+    "why_it_matters": "Separating maintenance from growth capex tells you how much cash the business could release if it stopped growing.",
+    "interactions": [{ "label": "Maintenance FCF", "dir": "up" }, { "label": "PP&E", "dir": "up" }],
+    "common_trap": "Assuming D&A always equals maintenance capex; inflation and asset age make it an approximation."
+  },
+  {
+    "id": "L1-040",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A company cuts capex below D&A for three years before a planned sale. What is the most likely effect?",
+    "options": [
+      "FCF looks stronger now, but the buyer inherits an ageing asset base and catch-up capex",
+      "EBITDA rises because capex falls",
+      "Net income rises because capex falls",
+      "No effect on value, because capex is not an expense"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Capex is not in EBITDA or net income (only depreciation is), so they do not rise directly.",
+        "FCF rises immediately because less cash goes out.",
+        "Underinvestment shows up later as breakdowns, lost capacity or a capex catch-up."
+      ]
+    },
+    "why_it_matters": "In due diligence, compare capex/D&A and capex/sales with history and peers to spot a 'starved' business.",
+    "interactions": [{ "label": "FCF", "dir": "up" }, { "label": "Capex / D&A", "dir": "down" }, { "label": "Future capex", "dir": "up" }],
+    "common_trap": "Thinking capex cuts raise EBITDA or profit."
+  },
+  {
+    "id": "L1-041",
+    "layer": 1,
+    "topic": "capex",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A company capitalises 50 of software development costs instead of expensing them. In year 1, before tax effects, what changes?",
+    "options": [
+      "EBITDA and CFO rise by 50; investing outflow rises by 50; total cash is unchanged",
+      "EBITDA, CFO and total cash all rise by 50",
+      "Only the balance sheet changes; the cash flow statement is unaffected",
+      "EBITDA falls because amortisation increases"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Expensed: the 50 reduces EBITDA and CFO.",
+        "Capitalised: it goes to intangible assets and investing cash flow; amortisation (below EBITDA) follows.",
+        "The cash leaves either way, so total cash before tax is the same: it is just classified differently."
+      ]
+    },
+    "why_it_matters": "Aggressive capitalisation flatters EBITDA and CFO. Compare capitalised development with peers and look at FCF, not CFO.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "CFO", "dir": "up" }, { "label": "Capex", "dir": "up" }, { "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Believing capitalisation creates cash."
+  },
+  {
+    "id": "L1-042",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "On day one, a customer pays 120 upfront for a 12-month subscription. What is recorded?",
+    "options": [
+      "Cash +120 and deferred revenue (liability) +120; no revenue yet",
+      "Cash +120 and revenue +120",
+      "Receivables +120 and revenue +120",
+      "Cash +120 and equity +120"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Cash is received but the service has not been delivered.",
+        "The company owes the service, so it records a contract liability (deferred revenue).",
+        "Revenue is recognised as each month of service is delivered (10 per month)."
+      ]
+    },
+    "why_it_matters": "Upfront billing means customers fund the business, which is why subscription models can grow with little external capital.",
+    "interactions": [{ "label": "Cash", "dir": "up" }, { "label": "Deferred revenue", "dir": "up" }, { "label": "Working capital", "dir": "down" }],
+    "common_trap": "Recognising the full 120 as revenue on receipt."
+  },
+  {
+    "id": "L1-043",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A customer pays 120 on 1 January for a 12-month subscription. Walk me through the three statements for the first quarter. Ignore costs and tax.",
+    "answer": {
+      "model_answer": "Income statement: three months delivered, so revenue +30 and net income +30.\nCash flow statement: net income +30; increase in deferred revenue +90 (120 received less 30 recognised), so CFO +120.\nBalance sheet: cash +120 = deferred revenue +90 + retained earnings +30. It balances.",
+      "rubric": ["Revenue 30 for three months", "Deferred revenue +90 at quarter end", "CFO 120", "Balance check"],
+      "grid": {
+        "IS": "Revenue +30 · net income +30",
+        "CFS": "NI +30 + deferred revenue +90 → CFO +120",
+        "BS": "Cash +120 = deferred revenue +90 + RE +30 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "Revenue follows delivery: 120 / 12 × 3 = 30.",
+        "The undelivered 90 remains a liability.",
+        "An increase in an operating liability is added on the CFS."
+      ]
+    },
+    "why_it_matters": "Cash ahead of revenue is a hallmark of good subscription businesses; CFO exceeds profit while deferred revenue grows.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Deferred revenue", "dir": "up" }, { "label": "CFO / NI", "dir": "up" }],
+    "common_trap": "Recording CFO +30 because revenue is 30."
+  },
+  {
+    "id": "L1-044",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue is 500 and deferred revenue rises from 200 to 260. What are billings (revenue + change in deferred revenue)?",
+    "answer": { "value": 560, "unit": "", "tolerance": 0 },
+    "check": "500 + (260 - 200)",
+    "explanation": {
+      "reasoning": ["Change in deferred revenue = +60", "Billings = 500 + 60 = 560"],
+      "shortcut": "Revenue plus the increase in the liability."
+    },
+    "why_it_matters": "Billings lead revenue in subscription businesses. Billings growth slowing ahead of revenue is an early warning.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Future revenue", "dir": "up" }],
+    "common_trap": "Subtracting the increase in deferred revenue."
+  },
+  {
+    "id": "L1-045",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A SaaS company moves customers from annual upfront billing to monthly billing. Same customers, same prices. What happens next year?",
+    "options": [
+      "Revenue is unchanged, deferred revenue falls and CFO falls (a one-off working-capital outflow)",
+      "Revenue falls because customers pay less upfront",
+      "CFO rises because billing is more frequent",
+      "Nothing changes on any statement"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Revenue is recognised over the service period either way.",
+        "Less cash is collected in advance, so the deferred revenue balance shrinks.",
+        "A falling operating liability is a cash outflow on the CFS: CFO drops once."
+      ]
+    },
+    "why_it_matters": "Billing terms are a hidden funding source. Changes to them can look like a cash problem when the business is unchanged, and vice versa.",
+    "interactions": [{ "label": "Deferred revenue", "dir": "down" }, { "label": "CFO", "dir": "down" }, { "label": "Billings", "dir": "down" }],
+    "common_trap": "Thinking revenue drops."
+  },
+  {
+    "id": "L1-046",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Deferred revenue (contract liability)",
+    "answer": {
+      "meaning": "Cash received (or billed) for goods or services not yet delivered; an obligation to the customer.",
+      "formula": "Opening + billings − revenue recognised = closing",
+      "interpretation": "A liability that is usually good news: it turns into revenue without further cash collection.",
+      "high_signals": "Strong upfront billing, revenue visibility, customer-funded working capital.",
+      "low_signals": "Shorter billing terms or slowing bookings; check billings growth."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "In software and education businesses, deferred revenue trends often predict revenue a year ahead.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Net working capital", "dir": "down" }],
+    "common_trap": "Treating it as debt in net debt calculations; it is an operating liability."
+  },
+  {
+    "id": "L1-047",
+    "layer": 1,
+    "topic": "deferred_revenue",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why do investors value growing deferred revenue at a software company?",
+    "options": [
+      "Customers prepay, which funds growth and gives visibility over future revenue",
+      "Deferred revenue is already counted in profit, so it boosts earnings",
+      "It reduces the company's tax bill permanently",
+      "It is an asset that can be sold"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Prepayments give cash before cost is incurred, creating negative working capital.",
+        "The balance converts into revenue as service is delivered, giving visibility.",
+        "It is a liability, not an asset, and not yet profit."
+      ]
+    },
+    "why_it_matters": "Customer-funded growth means less dilution and debt. It is one reason SaaS businesses command high multiples.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Revenue visibility", "dir": "up" }],
+    "common_trap": "Calling deferred revenue an asset."
+  },
+  {
+    "id": "L1-048",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "COGS is 1,200 and inventory is 200. What is inventory turnover?",
+    "answer": { "value": 6, "unit": "x", "tolerance": 0 },
+    "check": "1200 / 200",
+    "explanation": {
+      "reasoning": ["Inventory turnover = COGS / inventory = 1,200 / 200 = 6x"],
+      "shortcut": "6 turns ≈ 365/6 ≈ 61 days of stock."
+    },
+    "why_it_matters": "Turnover and DIO are two views of the same thing. Falling turnover ties up cash and raises obsolescence risk.",
+    "interactions": [{ "label": "DIO", "dir": "down" }, { "label": "Asset turnover", "dir": "up" }],
+    "common_trap": "Using revenue instead of COGS (common in databases, but inconsistent: inventory is held at cost)."
+  },
+  {
+    "id": "L1-049",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "COGS is 1,095 and inventory is 150. What is DIO in days?",
+    "answer": { "value": 50, "unit": "days", "tolerance": 0.5 },
+    "check": "150 / 1095 * 365",
+    "explanation": {
+      "reasoning": ["COGS per day = 1,095 / 365 = 3", "DIO = 150 / 3 = 50 days"],
+      "shortcut": "Divide COGS by 365 first: 1,095 / 365 = 3 per day."
+    },
+    "why_it_matters": "Every day of DIO is a day of COGS you have paid for (or owe) but not yet sold.",
+    "interactions": [{ "label": "Cash conversion cycle", "dir": "up" }, { "label": "Inventory", "dir": "up" }],
+    "common_trap": "Dividing COGS by inventory and calling it days."
+  },
+  {
+    "id": "L1-050",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "When purchase prices are rising, FIFO (compared with weighted-average cost) gives…",
+    "options": [
+      "Lower COGS, higher profit and higher closing inventory",
+      "Higher COGS, lower profit and lower closing inventory",
+      "The same profit, because total cost is the same",
+      "Lower profit and higher closing inventory"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "FIFO expenses the oldest (cheapest) units first, so COGS is lower.",
+        "The newest (most expensive) units remain in inventory.",
+        "LIFO, which does the opposite, is not allowed under IFRS."
+      ]
+    },
+    "why_it_matters": "Inventory method changes margins and asset values without changing the business. Adjust before comparing peers.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }, { "label": "Inventory", "dir": "up" }, { "label": "Tax", "dir": "up" }],
+    "common_trap": "Saying total profit is identical every period. Over the full life it converges, but not in each period."
+  },
+  {
+    "id": "L1-051",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "Inventory is written down by 30 and the write-down is tax-deductible at 25%. Walk me through the three statements.",
+    "answer": {
+      "model_answer": "Income statement: write-down (usually in COGS) −30, pre-tax income −30, tax −7.5, net income −22.5.\nCash flow statement: net income −22.5, add back the non-cash write-down +30, so CFO +7.5 (the tax saving).\nBalance sheet: inventory −30, cash +7.5, so assets −22.5. Retained earnings −22.5. It balances.\nCaveat: if tax only allows the loss when stock is sold, there is no current tax saving; a deferred tax asset of 7.5 is recognised instead and cash is unchanged.",
+      "rubric": ["IS −30, tax −7.5, NI −22.5", "Add back non-cash write-down", "CFO +7.5", "Inventory −30, balance check", "Deferred tax caveat"],
+      "grid": {
+        "IS": "Write-down −30 · tax −7.5 · NI −22.5",
+        "CFS": "NI −22.5 + write-down 30 → CFO +7.5",
+        "BS": "Inventory −30, cash +7.5 → assets −22.5 = RE −22.5 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "A write-down is a non-cash expense, like depreciation.",
+        "Cash moves only through tax.",
+        "Same pattern as any deductible non-cash charge."
+      ]
+    },
+    "why_it_matters": "Inventory write-downs often signal demand problems or poor buying. They also reset margins: future gross margin can look better because the stock is now carried at a lower cost.",
+    "interactions": [{ "label": "Gross margin", "dir": "down" }, { "label": "Inventory", "dir": "down" }, { "label": "DIO", "dir": "down" }],
+    "common_trap": "Saying cash falls by 30. The cash was spent when the stock was bought."
+  },
+  {
+    "id": "L1-052",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Inventory grows 30% while sales grow 5%. Which explanation should you test first?",
+    "options": [
+      "Demand is slowing and unsold stock is building up, with obsolescence risk",
+      "The company is becoming more efficient",
+      "Suppliers are offering longer payment terms",
+      "Depreciation has increased"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "DIO is rising sharply: stock is growing six times faster than sales.",
+        "The most common cause is slowing demand or a production overshoot.",
+        "Alternatives to check: deliberate safety stock (supply chain), new product launches, or price inflation in inventory."
+      ]
+    },
+    "why_it_matters": "Inventory builds come before write-downs and margin pressure. It is an early warning in retail and manufacturing.",
+    "interactions": [{ "label": "DIO", "dir": "up" }, { "label": "CFO", "dir": "down" }, { "label": "Future gross margin", "dir": "down" }],
+    "common_trap": "Assuming stock build is always deliberate preparation for growth."
+  },
+  {
+    "id": "L1-053",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "Inventory cost 100. Expected selling price is 90 and costs to sell are 5. At what value is it carried under IAS 2?",
+    "options": ["85", "90", "100", "95"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "IAS 2: lower of cost and net realisable value.",
+        "NRV = 90 − 5 = 85, which is below cost of 100.",
+        "Write down by 15 to 85."
+      ]
+    },
+    "why_it_matters": "NRV tests force losses to be recognised early. Large write-downs signal pricing or demand problems.",
+    "interactions": [{ "label": "Inventory", "dir": "down" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Using selling price (90) and forgetting costs to sell."
+  },
+  {
+    "id": "L1-054",
+    "layer": 1,
+    "topic": "inventory",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Inventory turnover",
+    "answer": {
+      "meaning": "How many times a year the company sells through its stock.",
+      "formula": "COGS ÷ Inventory (average or year-end); DIO = 365 ÷ turnover",
+      "interpretation": "Compare with peers and history; grocery turns 15-25x, luxury goods 1-2x.",
+      "high_signals": "Lean stock, fresh product, low cash tied up; possibly stock-out risk.",
+      "low_signals": "Slow-moving or obsolete stock, overproduction, weak demand, cash tied up."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Inventory is cash on shelves. Turnover is the quickest test of whether that cash is working.",
+    "interactions": [{ "label": "DIO", "dir": "down" }, { "label": "Cash conversion cycle", "dir": "down" }],
+    "common_trap": "Comparing turnover across sectors with different business models."
+  }
+]

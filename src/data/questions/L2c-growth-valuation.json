@@ -1,0 +1,510 @@
+[
+  {
+    "id": "L2-080",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "CAGR (compound annual growth rate)",
+    "answer": {
+      "meaning": "The constant annual growth rate that takes a starting value to an ending value over n years.",
+      "formula": "(End ÷ Start)^(1/n) − 1",
+      "interpretation": "Smooths volatile years; hides the path (a crash and recovery can give the same CAGR).",
+      "high_signals": "Strong growth; check whether it is organic, acquired, or price-driven.",
+      "low_signals": "Mature or shrinking business; check market growth and share."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Every investment memo quotes CAGRs; you must compute and sanity-check them instantly.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "Dividing total growth by the number of years (ignores compounding)."
+  },
+  {
+    "id": "L2-081",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue goes from 100 to 121 in two years. CAGR?",
+    "answer": { "value": 10, "unit": "%", "tolerance": 0.2 },
+    "check": "(Math.pow(121 / 100, 1 / 2) - 1) * 100",
+    "explanation": { "reasoning": ["1.21^(1/2) = 1.10", "CAGR = 10%"], "shortcut": "Recognise 1.1² = 1.21." },
+    "why_it_matters": "Perfect squares and the rule of 72 make most CAGRs doable in your head.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "Answering 10.5% (21% / 2)."
+  },
+  {
+    "id": "L2-082",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grows from 200 to 300 over 5 years. CAGR?",
+    "answer": { "value": 8.45, "unit": "%", "tolerance": 0.4 },
+    "check": "(Math.pow(1.5, 1 / 5) - 1) * 100",
+    "explanation": { "reasoning": ["Multiple = 1.5", "1.5^(1/5) = 1.0845", "CAGR ≈ 8.4%"], "shortcut": "ln(1.5) ≈ 0.405; / 5 ≈ 8.1%, nudge up a little for compounding → ~8.4%." },
+    "why_it_matters": "+50% in five years sounds big but is only about 8% a year.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "50% / 5 = 10%."
+  },
+  {
+    "id": "L2-083",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grows from 1,000 to 1,150. An acquisition contributed 80 and currency translation +20. Organic growth?",
+    "answer": { "value": 5, "unit": "%", "tolerance": 0.2 },
+    "check": "(1150 - 80 - 20 - 1000) / 1000 * 100",
+    "explanation": {
+      "reasoning": ["Reported growth = 15%", "Strip acquisitions (80) and FX (20): 1,150 − 100 = 1,050", "Organic = 50 / 1,000 = 5%"],
+      "shortcut": "15% reported − 8% M&A − 2% FX = 5%."
+    },
+    "why_it_matters": "Two-thirds of the reported growth was bought or currency. Valuations should rest on the 5%.",
+    "interactions": [{ "label": "Goodwill", "dir": "up" }, { "label": "Quality of growth", "dir": "down" }],
+    "common_trap": "Quoting 15% as the underlying growth."
+  },
+  {
+    "id": "L2-084",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "EPS grew 12% while net income grew 4%. What is the most likely explanation?",
+    "options": [
+      "The share count fell, e.g. through buybacks",
+      "Revenue grew 12%",
+      "The tax rate rose",
+      "The company issued new shares"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["EPS = NI / shares.", "1.12 / 1.04 ≈ 1.077: shares fell about 7%.", "Issuing shares would make EPS grow slower than NI."]
+    },
+    "why_it_matters": "Separate operational growth (NI) from financial engineering (share count).",
+    "interactions": [{ "label": "Share count", "dir": "down" }, { "label": "EPS", "dir": "up" }],
+    "common_trap": "Attributing EPS growth to the business."
+  },
+  {
+    "id": "L2-085",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why should you separate organic from acquired growth?",
+    "options": [
+      "Acquired growth is bought with capital and says little about underlying demand; organic growth shows the core business's momentum",
+      "Acquired growth is not reported under IFRS",
+      "Organic growth is always higher",
+      "Acquisitions do not affect revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Buying revenue requires paying a price; value depends on ROIC on that price.", "Organic growth reflects market share, pricing and demand.", "Serial acquirers can mask a shrinking core."]
+    },
+    "why_it_matters": "Roll-up strategies can hide organic decline until acquisitions stop.",
+    "interactions": [{ "label": "ROIC incl. goodwill", "dir": "down" }],
+    "common_trap": "Treating all revenue growth as equal."
+  },
+  {
+    "id": "L2-086",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Revenue grew 10% and EBITDA grew 20%. What happened?",
+    "options": ["EBITDA margin expanded (e.g. operating leverage on fixed costs)", "EBITDA margin fell", "Depreciation increased", "Revenue was restated"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Profit growing faster than sales means margin rose.", "Typical when part of the cost base is fixed."] },
+    "why_it_matters": "The ratio of profit growth to revenue growth tells you about cost structure.",
+    "interactions": [{ "label": "EBITDA margin", "dir": "up" }, { "label": "Operating leverage", "dir": "up" }],
+    "common_trap": "Assuming profit always grows in line with revenue."
+  },
+  {
+    "id": "L2-087",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grows 8% and EBITDA margin rises from 20% to 22%. EBITDA growth?",
+    "answer": { "value": 18.8, "unit": "%", "tolerance": 0.4 },
+    "check": "(1.08 * 22 / 20 - 1) * 100",
+    "explanation": {
+      "reasoning": ["EBITDA growth = (1 + revenue growth) × (new margin / old margin) − 1", "1.08 × 1.10 = 1.188", "≈ 18.8%"],
+      "shortcut": "Margin up 2 points on 20 = +10%; combine with +8%: ≈ 8 + 10 + 0.8."
+    },
+    "why_it_matters": "Margin expansion multiplies growth. Small margin changes drive big profit swings.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }],
+    "common_trap": "Adding 8% and 2 points (10%)."
+  },
+  {
+    "id": "L2-088",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "Revenue grew 30% and net margin improved, yet the company is close to breaching its covenants. How?",
+    "answer": {
+      "model_answer": "Profit is not cash, and growth consumes cash. (1) Working capital explosion: receivables and inventory grow with sales (and often faster: DSO and DIO up), so cash is absorbed before it is collected. (2) Growth funded with debt: revolver drawn to fund working capital and capex, so net debt rises faster than EBITDA. (3) Capex ahead of revenue: new capacity built before it earns. (4) Quality of the margin: capitalised costs, one-off gains or aggressive revenue recognition lift profit without cash. (5) Covenant mechanics: leverage covenants use net debt at a point in time; interest cover tightens as debt rises. So CFO can be negative while profit rises. I would read the cash flow statement first, then DSO, DIO, capex/D&A and the debt bridge.",
+      "rubric": ["Working-capital absorption", "Debt-funded growth", "Capex ahead of revenue", "Earnings quality", "Read the CFS first"]
+    },
+    "explanation": { "reasoning": ["Growth needs funding.", "Profit ignores working capital and capex.", "Covenants are about debt and cash, not margin."] },
+    "why_it_matters": "Growth consumes cash; always read the cash flow statement first.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "DIO", "dir": "up" }, { "label": "Net debt / EBITDA", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Assuming a growing, profitable company cannot have a liquidity problem."
+  },
+  {
+    "id": "L2-089",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "A retailer reports total sales +12% but like-for-like (same-store) sales +2%. What is the right reading?",
+    "options": [
+      "Most growth comes from new stores; the existing estate is nearly flat, so check new-store returns, capex and cannibalisation",
+      "The business is accelerating strongly",
+      "Like-for-like sales include new stores, so the numbers conflict",
+      "Prices rose 10%"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Like-for-like strips out new and closed stores.", "+2% LFL, possibly below inflation, means flat or falling volumes.", "The 10-point gap is space growth, which needs capex and is only valuable if new stores earn above WACC."]
+    },
+    "why_it_matters": "Space-driven growth hides a stagnating core; when expansion stops, growth stops.",
+    "interactions": [{ "label": "Capex", "dir": "up" }, { "label": "ROIC", "dir": "mixed" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Celebrating the headline growth."
+  },
+  {
+    "id": "L2-090",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grows 7% a year. Roughly how many years to double?",
+    "answer": { "value": 10.2, "unit": "years", "tolerance": 0.6 },
+    "check": "Math.log(2) / Math.log(1.07)",
+    "explanation": { "reasoning": ["Exact: ln 2 / ln 1.07 = 10.2 years", "Rule of 72: 72 / 7 ≈ 10.3"], "shortcut": "Rule of 72: years ≈ 72 / growth %." },
+    "why_it_matters": "Doubling times make growth targets tangible in board discussions.",
+    "interactions": [{ "label": "Revenue", "dir": "up" }],
+    "common_trap": "100 / 7 = 14 years (ignores compounding)."
+  },
+  {
+    "id": "L2-091",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Organic growth",
+    "answer": {
+      "meaning": "Revenue growth excluding acquisitions, disposals and currency effects.",
+      "formula": "(Revenue − acquired revenue − FX effect) ÷ (Prior revenue − revenue of businesses since sold) − 1",
+      "interpretation": "Split further into volume, price and mix.",
+      "high_signals": "Market-share gains, pricing power, strong demand.",
+      "low_signals": "Stagnating core; reported growth relying on M&A or FX."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Organic growth is what drives long-term value; it is the first number analysts ask for.",
+    "interactions": [{ "label": "Quality of growth", "dir": "up" }],
+    "common_trap": "Forgetting to adjust for disposals and currency."
+  },
+  {
+    "id": "L2-092",
+    "layer": 2,
+    "topic": "growth",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grew 6% and prices rose 8%. Approximately what happened to volume?",
+    "answer": { "value": -1.85, "unit": "%", "tolerance": 0.3 },
+    "check": "(1.06 / 1.08 - 1) * 100",
+    "explanation": { "reasoning": ["(1 + revenue) = (1 + price) × (1 + volume)", "1.06 / 1.08 = 0.9815", "Volume ≈ −1.9%"], "shortcut": "Roughly 6 − 8 = −2%." },
+    "why_it_matters": "Price-led growth with falling volume can be fragile: customers are buying less.",
+    "interactions": [{ "label": "Volume", "dir": "down" }, { "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Reporting +6% as volume growth."
+  },
+  {
+    "id": "L2-100",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "P/E ratio",
+    "answer": {
+      "meaning": "Price paid per unit of earnings.",
+      "formula": "Share price ÷ EPS (or market cap ÷ net income)",
+      "interpretation": "Reflects growth, risk and return on capital expectations. Affected by leverage and accounting.",
+      "high_signals": "High expected growth or quality, low risk, or temporarily depressed earnings.",
+      "low_signals": "Low growth, high risk, cyclical peak earnings, or undervaluation."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The most quoted multiple. Always ask what explains it: growth, ROIC, risk or the earnings cycle.",
+    "interactions": [{ "label": "Earnings yield", "dir": "down" }],
+    "common_trap": "Comparing P/Es of companies with very different leverage."
+  },
+  {
+    "id": "L2-101",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "EV / EBITDA",
+    "answer": {
+      "meaning": "Value of the whole business (debt + equity) relative to operating cash profit.",
+      "formula": "(Market cap + Net debt + Minorities + Preference shares − Associates) ÷ EBITDA",
+      "interpretation": "Capital-structure neutral, so useful across companies with different leverage. Ignores capex and tax.",
+      "high_signals": "Growth, quality, low capital intensity, or expensive.",
+      "low_signals": "Low growth, high capex needs, risk, or cheap."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The default multiple in M&A and LBOs.",
+    "interactions": [{ "label": "EV", "dir": "up" }],
+    "common_trap": "Mixing EV and equity measures: e.g. EV / net income."
+  },
+  {
+    "id": "L2-102",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "medium",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "FCF yield",
+    "answer": {
+      "meaning": "Free cash flow as a percentage of what you pay for it.",
+      "formula": "Levered FCF ÷ Market cap (equity) — or unlevered FCF ÷ EV",
+      "interpretation": "A cash-based alternative to P/E. Compare with cost of equity minus growth.",
+      "high_signals": "Cheap, or FCF temporarily high (working-capital release, capex cuts).",
+      "low_signals": "Expensive, or heavy reinvestment phase."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Cash yields are harder to manipulate than earnings yields.",
+    "interactions": [{ "label": "Valuation", "dir": "down" }],
+    "common_trap": "Pairing unlevered FCF with market cap."
+  },
+  {
+    "id": "L2-103",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Market cap 800, debt 300, cash 100. Enterprise value?",
+    "answer": { "value": 1000, "unit": "", "tolerance": 0 },
+    "check": "800 + 300 - 100",
+    "explanation": { "reasoning": ["EV = equity + debt − cash = 800 + 300 − 100 = 1,000"], "shortcut": "Equity + net debt." },
+    "why_it_matters": "EV is what a buyer pays for the operations: it inherits the debt and the cash.",
+    "interactions": [{ "label": "EV / EBITDA", "dir": "up" }],
+    "common_trap": "Adding cash."
+  },
+  {
+    "id": "L2-104",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Share price 30, EPS 2. P/E?",
+    "answer": { "value": 15, "unit": "x", "tolerance": 0 },
+    "check": "30 / 2",
+    "explanation": { "reasoning": ["30 / 2 = 15x", "Earnings yield = 1/15 = 6.7%"], "shortcut": "Price over earnings." },
+    "why_it_matters": "A 15x P/E is roughly a 6.7% earnings yield: compare it with bond yields.",
+    "interactions": [{ "label": "Earnings yield", "dir": "down" }],
+    "common_trap": "Inverting it."
+  },
+  {
+    "id": "L2-105",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Market cap 1,200, net debt 400, EBITDA 200. EV / EBITDA?",
+    "answer": { "value": 8, "unit": "x", "tolerance": 0 },
+    "check": "(1200 + 400) / 200",
+    "explanation": { "reasoning": ["EV = 1,600", "1,600 / 200 = 8x"], "shortcut": "16/2." },
+    "why_it_matters": "8x is mid-range for many industrial businesses; it anchors M&A price discussions.",
+    "interactions": [{ "label": "EV", "dir": "up" }],
+    "common_trap": "Using market cap (6x)."
+  },
+  {
+    "id": "L2-106",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Dividend per share 1.20, share price 40. Dividend yield?",
+    "answer": { "value": 3, "unit": "%", "tolerance": 0.1 },
+    "check": "1.2 / 40 * 100",
+    "explanation": { "reasoning": ["1.2 / 40 = 3%"], "shortcut": "1.2/40 = 3/100." },
+    "why_it_matters": "Yield + growth ≈ expected return (Gordon). 3% + 4% growth ≈ 7% cost of equity.",
+    "interactions": [{ "label": "Payout", "dir": "up" }],
+    "common_trap": "Dividing price by dividend."
+  },
+  {
+    "id": "L2-107",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Free cash flow to equity 90, market cap 1,500. FCF yield?",
+    "answer": { "value": 6, "unit": "%", "tolerance": 0.1 },
+    "check": "90 / 1500 * 100",
+    "explanation": { "reasoning": ["90 / 1,500 = 6%"], "shortcut": "9/150 = 6/100." },
+    "why_it_matters": "6% cash yield with modest growth often signals value, if FCF is sustainable.",
+    "interactions": [{ "label": "Valuation", "dir": "down" }],
+    "common_trap": "Using EV with a levered FCF."
+  },
+  {
+    "id": "L2-108",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why use EV/EBITDA rather than P/E to compare two companies with very different leverage?",
+    "options": [
+      "EV/EBITDA is before interest and covers all capital, so it is unaffected by the debt/equity mix",
+      "P/E cannot be calculated for levered companies",
+      "EV/EBITDA always gives lower numbers",
+      "EBITDA includes interest"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Net income is after interest, so P/E moves with leverage.", "EV includes debt and EBITDA is before interest, so both sides include all capital providers."]
+    },
+    "why_it_matters": "Consistency between numerator and denominator is the first rule of multiples.",
+    "interactions": [{ "label": "P/E", "dir": "mixed" }],
+    "common_trap": "Saying EBITDA is closer to cash, which is true but not the reason here."
+  },
+  {
+    "id": "L2-109",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A bank trades at 0.7x book value and earns an ROE of 7% against a cost of equity of 11%. Is the low P/B irrational?",
+    "options": [
+      "No: earning below its cost of equity destroys value, so it should trade below book",
+      "Yes: assets are always worth at least book value",
+      "Yes: P/B should equal 1 for all banks",
+      "No: P/B only depends on the dividend"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Justified P/B = (ROE − g) / (COE − g).", "With ROE < COE, P/B < 1 for any g below ROE.", "The market is pricing value destruction."]
+    },
+    "why_it_matters": "P/B and ROE must be read together, especially for financials.",
+    "interactions": [{ "label": "ROE", "dir": "up" }, { "label": "P/B", "dir": "up" }],
+    "common_trap": "Calling any stock below book 'cheap'."
+  },
+  {
+    "id": "L2-110",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Justified P/B = (ROE − g) / (COE − g). ROE 15%, cost of equity 10%, growth 5%. P/B?",
+    "answer": { "value": 2, "unit": "x", "tolerance": 0.02 },
+    "check": "(15 - 5) / (10 - 5)",
+    "explanation": { "reasoning": ["(15 − 5) / (10 − 5) = 10 / 5 = 2.0x"], "shortcut": "Spread over spread." },
+    "why_it_matters": "Return on book above the cost of equity is what justifies a premium to book.",
+    "interactions": [{ "label": "ROE", "dir": "up" }, { "label": "P/B", "dir": "up" }],
+    "common_trap": "Using ROE / COE (1.5x), which ignores growth."
+  },
+  {
+    "id": "L2-111",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Companies X and Y both trade at 8x EV/EBITDA. X spends 40% of EBITDA on capex, Y spends 10%. On EV / (EBITDA − capex), which is cheaper and by how much?",
+    "options": [
+      "Y: about 8.9x versus about 13.3x for X",
+      "X: about 8.9x versus about 13.3x for Y",
+      "They are equally priced",
+      "Y: about 7.2x versus about 4.8x for X"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["X: 8 / (1 − 0.4) = 13.3x.", "Y: 8 / (1 − 0.1) = 8.9x.", "Same EBITDA multiple, very different cash multiples."]
+    },
+    "why_it_matters": "EBITDA multiples flatter capital-heavy businesses. Check cash-based multiples before calling something cheap.",
+    "interactions": [{ "label": "Capex / EBITDA", "dir": "up" }, { "label": "FCF yield", "dir": "down" }],
+    "common_trap": "Treating equal EBITDA multiples as equal value."
+  },
+  {
+    "id": "L2-112",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "A stock trades at 40x earnings. When could that be justified, and what would you check?",
+    "answer": {
+      "model_answer": "A high P/E can be justified when: (1) the company can grow for a long time at ROIC well above WACC (value of growth is large); (2) current earnings are temporarily depressed (cyclical trough, one-off charges, heavy expensed investment such as R&D or marketing), so normalised P/E is much lower; (3) discount rates are low; (4) earnings understate cash (high D&A on acquired intangibles). Checks: normalised and forward EPS; reverse-engineer the growth and ROIC the price implies (e.g. via a DCF or the value-driver formula P/E ≈ (1 − g/ROIC) / (r − g)); sensitivity to a 1-point change in WACC or g; competitive moat; whether peers with similar growth trade lower.",
+      "rubric": ["Long runway of growth with ROIC > WACC", "Depressed or understated earnings", "Low rates", "Reverse-engineer implied expectations", "Sensitivity and moat checks"]
+    },
+    "explanation": { "reasoning": ["P/E = f(growth, ROIC, risk).", "Test each driver.", "Turn the multiple into explicit assumptions."] },
+    "why_it_matters": "Reverse-engineering what a price implies is a core consulting and buy-side skill.",
+    "interactions": [{ "label": "Implied growth", "dir": "up" }, { "label": "Rate sensitivity", "dir": "up" }],
+    "common_trap": "Calling it overvalued (or justified) without stating the implied assumptions."
+  },
+  {
+    "id": "L2-113",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Next year's unlevered FCF is 50, WACC 9%, perpetual growth 4%. Enterprise value (Gordon growth)?",
+    "answer": { "value": 1000, "unit": "", "tolerance": 5 },
+    "check": "50 / (0.09 - 0.04)",
+    "explanation": { "reasoning": ["EV = FCF₁ / (WACC − g) = 50 / 0.05 = 1,000", "Implied EV / FCF = 20x"], "shortcut": "Divide by the spread: 50 / 5% = 1,000." },
+    "why_it_matters": "A 1-point change in WACC − g moves value by 20-25% here. Terminal value assumptions dominate DCFs.",
+    "interactions": [{ "label": "WACC", "dir": "down" }, { "label": "Terminal growth", "dir": "up" }],
+    "common_trap": "Using this year's FCF without growing it one year."
+  },
+  {
+    "id": "L2-114",
+    "layer": 2,
+    "topic": "valuation",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A company issues new shares and uses all the cash to repay debt. What happens, roughly, to EV and to the P/E?",
+    "options": [
+      "EV is roughly unchanged (equity up, net debt down); P/E changes because net income and share count both change",
+      "EV rises by the amount of new equity",
+      "EV falls by the debt repaid",
+      "Neither changes"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "EV = equity value + net debt: one goes up, the other down by the same amount (ignoring tax shield and distress effects).",
+        "Net income rises (less interest) and shares rise, so EPS and P/E move.",
+        "This is why EV multiples are preferred for comparing capital structures."
+      ]
+    },
+    "why_it_matters": "Recapitalisations change equity metrics but not the value of the operations.",
+    "interactions": [{ "label": "Net debt", "dir": "down" }, { "label": "Share count", "dir": "up" }, { "label": "EPS", "dir": "mixed" }],
+    "common_trap": "Thinking EV changes because the share price or count changes."
+  }
+]

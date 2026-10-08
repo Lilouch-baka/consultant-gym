@@ -1,0 +1,494 @@
+[
+  {
+    "id": "L2-040",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Current ratio",
+    "answer": {
+      "meaning": "Short-term assets available to cover short-term liabilities.",
+      "formula": "Current assets ÷ Current liabilities",
+      "interpretation": "A rough solvency-in-the-short-run test. Quality of current assets matters more than the number.",
+      "high_signals": "Comfortable cover, or idle cash / bloated inventory and receivables.",
+      "low_signals": "Tight liquidity, or a business model with fast cash conversion (retail)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Banks and credit insurers still use it as a first screen, so know its weaknesses.",
+    "interactions": [{ "label": "Quick ratio", "dir": "up" }, { "label": "NWC", "dir": "up" }],
+    "common_trap": "Assuming higher is always better."
+  },
+  {
+    "id": "L2-041",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Quick (acid-test) ratio",
+    "answer": {
+      "meaning": "Liquid assets (excluding inventory) available to cover short-term liabilities.",
+      "formula": "(Cash + Short-term investments + Receivables) ÷ Current liabilities",
+      "interpretation": "Stricter than the current ratio because inventory may not be quickly saleable at book value.",
+      "high_signals": "Strong ability to pay near-term obligations without selling stock.",
+      "low_signals": "Dependence on selling inventory to pay bills."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "A big gap between current and quick ratios means liquidity depends on inventory.",
+    "interactions": [{ "label": "Cash ratio", "dir": "up" }],
+    "common_trap": "Including inventory or prepayments."
+  },
+  {
+    "id": "L2-042",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Current assets 600, current liabilities 400. Current ratio?",
+    "answer": { "value": 1.5, "unit": "x", "tolerance": 0 },
+    "check": "600 / 400",
+    "explanation": { "reasoning": ["600 / 400 = 1.5x"], "shortcut": "6/4 = 1.5." },
+    "why_it_matters": "A starting point for liquidity, not the conclusion.",
+    "interactions": [{ "label": "Liquidity", "dir": "up" }],
+    "common_trap": "Inverting the ratio."
+  },
+  {
+    "id": "L2-043",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Cash 100, receivables 200, inventory 300, current liabilities 400. Quick ratio?",
+    "answer": { "value": 0.75, "unit": "x", "tolerance": 0.01 },
+    "check": "(100 + 200) / 400",
+    "explanation": {
+      "reasoning": ["Quick assets = 100 + 200 = 300", "300 / 400 = 0.75x", "Current ratio is 1.5x: half the cover depends on inventory"],
+      "shortcut": "Drop inventory, then 3/4."
+    },
+    "why_it_matters": "This company needs to sell stock to meet its obligations.",
+    "interactions": [{ "label": "Inventory reliance", "dir": "up" }],
+    "common_trap": "Including inventory (1.5x)."
+  },
+  {
+    "id": "L2-044",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Cash 80, current liabilities 400. Cash ratio?",
+    "answer": { "value": 0.2, "unit": "x", "tolerance": 0 },
+    "check": "80 / 400",
+    "explanation": { "reasoning": ["80 / 400 = 0.2x"], "shortcut": "8/40 = 1/5." },
+    "why_it_matters": "The strictest liquidity test: only cash counts.",
+    "interactions": [{ "label": "Liquidity", "dir": "up" }],
+    "common_trap": "Adding receivables."
+  },
+  {
+    "id": "L2-045",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "The current ratio rose from 1.2x to 2.0x, but the quick ratio fell. What happened?",
+    "options": [
+      "Inventory built up sharply while liquid assets did not grow",
+      "The company raised a lot of cash",
+      "Receivables were collected faster",
+      "Current liabilities rose"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "The only difference between the two ratios is inventory (and prepayments).",
+        "Current ratio up with quick ratio down means inventory drove the increase.",
+        "Usually a warning (slow sales, overproduction), not an improvement."
+      ]
+    },
+    "why_it_matters": "A 'better' current ratio can mean worse liquidity. Always look at the composition.",
+    "interactions": [{ "label": "DIO", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Reading the higher current ratio as improved liquidity."
+  },
+  {
+    "id": "L2-046",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A supermarket chain has a current ratio of 0.7x. What is the right reading?",
+    "options": [
+      "Not necessarily a problem: cash sales and fast-turning stock fund long supplier terms (negative working capital)",
+      "It is insolvent",
+      "It must raise equity immediately",
+      "It has too much inventory"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Retailers collect cash at the till and turn inventory quickly.",
+        "Payables exceed current assets by design.",
+        "Risk appears only if sales fall or suppliers shorten terms."
+      ]
+    },
+    "why_it_matters": "Ratios must be read against the business model, not textbook thresholds.",
+    "interactions": [{ "label": "DPO", "dir": "up" }, { "label": "NWC", "dir": "down" }],
+    "common_trap": "Applying a 'current ratio should be 2' rule everywhere."
+  },
+  {
+    "id": "L2-047",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Which current asset is excluded from the quick ratio?",
+    "options": ["Inventory", "Cash", "Trade receivables", "Short-term deposits"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Inventory is the least liquid current asset: it must be sold, then collected."] },
+    "why_it_matters": "Inventory may only convert to cash at a discount in a crisis.",
+    "interactions": [{ "label": "Quick ratio", "dir": "down" }],
+    "common_trap": "Excluding receivables."
+  },
+  {
+    "id": "L2-048",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "A company has a current ratio of 2.5x but cannot pay its suppliers. How is that possible?",
+    "answer": {
+      "model_answer": "The current ratio counts book values, not cash timing. Possible causes: (1) receivables that are overdue or uncollectable; (2) inventory that is slow-moving or obsolete; (3) cash that is trapped (in foreign subsidiaries, restricted, pledged as collateral); (4) a maturity mismatch: liabilities due this month, assets converting in four months; (5) a large debt maturity just outside the current classification, or a covenant breach freezing facilities. Liquidity is about cash and committed undrawn facilities versus cash needs over the next weeks, so I would build a 13-week cash flow forecast rather than rely on the ratio.",
+      "rubric": ["Book values vs cash timing", "Asset quality (receivables, inventory)", "Trapped/restricted cash", "Maturity mismatch", "13-week cash flow as the right tool"]
+    },
+    "explanation": { "reasoning": ["A ratio is a snapshot of book values.", "Liquidity is a flow problem.", "Look at timing and quality."] },
+    "why_it_matters": "In restructuring work the 13-week cash flow, not the current ratio, decides survival.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "DIO", "dir": "up" }, { "label": "Liquidity headroom", "dir": "down" }],
+    "common_trap": "Trusting the ratio without testing asset quality."
+  },
+  {
+    "id": "L2-049",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "Current assets 300, current liabilities 200 (current ratio 1.5x). The company draws 100 on its revolver (a current liability) and holds the cash. New current ratio?",
+    "options": ["1.33x", "2.0x", "1.5x", "1.67x"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Current assets 300 + 100 = 400.", "Current liabilities 200 + 100 = 300.", "400 / 300 = 1.33x: the ratio falls, even though cash went up."]
+    },
+    "why_it_matters": "Adding equal amounts to both sides moves a ratio towards 1. Ratios can mislead about actual liquidity.",
+    "interactions": [{ "label": "Cash", "dir": "up" }, { "label": "Current ratio", "dir": "down" }],
+    "common_trap": "Assuming more cash always raises the current ratio."
+  },
+  {
+    "id": "L2-050",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A lender wants the best single view of a borrower's short-term liquidity. What should it look at?",
+    "options": [
+      "Liquidity headroom: cash plus undrawn committed facilities versus forecast cash needs (e.g. 13-week cash flow)",
+      "The current ratio",
+      "Net income",
+      "Book equity"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Liquidity is about available cash versus upcoming payments.", "Committed facilities count; uncommitted ones can be withdrawn.", "A rolling cash forecast captures timing that ratios cannot."]
+    },
+    "why_it_matters": "Companies rarely fail because profits are low; they fail when they run out of cash.",
+    "interactions": [{ "label": "Undrawn facilities", "dir": "up" }, { "label": "Covenant headroom", "dir": "up" }],
+    "common_trap": "Relying on profit or balance-sheet ratios."
+  },
+  {
+    "id": "L2-051",
+    "layer": 2,
+    "topic": "liquidity",
+    "difficulty": "medium",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Liquidity headroom",
+    "answer": {
+      "meaning": "Cash and committed undrawn facilities available after expected outflows and minimum operating cash.",
+      "formula": "Cash + Undrawn committed facilities − Minimum cash − Forecast net outflows (over the period)",
+      "interpretation": "Shows how long the company can operate before it needs new funding.",
+      "high_signals": "Room to absorb shocks, seasonality and investment.",
+      "low_signals": "Refinancing or going-concern risk; check debt maturities and covenants."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Auditors' going-concern assessments and lenders' decisions rest on this.",
+    "interactions": [{ "label": "Going-concern risk", "dir": "down" }],
+    "common_trap": "Counting uncommitted or covenant-blocked facilities."
+  },
+  {
+    "id": "L2-060",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Net debt / EBITDA",
+    "answer": {
+      "meaning": "How many years of EBITDA it would take to repay net debt.",
+      "formula": "(Debt + Leases − Cash) ÷ EBITDA",
+      "interpretation": "The main leverage metric for lenders and PE. Investment grade typically below ~2.5-3x; LBOs often 4-6x at entry.",
+      "high_signals": "High leverage, refinancing and covenant risk, little room for shocks.",
+      "low_signals": "Balance-sheet capacity for investment, M&A or returns to shareholders."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Covenants, ratings and LBO structures are all expressed in this ratio.",
+    "interactions": [{ "label": "Interest cover", "dir": "down" }, { "label": "Credit spread", "dir": "up" }],
+    "common_trap": "Ignoring EBITDA adjustments and lease treatment in the definition."
+  },
+  {
+    "id": "L2-061",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Interest cover",
+    "answer": {
+      "meaning": "How many times operating profit covers interest expense.",
+      "formula": "EBIT ÷ Interest expense (or EBITDA ÷ interest)",
+      "interpretation": "Below about 2-3x leaves little buffer; above 8x is comfortable for most sectors.",
+      "high_signals": "Low financial risk, capacity to borrow more.",
+      "low_signals": "Vulnerable to profit falls or rate rises; possible covenant pressure."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Rising rates hit interest cover first. It is the earliest warning for floating-rate borrowers.",
+    "interactions": [{ "label": "Net debt / EBITDA", "dir": "down" }],
+    "common_trap": "Using EBITDA cover for capital-heavy companies, which overstates capacity."
+  },
+  {
+    "id": "L2-062",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Gearing",
+    "answer": {
+      "meaning": "The proportion of a company's long-term funding that comes from debt.",
+      "formula": "Debt ÷ (Debt + Equity) — or Debt ÷ Equity; use market values for WACC",
+      "interpretation": "ACCA uses both forms: always state which.",
+      "high_signals": "Higher financial risk and cost of equity; more tax shield.",
+      "low_signals": "Conservative financing, unused debt capacity."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Gearing feeds WACC, credit ratings and covenant headroom.",
+    "interactions": [{ "label": "Cost of equity", "dir": "up" }, { "label": "Equity multiplier", "dir": "up" }],
+    "common_trap": "Mixing book and market values without saying which."
+  },
+  {
+    "id": "L2-063",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Gross debt 500, cash 120, EBITDA 190. Net debt / EBITDA?",
+    "answer": { "value": 2, "unit": "x", "tolerance": 0.02 },
+    "check": "(500 - 120) / 190",
+    "explanation": { "reasoning": ["Net debt = 380", "380 / 190 = 2.0x"], "shortcut": "380 is exactly 2 × 190." },
+    "why_it_matters": "2.0x is comfortable for most corporates; it leaves room for a downturn.",
+    "interactions": [{ "label": "Debt capacity", "dir": "up" }],
+    "common_trap": "Using gross debt (2.6x)."
+  },
+  {
+    "id": "L2-064",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "EBIT 90, interest expense 15. Interest cover?",
+    "answer": { "value": 6, "unit": "x", "tolerance": 0 },
+    "check": "90 / 15",
+    "explanation": { "reasoning": ["90 / 15 = 6x"], "shortcut": "15 × 6 = 90." },
+    "why_it_matters": "EBIT could fall by about 83% before interest is uncovered.",
+    "interactions": [{ "label": "Credit risk", "dir": "down" }],
+    "common_trap": "Inverting the ratio."
+  },
+  {
+    "id": "L2-065",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Debt 300, equity 450. Gearing as debt / (debt + equity)?",
+    "answer": { "value": 40, "unit": "%", "tolerance": 0.3 },
+    "check": "300 / (300 + 450) * 100",
+    "explanation": { "reasoning": ["Total capital = 750", "300 / 750 = 40%", "Debt / equity would be 0.67x"], "shortcut": "300/750 = 2/5." },
+    "why_it_matters": "D/(D+E) is the weight used in WACC.",
+    "interactions": [{ "label": "WACC debt weight", "dir": "up" }],
+    "common_trap": "Answering 67% (that is debt/equity)."
+  },
+  {
+    "id": "L2-066",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net debt 400, EBITDA 160. EBITDA falls by 25% with net debt unchanged. New net debt / EBITDA?",
+    "answer": { "value": 3.33, "unit": "x", "tolerance": 0.05 },
+    "check": "400 / (160 * 0.75)",
+    "explanation": { "reasoning": ["Before: 400 / 160 = 2.5x", "EBITDA = 120", "After: 400 / 120 = 3.33x"], "shortcut": "Leverage rises by 1/0.75 = 1.33×: 2.5 × 1.33 = 3.33." },
+    "why_it_matters": "Leverage moves with EBITDA, not just debt. Cyclical companies breach covenants in downturns without borrowing more.",
+    "interactions": [{ "label": "Covenant headroom", "dir": "down" }],
+    "common_trap": "Adding 25% to the ratio (3.125x) instead of dividing by 0.75."
+  },
+  {
+    "id": "L2-067",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why do lenders prefer net debt / EBITDA to book debt / equity?",
+    "options": [
+      "It compares debt with the cash-generating capacity that repays it; book equity can be distorted or even negative",
+      "It is required by IFRS",
+      "Book equity is always larger than EBITDA",
+      "It ignores cash, which lenders cannot access"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Debt is repaid from cash flow, which EBITDA approximates.",
+        "Book equity reflects history (buybacks, write-downs, acquisitions) not repayment capacity.",
+        "Some strong companies have negative book equity after years of buybacks."
+      ]
+    },
+    "why_it_matters": "Choose metrics that answer the question being asked: for lenders, 'can they repay?'.",
+    "interactions": [{ "label": "Debt / equity", "dir": "mixed" }],
+    "common_trap": "Thinking a high D/E always means high risk."
+  },
+  {
+    "id": "L2-068",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Interest cover is 1.5x. What does that imply?",
+    "options": [
+      "A fall in EBIT of about a third would leave interest uncovered by operating profit",
+      "The company pays 1.5% interest",
+      "The company is comfortably financed",
+      "Debt is 1.5 times EBIT"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["EBIT = 1.5 × interest.", "If EBIT falls by 1/3, EBIT = interest: cover is 1.0x.", "Very thin buffer."]
+    },
+    "why_it_matters": "Thin interest cover leaves no room for a recession or a rate rise.",
+    "interactions": [{ "label": "Default risk", "dir": "up" }],
+    "common_trap": "Confusing cover with leverage."
+  },
+  {
+    "id": "L2-069",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Covenant: net debt / EBITDA ≤ 3.5x. Net debt 600, EBITDA 200. By what percentage can EBITDA fall before a breach?",
+    "answer": { "value": 14.3, "unit": "%", "tolerance": 0.5 },
+    "check": "(1 - (600 / 3.5) / 200) * 100",
+    "explanation": {
+      "reasoning": ["Minimum EBITDA = 600 / 3.5 = 171.4", "Headroom = 200 − 171.4 = 28.6", "28.6 / 200 = 14.3%"],
+      "shortcut": "Headroom % = 1 − current ratio / covenant = 1 − 3.0/3.5 = 1/7 ≈ 14%."
+    },
+    "why_it_matters": "EBITDA headroom is what boards and lenders actually track. 14% is thin for a cyclical business.",
+    "interactions": [{ "label": "Covenant headroom", "dir": "down" }],
+    "common_trap": "Computing (3.5 − 3.0) / 3.0 = 16.7%."
+  },
+  {
+    "id": "L2-070",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "Net debt / EBITDA is 2.0x. Before calling the balance sheet safe, what else would you check?",
+    "answer": {
+      "model_answer": "(1) EBITDA quality: adjustments, one-offs, capitalised costs, and how cyclical it is. (2) What is excluded from net debt: leases, pensions deficits, factoring and supply-chain finance, earn-outs, provisions. (3) Cash: is it trapped abroad or needed for operations; intra-year peaks if the business is seasonal (year-end net debt can be window-dressed). (4) Cash conversion: EBITDA less capex, working capital and tax; FCF/debt. (5) Maturity profile and refinancing risk; fixed vs floating rates. (6) Covenant definitions and headroom. (7) Interest cover. 2.0x on a cyclical EBITDA with large off-balance-sheet obligations can be riskier than 3.5x on a stable utility.",
+      "rubric": ["EBITDA quality and cyclicality", "Debt-like items (leases, pensions, factoring)", "Cash trapped / seasonality", "FCF conversion", "Maturities, rates, covenants"]
+    },
+    "explanation": { "reasoning": ["A ratio is only as good as its inputs.", "Test both numerator and denominator.", "Then look at timing and terms."] },
+    "why_it_matters": "Many collapses (e.g. reverse factoring cases) had acceptable headline leverage.",
+    "interactions": [{ "label": "Hidden leverage", "dir": "up" }, { "label": "FCF / debt", "dir": "down" }],
+    "common_trap": "Stopping at the headline ratio."
+  },
+  {
+    "id": "L2-071",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "rhetorical",
+    "prompt": "A highly profitable company has negative book equity. What is the most likely reason?",
+    "options": [
+      "Years of buybacks and dividends larger than retained profits, often funded with debt",
+      "It is insolvent and about to fail",
+      "It has large deferred revenue",
+      "Its goodwill was impaired"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Returning more than accumulated profit reduces equity below zero.",
+        "Strong, stable cash flows let such companies carry the debt (some large franchise businesses do this).",
+        "D/E and ROE become meaningless; use net debt/EBITDA and interest cover instead."
+      ]
+    },
+    "why_it_matters": "Book equity is an accounting residual. Do not mistake negative equity for distress without checking cash flow.",
+    "interactions": [{ "label": "ROE", "dir": "mixed" }, { "label": "Net debt / EBITDA", "dir": "up" }],
+    "common_trap": "Concluding the company is insolvent."
+  },
+  {
+    "id": "L2-072",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Which transaction increases gearing?",
+    "options": ["A debt-funded acquisition", "An equity issue used to repay debt", "Retaining profits", "Converting bonds into shares"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Debt rises while equity is unchanged.", "The other three reduce debt or increase equity."]
+    },
+    "why_it_matters": "Funding choices for M&A shape the risk profile for years.",
+    "interactions": [{ "label": "Debt / equity", "dir": "up" }, { "label": "Interest cover", "dir": "down" }],
+    "common_trap": "Thinking retained profits increase gearing."
+  },
+  {
+    "id": "L2-073",
+    "layer": 2,
+    "topic": "solvency",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Funds from operations (cash flow before working capital) 180, total debt 900. FFO / debt?",
+    "answer": { "value": 20, "unit": "%", "tolerance": 0.3 },
+    "check": "180 / 900 * 100",
+    "explanation": { "reasoning": ["180 / 900 = 20%"], "shortcut": "18/90 = 1/5." },
+    "why_it_matters": "Rating agencies use FFO/debt; around 20-30% is typical of BBB-type credits in many sectors.",
+    "interactions": [{ "label": "Credit rating", "dir": "up" }],
+    "common_trap": "Inverting it (5x)."
+  }
+]

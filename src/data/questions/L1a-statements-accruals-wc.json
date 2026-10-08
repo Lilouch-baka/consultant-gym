@@ -1,0 +1,653 @@
+[
+  {
+    "id": "L1-001",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Net income flows from the income statement into which balance sheet line?",
+    "options": ["Retained earnings", "Cash", "Share capital", "Trade receivables"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Closing retained earnings = opening retained earnings + net income − dividends.",
+        "Cash is affected only by the cash part of profit, which the cash flow statement works out separately.",
+        "Share capital changes only when shares are issued or bought back."
+      ]
+    },
+    "why_it_matters": "This is the first link in any three-statement model. If retained earnings do not roll forward, the balance sheet will not balance.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "ROE denominator", "dir": "up" }],
+    "common_trap": "Saying net income goes to cash. Profit and cash differ because of accruals, working capital and non-cash items."
+  },
+  {
+    "id": "L1-002",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Under the indirect method, what is the usual starting line of the cash flow statement?",
+    "options": ["Net income (or profit before tax under many IFRS presentations)", "Revenue", "EBITDA", "Cash received from customers"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "The indirect method starts from profit and adjusts for non-cash items (D&A, impairments) and working-capital movements.",
+        "Under IFRS (IAS 7) many companies start from profit before tax and show tax paid separately; US GAAP starts from net income.",
+        "Cash received from customers is the direct method, which is rare in practice."
+      ]
+    },
+    "why_it_matters": "Knowing the starting point lets you trace exactly why cash differs from profit: the reconciling items are the story.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }, { "label": "Earnings quality", "dir": "mixed" }],
+    "common_trap": "Starting from EBITDA. EBITDA-to-cash bridges are used in credit analysis, but the statutory indirect method starts from profit."
+  },
+  {
+    "id": "L1-003",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "Depreciation increases by 10 and the tax rate is 25%. Walk me through the three statements.",
+    "answer": {
+      "model_answer": "Income statement: EBIT falls by 10, tax falls by 2.5, so net income falls by 7.5.\nCash flow statement: net income −7.5, add back depreciation +10 (non-cash), so cash from operations rises by 2.5.\nBalance sheet: cash +2.5, PP&E −10, so total assets −7.5. Retained earnings −7.5, so liabilities and equity −7.5. It balances.",
+      "rubric": ["EBIT −10, tax −2.5, NI −7.5", "Add back D&A on the CFS", "Cash +2.5 from the tax shield", "PP&E −10", "Retained earnings −7.5 and the balance check"],
+      "grid": {
+        "IS": "EBIT −10 · tax −2.5 · net income −7.5",
+        "CFS": "NI −7.5 + D&A 10 → CFO +2.5",
+        "BS": "Cash +2.5, PP&E −10 → assets −7.5 = retained earnings −7.5 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "Depreciation is an expense: EBIT −10.",
+        "Lower taxable profit saves tax: 10 × 25% = 2.5, so net income −7.5.",
+        "On the CFS, depreciation is non-cash and is added back: −7.5 + 10 = +2.5.",
+        "On the BS, PP&E falls by 10 and cash rises by 2.5: assets −7.5, matched by retained earnings −7.5."
+      ]
+    },
+    "why_it_matters": "Depreciation is non-cash, but it creates real cash through the tax shield. That is why capital-intensive businesses value tax depreciation rules.",
+    "interactions": [{ "label": "Net income", "dir": "down" }, { "label": "CFO", "dir": "up" }, { "label": "PP&E", "dir": "down" }, { "label": "EBITDA", "dir": "mixed" }],
+    "common_trap": "Saying cash is unaffected. The tax saving is cash (assuming the tax is deductible and paid in the period)."
+  },
+  {
+    "id": "L1-004",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A company buys inventory of 50 on credit. It has not sold it yet. Walk me through the three statements.",
+    "answer": {
+      "model_answer": "Income statement: no effect. Nothing is expensed until the inventory is sold.\nCash flow statement: inventory increase −50 in operating cash flow, payables increase +50, so no net change in cash.\nBalance sheet: inventory +50 (assets), trade payables +50 (liabilities). It balances.",
+      "rubric": ["No IS effect until sale", "Working-capital lines offset on CFS", "Inventory +50 and payables +50"],
+      "grid": {
+        "IS": "No effect (no sale, no COGS yet)",
+        "CFS": "Inventory −50, payables +50 → CFO 0",
+        "BS": "Inventory +50 = payables +50 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "Buying inventory is not an expense; it becomes COGS only when the goods are sold.",
+        "On credit means no cash moves now: a payable is created.",
+        "The CFS shows two working-capital movements that cancel out."
+      ]
+    },
+    "why_it_matters": "Supplier credit funds inventory. When DPO shortens, that free funding disappears and cash falls even with no change in profit.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }, { "label": "Payables", "dir": "up" }, { "label": "DIO", "dir": "up" }, { "label": "DPO", "dir": "up" }],
+    "common_trap": "Booking the purchase as an expense on the income statement."
+  },
+  {
+    "id": "L1-005",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "walkthrough",
+    "prompt": "A company sells, on credit, inventory that cost 50 for a price of 80. Tax is 25% and has not been paid yet. Walk me through the three statements.",
+    "answer": {
+      "model_answer": "Income statement: revenue +80, COGS −50, profit before tax +30, tax −7.5, net income +22.5.\nCash flow statement: net income +22.5; receivables increase −80; inventory decrease +50; tax payable increase +7.5. Cash from operations = 0.\nBalance sheet: receivables +80, inventory −50, so assets +30. Tax payable +7.5 and retained earnings +22.5, so liabilities and equity +30. It balances.",
+      "rubric": ["IS: +80 −50, tax 7.5, NI 22.5", "CFS: AR −80, inventory +50, tax payable +7.5", "Cash unchanged", "BS balances at +30"],
+      "grid": {
+        "IS": "Revenue +80 · COGS −50 · tax −7.5 · NI +22.5",
+        "CFS": "NI +22.5 − AR 80 + inventory 50 + tax payable 7.5 → CFO 0",
+        "BS": "AR +80, inventory −50 (assets +30) = tax payable +7.5 + RE +22.5 ✓"
+      }
+    },
+    "explanation": {
+      "reasoning": [
+        "Profit is recognised at the sale: 80 − 50 = 30 before tax, 22.5 after tax.",
+        "No cash has been collected and no tax paid, so every profit item is offset by a working-capital line.",
+        "Net cash effect is zero: profit with no cash."
+      ]
+    },
+    "why_it_matters": "A business can report a profit and have no cash for it. Collection risk sits in the 80 of receivables.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }, { "label": "DSO", "dir": "up" }, { "label": "Net income", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }],
+    "common_trap": "Recording cash +22.5 because profit rose, or forgetting that the unpaid tax is a liability."
+  },
+  {
+    "id": "L1-006",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Which of these transactions affects all three financial statements?",
+    "options": [
+      "Recording depreciation on existing equipment",
+      "Buying new equipment for cash",
+      "Issuing new shares for cash",
+      "Paying a supplier invoice that was already recorded"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Depreciation: IS expense, CFS add-back (and tax effect), BS lower PP&E and retained earnings.",
+        "Buying equipment hits the BS (PP&E up, cash down) and the CFS (investing outflow), but not the IS until it is depreciated.",
+        "Issuing shares hits the BS and the CFS (financing), never the IS.",
+        "Paying a recorded invoice reduces payables and cash: BS and CFS only."
+      ]
+    },
+    "why_it_matters": "Interviewers use this to check you know where capex, equity and working capital live, and that only some items touch profit.",
+    "interactions": [{ "label": "PP&E", "dir": "down" }, { "label": "Net income", "dir": "down" }, { "label": "CFO", "dir": "up" }],
+    "common_trap": "Thinking capex hits the income statement in the year of purchase."
+  },
+  {
+    "id": "L1-007",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net income 100, D&A 30, increase in working capital 20. What is cash from operations?",
+    "answer": { "value": 110, "unit": "", "tolerance": 0 },
+    "check": "100 + 30 - 20",
+    "explanation": {
+      "reasoning": ["CFO = net income + non-cash charges − increase in working capital", "100 + 30 − 20 = 110"],
+      "shortcut": "Start at profit, add back what did not cost cash, subtract what cash got stuck in."
+    },
+    "why_it_matters": "The gap between profit and CFO is the first quality-of-earnings check.",
+    "interactions": [{ "label": "Working capital", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Adding the increase in working capital. An increase in working capital absorbs cash."
+  },
+  {
+    "id": "L1-008",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "A company borrows 100 and keeps the cash. What happens on the day it borrows?",
+    "options": [
+      "IS: nothing. CFS: financing +100. BS: cash +100, debt +100",
+      "IS: revenue +100. CFS: operating +100. BS: cash +100, equity +100",
+      "IS: interest expense. CFS: financing +100. BS: cash +100, debt +100",
+      "IS: nothing. CFS: investing +100. BS: cash +100, debt +100"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Borrowing is a financing transaction, not income.",
+        "Interest only appears as time passes, not on the day of borrowing.",
+        "Assets (cash) and liabilities (debt) both rise by 100."
+      ]
+    },
+    "why_it_matters": "Raising debt does not create value by itself. The value question is what the cash is used for and whether its return beats the cost of debt.",
+    "interactions": [{ "label": "Net debt", "dir": "mixed" }, { "label": "Gross debt", "dir": "up" }, { "label": "Current ratio", "dir": "up" }],
+    "common_trap": "Booking interest on day one, or putting debt proceeds in investing cash flow."
+  },
+  {
+    "id": "L1-009",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Retained earnings roll-forward",
+    "answer": {
+      "meaning": "The link between the income statement and equity: profit kept in the business accumulates in retained earnings.",
+      "formula": "Closing RE = Opening RE + Net income − Dividends",
+      "interpretation": "Shows how much of its profit a company has reinvested rather than paid out over its life.",
+      "high_signals": "A long record of profitable reinvestment (or low payout).",
+      "low_signals": "Accumulated losses, large historic dividends or write-offs; negative RE can block dividends in some jurisdictions."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "This is the first check in a model: if RE does not roll forward, the balance sheet will not balance.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Dividend capacity", "dir": "up" }],
+    "common_trap": "Forgetting to deduct dividends, or deducting buybacks (they usually go through treasury shares, not RE)."
+  },
+  {
+    "id": "L1-010",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "Net income is 50, but cash fell by 40 and there was no financing activity. Which combination explains it (D&A is zero)?",
+    "options": [
+      "Receivables up 60 and capex of 30",
+      "Receivables down 60 and capex of 30",
+      "Payables up 60 and capex of 30",
+      "Inventory down 30 and capex of 60"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Change in cash = NI − increase in receivables − capex = 50 − 60 − 30 = −40.",
+        "Receivables down 60: 50 + 60 − 30 = +80.",
+        "Payables up 60: 50 + 60 − 30 = +80.",
+        "Inventory down 30, capex 60: 50 + 30 − 60 = +20."
+      ]
+    },
+    "why_it_matters": "You will constantly reconcile profit to cash. Do it fast and with signs right.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "FCF", "dir": "down" }, { "label": "Net debt", "dir": "up" }],
+    "common_trap": "Getting the sign of working-capital movements wrong: an increase in an operating asset uses cash."
+  },
+  {
+    "id": "L1-011",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Opening retained earnings 400, net income 90, dividends 30. What are closing retained earnings?",
+    "answer": { "value": 460, "unit": "", "tolerance": 0 },
+    "check": "400 + 90 - 30",
+    "explanation": {
+      "reasoning": ["Closing RE = 400 + 90 − 30 = 460"],
+      "shortcut": "Opening + profit − payout."
+    },
+    "why_it_matters": "Rolling equity forward is the backbone of every three-statement model.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Book value per share", "dir": "up" }],
+    "common_trap": "Forgetting to subtract dividends."
+  },
+  {
+    "id": "L1-012",
+    "layer": 1,
+    "topic": "three_statements",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "If you have the income statement and two balance sheets, why do you still need the cash flow statement?",
+    "answer": {
+      "model_answer": "Profit is measured on an accrual basis, so it is not cash. The balance sheet is a snapshot, so on its own it only shows the net change in each line. The cash flow statement explains the change in cash and splits it into operating, investing and financing activity. In theory you can rebuild an indirect CFS from two balance sheets and the income statement, but you lose detail: non-cash transactions, disposals, acquisitions, FX and reclassifications blur the balance sheet changes. In practice the CFS is where you test earnings quality (CFO vs net income), see how growth is funded and how much capex the business really needs.",
+      "rubric": ["Accrual vs cash", "BS is a snapshot", "Splits operating/investing/financing", "Derivation possible but lossy (acquisitions, non-cash items, FX)", "Earnings quality and funding analysis"]
+    },
+    "explanation": {
+      "reasoning": [
+        "Accrual profit ≠ cash.",
+        "Balance-sheet differences mix cash and non-cash changes.",
+        "The CFS gives the categorised, audited bridge."
+      ]
+    },
+    "why_it_matters": "Senior people read the cash flow statement first: it is the hardest statement to flatter.",
+    "interactions": [{ "label": "CFO / NI", "dir": "mixed" }, { "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Saying the CFS is redundant because it can be derived. The derived version misses acquisitions, non-cash and FX effects."
+  },
+  {
+    "id": "L1-013",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Under IFRS 15, when is revenue recognised?",
+    "options": [
+      "When a performance obligation is satisfied, i.e. control of the good or service passes to the customer",
+      "When the customer pays",
+      "When the contract is signed",
+      "When the invoice is sent"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Accrual accounting recognises revenue when it is earned, not when cash moves.",
+        "IFRS 15 uses a five-step model; the key step is satisfying the performance obligation (transfer of control).",
+        "Signing or invoicing can come before or after control passes."
+      ]
+    },
+    "why_it_matters": "Revenue timing drives receivables, deferred revenue and most earnings-manipulation cases.",
+    "interactions": [{ "label": "Receivables", "dir": "mixed" }, { "label": "Deferred revenue", "dir": "mixed" }],
+    "common_trap": "Confusing invoicing or payment with recognition."
+  },
+  {
+    "id": "L1-014",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "An accrued expense is…",
+    "options": [
+      "An expense incurred but not yet paid, shown as a liability",
+      "An expense paid in advance, shown as an asset",
+      "Cash received before the service is delivered",
+      "A provision for doubtful receivables"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Accrued expense: cost incurred (e.g. electricity used, wages earned) but not yet paid → liability.",
+        "Paid in advance is a prepayment (asset).",
+        "Cash received in advance is deferred revenue (liability)."
+      ]
+    },
+    "why_it_matters": "Accruals let profit reflect the period's real costs. Rising accruals can temporarily boost operating cash flow.",
+    "interactions": [{ "label": "Current liabilities", "dir": "up" }, { "label": "CFO", "dir": "up" }],
+    "common_trap": "Mixing up accrued expenses and prepayments."
+  },
+  {
+    "id": "L1-015",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "On 1 January a company pays 120 for 12 months of rent. What is on the balance sheet and income statement at 31 March?",
+    "options": [
+      "Prepaid rent 90 (asset); rent expense 30",
+      "Prepaid rent 120; rent expense 0",
+      "Prepaid rent 30; rent expense 90",
+      "Accrued rent 90 (liability); rent expense 30"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Monthly rent = 120 / 12 = 10.",
+        "Three months used: expense 30.",
+        "Nine months unused: prepayment 90."
+      ]
+    },
+    "why_it_matters": "The cash left the business in January, but the expense spreads across the year. Profit and cash differ by design.",
+    "interactions": [{ "label": "Prepayments", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Calling the unused portion an accrual (a liability). It is an asset."
+  },
+  {
+    "id": "L1-016",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net income 120, cash from operations 80, average total assets 1,000. What is the balance-sheet accruals ratio, (NI − CFO) / average assets?",
+    "answer": { "value": 4, "unit": "%", "tolerance": 0.2 },
+    "check": "(120 - 80) / 1000 * 100",
+    "explanation": {
+      "reasoning": ["(120 − 80) / 1,000 = 40 / 1,000 = 4%"],
+      "shortcut": "40 on 1,000 is 4%."
+    },
+    "why_it_matters": "A high and rising accruals ratio is a classic warning sign: profits are not turning into cash.",
+    "interactions": [{ "label": "CFO / NI", "dir": "down" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Dividing by net income instead of assets, or flipping the sign."
+  },
+  {
+    "id": "L1-017",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "How can a company report a profit while cash from operations is negative? Give at least three mechanisms.",
+    "answer": {
+      "model_answer": "Profit is accrual-based; CFO is cash-based. The gap comes from: (1) working capital absorbing cash: receivables growing faster than sales (customers paying later), inventory build-up, suppliers paid faster; (2) revenue recognised before cash, e.g. percentage-of-completion contracts or accrued revenue; (3) non-cash gains in profit, e.g. fair-value gains or gains on disposal (the disposal cash goes to investing); (4) cash paid for costs capitalised or prepaid; (5) cash taxes or provisions paid for charges booked in earlier years. The diagnosis: look at DSO, DIO, DPO, contract assets and the reconciliation lines on the CFS.",
+      "rubric": ["Working-capital build", "Revenue recognised before cash", "Non-cash gains", "Timing of provisions/taxes", "How to diagnose with ratios"]
+    },
+    "explanation": {
+      "reasoning": [
+        "Start from the indirect CFS: NI ± non-cash items ± working-capital changes.",
+        "Each reconciling item is a mechanism.",
+        "Persistent negative CFO with profits deserves a forensic look."
+      ]
+    },
+    "why_it_matters": "Most corporate failures with reported profits (e.g. construction contractors) show this pattern for years before collapse.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "DIO", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }, { "label": "Net debt", "dir": "up" }],
+    "common_trap": "Mentioning depreciation as a reason. Depreciation is added back and makes CFO higher than profit, not lower."
+  },
+  {
+    "id": "L1-018",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Which pattern most strongly suggests aggressive revenue recognition?",
+    "options": [
+      "Revenue +25%, receivables +60%, contract assets rising, CFO flat",
+      "Revenue +25%, inventory +25%, CFO +20%",
+      "Revenue +25%, payables +40%, CFO +45%",
+      "Revenue +5%, receivables −10%, CFO +15%"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Receivables growing much faster than revenue means DSO is rising sharply.",
+        "Rising contract assets (unbilled revenue) mean revenue is booked ahead of billing.",
+        "Flat CFO despite strong growth confirms profit is not turning into cash.",
+        "The other patterns are normal growth, supplier-funded growth, or improving collections."
+      ]
+    },
+    "why_it_matters": "Receivables growth well ahead of revenue is one of the most reliable red flags in forensic accounting.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "Accruals ratio", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }],
+    "common_trap": "Picking the payables option. Stretching suppliers flatters CFO but is not a revenue-recognition issue."
+  },
+  {
+    "id": "L1-019",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "medium",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Cash conversion (CFO ÷ net income)",
+    "answer": {
+      "meaning": "How much of reported profit turns into operating cash.",
+      "formula": "Cash from operations ÷ Net income",
+      "interpretation": "Above 1 is normal for businesses with significant D&A; persistently below 1 means profits are tied up in working capital or not real.",
+      "high_signals": "High-quality earnings, strong collections, possibly supplier-funded growth (check DPO).",
+      "low_signals": "Working-capital build, aggressive revenue recognition, or non-cash gains in profit."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "One of the fastest earnings-quality tests. Track it over several years, not one.",
+    "interactions": [{ "label": "Accruals ratio", "dir": "down" }, { "label": "FCF", "dir": "up" }],
+    "common_trap": "Reading one year in isolation. A single year can be distorted by timing."
+  },
+  {
+    "id": "L1-020",
+    "layer": 1,
+    "topic": "accruals",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Accrual vs cash accounting",
+    "answer": {
+      "meaning": "Accrual accounting records revenue when earned and expenses when incurred; cash accounting records them when cash moves.",
+      "formula": "Cash from operations = Net income ± non-cash items ± working-capital changes",
+      "interpretation": "Accruals match revenues with the costs of earning them, but they rely on estimates and judgement.",
+      "high_signals": "Large accruals relative to cash flow: more judgement, more room for error or manipulation.",
+      "low_signals": "Small accruals: profit close to cash, higher earnings quality."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Every gap between profit and cash comes from accrual choices. Your job is to find which ones.",
+    "interactions": [{ "label": "Working capital", "dir": "mixed" }, { "label": "CFO / NI", "dir": "mixed" }],
+    "common_trap": "Thinking accrual accounting is less accurate. It is more meaningful for performance; cash is more objective for liquidity."
+  },
+  {
+    "id": "L1-021",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Operating (trade) working capital",
+    "answer": {
+      "meaning": "The cash tied up in the operating cycle.",
+      "formula": "Trade receivables + Inventory − Trade payables (often ± other operating accruals; excludes cash and debt)",
+      "interpretation": "Grows with revenue unless the cycle is managed. Measured in days or as % of revenue.",
+      "high_signals": "Cash tied up: slow collections, slow-moving stock, or fast supplier payments.",
+      "low_signals": "Efficient cycle or supplier/customer-funded model (negative NWC in retail and subscriptions)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Working capital is usually the biggest controllable cash lever a CFO has.",
+    "interactions": [{ "label": "CFO", "dir": "down" }, { "label": "Invested capital", "dir": "up" }, { "label": "ROIC", "dir": "down" }],
+    "common_trap": "Including cash or short-term debt in operating working capital."
+  },
+  {
+    "id": "L1-022",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "On the indirect cash flow statement, an increase in trade receivables is…",
+    "options": [
+      "Subtracted, because sales were booked but cash not yet collected",
+      "Added, because receivables are an asset",
+      "Shown in investing activities",
+      "Ignored, because it is a balance-sheet item"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Revenue went into net income, but part of it has not been collected.",
+        "To get from profit to cash, deduct the increase in receivables.",
+        "Rule: increase in an operating asset = cash outflow; increase in an operating liability = cash inflow."
+      ]
+    },
+    "why_it_matters": "Getting working-capital signs right is the most common error in modelling tests.",
+    "interactions": [{ "label": "CFO", "dir": "down" }, { "label": "DSO", "dir": "up" }],
+    "common_trap": "Adding asset increases because 'assets are good'."
+  },
+  {
+    "id": "L1-023",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue is 730 and DSO is 50 days. What are trade receivables?",
+    "answer": { "value": 100, "unit": "", "tolerance": 0.5 },
+    "check": "730 * 50 / 365",
+    "explanation": {
+      "reasoning": ["Receivables = Revenue × DSO / 365", "730 / 365 = 2 per day; 2 × 50 = 100"],
+      "shortcut": "Find revenue per day first (730 / 365 = 2), then multiply by the days."
+    },
+    "why_it_matters": "Days-based forecasting is how every operating model projects working capital.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Dividing by DSO instead of multiplying."
+  },
+  {
+    "id": "L1-024",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue grows from 1,000 to 1,200 and operating working capital stays at 15% of revenue. How much cash does working capital absorb this year?",
+    "answer": { "value": 30, "unit": "", "tolerance": 0 },
+    "check": "(1200 - 1000) * 0.15",
+    "explanation": {
+      "reasoning": ["NWC goes from 150 to 180", "Increase = 30, a cash outflow"],
+      "shortcut": "Incremental revenue × NWC % = 200 × 15% = 30."
+    },
+    "why_it_matters": "Growth consumes cash even at a constant NWC ratio. Fast growers need funding for this.",
+    "interactions": [{ "label": "FCF", "dir": "down" }, { "label": "Revenue growth", "dir": "up" }],
+    "common_trap": "Applying 15% to total revenue (180) instead of to the increase."
+  },
+  {
+    "id": "L1-025",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "COGS is 730. The company stretches DPO from 45 to 60 days. What is the cash effect?",
+    "options": [
+      "A one-off inflow of 30",
+      "An inflow of 30 every year",
+      "A one-off inflow of 15",
+      "No cash effect, only a ratio change"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "COGS per day = 730 / 365 = 2.",
+        "15 extra days × 2 = 30 more payables.",
+        "Payables rise once, so cash rises once; the benefit does not repeat unless DPO keeps rising."
+      ]
+    },
+    "why_it_matters": "Working-capital improvements are one-off cash releases. Do not capitalise them as recurring FCF in a valuation.",
+    "interactions": [{ "label": "Payables", "dir": "up" }, { "label": "CFO", "dir": "up" }, { "label": "Cash conversion cycle", "dir": "down" }],
+    "common_trap": "Treating a working-capital release as a recurring annual cash flow."
+  },
+  {
+    "id": "L1-026",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 3,650 and COGS 2,190. DSO falls from 60 to 50 days and DIO from 70 to 60 days. How much cash is released?",
+    "answer": { "value": 160, "unit": "", "tolerance": 1 },
+    "check": "3650 * 10 / 365 + 2190 * 10 / 365",
+    "explanation": {
+      "reasoning": [
+        "Revenue per day = 10; 10 days fewer DSO releases 100.",
+        "COGS per day = 6; 10 days fewer DIO releases 60.",
+        "Total = 160."
+      ],
+      "shortcut": "Per-day figures first: 3,650/365 = 10 and 2,190/365 = 6, then × days saved."
+    },
+    "why_it_matters": "Working-capital programmes are often the quickest way for a new CFO to free cash.",
+    "interactions": [{ "label": "CFO", "dir": "up" }, { "label": "Invested capital", "dir": "down" }, { "label": "ROIC", "dir": "up" }],
+    "common_trap": "Using revenue for DIO. Inventory days are measured on COGS."
+  },
+  {
+    "id": "L1-027",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "Supermarkets often run negative working capital. Explain why, and what happens to their cash if sales fall 10%.",
+    "answer": {
+      "model_answer": "Customers pay at the till (DSO close to zero), inventory turns in two to four weeks, but suppliers are paid in 45-60+ days. Payables exceed receivables plus inventory, so suppliers finance the business. As sales grow, payables grow faster than operating assets and growth releases cash. When sales fall 10%, the mechanism reverses: purchases fall, so the payables balance shrinks while the cash for earlier purchases still goes out. The company pays down supplier credit, which is a cash outflow on top of lower profit. Liquidity can deteriorate quickly, and any move by suppliers or credit insurers to shorten terms makes it worse.",
+      "rubric": ["Near-zero DSO", "Fast inventory turns", "Long DPO", "Growth releases cash", "Decline consumes cash (payables unwind)", "Supplier and credit-insurer risk"]
+    },
+    "explanation": {
+      "reasoning": [
+        "NWC = receivables + inventory − payables < 0.",
+        "Change in NWC follows sales: growth makes it more negative (cash in), decline less negative (cash out).",
+        "So shrinking sales hurt cash twice: lower profit and a working-capital outflow."
+      ]
+    },
+    "why_it_matters": "Negative working capital is a strength in growth and a hidden liability in decline. Always stress-test it.",
+    "interactions": [{ "label": "DPO", "dir": "up" }, { "label": "CFO", "dir": "down" }, { "label": "Liquidity", "dir": "down" }],
+    "common_trap": "Assuming negative working capital is always good."
+  },
+  {
+    "id": "L1-028",
+    "layer": 1,
+    "topic": "working_capital",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A fast-growing profitable distributor is running out of cash. What is the most likely reason?",
+    "options": [
+      "Receivables and inventory grow with sales, absorbing cash before it is collected",
+      "Depreciation is too high",
+      "Net income is overstated by deferred revenue",
+      "Payables are growing faster than sales"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "A distributor funds stock and customer credit up front.",
+        "Each extra sale needs more receivables and inventory, so cash goes out before it comes back.",
+        "Depreciation is non-cash; rising payables would help cash."
+      ]
+    },
+    "why_it_matters": "Growth must be funded. A CFO plans working-capital facilities ahead of growth, not after the cash runs out.",
+    "interactions": [{ "label": "NWC", "dir": "up" }, { "label": "Revolver drawn", "dir": "up" }, { "label": "FCF", "dir": "down" }],
+    "common_trap": "Blaming depreciation, which is non-cash."
+  }
+]

@@ -1,0 +1,320 @@
+[
+  {
+    "id": "L5-040",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Extract (Year 1 → Year 2): Revenue 1,000 → 1,100. Receivables 150 → 250. Inventory 120 → 125. CFO 90 → 40. What is the main issue?",
+    "options": [
+      "Collections: DSO rose from about 55 to about 83 days, absorbing the cash from growth",
+      "Inventory build-up",
+      "Margin collapse",
+      "Higher capex"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["DSO Y1 = 150/1,000 × 365 ≈ 55; Y2 = 250/1,100 × 365 ≈ 83.", "Receivables +100 vs revenue +100: all the new revenue is uncollected.", "Inventory is nearly flat; CFO fell by 50."] },
+    "why_it_matters": "Turning extracts into days in seconds is how you find the story in a data room.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "CFO", "dir": "down" }],
+    "common_trap": "Blaming inventory without computing days."
+  },
+  {
+    "id": "L5-041",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Same extract: receivables 150 on revenue 1,000, then 250 on revenue 1,100. By how many days did DSO rise?",
+    "answer": { "value": 28.2, "unit": "days", "tolerance": 1 },
+    "check": "250 / 1100 * 365 - 150 / 1000 * 365",
+    "explanation": { "reasoning": ["Y1: 0.15 × 365 = 54.8 days", "Y2: 0.227 × 365 = 83.0 days", "Increase ≈ 28 days"], "shortcut": "Receivables/revenue: 15% → 22.7%; each 1% ≈ 3.65 days: 7.7 × 3.65 ≈ 28." },
+    "why_it_matters": "28 extra days on 1,100 of revenue ≈ 85 of cash tied up.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }],
+    "common_trap": "Comparing receivables only, not days."
+  },
+  {
+    "id": "L5-042",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "Extract (Year 1 → Year 2): Revenue 500 → 520. Gross margin 40% → 34%. Inventory 80 → 130. Trade payables 60 → 40. Net debt 100 → 190. Diagnose the business story, root cause and value impact.",
+    "answer": {
+      "model_answer": "Story: a business with stalling demand and emerging liquidity stress. Revenue +4% but inventory +63% (DIO roughly 97 → 138 days on COGS of 300 → 343): stock is not selling. Gross margin −6 points suggests discounting or write-downs to move it, possibly input-cost inflation. Payables fell 20 while purchases rose: suppliers or credit insurers have tightened terms, a sign they see risk. Cash: inventory +50 and payables −20 absorbed about 70, plus lower gross profit, so net debt rose 90. Root cause hypothesis: demand shortfall or poor buying, with suppliers reacting. Value impact: lower margins and higher working capital reduce FCF and ROIC; leverage rising into a weaker earnings base raises refinancing risk. Next: inventory ageing, sell-through, credit-insurance limits, covenant headroom, 13-week cash flow.",
+      "rubric": ["Computes or reasons DIO increase", "Margin pressure linked to stock", "Payables down = supplier tightening", "Cash bridge to net debt", "Root cause hypothesis", "Value impact and next checks"]
+    },
+    "explanation": { "reasoning": ["Convert balances to days.", "Link each movement to a cash effect.", "Assemble one coherent story and test it."] },
+    "why_it_matters": "This is the format of case interviews and of real first-week diagnostics.",
+    "interactions": [{ "label": "DIO", "dir": "up" }, { "label": "DPO", "dir": "down" }, { "label": "Net debt", "dir": "up" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Listing the changes without linking them into one story."
+  },
+  {
+    "id": "L5-043",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Extract: capex 300, D&A 100, revenue growth 2%, three years running. Most important question?",
+    "options": [
+      "What return is this investment earning, and when will it show in revenue? Capex is 3x D&A with little growth",
+      "Why depreciation is so high",
+      "Why the tax rate changed",
+      "Whether dividends are too low"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Capex/D&A of 3x signals heavy growth investment.", "Revenue growth of 2% says it is not paying off yet.", "Possible causes: catch-up after underinvestment, regulatory spend, or poor capital allocation."] },
+    "why_it_matters": "Large capex without growth is the most common way to destroy value quietly.",
+    "interactions": [{ "label": "Capex / D&A", "dir": "up" }, { "label": "ROIC", "dir": "down" }],
+    "common_trap": "Assuming capex must be productive."
+  },
+  {
+    "id": "L5-044",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Extract: goodwill is 60% of total assets. ROIC including goodwill 6%, excluding goodwill 25%. WACC 8%. What is the story?",
+    "options": [
+      "Good underlying businesses bought at prices too high to earn the cost of capital",
+      "Poor operations but cheap acquisitions",
+      "Goodwill should be ignored entirely",
+      "The company is under-levered"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Operations earn 25% on tangible capital: strong.", "Including the premiums paid: 6% < WACC 8%.", "Value was transferred to the sellers of the acquired companies."] },
+    "why_it_matters": "Acquisitive companies must be judged on returns including goodwill.",
+    "interactions": [{ "label": "Goodwill", "dir": "up" }, { "label": "ROIC incl. goodwill", "dir": "down" }],
+    "common_trap": "Using only the flattering ex-goodwill ROIC."
+  },
+  {
+    "id": "L5-045",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Extract: EBIT 80, interest 20, tax 15, net income 45. Effective tax rate?",
+    "answer": { "value": 25, "unit": "%", "tolerance": 0.2 },
+    "check": "15 / (80 - 20) * 100",
+    "explanation": { "reasoning": ["EBT = 80 − 20 = 60", "Tax / EBT = 15 / 60 = 25%"], "shortcut": "Tax over profit before tax, not over EBIT." },
+    "why_it_matters": "ETR vs statutory rate is a quick check for one-offs and tax structuring.",
+    "interactions": [{ "label": "Tax burden", "dir": "down" }],
+    "common_trap": "Dividing by EBIT (18.75%)."
+  },
+  {
+    "id": "L5-046",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "SaaS extract: revenue +10%, deferred revenue −20%, CFO −25%. What does it signal?",
+    "options": [
+      "Bookings and billings are slowing (or terms shortening): future revenue growth is at risk",
+      "Revenue acceleration ahead",
+      "Better cash collection",
+      "A one-off tax payment"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Billings = revenue + Δ deferred revenue: billings are well below revenue.", "Revenue lags billings, so growth will slow.", "CFO falls as the deferred revenue liability unwinds."] },
+    "why_it_matters": "In subscription models, deferred revenue is a leading indicator.",
+    "interactions": [{ "label": "Billings", "dir": "down" }, { "label": "Future revenue", "dir": "down" }],
+    "common_trap": "Focusing on the +10% revenue."
+  },
+  {
+    "id": "L5-047",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "Cash flow extract: CFO 120, capex 150, dividends 60, buybacks 40, new debt 130. What is happening and is it sustainable?",
+    "answer": {
+      "model_answer": "FCF = 120 − 150 = −30. Shareholder distributions of 100 come on top, so the funding gap is 130, exactly covered by new debt. The company is borrowing to pay dividends and buybacks while investing more than it generates. Sustainable only if (1) the capex is temporary growth investment with a clear payback, and (2) leverage remains within target. Otherwise payouts should be cut or capex reprioritised. Check net debt/EBITDA trend, capex plans, and whether management incentives reward EPS or payouts.",
+      "rubric": ["FCF −30", "Funding gap 130 covered by debt", "Distributions debt-funded", "Conditions for sustainability", "Recommended checks/actions"]
+    },
+    "explanation": { "reasoning": ["Compute FCF.", "Add distributions to find the funding need.", "Match it with financing inflows."] },
+    "why_it_matters": "The cash waterfall exposes capital-allocation choices that the P&L hides.",
+    "interactions": [{ "label": "FCF", "dir": "down" }, { "label": "Net debt", "dir": "up" }],
+    "common_trap": "Saying the dividend is covered because earnings exceed it."
+  },
+  {
+    "id": "L5-048",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "CFO 120, capex 150, dividends 60, buybacks 40. How much external funding is needed?",
+    "answer": { "value": 130, "unit": "", "tolerance": 0 },
+    "check": "-(120 - 150 - 60 - 40)",
+    "explanation": { "reasoning": ["FCF = 120 − 150 = −30", "After distributions: −30 − 100 = −130", "Funding need = 130"], "shortcut": "Outflows 250 − inflow 120." },
+    "why_it_matters": "Quantify the gap before debating whether the payout is sustainable.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }],
+    "common_trap": "Forgetting capex."
+  },
+  {
+    "id": "L5-049",
+    "layer": 5,
+    "topic": "statement_extracts",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Notes show provisions of 30 were released to profit this year, and EBIT rose by 30. How do you treat the EBIT increase?",
+    "options": [
+      "As low-quality, non-recurring: strip it out to see underlying EBIT, and ask why earlier provisions were overstated",
+      "As a genuine operational improvement",
+      "As a cash inflow of 30",
+      "As an increase in revenue"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Provision releases are non-cash credits to profit.", "Underlying EBIT is flat.", "'Cookie-jar' reserves can smooth earnings."] },
+    "why_it_matters": "Read the provisions note when profits beat expectations by exactly the gap.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Accepting the higher EBIT at face value."
+  },
+  {
+    "id": "L5-060",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A working-capital programme permanently releases 50 of cash. Roughly how does enterprise value change?",
+    "options": [
+      "Up by about 50 (a one-off cash gain), plus any value from lower ongoing working-capital needs as the company grows",
+      "Up by 50 × the EV/EBITDA multiple",
+      "No change, because EBITDA is unchanged",
+      "Down, because revenue falls"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The release is a one-off FCF of 50 today.", "If working capital stays lower as a % of sales, future growth needs less investment: a smaller additional benefit.", "Applying the EBITDA multiple to a one-off is wrong."] },
+    "why_it_matters": "Valuing one-offs and recurring items differently is basic but often missed.",
+    "interactions": [{ "label": "FCF", "dir": "up" }, { "label": "Net debt", "dir": "down" }],
+    "common_trap": "Multiplying a one-off by a multiple."
+  },
+  {
+    "id": "L5-061",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A recurring EBITDA improvement of 10 at an EV/EBITDA multiple of 9x. Value created (multiple approach)?",
+    "answer": { "value": 90, "unit": "", "tolerance": 0 },
+    "check": "10 * 9",
+    "explanation": { "reasoning": ["10 × 9 = 90"], "shortcut": "Recurring earnings × multiple." },
+    "why_it_matters": "This is why PE funds care so much about each unit of EBITDA.",
+    "interactions": [{ "label": "EV", "dir": "up" }],
+    "common_trap": "Answering 10."
+  },
+  {
+    "id": "L5-062",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "A permanent pre-tax cost saving of 20 a year, tax 25%, WACC 10%, no growth. Value created?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0.5 },
+    "check": "20 * 0.75 / 0.1",
+    "explanation": { "reasoning": ["After-tax saving = 15", "Perpetuity: 15 / 10% = 150"], "shortcut": "After-tax amount ÷ WACC." },
+    "why_it_matters": "Translating cost programmes into value helps prioritise initiatives (net of one-off implementation costs).",
+    "interactions": [{ "label": "NOPAT", "dir": "up" }, { "label": "EV", "dir": "up" }],
+    "common_trap": "Forgetting tax (200)."
+  },
+  {
+    "id": "L5-063",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "DSO fell by 10 days on revenue of 3,650. Explain the value impact through FCF, ROIC and EV.",
+    "answer": {
+      "model_answer": "Revenue per day is 10, so receivables fall by 100. FCF: a one-off inflow of 100 this year; future growth needs less working capital (receivables at 10 fewer days of the incremental revenue), a smaller recurring benefit. ROIC: invested capital falls by 100 with NOPAT unchanged (slightly higher if there is less bad debt or financing cost), so ROIC rises; e.g. NOPAT 90 on IC 600 → 550 lifts ROIC from 15.0% to 16.4%. EV: rises by about the PV of the cash: 100 now plus the PV of lower future working-capital investment. Net debt falls by 100, so equity value rises by the same amount. Watch for side-effects: tighter terms could cost sales; factoring would be financing, not a genuine improvement.",
+      "rubric": ["Computes 100 release", "One-off vs recurring FCF effect", "ROIC up with illustration", "EV / equity value impact", "Side-effects and factoring caveat"]
+    },
+    "explanation": { "reasoning": ["Days → money.", "Money → FCF and capital.", "Capital and FCF → ROIC and value."] },
+    "why_it_matters": "Linking an operational KPI to value is the core of value-based management.",
+    "interactions": [{ "label": "DSO", "dir": "down" }, { "label": "ROIC", "dir": "up" }, { "label": "FCF", "dir": "up" }],
+    "common_trap": "Applying an EBITDA multiple to the release."
+  },
+  {
+    "id": "L5-064",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A pharma company raises its EBIT margin by 4 points by cutting R&D in half. What is the most likely value effect?",
+    "options": [
+      "Short-term earnings up, but long-term value likely down as the pipeline shrinks",
+      "Value up by the margin gain × multiple",
+      "No effect on value",
+      "Value up because R&D is a waste"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["R&D is an investment expensed through the P&L.", "Cutting it lifts current profit but reduces future cash flows.", "The market usually sees through it if the pipeline is visible."] },
+    "why_it_matters": "Margin gains from cutting investment are not efficiency gains.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "Future growth", "dir": "down" }],
+    "common_trap": "Valuing the higher margin as permanent."
+  },
+  {
+    "id": "L5-065",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "A company with ROIC 6% and WACC 8% announces a plan to grow 20% a year through new capacity. The share price falls. Why?",
+    "options": [
+      "Investors expect the new capital to earn below WACC too, so faster growth destroys more value",
+      "Investors dislike growth",
+      "Higher growth always lowers share prices",
+      "Because EPS will fall in year one"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Value of growth depends on ROIC − WACC.", "Negative spread × more capital = more value destroyed.", "The market reacts to the expected spread, not the growth rate."] },
+    "why_it_matters": "Explains why some growth announcements are punished.",
+    "interactions": [{ "label": "ROIC − WACC", "dir": "down" }, { "label": "Invested capital", "dir": "up" }],
+    "common_trap": "Assuming the market is irrational."
+  },
+  {
+    "id": "L5-066",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Next-year FCF 80, growing 3% forever. WACC falls from 9% to 8%. Increase in value?",
+    "answer": { "value": 266.7, "unit": "", "tolerance": 3 },
+    "check": "80 / (0.08 - 0.03) - 80 / (0.09 - 0.03)",
+    "explanation": { "reasoning": ["At 9%: 80 / 6% = 1,333", "At 8%: 80 / 5% = 1,600", "Increase = 267 (+20%)"], "shortcut": "Spread 6% → 5% raises value by 6/5 = +20%." },
+    "why_it_matters": "Discount-rate changes move value more than most operating initiatives; that is why rate cycles move markets.",
+    "interactions": [{ "label": "WACC", "dir": "down" }, { "label": "EV", "dir": "up" }],
+    "common_trap": "Thinking a 1-point change has a small effect."
+  },
+  {
+    "id": "L5-067",
+    "layer": 5,
+    "topic": "value_impact",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "A client trades at 9x EBITDA. A buyer offers 6x EBITDA for a low-ROIC division (ROIC 5%, WACC 8%). The CEO says selling 'below our multiple destroys value'. Advise.",
+    "answer": {
+      "model_answer": "The multiple comparison is misleading. The group's 9x reflects the blended quality of all businesses; the division's value to us depends on its own cash flows and risk. With ROIC 5% below an 8% WACC, the division is likely worth less than its invested capital to us, and possibly less than 6x. Compare (1) the PV of the division's future FCF under our ownership, including any realistic improvement plan, with (2) the after-tax sale proceeds. Consider dis-synergies (shared costs left behind, supply links), separation costs and tax. Also: removing a low-return unit should raise group ROIC and possibly the group multiple. And plan the use of proceeds: debt reduction, reinvestment above WACC, or returns to shareholders. If proceeds exceed hold value net of dis-synergies, sell.",
+      "rubric": ["Multiple-arbitrage fallacy", "Value to us vs proceeds", "ROIC < WACC implication", "Dis-synergies, separation cost, tax", "Group ROIC/multiple effect", "Use of proceeds and recommendation"]
+    },
+    "explanation": { "reasoning": ["Value each part on its own cash flows.", "Compare hold value with sale value.", "Then consider second-order effects."] },
+    "why_it_matters": "Portfolio decisions are where CFOs and consultants add the most value.",
+    "interactions": [{ "label": "Group ROIC", "dir": "up" }, { "label": "Net debt", "dir": "down" }],
+    "common_trap": "Rejecting the sale because 6x < 9x."
+  }
+]

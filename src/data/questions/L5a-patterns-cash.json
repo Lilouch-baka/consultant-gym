@@ -1,0 +1,407 @@
+[
+  {
+    "id": "L5-001",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "ROE rose from 12% to 18%, but ROIC fell from 11% to 9%. What happened, and is it good?",
+    "answer": {
+      "model_answer": "Operating returns weakened (ROIC down 2 points) while shareholder returns rose, so the improvement must come from the capital structure: more debt or less equity (buybacks, a special dividend, a debt-funded acquisition), which raised the equity multiplier. ROE = ROIC + (ROIC − after-tax Kd) × D/E: as long as ROIC still exceeds the after-tax cost of debt, more leverage lifts ROE even as ROIC falls. It is not good news: the business is earning less on its capital and the ROE gain is financially engineered and riskier (lower interest cover, higher cost of equity). If ROIC keeps falling towards the cost of debt, ROE will fall fast. Next steps: DuPont and ROIC tree to find the operating decline, check net debt, buybacks and interest cover, and compare ROIC with WACC.",
+      "rubric": ["Leverage explains ROE rise", "Operating decline in ROIC", "Spread formula or DuPont logic", "Risk: interest cover, cost of equity", "Judgement: not good", "Next diagnostic steps"]
+    },
+    "explanation": { "reasoning": ["ROE vs ROIC divergence = financing effect.", "Separate the operating story from the financing story.", "Judge on ROIC vs WACC."] },
+    "why_it_matters": "ROE can hide deteriorating operations. This pattern often appears before trouble.",
+    "interactions": [{ "label": "Equity multiplier", "dir": "up" }, { "label": "ROIC", "dir": "down" }, { "label": "Interest cover", "dir": "down" }, { "label": "Cost of equity", "dir": "up" }],
+    "common_trap": "Celebrating the higher ROE."
+  },
+  {
+    "id": "L5-002",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Revenue is flat, gross margin rose 2 points, but EBIT margin fell 1 point. What is the most likely story?",
+    "options": [
+      "Overheads grew faster than gross profit: e.g. hiring, marketing, R&D or new systems",
+      "Pricing power weakened",
+      "Interest costs rose",
+      "Input costs rose sharply"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Gross margin up rules out pricing and input-cost problems.", "The 3-point swing sits in opex (including D&A).", "Ask whether it is investment for growth or cost creep."] },
+    "why_it_matters": "Split margin moves by P&L layer before forming a story.",
+    "interactions": [{ "label": "Opex / sales", "dir": "up" }, { "label": "Operating leverage", "dir": "down" }],
+    "common_trap": "Blaming pricing."
+  },
+  {
+    "id": "L5-003",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Revenue +15%, net income +20%, DSO from 45 to 70 days, CFO down 30%. Most likely explanation?",
+    "options": [
+      "Aggressive revenue recognition or channel stuffing: sales booked that customers have not paid for",
+      "Excellent growth with strong cash conversion",
+      "A big rise in depreciation",
+      "Suppliers demanding faster payment"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Profits up, cash down: earnings quality issue.", "DSO up 25 days: receivables far outpace sales.", "Classic pattern of pulling forward sales with extended terms or recognising revenue too early."] },
+    "why_it_matters": "This combination should trigger forensic work: receivables ageing, credit notes after period-end, distributor inventory.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "CFO / NI", "dir": "down" }, { "label": "Accruals ratio", "dir": "up" }],
+    "common_trap": "Accepting 'timing of large contracts' without evidence."
+  },
+  {
+    "id": "L5-004",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Asset turnover has fallen three years in a row, margins are stable, and capex/D&A has been 2.5x. What is happening?",
+    "options": [
+      "An expansion phase: capacity is being built ahead of revenue; the question is whether it will fill",
+      "The company is underinvesting",
+      "Working capital is improving",
+      "Margins are about to collapse"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Capex far above D&A grows the asset base.", "Revenue has not kept pace, so turnover falls.", "Check utilisation, order books, and ROIC on the new assets."] },
+    "why_it_matters": "Heavy investment phases make ROIC dip; judge them on the expected return when full.",
+    "interactions": [{ "label": "Capex / D&A", "dir": "up" }, { "label": "ROIC", "dir": "down" }, { "label": "FCF", "dir": "down" }],
+    "common_trap": "Concluding the business has permanently worsened."
+  },
+  {
+    "id": "L5-005",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Net debt/EBITDA is stable at 2.0x, but 'adjusted' items in EBITDA rose from 5% to 25% of the total. How do you read it?",
+    "options": [
+      "Leverage is understated: on reported EBITDA it is about 2.7x and rising; question the recurring nature of the adjustments",
+      "Leverage is fine at 2.0x",
+      "Adjustments always reduce leverage, so this is conservative",
+      "It only affects the P/E ratio"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["If 25% of adjusted EBITDA is add-backs, reported EBITDA is 75% of it.", "Net debt / reported EBITDA = 2.0x / 0.75 ≈ 2.7x.", "Growing, recurring 'one-offs' are usually real costs."] },
+    "why_it_matters": "Adjusted EBITDA inflation is common before refinancings and in sponsor-owned companies.",
+    "interactions": [{ "label": "Net debt / EBITDA", "dir": "up" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Trusting the headline adjusted figure."
+  },
+  {
+    "id": "L5-006",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "DPO jumped from 45 to 90 days in one year and CFO doubled. Profit was flat. What could be going on, and what would you check?",
+    "answer": {
+      "model_answer": "The CFO increase comes almost entirely from payables: suppliers are financing the company. Three possible stories: (1) Deliberate supplier-term extension backed by bargaining power: sustainable only if suppliers accept it; check prices and supply reliability. (2) Supply-chain finance (reverse factoring): a bank pays suppliers early and the company pays the bank at 90 days; economically this is debt, shown as payables, flattering CFO and net debt. (3) Liquidity stress: the company is simply paying late because it lacks cash. Checks: notes on supplier finance arrangements (now required disclosures), ageing of payables, overdue amounts, supplier complaints or credit-insurance cuts, cash balances at month-ends vs year-end, and net debt including supplier finance. Valuation: treat the one-off release as non-recurring and consider the financed portion as debt.",
+      "rubric": ["CFO driven by payables, not profit", "Bargaining-power story", "Supply-chain finance as hidden debt", "Liquidity stress story", "Specific checks", "Valuation/net debt treatment"]
+    },
+    "explanation": { "reasoning": ["Isolate the driver of CFO.", "List alternative explanations.", "Design tests to discriminate between them."] },
+    "why_it_matters": "Reverse factoring hid billions of debt in several high-profile collapses.",
+    "interactions": [{ "label": "DPO", "dir": "up" }, { "label": "CFO", "dir": "up" }, { "label": "Hidden debt", "dir": "up" }],
+    "common_trap": "Calling it excellent cash management."
+  },
+  {
+    "id": "L5-007",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Year 1: DIO rises from 60 to 95 days. Year 2: gross margin falls 4 points. What links the two?",
+    "options": [
+      "Excess stock was cleared through discounting or written down, hitting gross margin",
+      "Better purchasing lowered COGS",
+      "Higher depreciation",
+      "A change in tax rate"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Inventory builds signal demand shortfall.", "The next step is usually markdowns or write-downs.", "Both go through COGS, compressing gross margin."] },
+    "why_it_matters": "Inventory builds are a leading indicator of margin pressure: spot them a year early.",
+    "interactions": [{ "label": "DIO", "dir": "up" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Treating the two years as unrelated events."
+  },
+  {
+    "id": "L5-008",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Interest cover falls from 8x to 3x while EBIT is flat. What happened?",
+    "options": ["Interest expense rose: more debt, higher rates, or both", "Operations deteriorated", "Tax rate rose", "Revenue fell"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cover = EBIT / interest; EBIT unchanged, so interest more than doubled (8/3 ≈ 2.7x)."] },
+    "why_it_matters": "Rising interest burden is the first sign of financial strain even when operations hold up.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }, { "label": "Interest burden", "dir": "down" }],
+    "common_trap": "Looking for an operating problem."
+  },
+  {
+    "id": "L5-009",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Over five years: EPS +10% a year, revenue flat, net income +3% a year, share count −6% a year, net debt up sharply. What is the story?",
+    "options": [
+      "EPS growth is mostly debt-funded buybacks; the underlying business barely grows and leverage is building",
+      "Strong organic growth",
+      "Margin expansion explains all of it",
+      "Acquisitions drove revenue growth"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["1.03 / 0.94 ≈ 1.096: share count reduction explains most EPS growth.", "Rising net debt shows the buybacks were borrowed.", "Revenue is flat: no business growth."] },
+    "why_it_matters": "EPS-targeted management can borrow to buy back stock while the business stagnates.",
+    "interactions": [{ "label": "Share count", "dir": "down" }, { "label": "Net debt / EBITDA", "dir": "up" }, { "label": "EPS", "dir": "up" }],
+    "common_trap": "Taking EPS growth as business growth."
+  },
+  {
+    "id": "L5-010",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Revenue +18%, market share up, gross margin down 5 points. Most likely story?",
+    "options": [
+      "Growth bought with lower prices or promotions; check whether volume gains justify the margin loss",
+      "Premium pricing driving share gains",
+      "Lower input costs",
+      "An accounting change in revenue recognition"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Share up + margin down = price-led share gains.", "Test: gross profit in money (not %): did it grow?", "If competitors respond, the share gain may not last."] },
+    "why_it_matters": "Revenue growth is only good if it raises profit and ROIC.",
+    "interactions": [{ "label": "Gross margin", "dir": "down" }, { "label": "Volume", "dir": "up" }],
+    "common_trap": "Calling share gains a win without checking gross profit."
+  },
+  {
+    "id": "L5-011",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "EBITDA margin rose 3 points this year. Capitalised development costs doubled and D&A is rising fast. How do you assess the margin gain?",
+    "answer": {
+      "model_answer": "Part or all of the EBITDA gain may be accounting rather than operations. Costs that used to be expensed (in opex) are now capitalised, moving them below EBITDA into amortisation and into investing cash flow. Test: (1) recompute EBITDA as if development costs were expensed (EBITDA − capitalised development): if the 3 points disappear, there is no operating improvement; (2) compare capitalisation rates (capitalised / total R&D) with history and peers; (3) look at FCF, which is unaffected by the classification; (4) check whether the projects meet IAS 38 criteria and whether amortisation periods are reasonable. Conclusion: judge on EBIT, EBITDA − capex, or FCF, not EBITDA.",
+      "rubric": ["Capitalisation shifts costs below EBITDA", "Recompute expensed-basis EBITDA", "Benchmark capitalisation rate", "FCF unaffected", "IAS 38 / amortisation check", "Use EBIT or FCF"]
+    },
+    "explanation": { "reasoning": ["Identify the classification change.", "Reverse it to compare like for like."] },
+    "why_it_matters": "Capitalisation is a common lever for flattering EBITDA in tech and pharma.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "Capex", "dir": "up" }, { "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Crediting management with an efficiency gain."
+  },
+  {
+    "id": "L5-012",
+    "layer": 5,
+    "topic": "ratio_patterns",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "The effective tax rate fell from 25% to 12%, lifting EPS 17%. What should you check first?",
+    "options": [
+      "Whether the drop is one-off (tax credits, prior-year releases, loss utilisation) or sustainable",
+      "Nothing: lower tax always means better management",
+      "Whether revenue grew",
+      "Whether gross margin improved"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Tax-driven EPS growth is often non-recurring.", "Read the tax reconciliation note.", "Value it as one-off unless structurally sustainable."] },
+    "why_it_matters": "Normalise one-off tax gains before applying a P/E.",
+    "interactions": [{ "label": "Tax burden", "dir": "up" }, { "label": "EPS", "dir": "up" }],
+    "common_trap": "Capitalising a one-off tax gain at the full P/E."
+  },
+  {
+    "id": "L5-020",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "rhetorical",
+    "prompt": "How can a company with rising profits run out of cash?",
+    "answer": {
+      "model_answer": "Profit is an accrual measure; survival depends on cash. Mechanisms: (1) Working capital absorbs cash as sales grow, and more so if DSO and DIO rise. (2) Capex and acquisitions are funded before they generate profit. (3) Revenue recognised before cash (long contracts, contract assets) or profit flattered by non-cash gains. (4) Debt maturities and interest: principal repayments are not in profit; a refinancing wall can drain cash. (5) Taxes and provisions paid in cash for earlier charges. (6) Distributions (dividends, buybacks) exceeding FCF. Diagnosis: read the cash flow statement, compute FCF after interest and leases, compare CFO with net income over several years, and build a 13-week cash forecast if stress is suspected.",
+      "rubric": ["Working capital", "Capex/M&A funding", "Revenue ahead of cash / non-cash gains", "Debt maturities", "Distributions > FCF", "How to diagnose"]
+    },
+    "explanation": { "reasoning": ["Start from the profit-to-cash bridge.", "List each item that consumes cash but not profit.", "Add financing outflows."] },
+    "why_it_matters": "Companies fail when cash runs out, not when profits fall. Growth consumes cash; always read the CFS first.",
+    "interactions": [{ "label": "CFO / NI", "dir": "down" }, { "label": "Net debt", "dir": "up" }, { "label": "Liquidity headroom", "dir": "down" }],
+    "common_trap": "Answering only 'working capital' without the other mechanisms."
+  },
+  {
+    "id": "L5-021",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "A software company's CFO has been about twice its net income for years. Which explanation is most likely?",
+    "options": [
+      "Upfront annual billing growing deferred revenue, plus large non-cash charges (D&A, stock-based compensation)",
+      "Aggressive revenue recognition",
+      "Falling payables",
+      "Inventory build-up"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Deferred revenue growth adds to CFO.", "SBC and amortisation are added back.", "Note SBC is a real cost (dilution) even if non-cash."] },
+    "why_it_matters": "High CFO/NI is usually positive, but adjust for SBC before calling FCF 'free'.",
+    "interactions": [{ "label": "Deferred revenue", "dir": "up" }, { "label": "SBC", "dir": "up" }],
+    "common_trap": "Treating SBC add-backs as free cash."
+  },
+  {
+    "id": "L5-022",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Stock-based compensation of 80 is added back in CFO. How should you treat it when valuing the company on FCF?",
+    "options": [
+      "As a real cost: deduct it from FCF (or account fully for dilution from new shares), but not both",
+      "Ignore it because it is non-cash",
+      "Add it twice, once in CFO and once in equity value",
+      "Only include it in EBITDA"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Paying staff in shares instead of cash transfers value from shareholders.", "Either subtract SBC as if paid in cash, or include all future dilution in the share count.", "Doing neither overstates value; doing both double counts."] },
+    "why_it_matters": "In tech, SBC can be 10-20% of revenue; ignoring it inflates valuations.",
+    "interactions": [{ "label": "FCF", "dir": "down" }, { "label": "Share count", "dir": "up" }],
+    "common_trap": "Accepting 'it's non-cash' as an argument."
+  },
+  {
+    "id": "L5-023",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "A construction contractor reports rising profits, negative CFO for three years and growing contract assets (unbilled revenue). What is the risk?",
+    "options": [
+      "Profits rest on optimistic estimates of contract outcomes; cash may never arrive and losses may follow",
+      "None: contract assets are as good as cash",
+      "Only a timing difference that always reverses",
+      "Too much cash on the balance sheet"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Revenue recognised over time relies on estimated completion and margins.", "Unbilled amounts growing with negative CFO = profit not converting.", "This pattern preceded several contractor collapses."] },
+    "why_it_matters": "For long-term contracts, CFO is the reality check on estimate-driven profit.",
+    "interactions": [{ "label": "Contract assets", "dir": "up" }, { "label": "CFO", "dir": "down" }, { "label": "Net debt", "dir": "up" }],
+    "common_trap": "Accepting contract assets as low risk."
+  },
+  {
+    "id": "L5-024",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Free cash flow 60, net income 80. FCF conversion (FCF / NI)?",
+    "answer": { "value": 75, "unit": "%", "tolerance": 0.5 },
+    "check": "60 / 80 * 100",
+    "explanation": { "reasoning": ["60 / 80 = 75%"], "shortcut": "6/8 = 3/4." },
+    "why_it_matters": "Persistently below ~80-90% in a mature business deserves an explanation (capex, working capital).",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Inverting it."
+  },
+  {
+    "id": "L5-025",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "CFO jumped 40% this year because of a one-off reduction in inventory. How should you use this year's FCF in a valuation?",
+    "options": [
+      "Normalise it: strip out the one-off release and value on sustainable FCF; treat the release as a one-off cash gain",
+      "Capitalise it at the full multiple",
+      "Ignore all of this year's FCF",
+      "Add the release to EBITDA"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Working-capital releases do not repeat at the same level.", "Capitalising them in a perpetuity overstates value.", "The cash itself is real and reduces net debt."] },
+    "why_it_matters": "Normalisation is the difference between a defensible and a naive valuation.",
+    "interactions": [{ "label": "Normalised FCF", "dir": "down" }, { "label": "Net debt", "dir": "down" }],
+    "common_trap": "Rolling the boosted FCF into the terminal value."
+  },
+  {
+    "id": "L5-026",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "logical",
+    "prompt": "Explain why EBITDA − capex − change in working capital − cash taxes is a better measure of cash generation than EBITDA.",
+    "answer": {
+      "model_answer": "EBITDA ignores three real uses of cash. Capex: the business must reinvest to maintain and grow its assets; for capital-intensive firms this can absorb most of EBITDA. Working capital: growth ties up cash in receivables and inventory (or releases it). Cash taxes: governments are paid before shareholders. Subtracting these gives unlevered free cash flow: the cash available to all capital providers, which is what DCF valuation and debt capacity actually depend on. EBITDA remains useful as a comparable operating measure and for covenants, but it is not cash.",
+      "rubric": ["Capex", "Working capital", "Cash taxes", "Unlevered FCF definition and uses", "EBITDA's legitimate uses"]
+    },
+    "explanation": { "reasoning": ["List what EBITDA omits.", "Show the resulting metric and why it matters."] },
+    "why_it_matters": "'EBITDA is not cash' is a sentence every CFO repeats to boards.",
+    "interactions": [{ "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Calling EBITDA 'cash profit'."
+  },
+  {
+    "id": "L5-027",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "walkthrough",
+    "prompt": "A company sells a division for 500 cash and books a pre-tax gain of 200 in net income (ignore tax). How does this appear on the cash flow statement?",
+    "options": [
+      "The 200 gain is deducted in CFO (non-operating, non-cash in operations) and the 500 proceeds appear in investing cash flow",
+      "CFO rises by 500",
+      "CFO rises by 200 and investing by 300",
+      "Financing inflow of 500"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The gain is in net income but the cash is an investing flow.", "To avoid counting it in CFO, deduct the gain in the reconciliation.", "Proceeds of 500 (book value 300 + gain 200) go to investing."] },
+    "why_it_matters": "Disposal gains inflate net income, not operating cash. Strip them out of earnings when judging performance.",
+    "interactions": [{ "label": "Net income", "dir": "up" }, { "label": "CFI", "dir": "up" }],
+    "common_trap": "Thinking the gain boosts CFO."
+  },
+  {
+    "id": "L5-028",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "EBITDA 200, capex 70, increase in working capital 30, cash taxes 25, interest paid 15. Free cash flow to equity before debt repayment?",
+    "answer": { "value": 60, "unit": "", "tolerance": 0 },
+    "check": "200 - 70 - 30 - 25 - 15",
+    "explanation": { "reasoning": ["200 − 70 − 30 − 25 − 15 = 60", "Only 30% of EBITDA reaches equity holders"], "shortcut": "Walk down the cash waterfall line by line." },
+    "why_it_matters": "The cash waterfall shows how little of EBITDA is truly free.",
+    "interactions": [{ "label": "FCF / EBITDA", "dir": "down" }],
+    "common_trap": "Adding the working-capital increase."
+  },
+  {
+    "id": "L5-029",
+    "layer": 5,
+    "topic": "cash_vs_profit",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "What is the quickest first check of earnings quality?",
+    "options": ["Compare cash from operations with net income over several years", "Compare P/E with peers", "Check the dividend yield", "Look at the share price trend"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Profits that never become cash are suspect.", "Several years smooth out timing effects."] },
+    "why_it_matters": "It takes two minutes and catches most problems early.",
+    "interactions": [{ "label": "CFO / NI", "dir": "mixed" }],
+    "common_trap": "Relying on a single year."
+  }
+]

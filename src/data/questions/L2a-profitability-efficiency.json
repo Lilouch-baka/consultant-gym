@@ -1,0 +1,639 @@
+[
+  {
+    "id": "L2-001",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Gross margin",
+    "answer": {
+      "meaning": "The share of revenue left after the direct cost of producing what was sold.",
+      "formula": "(Revenue − COGS) ÷ Revenue",
+      "interpretation": "Reflects pricing power, product mix and input-cost efficiency. Compare within a sector only.",
+      "high_signals": "Pricing power, differentiation, scale in purchasing (software 70-90%, luxury 60-70%).",
+      "low_signals": "Commodity products, price competition, rising input costs (grocery ~25%, contract manufacturing ~10%)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Gross margin is the first line competitors and inflation hit. A falling gross margin with stable revenue often means lost pricing power.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "ROIC", "dir": "up" }],
+    "common_trap": "Comparing gross margins across companies that classify costs differently (some put distribution in COGS, others in opex)."
+  },
+  {
+    "id": "L2-002",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Return on equity (ROE)",
+    "answer": {
+      "meaning": "Profit earned for shareholders per unit of shareholders' equity.",
+      "formula": "Net income ÷ Average shareholders' equity = Net margin × Asset turnover × Equity multiplier",
+      "interpretation": "Must be split (DuPont) to see whether it comes from operations or leverage.",
+      "high_signals": "Strong operations, or high leverage, or a depleted equity base (buybacks, losses).",
+      "low_signals": "Weak profitability, excess capital (cash-rich), or low leverage."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "ROE versus cost of equity tells you whether book equity is creating value (justifying P/B above 1).",
+    "interactions": [{ "label": "P/B", "dir": "up" }, { "label": "Equity multiplier", "dir": "up" }],
+    "common_trap": "Reading high ROE as quality without checking leverage."
+  },
+  {
+    "id": "L2-003",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "medium",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Return on invested capital (ROIC)",
+    "answer": {
+      "meaning": "After-tax operating profit per unit of capital invested in operations, whoever provided it.",
+      "formula": "NOPAT ÷ Invested capital, where NOPAT = EBIT × (1 − t) and IC = NWC + net PP&E + intangibles (= net debt + equity)",
+      "interpretation": "The core measure of business quality. Compare with WACC: ROIC > WACC creates value.",
+      "high_signals": "Competitive advantage: pricing power, network effects, capital-light model.",
+      "low_signals": "Commoditised business, overinvestment, or overpaid acquisitions (if goodwill included)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Value creation = (ROIC − WACC) × invested capital. Growth only adds value when ROIC exceeds WACC.",
+    "interactions": [{ "label": "EV / IC", "dir": "up" }, { "label": "Value of growth", "dir": "up" }],
+    "common_trap": "Mixing numerator and denominator: using net income (after interest) over invested capital (debt + equity)."
+  },
+  {
+    "id": "L2-004",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Return on capital employed (ROCE)",
+    "answer": {
+      "meaning": "Pre-tax operating return on the long-term capital used in the business.",
+      "formula": "EBIT ÷ (Total assets − Current liabilities)",
+      "interpretation": "Popular in UK reporting and ACCA exams. Pre-tax, so compare with pre-tax cost of capital.",
+      "high_signals": "Efficient use of capital, strong margins.",
+      "low_signals": "Under-utilised assets, low margins, or heavy recent investment not yet earning."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "ROCE and ROIC tell similar stories; know both because different audiences use different ones.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "Asset turnover", "dir": "up" }],
+    "common_trap": "Forgetting that capital employed excludes current liabilities (which include payables that fund operations)."
+  },
+  {
+    "id": "L2-005",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 800, COGS 520. Gross margin?",
+    "answer": { "value": 35, "unit": "%", "tolerance": 0.5 },
+    "check": "(800 - 520) / 800 * 100",
+    "explanation": {
+      "reasoning": ["Gross profit = 280", "280 / 800 = 35%"],
+      "shortcut": "COGS is 520/800 = 65% of sales, so margin is 35%."
+    },
+    "why_it_matters": "Speed with margins lets you sanity-check any P&L in a meeting.",
+    "interactions": [{ "label": "Gross profit", "dir": "up" }],
+    "common_trap": "Dividing gross profit by COGS (that is a mark-up, 53.8%)."
+  },
+  {
+    "id": "L2-006",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 500, COGS 300, operating costs 100, D&A 20. EBIT margin?",
+    "answer": { "value": 16, "unit": "%", "tolerance": 0.5 },
+    "check": "(500 - 300 - 100 - 20) / 500 * 100",
+    "explanation": {
+      "reasoning": ["EBIT = 500 − 300 − 100 − 20 = 80", "80 / 500 = 16%"],
+      "shortcut": "80 out of 500: double both → 160/1,000 = 16%."
+    },
+    "why_it_matters": "EBIT margin is the operating profitability after the cost of assets used (D&A).",
+    "interactions": [{ "label": "NOPAT margin", "dir": "up" }, { "label": "Interest cover", "dir": "up" }],
+    "common_trap": "Forgetting D&A, which gives EBITDA margin (20%)."
+  },
+  {
+    "id": "L2-007",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Net income 60. Equity was 380 at the start of the year and 420 at the end. ROE on average equity?",
+    "answer": { "value": 15, "unit": "%", "tolerance": 0.3 },
+    "check": "60 / ((380 + 420) / 2) * 100",
+    "explanation": {
+      "reasoning": ["Average equity = (380 + 420) / 2 = 400", "ROE = 60 / 400 = 15%"],
+      "shortcut": "Average first, then 60/400 = 6/40 = 15%."
+    },
+    "why_it_matters": "Using average balances matches a full year of profit with the capital that was there during the year.",
+    "interactions": [{ "label": "P/B", "dir": "up" }],
+    "common_trap": "Using closing equity (14.3%) without saying so."
+  },
+  {
+    "id": "L2-008",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "medium",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "EBIT 150, tax rate 25%, invested capital 900. ROIC?",
+    "answer": { "value": 12.5, "unit": "%", "tolerance": 0.3 },
+    "check": "150 * 0.75 / 900 * 100",
+    "explanation": {
+      "reasoning": ["NOPAT = 150 × 0.75 = 112.5", "ROIC = 112.5 / 900 = 12.5%"],
+      "shortcut": "Pre-tax return 150/900 = 16.7%, × 0.75 = 12.5%."
+    },
+    "why_it_matters": "If WACC is 9%, every unit of capital earns a 3.5-point spread: this business creates value.",
+    "interactions": [{ "label": "EVA", "dir": "up" }, { "label": "EV / IC", "dir": "up" }],
+    "common_trap": "Forgetting to tax EBIT."
+  },
+  {
+    "id": "L2-009",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "ROA is 6% and ROE is 15%. What mainly explains the gap?",
+    "options": [
+      "Financial leverage: assets are funded partly by liabilities, so equity is smaller than assets",
+      "A higher tax rate",
+      "Higher gross margin",
+      "Faster asset turnover"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "ROE = ROA × equity multiplier (assets / equity).",
+        "15% / 6% = 2.5x: assets are 2.5 times equity.",
+        "Margin and turnover affect ROA and ROE equally; only leverage separates them."
+      ]
+    },
+    "why_it_matters": "The ROA-ROE gap measures how much of shareholder returns come from borrowing.",
+    "interactions": [{ "label": "Equity multiplier", "dir": "up" }, { "label": "Debt / equity", "dir": "up" }],
+    "common_trap": "Attributing the gap to margin or turnover, which are in both ratios."
+  },
+  {
+    "id": "L2-010",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Gross margin is stable at 40%, but EBIT margin falls from 15% to 12%. Where do you look first?",
+    "options": [
+      "Operating costs below gross profit: SG&A, R&D and D&A as % of sales",
+      "Pricing and input costs",
+      "Interest expense",
+      "Tax rate"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Gross margin is unchanged, so pricing and direct costs are not the issue.",
+        "The 3-point drop sits between gross profit and EBIT: overheads, R&D, marketing, D&A.",
+        "Interest and tax are below EBIT."
+      ]
+    },
+    "why_it_matters": "Walking down the P&L line by line is how consultants isolate a margin problem in minutes.",
+    "interactions": [{ "label": "Opex / sales", "dir": "up" }, { "label": "Operating leverage", "dir": "mixed" }],
+    "common_trap": "Looking at interest or tax, which are below EBIT."
+  },
+  {
+    "id": "L2-011",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why is ROIC usually a better measure of operating performance than ROE?",
+    "options": [
+      "It is independent of capital structure: it uses operating profit over all operating capital",
+      "It is always higher than ROE",
+      "It includes interest expense",
+      "It is easier to calculate from public accounts"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "ROE can be raised by leverage without any operational improvement.",
+        "ROIC uses NOPAT (before financing) over debt + equity invested in operations.",
+        "So two companies with identical operations but different debt have the same ROIC."
+      ]
+    },
+    "why_it_matters": "Strategy and operations should be judged on ROIC; financing decisions on the gap between ROE and ROIC.",
+    "interactions": [{ "label": "ROE", "dir": "mixed" }, { "label": "WACC spread", "dir": "up" }],
+    "common_trap": "Saying ROIC is always higher than ROE. With leverage, ROE is usually higher."
+  },
+  {
+    "id": "L2-012",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "EBIT 120, total assets 1,000, current liabilities 200. ROCE?",
+    "answer": { "value": 15, "unit": "%", "tolerance": 0.3 },
+    "check": "120 / (1000 - 200) * 100",
+    "explanation": {
+      "reasoning": ["Capital employed = 1,000 − 200 = 800", "ROCE = 120 / 800 = 15%"],
+      "shortcut": "120/800 = 15/100."
+    },
+    "why_it_matters": "ROCE is a quick pre-tax return check common in UK annual reports and ACCA papers.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "Asset turnover", "dir": "up" }],
+    "common_trap": "Dividing by total assets (12%)."
+  },
+  {
+    "id": "L2-013",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "hard",
+    "format": "written",
+    "style": "diagnosis",
+    "prompt": "Company A: ROE 15%, ROIC 15%, no debt. Company B: ROE 15%, ROIC 9%, debt/equity 2.0x. Which is the better business and why?",
+    "answer": {
+      "model_answer": "A is the better business. Both give shareholders 15%, but A earns it from operations alone, while B's operations earn only 9% on all capital. B reaches 15% ROE by leverage: borrowing at an after-tax cost below 9% and magnifying the spread. B carries more risk: interest obligations, refinancing risk, covenants, and a higher cost of equity, so its 15% is worth less. If operations weaken, B's ROE falls much faster. A could add moderate debt and lift its ROE above 15%; B cannot easily improve its ROIC. If WACC is around 9%, B is barely creating value, while A earns a healthy spread.",
+      "rubric": ["Identifies A as better", "B's ROE is leverage-driven", "Risk and cost of equity", "Sensitivity to downturn", "ROIC vs WACC comparison"]
+    },
+    "explanation": {
+      "reasoning": ["Same ROE, different sources.", "ROIC strips out financing.", "Leverage magnifies both returns and risk."]
+    },
+    "why_it_matters": "Equal ROEs can hide very different businesses. Always split ROE before drawing conclusions.",
+    "interactions": [{ "label": "Equity multiplier", "dir": "up" }, { "label": "Cost of equity", "dir": "up" }, { "label": "ROIC − WACC", "dir": "down" }],
+    "common_trap": "Calling them equivalent because ROE is the same."
+  },
+  {
+    "id": "L2-014",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "rhetorical",
+    "prompt": "EBIT margin rose from 10% to 12%, yet ROIC fell. How is that possible?",
+    "options": [
+      "Invested capital grew faster than NOPAT, e.g. an acquisition with goodwill, heavy capex or a working-capital build",
+      "It is impossible: higher margins always raise ROIC",
+      "The tax rate fell",
+      "Interest expense increased"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "ROIC = NOPAT margin × invested-capital turnover.",
+        "A higher margin can be more than offset by lower turnover (revenue / invested capital).",
+        "Typical causes: acquisitions (goodwill), capacity built ahead of demand, or rising working capital.",
+        "A lower tax rate would raise ROIC; interest does not enter ROIC."
+      ]
+    },
+    "why_it_matters": "Margin-only stories can hide capital-hungry growth. Always check the capital side.",
+    "interactions": [{ "label": "IC turnover", "dir": "down" }, { "label": "Goodwill", "dir": "up" }, { "label": "Capex", "dir": "up" }],
+    "common_trap": "Thinking ROIC depends only on margins."
+  },
+  {
+    "id": "L2-015",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "definition",
+    "prompt": "Which profit measure is after depreciation and amortisation but before interest and tax?",
+    "options": ["EBIT", "EBITDA", "Gross profit", "Net income"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["EBITDA is before D&A.", "EBIT deducts D&A.", "Net income is after interest and tax."]
+    },
+    "why_it_matters": "Choosing the right profit line for each ratio (EBIT for ROIC, EBITDA for leverage) avoids mismatched analysis.",
+    "interactions": [{ "label": "Interest cover", "dir": "up" }],
+    "common_trap": "Mixing EBIT and EBITDA in the same comparison."
+  },
+  {
+    "id": "L2-016",
+    "layer": 2,
+    "topic": "profitability",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "EBIT margin 15%, tax 25%, invested-capital turnover 1.6x. ROIC?",
+    "answer": { "value": 18, "unit": "%", "tolerance": 0.3 },
+    "check": "15 * 0.75 * 1.6",
+    "explanation": {
+      "reasoning": ["NOPAT margin = 15% × 0.75 = 11.25%", "ROIC = 11.25% × 1.6 = 18%"],
+      "shortcut": "11.25 × 1.6: 11.25 × 1.5 = 16.9, + 11.25 × 0.1 = 1.1 → 18."
+    },
+    "why_it_matters": "Thinking in margin × turnover tells you which lever (pricing/cost or capital efficiency) to pull.",
+    "interactions": [{ "label": "NOPAT margin", "dir": "up" }, { "label": "IC turnover", "dir": "up" }],
+    "common_trap": "Multiplying the pre-tax margin by turnover (24%)."
+  },
+  {
+    "id": "L2-020",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Days sales outstanding (DSO)",
+    "answer": {
+      "meaning": "Average number of days it takes to collect cash from customers.",
+      "formula": "Trade receivables ÷ Revenue × 365",
+      "interpretation": "Compare with stated payment terms and peers; watch the trend.",
+      "high_signals": "Lax credit control, customer stress, long contractual terms, or aggressive revenue recognition.",
+      "low_signals": "Cash or prepaid sales, tight collections, factoring (check)."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Each extra day of DSO ties up one day of revenue in cash.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }, { "label": "CFO", "dir": "down" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Using COGS instead of revenue (receivables are at selling price)."
+  },
+  {
+    "id": "L2-021",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Cash conversion cycle (CCC)",
+    "answer": {
+      "meaning": "Days between paying suppliers and collecting from customers.",
+      "formula": "DSO + DIO − DPO",
+      "interpretation": "The number of days of operations the company must finance itself.",
+      "high_signals": "Cash-hungry operating cycle (e.g. capital goods, distributors).",
+      "low_signals": "Efficient or customer/supplier-funded cycle; negative for supermarkets, e-commerce marketplaces."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Cutting the CCC is a direct cash release: a favourite lever for CFOs and PE owners.",
+    "interactions": [{ "label": "NWC", "dir": "up" }, { "label": "FCF", "dir": "down" }],
+    "common_trap": "Adding DPO instead of subtracting it."
+  },
+  {
+    "id": "L2-022",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "flashcard",
+    "style": "definition",
+    "prompt": "Days payable outstanding (DPO)",
+    "answer": {
+      "meaning": "Average number of days the company takes to pay its suppliers.",
+      "formula": "Trade payables ÷ COGS × 365 (or ÷ purchases)",
+      "interpretation": "Higher DPO means suppliers fund more of the business, within limits.",
+      "high_signals": "Strong purchasing power, or liquidity stress (paying late); check supplier relations.",
+      "low_signals": "Weak bargaining power, early-payment discounts, or suppliers demanding faster payment."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "A rising DPO can flatter cash flow; a sudden fall can signal suppliers losing confidence.",
+    "interactions": [{ "label": "Payables", "dir": "up" }, { "label": "CCC", "dir": "down" }, { "label": "CFO", "dir": "up" }],
+    "common_trap": "Assuming higher DPO is always good. Stretched suppliers can stop supplying or raise prices."
+  },
+  {
+    "id": "L2-023",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "DSO 45 days, DIO 60 days, DPO 40 days. Cash conversion cycle?",
+    "answer": { "value": 65, "unit": "days", "tolerance": 0 },
+    "check": "45 + 60 - 40",
+    "explanation": {
+      "reasoning": ["CCC = 45 + 60 − 40 = 65 days"],
+      "shortcut": "Customer days + stock days − supplier days."
+    },
+    "why_it_matters": "65 days of operations financed by the company: that is the cash cost of the operating model.",
+    "interactions": [{ "label": "NWC", "dir": "up" }],
+    "common_trap": "Adding DPO."
+  },
+  {
+    "id": "L2-024",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 1,500, total assets 1,000. Asset turnover?",
+    "answer": { "value": 1.5, "unit": "x", "tolerance": 0 },
+    "check": "1500 / 1000",
+    "explanation": {
+      "reasoning": ["1,500 / 1,000 = 1.5x"],
+      "shortcut": "Revenue per unit of assets."
+    },
+    "why_it_matters": "Asset turnover is the efficiency leg of DuPont.",
+    "interactions": [{ "label": "ROA", "dir": "up" }, { "label": "ROE", "dir": "up" }],
+    "common_trap": "Inverting the ratio."
+  },
+  {
+    "id": "L2-025",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 1,825 and receivables 300. DSO in days?",
+    "answer": { "value": 60, "unit": "days", "tolerance": 0.5 },
+    "check": "300 / 1825 * 365",
+    "explanation": {
+      "reasoning": ["Revenue per day = 1,825 / 365 = 5", "DSO = 300 / 5 = 60 days"],
+      "shortcut": "1,825 = 5 × 365, so revenue per day is 5."
+    },
+    "why_it_matters": "If payment terms are 30 days, a 60-day DSO says half the money is late.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }],
+    "common_trap": "Computing 1,825 / 300 and calling it days."
+  },
+  {
+    "id": "L2-026",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "COGS 1,460 and trade payables 200. DPO in days?",
+    "answer": { "value": 50, "unit": "days", "tolerance": 0.5 },
+    "check": "200 / 1460 * 365",
+    "explanation": {
+      "reasoning": ["COGS per day = 1,460 / 365 = 4", "DPO = 200 / 4 = 50 days"],
+      "shortcut": "1,460 = 4 × 365."
+    },
+    "why_it_matters": "Supplier days are a free source of funding. Benchmark against sector norms.",
+    "interactions": [{ "label": "CCC", "dir": "down" }],
+    "common_trap": "Using revenue in the denominator."
+  },
+  {
+    "id": "L2-027",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "Revenue is flat, but DSO rose from 45 to 60 days. Which hypothesis set is most complete?",
+    "options": [
+      "Customer credit stress, weaker collections, longer terms to win sales, or aggressive revenue recognition near period end",
+      "Higher depreciation and a change in tax rate",
+      "Better inventory management",
+      "Higher interest rates on the company's debt"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Receivables grew while revenue did not, so collection slowed.",
+        "Causes: customers paying late, looser credit control, terms extended to protect sales, or revenue booked late in the period.",
+        "To test: ageing of receivables, bad-debt provision, quarter-end revenue spikes, customer concentration."
+      ]
+    },
+    "why_it_matters": "A 15-day DSO rise on 1,000 of revenue ties up about 41 of cash.",
+    "interactions": [{ "label": "CFO", "dir": "down" }, { "label": "Bad-debt risk", "dir": "up" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Accepting 'timing' as the explanation without testing it."
+  },
+  {
+    "id": "L2-028",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "A company has a negative cash conversion cycle. What does it mean?",
+    "options": [
+      "It collects from customers before it pays suppliers, so suppliers and customers fund operations",
+      "It is about to run out of cash",
+      "Its inventory is worth less than zero",
+      "It has more debt than equity"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["CCC = DSO + DIO − DPO < 0 means DPO exceeds DSO + DIO.", "Cash comes in before it goes out.", "Growth releases cash rather than consuming it."]
+    },
+    "why_it_matters": "A negative CCC is a structural advantage (Amazon, supermarkets), but it reverses if sales shrink.",
+    "interactions": [{ "label": "FCF", "dir": "up" }, { "label": "NWC", "dir": "down" }],
+    "common_trap": "Reading negative as bad."
+  },
+  {
+    "id": "L2-029",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "diagnosis",
+    "prompt": "At quarter end, a company sells receivables to a bank without recourse (factoring). What happens to DSO and CFO, and how should an analyst treat it?",
+    "options": [
+      "DSO falls and CFO rises; underlying collection is unchanged, so adjust (add back factored receivables) when comparing periods",
+      "DSO and CFO are unchanged",
+      "DSO rises and CFO falls",
+      "DSO falls and CFO falls, because the bank charges a fee"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": [
+        "Receivables leave the balance sheet, so DSO drops.",
+        "Cash comes in early and is usually shown in operating cash flow.",
+        "Customers pay no faster: the improvement is financing in substance. Add it back to see the true trend."
+      ]
+    },
+    "why_it_matters": "Factoring and supply-chain finance can hide deteriorating working capital and debt-like funding (several collapses featured this).",
+    "interactions": [{ "label": "DSO", "dir": "down" }, { "label": "CFO", "dir": "up" }, { "label": "Hidden leverage", "dir": "up" }],
+    "common_trap": "Celebrating the DSO improvement as better collections."
+  },
+  {
+    "id": "L2-030",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "medium",
+    "format": "written",
+    "style": "logical",
+    "prompt": "A supermarket has asset turnover around 2.5x and a utility around 0.3x. Explain why, and how both can earn a similar ROA.",
+    "answer": {
+      "model_answer": "Asset turnover reflects the business model. A supermarket sells high volumes of low-margin goods through a relatively light asset base (stores often leased, fast-turning inventory), so revenue per unit of assets is high. A utility owns massive long-lived networks and plants relative to annual revenue, so turnover is low. ROA = net margin × asset turnover: the supermarket might earn 2% × 2.5 = 5%, while the utility earns about 15-17% net margin × 0.3 ≈ 5%. The supermarket wins on turnover, the utility on margin (regulated returns on its asset base). Comparing either ratio alone across sectors is meaningless.",
+      "rubric": ["Business model drives turnover", "Asset intensity of utilities", "ROA = margin × turnover", "Numerical illustration", "Only compare within sector"]
+    },
+    "explanation": {
+      "reasoning": ["Split ROA into margin and turnover.", "Each sector optimises a different lever.", "The product can converge."]
+    },
+    "why_it_matters": "The margin vs turnover trade-off is the heart of strategic positioning: volume businesses and premium businesses earn returns differently.",
+    "interactions": [{ "label": "Net margin", "dir": "mixed" }, { "label": "ROA", "dir": "mixed" }],
+    "common_trap": "Saying the utility is inefficient because its turnover is low."
+  },
+  {
+    "id": "L2-031",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "easy",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Fixed asset turnover drops sharply after a large capex programme. What is the most likely explanation?",
+    "options": [
+      "New capacity has been added ahead of the revenue it will generate",
+      "The company sold assets",
+      "Depreciation fell",
+      "Revenue grew faster than PP&E"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["PP&E rose; revenue has not caught up yet.", "Normal during an expansion: turnover should recover as plants fill.", "If it does not recover, the investment case was too optimistic."]
+    },
+    "why_it_matters": "Track turnover after big projects: it tells you whether the capex is paying back.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }, { "label": "ROIC", "dir": "down" }],
+    "common_trap": "Concluding the business is permanently less efficient."
+  },
+  {
+    "id": "L2-032",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "hard",
+    "format": "mental_math",
+    "style": "calculation",
+    "prompt": "Revenue 3,650, COGS 2,555. DSO 40, DIO 50, DPO 60. What is trade working capital?",
+    "answer": { "value": 330, "unit": "", "tolerance": 1 },
+    "check": "3650 / 365 * 40 + 2555 / 365 * 50 - 2555 / 365 * 60",
+    "explanation": {
+      "reasoning": [
+        "Revenue per day 10 → receivables 400.",
+        "COGS per day 7 → inventory 350, payables 420.",
+        "NWC = 400 + 350 − 420 = 330."
+      ],
+      "shortcut": "Per-day figures: 10 and 7. Then 10×40 + 7×50 − 7×60 = 400 + 350 − 420."
+    },
+    "why_it_matters": "Building the working-capital balance from days is the core of any operating model.",
+    "interactions": [{ "label": "Invested capital", "dir": "up" }],
+    "common_trap": "Applying DIO and DPO to revenue instead of COGS."
+  },
+  {
+    "id": "L2-033",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "hard",
+    "format": "mcq",
+    "style": "calculation",
+    "prompt": "Revenue 3,650. The cash conversion cycle improves from 70 to 50 days, entirely through lower DSO. Cash released?",
+    "options": ["200", "120", "20", "73"],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["DSO falls by 20 days.", "Revenue per day = 3,650 / 365 = 10.", "Receivables fall by 20 × 10 = 200: a one-off cash release."]
+    },
+    "why_it_matters": "Translate days into cash immediately; boards respond to money, not days.",
+    "interactions": [{ "label": "Receivables", "dir": "down" }, { "label": "Net debt", "dir": "down" }],
+    "common_trap": "Answering 20 (days, not cash)."
+  },
+  {
+    "id": "L2-034",
+    "layer": 2,
+    "topic": "efficiency",
+    "difficulty": "medium",
+    "format": "mcq",
+    "style": "logical",
+    "prompt": "Why is DIO calculated on COGS while DSO is calculated on revenue?",
+    "options": [
+      "Inventory is carried at cost, while receivables are at selling price",
+      "Convention only; either denominator works",
+      "COGS is more stable than revenue",
+      "Because inventory is a non-current asset"
+    ],
+    "answer": { "index": 0 },
+    "explanation": {
+      "reasoning": ["Match like with like: numerator and denominator at the same price basis.", "Inventory sits at cost → COGS.", "Receivables include the margin → revenue."]
+    },
+    "why_it_matters": "Mismatched denominators distort days, especially for high-margin businesses.",
+    "interactions": [{ "label": "DIO", "dir": "mixed" }],
+    "common_trap": "Calculating DIO on revenue, which understates days of stock."
+  }
+]
