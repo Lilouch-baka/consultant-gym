@@ -1,11 +1,14 @@
 # Consultant Gym
 
-A finance mastery trainer for your iPhone: three-statement mechanics, ratio families, ratio interactions, returns maths and diagnosis. It works offline (except the AI mentor) and stores all progress on your phone.
+A finance trainer for your iPhone with three tracks. It works offline (except the optional Claude calls) and stores all progress on your phone.
 
-- **338 seed questions** across 5 layers and 36 topics, in four formats (multiple choice, flashcard, written, mental math)
-- **Spaced repetition** (simplified SM-2): wrong or slow answers come back sooner
-- **Ratio tree** (DuPont and ROIC) with live what-if sliders on a consistent sample company
-- **Claude grading** (optional, your own API key): grades written answers 0-3 with an error tag, plus a weekly weakness diagnosis. Everything else is graded on the phone.
+- **Finance fundamentals**: 338 questions across 5 layers and 36 topics (three-statement mechanics, ratio families, interactions, returns maths, diagnosis), plus the **ratio tree** with live what-ifs.
+- **Financial accounting**: 470 questions written chapter by chapter alongside Kieso, *Intermediate Accounting* 17e (24 chapters). Includes a **journal-entry builder** that checks your debits and credits, shows the effect on the income statement, balance sheet and cash flow, and draws T-accounts. IFRS is the default; an **IFRS vs US GAAP flip card** appears where the two differ.
+- **Partner analysis**: the 70 partner questions from the playbook, drilled in five steps (classify → translate → predict → answer pyramid → reveal), with a quick mode, a layer map and a company mode (default *Almarai vs SADAFCO FY2025*).
+- **Today's mix** on Home: due cards from all three tracks in one session (about 12 fundamentals, 5 accounting, 1 partner).
+- **Spaced repetition** (simplified SM-2): wrong or slow answers come back sooner.
+- **Built for one thumb**: answer and rating buttons sit at the bottom, long-press any dotted word for a one-line definition with the **French term**, unfinished sessions and half-written answers can be **resumed**, and a **weekly error report** on Progress links straight to a drill. Haptics on answers; **Reduce Motion** follows your iPhone setting (or force it in Settings).
+- **Claude** (optional, your own API key): grades written answers 0-3 with an error tag, critiques partner answers, and writes a weekly weakness diagnosis. Everything else is graded on the phone.
 
 ---
 
@@ -43,16 +46,18 @@ Whenever files change (e.g. you add questions): open GitHub Desktop → write a 
 
 ## 3. Add your Anthropic API key (optional)
 
-The app works fully without a key: you grade written answers yourself. With a key, Claude (`claude-sonnet-5-5`) is used for **two things only**:
+The app works fully without a key: you grade written answers yourself. With a key, Claude (`claude-sonnet-5-5`) is used for **three things only**:
 
 - **Grading written answers**: a score of 0-3, a one-line reason, and an error tag (Concept / Formula / Arithmetic / Units-format / Misread / Guessed). The score sets your spaced-repetition rating (0 Again … 3 Easy).
+- **Partner critique** (reveal screen, full mode only; quick mode never calls Claude): short senior-partner feedback on your pyramid against the playbook answer. One call per attempt, capped at 400 output tokens.
 - **Weekly weakness diagnosis** (Mentor tab): only a summary is sent (counts by topic and error tag for the last 7 days), never your answers.
 
 Multiple choice, flashcards and numeric answers are always graded on the phone, with no API call. Each call sends only the question, your answer, the expected answer (plus Northwind figures when the question is about the sample company). Thinking is switched off and the reply is capped at about 150 words: a grade costs roughly $0.001.
 
 1. Go to <https://console.anthropic.com> → sign in → **API Keys** → **Create Key**. Copy it (starts with `sk-ant-`).
 2. Recommended: in the console under **Billing / Limits**, set a **monthly spend limit** (e.g. $5).
-3. In the app: **Today → gear icon (Settings) → API key** → paste → **Save key** → **Test connection**.
+3. In the app: **Library → Settings** (bottom of the page) **→ API key** → paste → **Save key** → **Test connection**.
+   Leave **Workspace ID** empty unless Anthropic's error message asks for one; then paste the ID from the console (it looks like `wrkspc_…`). Test connection shows Anthropic's own message if anything is wrong (billing, permissions, workspace).
 4. **Settings → API usage and cost** shows tokens and estimated cost for this session and in total ($2 per million input tokens, $10 per million output tokens).
 
 **Where the key lives.** A web app cannot use the iPhone Keychain, so the app does the closest thing a browser allows. The key is encrypted (AES-GCM) with a device key that the browser generates and marks non-exportable, so no script can read that device key out. Only the ciphertext is stored. The key is never in the source code, never logged, never in the progress export, and only ever sent to `api.anthropic.com`. Someone using the app on your unlocked phone could still make calls with it, which is why the spend limit matters. **Remove key** deletes it.
@@ -130,11 +135,46 @@ with `"explanation": { "reasoning": [] }`.
 - **Layer 4**: capital_decisions, npv, irr, moic, payback, wacc, leverage_returns, lbo_bridge
 - **Layer 5**: ratio_patterns, cash_vs_profit, statement_extracts, value_impact
 
+### Financial accounting questions
+
+One file per chapter: `src/data/accounting/ch01.json` … `ch24.json`. Ids look like `A:18-007` (chapter-number). Same fields as above, but with `chapter` (1-24) and `section_tag` (a short label shown on the card) instead of `layer`/`topic`. Two extra fields:
+
+- `book_ref` (**required**): where the topic sits in the book, as a reference only: `{ "book": "IA17", "chapter": 18, "section": "Principal-Agent Relationships", "page": "18-24" }`. **Never paste text from the book.** Write every question in your own words.
+- `ifrs_gaap` (optional): `{ "ifrs": "…", "us_gaap": "…" }` adds the IFRS vs US GAAP flip card.
+
+`why_it_matters` is shown as **Analyst lens**. A **journal entry** question uses `"format": "journal_entry"` and this answer:
+```json
+"answer": {
+  "lines": [{ "account": "Cash", "debit": 300 }, { "account": "Unearned revenue", "credit": 300 }],
+  "effects": {
+    "IS": [],
+    "BS": [["Cash", 300, "A"], ["Unearned revenue", 300, "L"]],
+    "CFS": [["Operating: cash from customers", 300]],
+    "note": "optional one-liner"
+  }
+}
+```
+Account names must come from the chart of accounts in `src/accounting/chartOfAccounts.js` (add new accounts there; US GAAP names go in `aliases`, so typing "Accounts receivable" finds "Trade receivables"). In `effects.BS` each row is `[label, amount, "A" | "L" | "E"]`, negative for a decrease. `npm run check` (and the build) refuses entries that don't balance, unknown accounts, or balance-sheet effects where A ≠ L + E.
+
+### Partner questions
+
+`src/data/playbook.json` is the playbook, used **unchanged** (don't reformat it). Partner items are generated from it at load time (`src/data/tracks.js`), so to change a partner question, edit the playbook itself.
+
+### Company mode
+
+**Settings → Company mode** sets the company or pair that partner questions and the partner critique refer to (default *Almarai vs SADAFCO FY2025*). The mini model behind the ratio tree is separate: **Settings → Sample company**.
+
+### Glossary
+
+Long-press definitions live in `src/data/glossary.js`: `term`, a one-line `def`, the French `fr`, and optional `match` spellings. Terms are marked automatically in question text.
+
 ---
 
 ## How the study engine works
 
-- **Daily review**: every question that is due, plus up to 10 new ones (foundations first), capped at 25.
+- **Today's mix** (Home): due and new items from all three tracks, about 12 fundamentals + 5 accounting + 1 partner question.
+- **Daily review** (Library → Fundamentals): every fundamentals question that is due, plus up to 10 new ones (foundations first), capped at 25.
+- **Resume**: the current session is saved after every answer. Leave at any time and Home shows **Resume** for a week. Written answers and partner drafts are saved as you type.
 - **Ratings**: Again / Hard / Good / Easy. A wrong answer can only be rated Again and comes back in the same session. A correct mental-math answer that used more than 75% of the timer is capped at Hard. Written answers are scored 0-3 (by Claude or by you), and the score is the rating: 0 Again, 1 Hard, 2 Good, 3 Easy.
 - **Mastery %** per topic and layer combines spacing (interval up to 21 days) and recent accuracy.
 - **Ratio tree**: every value comes from one set of statements (edit it in **Settings → Sample company**). What-ifs hold revenue and equity constant; any extra capital need is funded with debt, and interest is recalculated, so a single change ripples through margin, turnover and leverage.
@@ -146,7 +186,7 @@ with `"explanation": { "reasoning": [] }`.
 ```bash
 npm install
 npm run dev      # local dev server
-npm run check    # validate the question bank (schema + recomputed answers)
+npm run check    # validate all question banks (schema, recomputed answers, balanced journal entries, playbook)
 npm run build    # check + production build into dist/
 npm run icons    # regenerate the PWA icons
 ```
@@ -155,11 +195,15 @@ Stack: React 18 + Vite, `vite-plugin-pwa` (offline service worker), IndexedDB vi
 
 ```
 src/
+  accounting/  chart of accounts, journal checking, journal-entry builder, chapter list
   ai/          Messages API client, mentor prompts and JSON schemas
-  components/  UI building blocks (explanation card, rating bar, ring timer, …)
-  data/        curriculum (layers/topics) and questions/*.json
+  components/  UI building blocks (explanation card, rating bar, glossary, haptics, …)
+  data/        curriculum, questions/*.json, accounting/chNN.json, playbook.json, glossary, tracks
   engine/      spaced repetition, session builder, answer checking, stats
   finance/     sample company model and ratio-tree definitions
-  screens/     Today, Layers, Session, Mentor, Challenge, Progress, RatioTree, Settings
-  storage/     IndexedDB and export/import
+  partner/     partner drill, scoring and error patterns, critique, worked examples
+  screens/     Home, Library, Session, Mentor, Progress, RatioTree, Settings
+  storage/     IndexedDB (versioned; upgrades only add stores), encrypted key, export/import
 ```
+
+Each track's questions are separate lazily loaded chunks; the whole bank is about 0.9 MB. IndexedDB is at version 2: the upgrade added `drafts` and `partner_attempts` and never touches existing progress. Exports are version 3 and include partner attempts.
