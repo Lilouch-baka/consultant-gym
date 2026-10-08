@@ -1,0 +1,2 @@
+# Keep the playbook byte-for-byte identical to the original.
+src/data/playbook.json -text

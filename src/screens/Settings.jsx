@@ -46,6 +46,7 @@ export default function Settings() {
 
       <ApiKeySection />
       <UsageSection />
+      <CompanyModeSection />
 
       <section className="card" aria-labelledby="look-h">
         <SectionLabel>
@@ -372,6 +373,32 @@ function UsageSection() {
       {row('All time on this device', usage.total)}
       <div className="caption" style={{ fontSize: 12 }}>
         Estimate at ${PRICE.input}/M input and ${PRICE.output}/M output tokens. A session starts when you open the app.
+      </div>
+    </section>
+  );
+}
+
+function CompanyModeSection() {
+  const { settings, updateSettings } = useApp();
+  const [v, setV] = useState(settings.companyMode || '');
+  return (
+    <section className="card" aria-labelledby="cm-h">
+      <SectionLabel>
+        <span id="cm-h">Partner analysis</span>
+      </SectionLabel>
+      <div className="field">
+        <label htmlFor="company-mode">Company being analysed</label>
+        <input
+          id="company-mode"
+          className="input"
+          value={v}
+          placeholder="Almarai vs SADAFCO · FY2025"
+          onChange={(e) => setV(e.target.value)}
+          onBlur={() => updateSettings({ companyMode: v.trim() || 'Almarai vs SADAFCO · FY2025' })}
+        />
+        <div className="caption" style={{ fontSize: 12, lineHeight: 1.5 }}>
+          Shown on every partner question. Name two companies with “vs” so the checks can spot answers that cover only one.
+        </div>
       </div>
     </section>
   );
