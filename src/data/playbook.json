@@ -1,0 +1,1681 @@
+{
+  "source": "Partner Analysis Playbook (Leila), worked examples FY2025 Almarai vs SADAFCO",
+  "layers": [
+    {
+      "id": "BM",
+      "name": "Business model",
+      "governing_question": "How does this company make money, and what protects it?"
+    },
+    {
+      "id": "OP",
+      "name": "Operating",
+      "governing_question": "How well does it make and sell, and where does profit come from?"
+    },
+    {
+      "id": "INV",
+      "name": "Investment",
+      "governing_question": "How much capital does it need, and what does that capital earn?"
+    },
+    {
+      "id": "FIN",
+      "name": "Financing",
+      "governing_question": "Who paid for the capital, at what cost and with what risk?"
+    }
+  ],
+  "value_equation": {
+    "ROC": "after-tax margin (Operating) x capital turnover (Investment)",
+    "value_created": "(ROC - WACC (Financing)) x invested capital; growth multiplies the spread, positive or negative",
+    "golden_rule": "investment decisions create value; financing decisions mostly move ROE and risk - never mix them"
+  },
+  "method": [
+    "Translate: turn the question into a ratio - name the numerator and the denominator.",
+    "Classify: name the lens (business model, operating, investment or financing). Pick the denominator that matches.",
+    "Predict: write your prediction from the business model BEFORE opening the numbers.",
+    "Calculate: get the numbers for each company separately. To explain a gap, switch to a form that adds up.",
+    "Explain & size: link each part of the gap to a real asset or activity, say how much it explains, and whether it is permanent or temporary.",
+    "Conclude: say what it means for ROC, growth, risk and value. End with a decision."
+  ],
+  "pyramid": [
+    "Answer: one sentence, with a number.",
+    "Reasons: two or three causes, each sized.",
+    "Evidence: the ratios and notes that prove each reason.",
+    "So what: permanent or temporary? Effect on ROC, growth, risk and value.",
+    "Decision: what the client should do."
+  ],
+  "error_patterns": {
+    "Wrong lens": "Explaining turnover with debt, or operating leverage with CWIP.",
+    "No prediction": "Calculating before thinking.",
+    "Two firms, one answer": "Answer each company, then compare.",
+    "No so what": "A number without its consequence for value.",
+    "Unsized reason": "Because of X without how much of the gap X explains.",
+    "Circular answer": "Explaining a ratio with itself, or with its own result."
+  },
+  "questions": [
+    {
+      "id": "BM-01",
+      "layer": "Business model",
+      "question": "Where does the company start and end in the value chain? What does it buy, make, own and outsource?",
+      "why": "The starting point decides capital intensity, cost structure and risk. Every later answer depends on it.",
+      "where_to_look": "Business description (annual report); cost-of-sales note (materials vs other costs); fixed-asset note (land, herds, plants, fleet); segment note.",
+      "key_ratio": [
+        "Materials ÷ revenue",
+        "Total assets ÷ revenue",
+        "Net PPE ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Integrated upstream: owns raw-material sources → low materials ratio, heavy assets.",
+        "H2 Converter / brand owner: buys processed inputs → high materials ratio, light assets.",
+        "H3 Outsourced maker or distributor: very high materials ratio, very low PPE."
+      ],
+      "careful": [
+        "\"Both are food companies\" is not an answer.",
+        "Leased assets hide what is really used: check right-of-use assets.",
+        "A low materials ratio is not efficiency: the cost may have moved to depreciation and staff."
+      ],
+      "related": "Depreciation ÷ revenue; staff costs ÷ revenue; gross margin; capital turnover.",
+      "answer_structure": "\"[Company] starts at [stage] and ends at [stage]. It owns [assets] and buys [inputs]. Evidence: materials x% of revenue, assets y× revenue vs peer z×. Consequence: [capital intensity, cost type, main risk].\"",
+      "worked_example": "Almarai owns feed, herds, poultry farms, plants and fleet: materials 42%, total assets 1.8× revenue.\nSADAFCO buys milk powder, manufactures and distributes: materials 55%, total assets 0.9× revenue.",
+      "theme": "Value chain"
+    },
+    {
+      "id": "BM-02",
+      "layer": "Business model",
+      "question": "What does it sell, and which segment drives revenue, profit and capital?",
+      "why": "The biggest revenue segment is often not the biggest profit segment. Mix moves the group margin.",
+      "where_to_look": "Segment note: revenue, profit and assets by segment.",
+      "key_ratio": [
+        "Segment share of revenue, profit and assets",
+        "Segment margin",
+        "Segment profit ÷ segment assets"
+      ],
+      "hypotheses": [
+        "H1 One dominant segment drives everything.",
+        "H2 Revenue leader ≠ profit leader: a hidden gem or a capital sink.",
+        "H3 Mix is shifting toward the lower-margin segment."
+      ],
+      "careful": [
+        "Segment profit definitions differ (before or after allocated costs).",
+        "A change in allocation method breaks the trend.",
+        "A revenue share alone says nothing."
+      ],
+      "related": "Mix effect vs rate effect on the group margin; segment asset growth.",
+      "answer_structure": "\"[Segment] = x% of revenue, y% of profit, z% of assets. Mix is moving from [A] to [B], worth ±n pts of group margin. The segment to watch is [C] because [reason].\"",
+      "worked_example": "Almarai Bakery: 13% revenue, 18% profit, 5% assets (hidden gem). Poultry: 18% revenue, 28% assets, 4.4% return (capital sink).\nSADAFCO Drinks 54% of revenue (61% in FY20), margin 15.8% vs 8.1% for non-drinks.",
+      "theme": "Products & segments"
+    },
+    {
+      "id": "BM-03",
+      "layer": "Business model",
+      "question": "Who buys, through which channel, and who holds the bargaining power?",
+      "why": "Powerful buyers take margin through rebates and promotions, even when prices look stable.",
+      "where_to_look": "Revenue note (gross-to-net, rebates); receivables note (concentration); expense notes (trade promotion, A&P); MD&A.",
+      "key_ratio": [
+        "Rebates or trade promotions ÷ revenue",
+        "Receivable days (DSO)",
+        "Top-customer share, if disclosed"
+      ],
+      "hypotheses": [
+        "H1 Modern retail is powerful → rebates rising.",
+        "H2 Fragmented traditional trade → own fleet, higher distribution cost.",
+        "H3 Institutional contracts → stable volumes, thin margins."
+      ],
+      "careful": [
+        "Revenue is usually reported net of rebates: the gross-to-net trend is hidden unless disclosed.",
+        "Stable DSO can hide rising rebates."
+      ],
+      "related": "Selling & distribution ÷ revenue; A&P ÷ revenue; DSO trend.",
+      "answer_structure": "\"Main channel: [channel]. Bargaining power sits with [party]: rebates rose from x% to y% of revenue. Effect: −n pts of margin, and [implication].\"",
+      "worked_example": "Almarai rebates 1.9% → 2.9% of revenue. SADAFCO trade promotions 1.7% → 3.5%. Retailers are taking more from both.",
+      "theme": "Customers & channels"
+    },
+    {
+      "id": "BM-04",
+      "layer": "Business model",
+      "question": "Where does it earn, and what risks come with each country?",
+      "why": "Each country brings its own growth, inflation, currency and cost of capital.",
+      "where_to_look": "Geographic note; FX and risk notes; country inflation data.",
+      "key_ratio": [
+        "Revenue share and growth by country",
+        "Real growth = (1 + nominal) ÷ (1 + local inflation) − 1"
+      ],
+      "hypotheses": [
+        "H1 Home-market concentration: single-country risk.",
+        "H2 Diversification that adds currency risk.",
+        "H3 Growth coming from a non-core market."
+      ],
+      "careful": [
+        "Nominal growth in high-inflation countries is not volume.",
+        "FX translation can create or hide growth."
+      ],
+      "related": "Country risk premium and revenue-weighted ERP; FX losses; margin by country.",
+      "answer_structure": "\"x% of revenue comes from [country]. Growth was driven by [country] (+SAR n m). Main risk: [FX / country]. Effect on cost of capital: [ERP choice].\"",
+      "worked_example": "Almarai: 66% Saudi, 13% Egypt and Jordan (Egypt devalued 39% in 2024).\nSADAFCO: 77% Saudi; Poland (+SAR 106m) brought all of FY25 growth.",
+      "theme": "Geography"
+    },
+    {
+      "id": "BM-05",
+      "layer": "Business model",
+      "question": "How is revenue earned: repeat daily purchases, contracts or one-off sales? Is it seasonal?",
+      "why": "Repeat, everyday demand makes revenue stable and lowers risk. Seasonality moves working capital.",
+      "where_to_look": "Business description; quarterly reports; revenue recognition note.",
+      "key_ratio": [
+        "Quarterly revenue pattern",
+        "Share of revenue from repeat or contracted sales"
+      ],
+      "hypotheses": [
+        "H1 Daily repeat consumption: defensive revenue.",
+        "H2 Seasonal peaks (summer, Ramadan) drive stock and cash swings.",
+        "H3 Contract or tender based: lumpy revenue."
+      ],
+      "careful": [
+        "Annual numbers hide seasonality: year-end working capital may not be typical."
+      ],
+      "related": "Inventory days at year-end vs average; quarterly margins.",
+      "answer_structure": "\"Revenue is [repeat / seasonal / contract]: [evidence]. Consequence for risk and working capital: [effect].\"",
+      "worked_example": "Both sell daily perishables and staples: defensive demand. Ice cream (SADAFCO) peaks in summer.",
+      "theme": "Revenue model"
+    },
+    {
+      "id": "BM-06",
+      "layer": "Business model",
+      "question": "What are the industry's economics: growth, margins and returns? Where is the profit pool?",
+      "why": "A company's numbers mean nothing without the industry benchmark.",
+      "where_to_look": "Industry data (Damodaran by sector); peer annual reports.",
+      "key_ratio": [
+        "Industry ROC, margin and growth",
+        "Company minus industry"
+      ],
+      "hypotheses": [
+        "H1 Above the industry: an advantage to explain.",
+        "H2 In line: a commodity player.",
+        "H3 Below: structural disadvantage or an investment phase."
+      ],
+      "careful": [
+        "Wrong peer set (global vs local, different business models).",
+        "One year vs the industry average is not enough."
+      ],
+      "related": "Peer ROC, peer margins, peer turnover.",
+      "answer_structure": "\"The industry earns x% on capital; [company] earns y%. The gap of n pts comes from [margin / turnover], because [business reason].\"",
+      "worked_example": "Global food processing after-tax ROC ≈ 12% (Damodaran, Jan-2026). Almarai 9.1% (below); SADAFCO 33.9% (far above).",
+      "theme": "Industry economics"
+    },
+    {
+      "id": "BM-07",
+      "layer": "Business model",
+      "question": "What is its market share, and is it rising or falling?",
+      "why": "Share trends show whether growth comes from winning customers or from the market.",
+      "where_to_look": "Annual report (Nielsen data); MD&A; real growth vs category growth.",
+      "key_ratio": [
+        "Market share",
+        "Company growth − category growth"
+      ],
+      "hypotheses": [
+        "H1 Leader gaining share.",
+        "H2 Leader losing share to challengers or imports.",
+        "H3 The whole category is shrinking."
+      ],
+      "careful": [
+        "Share bases change between reports.",
+        "Value share rises with price increases even when volume share falls."
+      ],
+      "related": "Real growth; A&P spend; trade promotions.",
+      "answer_structure": "\"#n in [category] with x% share (from y%). Growth vs category: ±n pts. Reading: [share gain / loss / category change].\"",
+      "worked_example": "SADAFCO is #1 in UHT milk, tomato paste and ice cream, yet Saudi real volume fell ~1.6% in FY25: share loss or category decline? Ask management.",
+      "theme": "Market position"
+    },
+    {
+      "id": "BM-08",
+      "layer": "Business model",
+      "question": "What protects its returns, and can you prove it with numbers?",
+      "why": "Only a lasting advantage keeps ROC above WACC. It is the biggest driver of terminal value.",
+      "where_to_look": "ROC and WACC history (5–10 years); margin stability; peers.",
+      "key_ratio": [
+        "Spread = ROC − WACC, each year",
+        "Volatility of the spread"
+      ],
+      "hypotheses": [
+        "H1 Brand: shows as pricing power and high gross margin.",
+        "H2 Scale or network: shows as lower costs or a hard-to-copy distribution system.",
+        "H3 No moat: returns follow the cycle."
+      ],
+      "careful": [
+        "One good year is not a moat: show persistence and name the source.",
+        "A high ROC can come from old, fully depreciated assets."
+      ],
+      "related": "Pass-through; market share; gross margin stability; erosion signals (rebates, A&P cuts).",
+      "answer_structure": "\"Spread +x pts, positive in n of m years. Source: [named source], shown by [evidence]. Erosion signals: [list]. Verdict: wide / narrow / no moat.\"",
+      "worked_example": "SADAFCO: average spread +27 pts, brand + freezer network. Almarai: +1.2 pts, cold-chain scale. Both: narrow moat.",
+      "theme": "Competitive advantage"
+    },
+    {
+      "id": "BM-09",
+      "layer": "Business model",
+      "question": "Can it pass input-cost increases to customers, and how fast?",
+      "why": "Pricing power decides how much margin survives a commodity shock.",
+      "where_to_look": "Materials ÷ revenue over a commodity cycle; commodity indices; hedging note.",
+      "key_ratio": [
+        "Pass-through = own price increase ÷ cost inflation"
+      ],
+      "hypotheses": [
+        "H1 Full and fast pass-through.",
+        "H2 Partial and lagged.",
+        "H3 'Rockets and feathers': prices kept high when costs fall."
+      ],
+      "careful": [
+        "Inventory and hedges delay cost effects: one year misleads.",
+        "A price rise can cost volume."
+      ],
+      "related": "Gross margin trough to peak; inventory days; volume trend in the same years.",
+      "answer_structure": "\"In [shock year] costs rose c% and prices p%: pass-through n%. Margin recovered by [year]. Lag comes from x days of inventory.\"",
+      "worked_example": "Almarai passed on ~50% in 2022; cumulative ~42% by 2025.",
+      "theme": "Pricing power"
+    },
+    {
+      "id": "BM-10",
+      "layer": "Business model",
+      "question": "Which inputs drive costs, and who sets their price?",
+      "why": "If the main input is a world commodity, margins follow a market the company does not control.",
+      "where_to_look": "Cost-of-sales note; commodity-risk note; hedging note.",
+      "key_ratio": [
+        "Main input ÷ revenue",
+        "Hedged share of the input bill",
+        "Sensitivity: +10% input = −n pts of margin"
+      ],
+      "hypotheses": [
+        "H1 World commodity (powder, grains).",
+        "H2 Local regulated price or subsidy.",
+        "H3 Own production: the cost is internal."
+      ],
+      "careful": [
+        "Subsidies can end.",
+        "Hedges often cover a small share."
+      ],
+      "related": "Inventory days; pass-through.",
+      "answer_structure": "\"x% of revenue goes on [input], priced by [market]. Hedges cover y%. A 10% rise costs n pts of margin.\"",
+      "worked_example": "Almarai hedges only ~3–9% of materials. SADAFCO's materials rose 4.6 pts of revenue in FY25.",
+      "theme": "Input exposure"
+    },
+    {
+      "id": "BM-11",
+      "layer": "Business model",
+      "question": "How much capacity does it have, and how full is it?",
+      "why": "Spare capacity means profit can grow without capex. Full capacity means capex is coming.",
+      "where_to_look": "Capacity data in the annual report; CWIP; capex plan.",
+      "key_ratio": [
+        "Utilisation = output ÷ capacity",
+        "CWIP ÷ PPE"
+      ],
+      "hypotheses": [
+        "H1 Running full → capex needed.",
+        "H2 Spare capacity → operating-leverage upside.",
+        "H3 Building ahead of demand → turnover falls first."
+      ],
+      "careful": [
+        "Capacity in tonnes vs revenue in riyals.",
+        "New plants take years to ramp up."
+      ],
+      "related": "Capex ÷ depreciation; DOL.",
+      "answer_structure": "\"Capacity [x], utilisation ~y%. New capacity of [z] due [year]. Effect: [turnover / margin].\"",
+      "worked_example": "SADAFCO dairy capacity 540,000 tonnes. Almarai: SAR 18bn plan, SAR 5.8bn of CWIP.",
+      "theme": "Scale & capacity"
+    },
+    {
+      "id": "BM-12",
+      "layer": "Business model",
+      "question": "Which activities should it own rather than buy, and does integration pay?",
+      "why": "Owning more stages adds capital. It creates value only if it adds margin, security or share.",
+      "where_to_look": "Segment note; peers with different models; capital per SAR 100 of sales.",
+      "key_ratio": [
+        "Capital per SAR 100 of sales vs peer",
+        "ROC integrated vs non-integrated peer"
+      ],
+      "hypotheses": [
+        "H1 Integration buys quality and supply security worth the capital.",
+        "H2 Integration only moves profit from the P&L to the balance sheet.",
+        "H3 Integration destroys value: returns below WACC."
+      ],
+      "careful": [
+        "Same margin with more capital means lower ROC.",
+        "The strategic benefit must appear in price, share or stability."
+      ],
+      "related": "Margin, turnover and ROC vs peer.",
+      "answer_structure": "\"Integration ties up x of capital per SAR 100 of sales vs y for the peer, for the same margin. It pays only if [benefit], shown by [evidence].\"",
+      "worked_example": "Almarai needs 150 of capital per SAR 100 of sales vs 39 for SADAFCO, for the same ~12.7% after-tax margin.",
+      "theme": "Integration strategy"
+    },
+    {
+      "id": "BM-13",
+      "layer": "Business model",
+      "question": "What does government policy give or take?",
+      "why": "Grants and protection can inflate margins. Their removal is a hidden risk.",
+      "where_to_look": "Government grants note; zakat note; regulatory disclosures.",
+      "key_ratio": [
+        "Grants ÷ EBIT"
+      ],
+      "hypotheses": [
+        "H1 Subsidies inflate the margin.",
+        "H2 Regulation protects (import rules, licences).",
+        "H3 Policy risk: price caps or subsidy removal."
+      ],
+      "careful": [
+        "Grants are often netted inside cost of sales.",
+        "Zakat is not income tax: the tax shield on debt is small."
+      ],
+      "related": "Normalised margin without grants.",
+      "answer_structure": "\"Policy contributes x% of EBIT. It is at risk if [change]. Margin without it: y%.\"",
+      "worked_example": "Almarai's materials are shown gross of grants; fading subsidies are a moat-erosion signal.",
+      "theme": "Regulation & subsidies"
+    },
+    {
+      "id": "BM-14",
+      "layer": "Business model",
+      "question": "What has management done with past capital and cash?",
+      "why": "Past allocation is the best guide to how new capital will be used.",
+      "where_to_look": "Five-year cash flow statement; acquisitions note; dividend history.",
+      "key_ratio": [
+        "Incremental ROC",
+        "Payout ratio",
+        "Return on acquisitions"
+      ],
+      "hypotheses": [
+        "H1 Disciplined reinvestor.",
+        "H2 Over-distributor: pays out more than it earns.",
+        "H3 Empire builder: invests at low returns."
+      ],
+      "careful": [
+        "Judge by returns, not by size.",
+        "One acquisition can define a decade."
+      ],
+      "related": "Reinvestment rate; payout ÷ free cash flow.",
+      "answer_structure": "\"Over five years management spent SAR x on [projects], y on dividends. New capital earned z%. Verdict: [type].\"",
+      "worked_example": "SADAFCO paid out 114% of profit in FY25. Almarai reinvested 144% of NOPAT in 2025; poultry earned 7.6% on new capital.",
+      "theme": "Management record"
+    },
+    {
+      "id": "BM-15",
+      "layer": "Business model",
+      "question": "What three things could break the business model?",
+      "why": "A partner ranks risks by impact and probability, and puts a number on each.",
+      "where_to_look": "Risk notes; sensitivity analysis; MD&A.",
+      "key_ratio": [
+        "Impact in SAR m or pts of margin for each risk"
+      ],
+      "hypotheses": [
+        "H1 Commodity input shock.",
+        "H2 Customer or channel power.",
+        "H3 Country, FX or regulatory change."
+      ],
+      "careful": [
+        "A list of risks is not an analysis: rank and quantify."
+      ],
+      "related": "Sensitivities from the operating and financing sheets.",
+      "answer_structure": "\"Top three risks: (1) [risk]: trigger, impact −n, mitigation. (2) … (3) …\"",
+      "worked_example": "SADAFCO: powder prices, Saudi volume decline, payout above free cash. Almarai: feed shock, plant ramp-up, debt during the capex peak.",
+      "theme": "Key risks"
+    },
+    {
+      "id": "BM-16",
+      "layer": "Business model",
+      "question": "Can you explain how it makes money in one sentence, with its key number?",
+      "why": "If you cannot say it in one sentence, you do not understand it yet.",
+      "where_to_look": "Everything above.",
+      "key_ratio": [
+        "ROC = margin × turnover"
+      ],
+      "hypotheses": [
+        "H1 Margin-led model.",
+        "H2 Turnover-led model.",
+        "H3 Both."
+      ],
+      "careful": [
+        "Do not list activities: state the mechanism and the number."
+      ],
+      "related": "ROC, spread over WACC.",
+      "answer_structure": "\"[Company] makes money by [mechanism], using [assets], and earns x% on capital because [reason].\"",
+      "worked_example": "\"SADAFCO turns imported powder into Saudia-branded milk and ice cream, and earns 34% on capital because it owns brands and distribution, not farms.\"",
+      "theme": "The one-sentence model"
+    },
+    {
+      "id": "OP-01",
+      "layer": "Operating",
+      "question": "How fast is revenue growing, compounded, and how does that compare with its history?",
+      "why": "Growth is the first value driver, but only after you know where it comes from.",
+      "where_to_look": "Income statement (5–10 years); restated comparatives.",
+      "key_ratio": [
+        "CAGR = (end ÷ start)^(1 ÷ years) − 1",
+        "Year-on-year growth"
+      ],
+      "hypotheses": [
+        "H1 Steady growth.",
+        "H2 One spike year inflates the average.",
+        "H3 Slowing growth."
+      ],
+      "careful": [
+        "Check that windows match (year-end changes, 9-month periods).",
+        "Use CAGR, not the simple average.",
+        "Use restated figures (discontinued operations)."
+      ],
+      "related": "Volume vs price (OP-02); growth by segment (OP-03).",
+      "answer_structure": "\"Revenue compounded x% a year over [period] (latest y%). Read: [steady / spike / slowing], because [driver].\"",
+      "worked_example": "Almarai 7.5% (2020–25); SADAFCO 6.8% (Mar-20 to Dec-25). Both inflated by one inflation year.",
+      "theme": "Growth"
+    },
+    {
+      "id": "OP-02",
+      "layer": "Operating",
+      "question": "How much of growth is price, volume, mix, acquisitions and FX?",
+      "why": "Only volume growth lasts when prices fall.",
+      "where_to_look": "Segment note; MD&A; inflation data; acquisitions note.",
+      "key_ratio": [
+        "(1 + g) = (1 + price) × (1 + volume & mix)",
+        "Own price ≈ (1 + cost inflation) × last year's materials ratio ÷ this year's − 1"
+      ],
+      "hypotheses": [
+        "H1 Volume-led: lasting.",
+        "H2 Price-led: fades with commodities.",
+        "H3 Acquisition-led: bought, not organic."
+      ],
+      "careful": [
+        "\"COGS grew less than revenue, so it was price\" fails when input costs move.",
+        "Acquisitions inflate organic growth."
+      ],
+      "related": "Materials ÷ revenue; CPI; acquisitions.",
+      "answer_structure": "\"Growth g% = price p% × volume/mix v% (+ acquisitions a%). The lasting part is [v%].\"",
+      "worked_example": "Almarai 2022: +18% = 7.6% price × 9.8% volume, mix and acquisitions. SADAFCO FY23 +22%: mostly price.",
+      "theme": "Growth"
+    },
+    {
+      "id": "OP-03",
+      "layer": "Operating",
+      "question": "Which segments and countries contributed to growth, in points?",
+      "why": "Group growth can hide a shrinking core.",
+      "where_to_look": "Segment and geographic notes.",
+      "key_ratio": [
+        "Contribution = segment growth × last year's share",
+        "Change in SAR m by segment"
+      ],
+      "hypotheses": [
+        "H1 Broad-based growth.",
+        "H2 One segment or country carries the group.",
+        "H3 Core is shrinking under the average."
+      ],
+      "careful": [
+        "Small bases grow fast: look at SAR m, not only %."
+      ],
+      "related": "Margins of the growing segments.",
+      "answer_structure": "\"Of g% growth, [segment] gave x pts, [segment] y pts. The core [grew / shrank] by z%.\"",
+      "worked_example": "SADAFCO FY25: Poland +SAR 106m, Saudi −11m, other GCC −58m.",
+      "theme": "Growth"
+    },
+    {
+      "id": "OP-04",
+      "layer": "Operating",
+      "question": "What is the gross margin: level, trend, and the year it broke?",
+      "why": "Gross margin shows the value added on the product before overheads.",
+      "where_to_look": "Income statement; cost-of-sales note.",
+      "key_ratio": [
+        "Gross margin = (revenue − cost of sales) ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Input costs moved.",
+        "H2 Prices changed (pass-through or promotions).",
+        "H3 Mix changed."
+      ],
+      "careful": [
+        "Gross margins are not comparable when one company records depreciation or farm costs in cost of sales and another does not."
+      ],
+      "related": "Materials ÷ revenue; pass-through; mix effect.",
+      "answer_structure": "\"Gross margin x% (peer y%), trend [direction] over five years. Break in [year]: −n pts, caused by [line].\"",
+      "worked_example": "Almarai 31.2%; SADAFCO 31.1%. SADAFCO fell 4.6 pts in FY25 (35.7% → 31.1%) on materials.",
+      "theme": "Margins"
+    },
+    {
+      "id": "OP-05",
+      "layer": "Operating",
+      "question": "Which costs are variable and which are fixed?",
+      "why": "The split decides operating leverage and how profit reacts to volume.",
+      "where_to_look": "Cost-of-sales and expense notes by nature (materials, staff, depreciation, distribution).",
+      "key_ratio": [
+        "Each cost line ÷ revenue (common-size P&L)"
+      ],
+      "hypotheses": [
+        "H1 Mostly variable: profit stable with volume, exposed to input prices.",
+        "H2 Mostly fixed: profit swings with volume.",
+        "H3 Mixed."
+      ],
+      "careful": [
+        "Staff and distribution are semi-variable.",
+        "Depreciation is fixed; materials are variable."
+      ],
+      "related": "DOL (OP-11); capital intensity (INV-04).",
+      "answer_structure": "\"Variable costs ≈ x% of revenue (mainly [line]); fixed ≈ y% (mainly [line]). Profit is most sensitive to [volume / input prices].\"",
+      "worked_example": "Almarai: depreciation ≈ 11.7% of revenue (fixed-heavy). SADAFCO: materials ≈ 55% (variable-heavy).",
+      "theme": "Cost structure"
+    },
+    {
+      "id": "OP-06",
+      "layer": "Operating",
+      "question": "How much of each riyal goes to materials, and why?",
+      "why": "Shows where the company starts in the value chain and its commodity exposure.",
+      "where_to_look": "Cost-of-sales note (materials consumed).",
+      "key_ratio": [
+        "Materials ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Integrated: low ratio, cost moved to depreciation and staff.",
+        "H2 Converter: high ratio, input includes the supplier's profit.",
+        "H3 Ratio moving: commodity cycle or pass-through lag."
+      ],
+      "careful": [
+        "A low ratio is not efficiency. Always add the neighbouring lines (depreciation, staff)."
+      ],
+      "related": "Depreciation ÷ revenue; gross margin.",
+      "answer_structure": "\"SAR x on materials per SAR 100 of sales vs y for the peer, because [model]. Gross margins end at [a] vs [b]. Risk: [commodity / volume].\"",
+      "worked_example": "Almarai 42.0%; SADAFCO 54.9%. Gross margins are equal at ~31%.",
+      "theme": "Cost structure"
+    },
+    {
+      "id": "OP-07",
+      "layer": "Operating",
+      "question": "How productive are its people?",
+      "why": "Staff costs show automation, scale and labour efficiency.",
+      "where_to_look": "Staff-cost note; headcount in the annual report.",
+      "key_ratio": [
+        "Staff costs ÷ revenue",
+        "Revenue per employee",
+        "Staff cost per employee"
+      ],
+      "hypotheses": [
+        "H1 Productivity rising (automation, scale).",
+        "H2 Wage inflation squeezing.",
+        "H3 Headcount cut to protect margin."
+      ],
+      "careful": [
+        "Integrated firms employ farm staff: compare like with like.",
+        "Cuts can be one-offs."
+      ],
+      "related": "Revenue per employee trend; capex in automation.",
+      "answer_structure": "\"Staff costs x% of revenue (from y%); revenue per employee SAR z (±n%). Driver: [reason].\"",
+      "worked_example": "SADAFCO: staff 19.0% → 14.2% of revenue; headcount 2,783 → 2,501.",
+      "theme": "Efficiency"
+    },
+    {
+      "id": "OP-08",
+      "layer": "Operating",
+      "question": "How much does it spend to sell and distribute, and is it rising?",
+      "why": "Selling, distribution and marketing show channel cost and brand investment.",
+      "where_to_look": "Selling & distribution and admin notes; A&P disclosure.",
+      "key_ratio": [
+        "SG&A ÷ revenue",
+        "A&P ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Scale benefit: ratio falling.",
+        "H2 Channel power rising: ratio up.",
+        "H3 Brand spend cut to protect EBIT."
+      ],
+      "careful": [
+        "Cutting A&P raises EBIT now and weakens the brand later."
+      ],
+      "related": "Trade promotions; market share.",
+      "answer_structure": "\"SG&A x% of revenue (from y%). A&P z% (from w%). Read: [scale / channel / cut].\"",
+      "worked_example": "SADAFCO cut A&P from 4.9% to 3.5% in FY25 to protect EBIT. Almarai SG&A 16.7% → 17.2%.",
+      "theme": "Efficiency"
+    },
+    {
+      "id": "OP-09",
+      "layer": "Operating",
+      "question": "What is the gap between EBITDA and EBIT margin, and what does it say?",
+      "why": "The gap is depreciation: the annual cost of the asset base.",
+      "where_to_look": "Income statement; depreciation note.",
+      "key_ratio": [
+        "EBITDA margin − EBIT margin = depreciation ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Large gap: asset-heavy model.",
+        "H2 Small gap: asset-light.",
+        "H3 Gap rising: new plants starting depreciation."
+      ],
+      "careful": [
+        "EBITDA ignores the cost of capital. Asset-heavy firms look better on EBITDA than on EBIT."
+      ],
+      "related": "Capex ÷ depreciation (INV-05).",
+      "answer_structure": "\"EBITDA x%, EBIT y%: depreciation takes z pts, because [assets]. Valuation: compare on EBIT, not EBITDA.\"",
+      "worked_example": "Almarai 25.2% vs 13.5% (gap ~11.7 pts). SADAFCO 17.3% vs 13.4% (gap ~3.9 pts).",
+      "theme": "Margins"
+    },
+    {
+      "id": "OP-10",
+      "layer": "Operating",
+      "question": "Which cost lines moved the EBIT margin this year?",
+      "why": "A margin bridge turns a vague change into named causes with sizes.",
+      "where_to_look": "Common-size income statement, two years side by side.",
+      "key_ratio": [
+        "Change in each line ÷ revenue (pts), summing to the EBIT margin change"
+      ],
+      "hypotheses": [
+        "H1 One line explains most of it.",
+        "H2 Several small moves.",
+        "H3 One-offs explain it."
+      ],
+      "careful": [
+        "Remove one-offs first.",
+        "Check that the bridge adds up to the total."
+      ],
+      "related": "Normalised margin (OP-14).",
+      "answer_structure": "\"EBIT margin fell from x% to y% (−n pts): [line] −a, [line] +b, other ±c. Main cause: [line], [permanent / cyclical].\"",
+      "worked_example": "SADAFCO FY25: materials −4.6 pts, partly offset by lower staff costs and A&P.",
+      "theme": "Margins"
+    },
+    {
+      "id": "OP-11",
+      "layer": "Operating",
+      "question": "How much does profit swing when volume changes?",
+      "why": "High operating leverage magnifies both good and bad years.",
+      "where_to_look": "Cost split from OP-05.",
+      "key_ratio": [
+        "Structural DOL = contribution margin ÷ EBIT",
+        "Contribution margin = revenue − variable costs"
+      ],
+      "hypotheses": [
+        "H1 High DOL: fixed-cost heavy, volume is the risk.",
+        "H2 Low DOL: variable-cost heavy, prices are the risk.",
+        "H3 Reported DOL is meaningless this year."
+      ],
+      "careful": [
+        "%ΔEBIT ÷ %Δrevenue only works when prices and costs are stable.",
+        "Using this year's DOL to predict this year is circular.",
+        "CWIP has no P&L cost: it does not create operating leverage."
+      ],
+      "related": "Utilisation; cost split; volume trend.",
+      "answer_structure": "\"Contribution x%, EBIT y%: DOL ≈ z. A 10% volume fall cuts EBIT by ~10z%. The risk year is [volume fall / input shock].\"",
+      "worked_example": "Exercise split: Almarai DOL ≈ 50 ÷ 13.5 ≈ 3.7; SADAFCO ≈ 37 ÷ 13.4 ≈ 2.8.",
+      "theme": "Operating leverage"
+    },
+    {
+      "id": "OP-12",
+      "layer": "Operating",
+      "question": "Does revenue growth reach operating profit?",
+      "why": "Growth that does not reach NOPAT creates no value.",
+      "where_to_look": "Income statement; NOPAT calculation.",
+      "key_ratio": [
+        "NOPAT growth − revenue growth",
+        "NOPAT = EBIT × (1 − tax rate)"
+      ],
+      "hypotheses": [
+        "H1 Profit grows faster: operating leverage.",
+        "H2 Profit grows slower: costs rising.",
+        "H3 Profit falls: margin shock."
+      ],
+      "careful": [
+        "Use normalised EBIT. Net profit can be propped up by finance income or capitalised interest."
+      ],
+      "related": "Margin bridge (OP-10).",
+      "answer_structure": "\"Revenue +x%, NOPAT +y%. The gap of n pts comes from [line]. Growth [creates / does not create] value.\"",
+      "worked_example": "2025: Almarai revenue +5.2%, NOPAT +0.4%. SADAFCO revenue +5.0%, NOPAT −16.6%.",
+      "theme": "Growth quality"
+    },
+    {
+      "id": "OP-13",
+      "layer": "Operating",
+      "question": "What is the normal margin across a full cycle?",
+      "why": "A DCF needs a normal margin, not the best or worst year.",
+      "where_to_look": "Five to ten years of margins.",
+      "key_ratio": [
+        "Trough, peak and average margin"
+      ],
+      "hypotheses": [
+        "H1 Today is near the average.",
+        "H2 Today is a trough: upside.",
+        "H3 Today is a peak: downside."
+      ],
+      "careful": [
+        "Five years may hold only one commodity cycle.",
+        "Structural change can make old averages irrelevant."
+      ],
+      "related": "Pass-through; input prices today.",
+      "answer_structure": "\"Margin range [low]–[high], average x%. Today y% = [trough / average / peak]. Normal margin for the DCF: z%, because [reason].\"",
+      "worked_example": "SADAFCO EBIT margin: trough 10.9% (FY22), average 14.1%, FY25 12.3% (normalised). Almarai 12.6%–16.3%.",
+      "theme": "Margin through the cycle"
+    },
+    {
+      "id": "OP-14",
+      "layer": "Operating",
+      "question": "What is not repeatable in this year's profit?",
+      "why": "Value depends on repeatable profit only.",
+      "where_to_look": "Other income note; provisions note; gains on disposal; grants.",
+      "key_ratio": [
+        "Normalised profit ÷ reported profit",
+        "One-offs ÷ EBIT"
+      ],
+      "hypotheses": [
+        "H1 Clean earnings.",
+        "H2 One-off gains inflate profit.",
+        "H3 Provision releases inflate profit."
+      ],
+      "careful": [
+        "Check the ordinary explanation before the suspicious one.",
+        "One-offs can be negative too."
+      ],
+      "related": "Cash conversion (FIN-09); provisions trend.",
+      "answer_structure": "\"Reported profit x; one-offs y (list). Normalised profit z = n× reported. The DCF uses z.\"",
+      "worked_example": "SADAFCO FY25: normalised profit 0.78× reported (property gain, provision releases).",
+      "theme": "Earnings quality"
+    },
+    {
+      "id": "OP-15",
+      "layer": "Operating",
+      "question": "Did the margin change because of what was sold (mix) or because each segment's margin changed (rate)?",
+      "why": "Mix and rate need different actions.",
+      "where_to_look": "Segment note.",
+      "key_ratio": [
+        "Mix effect = Σ(Δ weight × last year's margin)",
+        "Rate effect = Σ(this year's weight × Δ margin)"
+      ],
+      "hypotheses": [
+        "H1 Rate effect dominates: cost or price problem.",
+        "H2 Mix effect dominates: portfolio shift.",
+        "H3 Both."
+      ],
+      "careful": [
+        "Segment profit definitions must stay the same across years."
+      ],
+      "related": "Segment margins; growth by segment.",
+      "answer_structure": "\"Group margin changed −n pts: rate −a, mix −b. Cause: [segment / line].\"",
+      "worked_example": "SADAFCO FY25: −4.0 pts, of which −3.9 pts rate (input costs), almost nothing from mix.",
+      "theme": "Mix"
+    },
+    {
+      "id": "OP-16",
+      "layer": "Operating",
+      "question": "What tax rate turns EBIT into NOPAT, effective or marginal?",
+      "why": "The tax rate drives NOPAT and the debt tax shield.",
+      "where_to_look": "Tax or zakat note; effective rate history.",
+      "key_ratio": [
+        "Effective rate = tax ÷ profit before tax"
+      ],
+      "hypotheses": [
+        "H1 Effective ≈ marginal.",
+        "H2 Effective below marginal (incentives) → converge in the DCF.",
+        "H3 Zakat regime: low rate, small tax shield."
+      ],
+      "careful": [
+        "Zakat is levied on a base, not on profit: the percentage moves for reasons unrelated to operations."
+      ],
+      "related": "Cost of debt after tax (FIN-15).",
+      "answer_structure": "\"Effective rate x%, marginal y%. NOPAT uses [rate] because [reason].\"",
+      "worked_example": "Almarai ~5.4%; SADAFCO ~5%. Debt shield under zakat is small.",
+      "theme": "Tax"
+    },
+    {
+      "id": "OP-17",
+      "layer": "Operating",
+      "question": "Which cost line explains the margin gap with the peer?",
+      "why": "Peer comparison names the source of advantage.",
+      "where_to_look": "Common-size P&L of both companies.",
+      "key_ratio": [
+        "Peer gap by line (pts of revenue)"
+      ],
+      "hypotheses": [
+        "H1 Gross margin gap: product or input advantage.",
+        "H2 SG&A gap: scale or channel.",
+        "H3 Depreciation gap: business model."
+      ],
+      "careful": [
+        "Different classification of the same cost between companies."
+      ],
+      "related": "Turnover gap (INV-02).",
+      "answer_structure": "\"Margin gap n pts: [line] a, [line] b, [line] c. Source: [advantage].\"",
+      "worked_example": "Almarai vs SADAFCO: materials −13 pts, depreciation +8 pts, gross margin ≈ 0.",
+      "theme": "Benchmark"
+    },
+    {
+      "id": "OP-18",
+      "layer": "Operating",
+      "question": "Is the forecast margin consistent with history and with the cost structure?",
+      "why": "The forecast margin is often the biggest lever in the valuation.",
+      "where_to_look": "Budget or DCF inputs vs OP-13.",
+      "key_ratio": [
+        "Target margin − historical average",
+        "Value per 1 pt of margin"
+      ],
+      "hypotheses": [
+        "H1 Forecast within the historical range.",
+        "H2 Forecast above the range: must be argued.",
+        "H3 Forecast below: conservative."
+      ],
+      "careful": [
+        "Do not assume margin recovery: name the cost line that will recover, and by how much."
+      ],
+      "related": "Reverse DCF implied margin.",
+      "answer_structure": "\"Forecast x% vs history [range]. To reach it, [line] must improve n pts because [evidence]. Each pt is worth SAR v a share.\"",
+      "worked_example": "SADAFCO base 13.0% vs FY25 12.3%; market implies 10.1%; 1 pt ≈ SAR 22 a share.",
+      "theme": "Forecast check"
+    },
+    {
+      "id": "INV-01",
+      "layer": "Investment",
+      "question": "How much capital is tied up in operations, and what is in it?",
+      "why": "Invested capital is the denominator of ROC: the money that must earn its cost.",
+      "where_to_look": "Balance sheet; leases; cash and investments note.",
+      "key_ratio": [
+        "Invested capital = debt + equity − cash and investments",
+        "(or fixed assets + working capital)"
+      ],
+      "hypotheses": [
+        "H1 Mostly fixed assets.",
+        "H2 Mostly working capital.",
+        "H3 Large non-operating items (cash, investments, goodwill)."
+      ],
+      "careful": [
+        "Remove cash and financial investments.",
+        "Decide on goodwill and leases consistently."
+      ],
+      "related": "Producing capital (INV-14); turnover.",
+      "answer_structure": "\"Invested capital SAR x: fixed assets a%, working capital b%, CWIP c%.\"",
+      "worked_example": "Almarai SAR 33.0bn (of which 5.8bn CWIP). SADAFCO SAR 1.2bn.",
+      "theme": "Capital base"
+    },
+    {
+      "id": "INV-02",
+      "layer": "Investment",
+      "question": "How much revenue does each riyal of capital produce?",
+      "why": "Turnover is the second driver of ROC and decides how cheap growth is.",
+      "where_to_look": "Revenue; average invested capital.",
+      "key_ratio": [
+        "Capital turnover = revenue ÷ average invested capital"
+      ],
+      "hypotheses": [
+        "H1 High turnover: asset-light model.",
+        "H2 Low turnover: asset-heavy model.",
+        "H3 Falling turnover: capital added ahead of revenue."
+      ],
+      "careful": [
+        "Do not explain turnover with debt: financing does not change it.",
+        "Total assets includes cash: avoid it here."
+      ],
+      "related": "Margin (ROC = margin × turnover); CWIP.",
+      "answer_structure": "\"SAR x of revenue per SAR 100 of capital vs y for the peer. The gap comes from [asset types], see INV-03.\"",
+      "worked_example": "SADAFCO 2.66× (SAR 257 per 100); Almarai 0.71× (SAR 67 per 100).",
+      "theme": "Turnover"
+    },
+    {
+      "id": "INV-03",
+      "layer": "Investment",
+      "question": "Which assets explain the turnover gap, and how much each?",
+      "why": "An additive breakdown sizes each cause.",
+      "where_to_look": "Balance sheet lines ÷ revenue.",
+      "key_ratio": [
+        "Capital per SAR 100 of sales = 100 ÷ turnover, split by asset type"
+      ],
+      "hypotheses": [
+        "H1 Fixed assets explain most.",
+        "H2 Working capital explains most.",
+        "H3 CWIP (temporary) explains most."
+      ],
+      "careful": [
+        "Ratios of ratios cannot be split; use the additive form.",
+        "Separate permanent from temporary."
+      ],
+      "related": "Fixed-asset intensity; working capital; CWIP.",
+      "answer_structure": "\"Per SAR 100 of sales: working capital a vs b, CWIP c vs d, fixed e vs f. Main cause: [line] (n% of the gap), [permanent / temporary].\"",
+      "worked_example": "Almarai 150 vs SADAFCO 39: fixed +76, CWIP +23, working capital +12.",
+      "theme": "Turnover"
+    },
+    {
+      "id": "INV-04",
+      "layer": "Investment",
+      "question": "How capital-intensive is the business, and how old are its assets?",
+      "why": "Old assets flatter ROC and signal future capex.",
+      "where_to_look": "Fixed-asset note: gross cost, accumulated depreciation, asset classes.",
+      "key_ratio": [
+        "Net PPE ÷ revenue",
+        "Asset age ≈ accumulated depreciation ÷ gross PPE"
+      ],
+      "hypotheses": [
+        "H1 Heavy and new: high capital, low ROC now.",
+        "H2 Light: low capital need.",
+        "H3 Old assets: high ROC today, replacement coming."
+      ],
+      "careful": [
+        "Leased assets sit outside PPE.",
+        "Biological assets (herds) follow different rules."
+      ],
+      "related": "Capex ÷ depreciation.",
+      "answer_structure": "\"Net PPE x% of revenue; assets about y% depreciated. Implication: [capex need / ROC quality].\"",
+      "worked_example": "Almarai owns land, herds, farms, plants and fleet; SADAFCO owns plants, freezers and fleet.",
+      "theme": "Fixed assets"
+    },
+    {
+      "id": "INV-05",
+      "layer": "Investment",
+      "question": "Is the company maintaining its assets or growing them?",
+      "why": "Capex above depreciation means growth investment; below means under-investment.",
+      "where_to_look": "Cash flow statement (capex); depreciation note.",
+      "key_ratio": [
+        "Capex ÷ depreciation",
+        "Maintenance capex ≈ depreciation"
+      ],
+      "hypotheses": [
+        "H1 ≈1×: maintenance only.",
+        "H2 >1.5×: growth phase.",
+        "H3 <1×: under-investment, flattering cash flow."
+      ],
+      "careful": [
+        "Depreciation is historical cost; maintenance at today's prices may be higher.",
+        "Include new leases and herd capex."
+      ],
+      "related": "Reinvestment rate (INV-12); CWIP.",
+      "answer_structure": "\"Capex x× depreciation (history y×). Phase: [maintenance / growth / under-investment]. Cash effect: FCFF [sign].\"",
+      "worked_example": "Almarai 0.7–0.9× (2020–22) → ~2.1× (2025). SADAFCO 1.5× (FY25).",
+      "theme": "Capex"
+    },
+    {
+      "id": "INV-06",
+      "layer": "Investment",
+      "question": "How much capital is not yet producing, and when will it start?",
+      "why": "CWIP lowers turnover today and should lift revenue later.",
+      "where_to_look": "Fixed-asset note (CWIP); capex plan; capitalised interest note.",
+      "key_ratio": [
+        "CWIP ÷ invested capital",
+        "Capitalised interest ÷ total interest"
+      ],
+      "hypotheses": [
+        "H1 Plants on schedule: turnover recovers.",
+        "H2 Delays: capital sits idle longer.",
+        "H3 Over-capacity: turnover never recovers."
+      ],
+      "careful": [
+        "CWIP has no P&L cost until it runs: the cost arrives later as depreciation.",
+        "Capitalised interest moves a financing cost out of the P&L."
+      ],
+      "related": "ROC on producing capital; coverage incl. capitalised interest (FIN-04).",
+      "answer_structure": "\"CWIP SAR x (y% of capital), due [year]. When it runs it adds SAR z of depreciation and needs SAR w of revenue to earn WACC.\"",
+      "worked_example": "Almarai CWIP SAR 5.8bn (18% of invested capital); about a third of interest is capitalised.",
+      "theme": "CWIP"
+    },
+    {
+      "id": "INV-07",
+      "layer": "Investment",
+      "question": "How much working capital does each riyal of sales need?",
+      "why": "Every extra riyal of sales ties up this much cash.",
+      "where_to_look": "Balance sheet: stock, receivables, payables, accruals.",
+      "key_ratio": [
+        "Working capital (BFR) ÷ revenue"
+      ],
+      "hypotheses": [
+        "H1 Low: suppliers fund operations.",
+        "H2 High: stock or credit heavy.",
+        "H3 Rising: worsening terms or growth."
+      ],
+      "careful": [
+        "Year-end balances can be unusual (seasonality).",
+        "Use trade items only for the day ratios."
+      ],
+      "related": "DSO, DIO, DPO.",
+      "answer_structure": "\"Working capital x% of revenue (history y%). Each SAR 100 of new sales needs SAR x. Driver: [line].\"",
+      "worked_example": "Almarai 18.7%; SADAFCO 6.8%.",
+      "theme": "Working capital"
+    },
+    {
+      "id": "INV-08",
+      "layer": "Investment",
+      "question": "How fast do customers pay?",
+      "why": "Rising DSO can mean channel stuffing or weaker customers.",
+      "where_to_look": "Trade receivables; revenue.",
+      "key_ratio": [
+        "DSO = average trade receivables ÷ revenue × 365"
+      ],
+      "hypotheses": [
+        "H1 Stable: normal.",
+        "H2 Rising: looser credit or stuffing.",
+        "H3 Falling: tighter collection."
+      ],
+      "careful": [
+        "Check the ordinary explanation first (mix of channels, timing)."
+      ],
+      "related": "Credit-loss allowance; revenue growth.",
+      "answer_structure": "\"DSO x days (history y). Read: [stable / rising / falling], because [reason].\"",
+      "worked_example": "Almarai ~30 days; SADAFCO ~37 days; both stable for six years.",
+      "theme": "Working capital"
+    },
+    {
+      "id": "INV-09",
+      "layer": "Investment",
+      "question": "How much stock does it hold, and why?",
+      "why": "Stock protects supply but ties up cash.",
+      "where_to_look": "Inventory note (raw materials, finished goods, provisions).",
+      "key_ratio": [
+        "DIO = average inventory ÷ cost of sales × 365"
+      ],
+      "hypotheses": [
+        "H1 Strategic stock of imported inputs.",
+        "H2 Slow-moving goods.",
+        "H3 Seasonal build-up."
+      ],
+      "careful": [
+        "Inventory provisions can move profit.",
+        "Split raw materials from finished goods."
+      ],
+      "related": "Inventory provision ÷ gross inventory.",
+      "answer_structure": "\"DIO x days: raw materials a, finished goods b. Reason: [strategic / slow / seasonal]. Risk: [provision].\"",
+      "worked_example": "Almarai ~141 days (feed stockpile); SADAFCO ~85 days (powder, packaging).",
+      "theme": "Working capital"
+    },
+    {
+      "id": "INV-10",
+      "layer": "Investment",
+      "question": "How long does it take to pay suppliers?",
+      "why": "Payables fund operations; a fall in DPO absorbs cash.",
+      "where_to_look": "Trade payables; cost of sales.",
+      "key_ratio": [
+        "DPO = average trade payables ÷ cost of sales × 365"
+      ],
+      "hypotheses": [
+        "H1 Strength: suppliers give terms.",
+        "H2 Falling: suppliers tightening.",
+        "H3 Rising: stretching suppliers (strain)."
+      ],
+      "careful": [
+        "Rising DPO can be strain, not strength."
+      ],
+      "related": "Liquidity (FIN-08).",
+      "answer_structure": "\"DPO x days (history y). Read: [strength / tightening / strain].\"",
+      "worked_example": "SADAFCO DPO 47 → 34 days in FY25: watch supplier terms.",
+      "theme": "Working capital"
+    },
+    {
+      "id": "INV-11",
+      "layer": "Investment",
+      "question": "How long is the cash cycle, and what moves it?",
+      "why": "The cash cycle summarises how long cash is locked in operations.",
+      "where_to_look": "DSO, DIO, DPO.",
+      "key_ratio": [
+        "Cash conversion cycle = DSO + DIO − DPO"
+      ],
+      "hypotheses": [
+        "H1 Driven by stock.",
+        "H2 Driven by payables.",
+        "H3 Driven by customers."
+      ],
+      "careful": [
+        "Explain the change by the component that moved."
+      ],
+      "related": "Working capital ÷ revenue.",
+      "answer_structure": "\"Cash cycle x days (from y). The change came from [component] (±n days).\"",
+      "worked_example": "Almarai 132 days (stock). SADAFCO 87 days (from 76), driven by payables.",
+      "theme": "Working capital"
+    },
+    {
+      "id": "INV-12",
+      "layer": "Investment",
+      "question": "How much of NOPAT is reinvested, and what growth should it buy?",
+      "why": "Growth must be paid for: reinvestment × ROC gives the growth it can fund.",
+      "where_to_look": "Cash flow statement; NOPAT.",
+      "key_ratio": [
+        "Reinvestment = net capex + Δ working capital",
+        "Reinvestment rate = reinvestment ÷ NOPAT",
+        "Fundamental growth = reinvestment rate × ROC"
+      ],
+      "hypotheses": [
+        "H1 Fundamental growth ≈ actual: consistent.",
+        "H2 Fundamental > actual: capital not yet earning.",
+        "H3 Actual > fundamental: margin-led or unsustainable."
+      ],
+      "careful": [
+        "Exclude capitalised interest from reinvestment (it is financing)."
+      ],
+      "related": "FCFF; incremental ROC.",
+      "answer_structure": "\"Reinvestment rate x% × ROC y% = fundamental growth z% vs actual w%. Gap explained by [reason].\"",
+      "worked_example": "Almarai 144% of NOPAT in 2025 (FCFF −1.2bn). SADAFCO 20% × 33.9% = 6.8%.",
+      "theme": "Reinvestment"
+    },
+    {
+      "id": "INV-13",
+      "layer": "Investment",
+      "question": "What is the return on capital, and does it come from margin or from turnover?",
+      "why": "ROC is where operations meet capital. Compared with WACC, it decides value.",
+      "where_to_look": "NOPAT; average invested capital.",
+      "key_ratio": [
+        "ROC = NOPAT ÷ average IC = after-tax margin × turnover"
+      ],
+      "hypotheses": [
+        "H1 Margin-led.",
+        "H2 Turnover-led.",
+        "H3 Both."
+      ],
+      "careful": [
+        "Use average capital, annualise short periods.",
+        "ROC is not ROE: ignore financing here."
+      ],
+      "related": "Spread vs WACC (INV-18).",
+      "answer_structure": "\"ROC x% = margin a% × turnover b×. The strength is [margin / turnover] because [business reason].\"",
+      "worked_example": "Almarai 12.8% × 0.71 = 9.1%. SADAFCO 12.7% × 2.66 = 33.9%.",
+      "theme": "Returns"
+    },
+    {
+      "id": "INV-14",
+      "layer": "Investment",
+      "question": "What is the return on capital that is already producing?",
+      "why": "Removing CWIP separates the business today from the projects of tomorrow.",
+      "where_to_look": "Invested capital minus CWIP.",
+      "key_ratio": [
+        "ROC on producing capital = NOPAT ÷ (IC − CWIP)"
+      ],
+      "hypotheses": [
+        "H1 Small gap: little idle capital.",
+        "H2 Large gap: big projects under way.",
+        "H3 Producing ROC also low: the core is weak."
+      ],
+      "careful": [
+        "This is a fairness check, not a reason to ignore CWIP."
+      ],
+      "related": "CWIP timing (INV-06).",
+      "answer_structure": "\"ROC on producing capital x% vs y% total: CWIP costs n pts today.\"",
+      "worked_example": "Almarai 10.9% vs 9.1%. SADAFCO 36.5% vs 33.9%.",
+      "theme": "Returns"
+    },
+    {
+      "id": "INV-15",
+      "layer": "Investment",
+      "question": "What has the new capital actually earned?",
+      "why": "Value depends on the return on the next riyal, not the average.",
+      "where_to_look": "NOPAT and capital over several years.",
+      "key_ratio": [
+        "Incremental ROC = Δ NOPAT ÷ Δ invested capital (multi-year, lagged)"
+      ],
+      "hypotheses": [
+        "H1 New capital earns above WACC: growth creates value.",
+        "H2 Earns about WACC: growth adds nothing.",
+        "H3 Earns below WACC: growth destroys value."
+      ],
+      "careful": [
+        "Year-by-year ratios explode when capital barely moves.",
+        "Margin recovery on old capital looks like a return on new capital."
+      ],
+      "related": "Segment returns (INV-16).",
+      "answer_structure": "\"Over [window] NOPAT rose x on y of new capital: z%. Corrected for [margin recovery], about w%.\"",
+      "worked_example": "Almarai ~17% (flattered); poultry ~7.6%. SADAFCO ~96% (margin recovery); non-drinks ~0% FY20–23.",
+      "theme": "Returns"
+    },
+    {
+      "id": "INV-16",
+      "layer": "Investment",
+      "question": "Which segment earns its capital, and where does new capital go?",
+      "why": "Capital flowing to the weakest segment lowers group ROC.",
+      "where_to_look": "Segment note: profit and assets.",
+      "key_ratio": [
+        "Segment profit ÷ segment assets",
+        "Share of new assets by segment"
+      ],
+      "hypotheses": [
+        "H1 New capital goes to the best segment.",
+        "H2 To the weakest segment.",
+        "H3 Spread evenly."
+      ],
+      "careful": [
+        "Segment profit is usually after allocations and before tax: rank, do not compare with WACC directly."
+      ],
+      "related": "Incremental ROC.",
+      "answer_structure": "\"[Segment] absorbed x% of new assets and earns y%. [Segment] earns z% on few assets.\"",
+      "worked_example": "Almarai poultry absorbed all net new segment capital (SAR 3.6bn), earning 7.6%.",
+      "theme": "Returns"
+    },
+    {
+      "id": "INV-17",
+      "layer": "Investment",
+      "question": "What did acquisitions cost, and what do they earn?",
+      "why": "Acquisitions are investments: the price paid sets the return.",
+      "where_to_look": "Business-combination note; goodwill; segment results.",
+      "key_ratio": [
+        "Return on acquisition = acquired NOPAT ÷ price paid",
+        "Goodwill ÷ invested capital"
+      ],
+      "hypotheses": [
+        "H1 Paid fairly, returns above WACC.",
+        "H2 Overpaid: goodwill large, returns low.",
+        "H3 Too small to matter."
+      ],
+      "careful": [
+        "ROC excluding goodwill flatters management's record."
+      ],
+      "related": "Growth decomposition (OP-02).",
+      "answer_structure": "\"Paid SAR x for [target]; it earns y% on the price. Verdict: [creates / destroys] value.\"",
+      "worked_example": "Almarai's 2022 bakery acquisition sits inside its +18% growth year.",
+      "theme": "Acquisitions"
+    },
+    {
+      "id": "INV-18",
+      "layer": "Investment",
+      "question": "Do its investments earn more than they cost?",
+      "why": "Value is created only when ROC exceeds WACC; growth multiplies the spread.",
+      "where_to_look": "ROC (INV-13); WACC (FIN-15).",
+      "key_ratio": [
+        "Spread = ROC − WACC",
+        "EVA = spread × average invested capital"
+      ],
+      "hypotheses": [
+        "H1 Large positive spread: growth creates value.",
+        "H2 Thin spread: growth adds little.",
+        "H3 Negative: growth destroys value."
+      ],
+      "careful": [
+        "Use the WACC of each year when judging history."
+      ],
+      "related": "Moat (BM-08); value of growth.",
+      "answer_structure": "\"ROC x% vs WACC y%: spread n pts, EVA SAR v m. Growth [creates / adds little / destroys] value.\"",
+      "worked_example": "Almarai spread +1.7 pts (EVA SAR 513m). SADAFCO +26.6 pts (EVA ~SAR 300m).",
+      "theme": "Value creation"
+    },
+    {
+      "id": "FIN-01",
+      "layer": "Financing",
+      "question": "How is the capital financed: debt versus equity, at market value?",
+      "why": "The mix sets risk and WACC. It is a financing decision, separate from investment.",
+      "where_to_look": "Balance sheet (borrowings, leases); market capitalisation.",
+      "key_ratio": [
+        "Debt weight = debt ÷ (debt + market value of equity)"
+      ],
+      "hypotheses": [
+        "H1 Mostly equity: low risk, maybe idle capacity to borrow.",
+        "H2 Moderate debt.",
+        "H3 High debt: risk rises with the cycle."
+      ],
+      "careful": [
+        "Use market values for WACC, book values for covenants."
+      ],
+      "related": "Net debt ÷ EBITDA; rating.",
+      "answer_structure": "\"Debt is x% of capital at market value (book y%). Read: [conservative / moderate / aggressive].\"",
+      "worked_example": "Almarai 23.3%; SADAFCO 0.9% (leases only).",
+      "theme": "Capital structure"
+    },
+    {
+      "id": "FIN-02",
+      "layer": "Financing",
+      "question": "What counts as debt beyond bank loans?",
+      "why": "Leases, end-of-service benefits and put options are debt-like claims on the firm.",
+      "where_to_look": "Leases note; employee benefits note; NCI put options.",
+      "key_ratio": [
+        "Total debt = borrowings + leases (+ debt-like items in the equity bridge)"
+      ],
+      "hypotheses": [
+        "H1 Bank debt only.",
+        "H2 Leases material.",
+        "H3 Large debt-like items (pensions, puts)."
+      ],
+      "careful": [
+        "Treat each item the same way in ROC, WACC and the equity bridge."
+      ],
+      "related": "Equity bridge in the DCF.",
+      "answer_structure": "\"Debt SAR x = borrowings a + leases b; debt-like items c deducted in the bridge.\"",
+      "worked_example": "SADAFCO: no bank debt; leases 70m, EOSB 171m. Almarai: borrowings 12.5bn + leases 0.55bn.",
+      "theme": "Debt definition"
+    },
+    {
+      "id": "FIN-03",
+      "layer": "Financing",
+      "question": "How many years of operating cash would repay the debt?",
+      "why": "Net debt ÷ EBITDA is the lenders' first test.",
+      "where_to_look": "Debt, cash, EBITDA.",
+      "key_ratio": [
+        "Net debt ÷ EBITDA"
+      ],
+      "hypotheses": [
+        "H1 <1×: conservative.",
+        "H2 1–3×: normal for stable food.",
+        "H3 >3×: stretched."
+      ],
+      "careful": [
+        "Rising leverage during a capex peak may be planned: check the path."
+      ],
+      "related": "Coverage; budget deleveraging.",
+      "answer_structure": "\"Net debt x× EBITDA (from y×), driven by [capex / payout]. Path: [peak year, then …].\"",
+      "worked_example": "Almarai 2.25× (peak in 2026 in the budget). SADAFCO net cash 573m (−1.1×).",
+      "theme": "Leverage"
+    },
+    {
+      "id": "FIN-04",
+      "layer": "Financing",
+      "question": "How easily does operating profit cover interest?",
+      "why": "Coverage sets the rating and the cost of debt.",
+      "where_to_look": "Finance cost note; capitalised interest.",
+      "key_ratio": [
+        "Economic coverage = EBIT ÷ gross interest (incl. capitalised)",
+        "Reported = EBIT ÷ P&L finance cost"
+      ],
+      "hypotheses": [
+        "H1 High coverage: safe.",
+        "H2 Falling coverage: debt growing faster than EBIT.",
+        "H3 Reported coverage flattered by capitalised interest."
+      ],
+      "careful": [
+        "Capitalised interest hides part of the cost from the P&L."
+      ],
+      "related": "Synthetic rating (FIN-06).",
+      "answer_structure": "\"Economic coverage x× (reported y×). The gap is capitalised interest. Rating implied: [rating].\"",
+      "worked_example": "Almarai 4.1× economic vs 6.6× reported. SADAFCO 116× (lease interest only).",
+      "theme": "Coverage"
+    },
+    {
+      "id": "FIN-05",
+      "layer": "Financing",
+      "question": "What happens to coverage in a bad year?",
+      "why": "A partner checks the rating in the downside, not only today.",
+      "where_to_look": "Coverage × stress factor.",
+      "key_ratio": [
+        "Stressed coverage = (EBIT × 0.7) ÷ interest"
+      ],
+      "hypotheses": [
+        "H1 Safe even in stress.",
+        "H2 Rating drops one notch.",
+        "H3 Covenant risk."
+      ],
+      "careful": [
+        "Use the stress that matches the business (feed shock, volume fall)."
+      ],
+      "related": "DOL (OP-11).",
+      "answer_structure": "\"With EBIT −30%, coverage falls to x×, which implies [rating].\"",
+      "worked_example": "Almarai 2.9× (just below the 3.0× BBB line). SADAFCO 81×.",
+      "theme": "Stress test"
+    },
+    {
+      "id": "FIN-06",
+      "layer": "Financing",
+      "question": "What does the company pay to borrow, and why?",
+      "why": "The cost of debt follows the rating and the country risk.",
+      "where_to_look": "Debt note (rates); synthetic rating table.",
+      "key_ratio": [
+        "Pre-tax cost of debt = risk-free + country spread + company spread"
+      ],
+      "hypotheses": [
+        "H1 Synthetic rating matches actual borrowing cost.",
+        "H2 Actual is lower (relationship banks, subsidy).",
+        "H3 Actual is higher (risk)."
+      ],
+      "careful": [
+        "Use the right size table (small vs large firm)."
+      ],
+      "related": "WACC (FIN-15).",
+      "answer_structure": "\"Synthetic rating [x] → cost of debt y% pre-tax, z% after tax.\"",
+      "worked_example": "Almarai A3/A− (~5.6%). SADAFCO AAA (5.1%) on the small-firm table.",
+      "theme": "Cost of debt"
+    },
+    {
+      "id": "FIN-07",
+      "layer": "Financing",
+      "question": "When is the debt due, and can it be refinanced?",
+      "why": "Short maturities in a bad year are how solid companies fail.",
+      "where_to_look": "Debt maturity note; undrawn facilities.",
+      "key_ratio": [
+        "Short-term debt ÷ total debt",
+        "Undrawn facilities"
+      ],
+      "hypotheses": [
+        "H1 Long-dated, facilities available.",
+        "H2 Concentrated maturities.",
+        "H3 Reliance on short-term funding."
+      ],
+      "careful": [
+        "Undrawn facilities can be withdrawn in a crisis."
+      ],
+      "related": "Liquidity.",
+      "answer_structure": "\"x% of debt due within a year; undrawn facilities SAR y. Refinancing risk: [low / moderate / high].\"",
+      "worked_example": "Almarai 12.6% short-term, SAR 7.5bn undrawn: moderate.",
+      "theme": "Refinancing"
+    },
+    {
+      "id": "FIN-08",
+      "layer": "Financing",
+      "question": "Can it get through the next 12 months?",
+      "why": "Liquidity is about the short term; solvency about the long term.",
+      "where_to_look": "Current assets and liabilities; cash.",
+      "key_ratio": [
+        "Current ratio; quick ratio",
+        "Months of cash costs covered by cash",
+        "FR − BFR = TN (French view)"
+      ],
+      "hypotheses": [
+        "H1 Comfortable.",
+        "H2 Tight but funded by facilities.",
+        "H3 Stretched."
+      ],
+      "careful": [
+        "A falling cash pile can be a payout choice, not a problem."
+      ],
+      "related": "Payout (FIN-11).",
+      "answer_structure": "\"Current x×, quick y×, cash covers z months of costs. Trend: [direction], because [reason].\"",
+      "worked_example": "SADAFCO current 2.1×, quick 1.3×, 3.1 months of costs (from 5.7).",
+      "theme": "Liquidity"
+    },
+    {
+      "id": "FIN-09",
+      "layer": "Financing",
+      "question": "Does profit turn into cash?",
+      "why": "Profit that does not become cash cannot pay dividends or debt.",
+      "where_to_look": "Cash flow statement.",
+      "key_ratio": [
+        "CFO ÷ net profit",
+        "Accrual ratio = (net profit − CFO) ÷ average assets"
+      ],
+      "hypotheses": [
+        "H1 CFO ≥ profit: good quality.",
+        "H2 CFO < profit: working capital build or non-cash gains.",
+        "H3 Persistently low: quality concern."
+      ],
+      "careful": [
+        "Asset-heavy firms show high CFO because of depreciation: test free cash flow.",
+        "Check ordinary causes first."
+      ],
+      "related": "One-offs (OP-14); working capital.",
+      "answer_structure": "\"CFO x× profit (average y×). Gap due to [reason]. Quality: [good / watch].\"",
+      "worked_example": "Almarai CFO ≈ 2× profit (depreciation). SADAFCO 0.94× in FY25 (non-cash reversals).",
+      "theme": "Cash quality"
+    },
+    {
+      "id": "FIN-10",
+      "layer": "Financing",
+      "question": "How much cash is left after reinvestment, and for whom?",
+      "why": "FCFF is what the DCF values; FCFE is what shareholders can receive.",
+      "where_to_look": "Cash flow statement.",
+      "key_ratio": [
+        "FCFF = NOPAT − reinvestment",
+        "FCFE = CFO + interest effects − capex − lease and debt repayments"
+      ],
+      "hypotheses": [
+        "H1 Positive and stable.",
+        "H2 Negative due to a growth phase.",
+        "H3 Negative due to weak operations."
+      ],
+      "careful": [
+        "Negative FCFF in a capex phase can be fine if returns follow."
+      ],
+      "related": "Reinvestment rate (INV-12).",
+      "answer_structure": "\"FCFF SAR x (NOPAT a − reinvestment b). Read: [mature / investing / weak].\"",
+      "worked_example": "Almarai FCFF −1.2bn (2025). SADAFCO FCFF +305m.",
+      "theme": "Free cash flow"
+    },
+    {
+      "id": "FIN-11",
+      "layer": "Financing",
+      "question": "Is the dividend funded by free cash or by borrowing?",
+      "why": "A dividend above free cash is paid from debt or from the cash pile.",
+      "where_to_look": "Dividends paid; FCFE.",
+      "key_ratio": [
+        "Payout = dividends ÷ net profit",
+        "Dividends ÷ FCFE"
+      ],
+      "hypotheses": [
+        "H1 Covered by free cash.",
+        "H2 Above free cash: borrowed or from savings.",
+        "H3 Special dividend, one-off."
+      ],
+      "careful": [
+        "Payout above 100% can be a deliberate return of excess cash."
+      ],
+      "related": "Cash trend; sustainable growth.",
+      "answer_structure": "\"Payout x% of profit and y× FCFE. Funded by [free cash / debt / cash pile]. Sustainable at [level].\"",
+      "worked_example": "SADAFCO 114% of profit, 1.7× FCFE. Almarai 40% of profit but FCFE negative: partly borrowed.",
+      "theme": "Payout"
+    },
+    {
+      "id": "FIN-12",
+      "layer": "Financing",
+      "question": "How fast can it grow without new capital?",
+      "why": "Sustainable growth links payout, ROE and growth.",
+      "where_to_look": "ROE; retention.",
+      "key_ratio": [
+        "Sustainable growth = ROE × b ÷ (1 − ROE × b), b = 1 − payout"
+      ],
+      "hypotheses": [
+        "H1 Sustainable ≥ actual: self-funded.",
+        "H2 Sustainable < actual: needs debt or equity.",
+        "H3 Negative: equity shrinking."
+      ],
+      "careful": [
+        "High-ROC firms can grow on little reinvestment even when retention is low."
+      ],
+      "related": "Fundamental growth (INV-12).",
+      "answer_structure": "\"Sustainable growth x% vs actual y%. Gap funded by [debt / cash / high ROC].\"",
+      "worked_example": "SADAFCO −3.6% at a 114% payout; growth relies on 30%+ ROC on small reinvestment.",
+      "theme": "Self-funding"
+    },
+    {
+      "id": "FIN-13",
+      "layer": "Financing",
+      "question": "Is ROE driven by the business or by financing?",
+      "why": "ROE above ROC comes from debt; below ROC comes from idle cash.",
+      "where_to_look": "ROE; ROC; capital structure.",
+      "key_ratio": [
+        "ROE ≈ ROC + (ROC − after-tax cost of debt) × D/E",
+        "Share of ROE from leverage = (ROE − ROC) ÷ ROE"
+      ],
+      "hypotheses": [
+        "H1 ROE > ROC: leverage lifts returns, and risk.",
+        "H2 ROE < ROC: cash drag.",
+        "H3 ROE ≈ ROC."
+      ],
+      "careful": [
+        "Higher ROE from debt is not value creation by itself."
+      ],
+      "related": "WACC; payout.",
+      "answer_structure": "\"ROE x% vs ROC y%: [leverage adds / cash subtracts] n pts. The business itself earns y%.\"",
+      "worked_example": "Almarai ROE 12.5% > ROC 9.1% (debt). SADAFCO 26.9% < 33.9% (cash drag).",
+      "theme": "ROE vs ROC"
+    },
+    {
+      "id": "FIN-14",
+      "layer": "Financing",
+      "question": "What return do shareholders require?",
+      "why": "Cost of equity is most of WACC for low-debt firms.",
+      "where_to_look": "Damodaran betas, ERP, country risk; market data.",
+      "key_ratio": [
+        "Cost of equity = risk-free + levered beta × ERP",
+        "Levered beta = βu × [1 + (1 − t) × D/E]"
+      ],
+      "hypotheses": [
+        "H1 Industry beta fits the business.",
+        "H2 Geography raises the ERP.",
+        "H3 Company-specific risk not captured."
+      ],
+      "careful": [
+        "Mixing ERP methods (rating vs CDS).",
+        "Regression betas of one stock are noisy: prefer bottom-up."
+      ],
+      "related": "ERP sensitivity; reverse DCF implied ERP.",
+      "answer_structure": "\"Cost of equity x% = rf a% + β b × ERP c%. Judgement calls: [beta / ERP].\"",
+      "worked_example": "Both: βu 0.61, rf 4.18%, Saudi ERP 5.01%. Almarai revenue-weighted ERP would be 6.17%.",
+      "theme": "Cost of equity"
+    },
+    {
+      "id": "FIN-15",
+      "layer": "Financing",
+      "question": "What is the overall cost of capital, and would more debt lower it?",
+      "why": "WACC is the hurdle for ROC and the discount rate in the DCF.",
+      "where_to_look": "Cost of equity; after-tax cost of debt; market weights.",
+      "key_ratio": [
+        "WACC = E/V × ke + D/V × kd × (1 − t)"
+      ],
+      "hypotheses": [
+        "H1 Optimal structure.",
+        "H2 Under-levered: debt could lower WACC.",
+        "H3 Over-levered: risk raises WACC."
+      ],
+      "careful": [
+        "Under zakat the debt tax shield is small: more debt barely lowers WACC."
+      ],
+      "related": "Spread (INV-18).",
+      "answer_structure": "\"WACC x% (ke a%, kd after tax b%, debt weight c%). More debt would [lower / not lower] it because [tax regime].\"",
+      "worked_example": "Almarai 7.46%; SADAFCO 7.24%.",
+      "theme": "WACC"
+    },
+    {
+      "id": "FIN-16",
+      "layer": "Financing",
+      "question": "Is debt in the same currency as revenue, and are rates fixed or floating?",
+      "why": "Mismatches turn currency moves or rate rises into losses.",
+      "where_to_look": "Debt note (currency, rate type); FX note.",
+      "key_ratio": [
+        "Share of floating-rate debt",
+        "Debt currency vs revenue currency"
+      ],
+      "hypotheses": [
+        "H1 Matched currencies, fixed rates.",
+        "H2 Floating rates: exposed to SAIBOR.",
+        "H3 Foreign-currency debt against local revenue."
+      ],
+      "careful": [
+        "Pegged currencies (SAR/USD) reduce but do not remove risk in subsidiaries."
+      ],
+      "related": "Geography (BM-04).",
+      "answer_structure": "\"x% floating; y% in foreign currency. A 1 pt rate rise costs SAR z m.\"",
+      "worked_example": "Almarai has Egyptian and Jordanian operations; SAR is pegged to USD.",
+      "theme": "FX & rates"
+    },
+    {
+      "id": "FIN-17",
+      "layer": "Financing",
+      "question": "Is surplus cash a strength or idle capital?",
+      "why": "Cash earning less than the cost of equity dilutes returns.",
+      "where_to_look": "Cash and investments; finance income.",
+      "key_ratio": [
+        "Cash ÷ total assets",
+        "Yield on cash vs cost of equity"
+      ],
+      "hypotheses": [
+        "H1 Strategic buffer.",
+        "H2 Idle capital: return it or invest it.",
+        "H3 Being paid out already."
+      ],
+      "careful": [
+        "Value cash separately in the DCF, never inside FCFF."
+      ],
+      "related": "Payout; ROE vs ROC.",
+      "answer_structure": "\"Cash SAR x (y% of assets) earns z% vs ke w%. Use: [buffer / return / invest].\"",
+      "worked_example": "SADAFCO cash and investments 1,062m → 644m; 24% of assets earning ~5%.",
+      "theme": "Excess cash"
+    },
+    {
+      "id": "FIN-18",
+      "layer": "Financing",
+      "question": "Does this decision change value, or only ROE and risk?",
+      "why": "Investment decisions create value; financing decisions mostly move risk and ROE.",
+      "where_to_look": "Any proposal: buyback, borrowing, capex, acquisition.",
+      "key_ratio": [
+        "Value effect = Δ(ROC − WACC) × capital (investment)",
+        "vs Δ tax shield − Δ distress cost (financing)"
+      ],
+      "hypotheses": [
+        "H1 Investment decision: judge by ROC vs WACC.",
+        "H2 Financing decision: judge by tax shield vs risk.",
+        "H3 Mixed: separate the two parts."
+      ],
+      "careful": [
+        "\"ROE goes up, so it is good\" is the classic trap."
+      ],
+      "related": "WACC; rating; ROE vs ROC.",
+      "answer_structure": "\"This is a [investment / financing] decision. Value changes only through [channel], worth about SAR x. ROE rises, but [risk effect].\"",
+      "worked_example": "\"Borrow SAR 1bn to buy back SADAFCO shares\": a financing decision; under zakat the tax shield is small, so value barely changes while risk rises.",
+      "theme": "Golden rule"
+    }
+  ]
+}

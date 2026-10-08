@@ -6,9 +6,13 @@ export const NEW_PER_DAY = 10;
 export const DAILY_CAP = 25;
 
 // Rough seconds per question, used for time estimates.
-export const SECONDS_PER_FORMAT = { mcq: 40, flashcard: 20, mental_math: 45, written: 180 };
+export const SECONDS_PER_FORMAT = { mcq: 40, flashcard: 20, mental_math: 45, written: 180, journal_entry: 90, partner: 480 };
 
 export const MODES = {
+  mix: { title: 'Today’s mix' },
+  partner: { title: 'Partner analysis' },
+  accounting: { title: 'Financial accounting' },
+  review: { title: 'Review' },
   daily: { title: 'Daily review' },
   layer: { title: 'Layer drill' },
   topic: { title: 'Topic drill' },
@@ -46,8 +50,36 @@ export function dailyQueue(questions, reviews, now = Date.now()) {
   return shuffle([...due.slice(0, DAILY_CAP), ...newOnes]).slice(0, DAILY_CAP);
 }
 
-export function buildSession(mode, { questions, reviews, layer, topic, difficulty, now = Date.now() }) {
+function seen(r) {
+  return r && r.reps + r.lapses > 0;
+}
+
+// Due first (oldest first), then unseen in file order.
+function dueThenNew(items, reviews, now, n) {
+  const due = items.filter((q) => seen(reviews[q.id]) && reviews[q.id].due <= now).sort((a, b) => reviews[a.id].due - reviews[b.id].due);
+  const fresh = items.filter((q) => !seen(reviews[q.id]));
+  return [...due, ...fresh].slice(0, n);
+}
+
+// Today's mix: fundamentals review, a few accounting items and one partner question (~20 min).
+export function mixQueue({ fundamentals, accounting = [], partner = [], reviews, now = Date.now() }) {
+  const fund = dailyQueue(fundamentals, reviews, now).slice(0, 12);
+  const acc = dueThenNew(accounting, reviews, now, 5);
+  const part = dueThenNew(partner, reviews, now, 1);
+  // Interleave accounting into the fundamentals cards; partner question last (it is the long one).
+  const mixed = [...fund];
+  acc.forEach((q, i) => mixed.splice(Math.min(mixed.length, (i + 1) * 3), 0, q));
+  return [...mixed, ...part];
+}
+
+export function buildSession(mode, { questions, reviews, layer, topic, difficulty, accounting = [], partner = [], lens, now = Date.now() }) {
   switch (mode) {
+    case 'mix':
+      return mixQueue({ fundamentals: questions, accounting, partner, reviews, now });
+    case 'partner':
+      return dueThenNew(lens ? partner.filter((q) => q.lens === lens) : partner, reviews, now, 3);
+    case 'accounting':
+      return dueThenNew(accounting.filter((q) => !topic || q.chapter === topic), reviews, now, 10);
     case 'daily':
       return dailyQueue(questions, reviews, now);
     case 'layer':

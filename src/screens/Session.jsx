@@ -8,15 +8,19 @@ import { topicLabel, TOPIC_BY_ID, LAYER_BY_ID } from '../data/curriculum.js';
 import { BackButton, ErrorNote, ProgressBar, RatingBar, RingTimer, SectionLabel, Spinner } from '../components/ui.jsx';
 import Explanation, { Verdict } from '../components/Explanation.jsx';
 import GradeCard, { SelfGrade } from '../components/GradeCard.jsx';
+import PartnerItem from '../partner/PartnerItem.jsx';
 import { askClaude } from '../ai/client.js';
 import { ANSWER_LIMIT, GRADE_SCHEMA, GRADE_SYSTEM, gradeContent, normalizeGrade } from '../ai/prompts.js';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
 export default function Session({ params }) {
-  const { ready, questions, questionById, reviews, recordAnswer } = useApp();
+  const { ready, questions, questionById, reviews, recordAnswer, partner, partnerItems, accountingItems } = useApp();
   const mode = params.mode || 'daily';
   const speed = mode === 'speed';
+  // Sessions that use the lazily loaded tracks wait until those tracks are in.
+  const needsTracks = mode === 'mix' || mode === 'partner' || mode === 'accounting' || !!params.ids;
+  const tracksReady = !!partner && accountingItems !== null;
 
   const [queue, setQueue] = useState(null);
   const [idx, setIdx] = useState(0);
@@ -25,14 +29,24 @@ export default function Session({ params }) {
   const startedAt = useRef(Date.now());
 
   useEffect(() => {
-    if (!ready || queue) return;
+    if (!ready || queue || (needsTracks && !tracksReady)) return;
     let q;
     if (params.ids) q = params.ids.split(',').map((id) => questionById[id]).filter(Boolean);
-    else q = buildSession(mode, { questions, reviews, layer: params.layer, topic: params.topic, difficulty: params.difficulty });
+    else
+      q = buildSession(mode, {
+        questions,
+        reviews,
+        layer: params.layer,
+        topic: params.topic,
+        difficulty: params.difficulty,
+        lens: params.lens,
+        accounting: accountingItems || [],
+        partner: partnerItems,
+      });
     setQueue(q);
     // Build once per session; later review updates must not reshuffle the queue.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready]);
+  }, [ready, tracksReady]);
 
   if (!queue) {
     return (
@@ -54,7 +68,7 @@ export default function Session({ params }) {
         <div className="empty">
           {mode === 'daily' ? 'Nothing is due right now. Pick a layer drill or a mixed exam to keep going.' : 'No questions match this session yet.'}
         </div>
-        <button className="btn lg primary" onClick={() => navigate('/layers')}>
+        <button className="btn lg primary" onClick={() => navigate('/library')}>
           Browse layers
         </button>
       </div>
@@ -102,9 +116,9 @@ export default function Session({ params }) {
         </div>
       )}
 
-      {!speed && (
+      {!speed && q.track !== 'partner' && (
         <div className="chips">
-          <div className="tag">{topicLabel(q)}</div>
+          <div className="tag">{q.track === 'accounting' ? `Accounting · ${q.chapter_title || q.topic}` : topicLabel(q)}</div>
           <div className="tag">{q.difficulty}</div>
           <div className="tag">{q.style}</div>
           {q.needs_review && <div className="tag review">Needs review</div>}
@@ -124,6 +138,7 @@ function sessionTitle(mode, params) {
 }
 
 function QuestionView({ q, speed, onDone }) {
+  if (q.format === 'partner') return <PartnerItem item={q} onDone={onDone} />;
   if (q.format === 'mcq') return <McqView q={q} onDone={onDone} />;
   if (q.format === 'flashcard') return <FlashcardView q={q} onDone={onDone} />;
   if (q.format === 'mental_math') return <MentalMathView q={q} speed={speed} onDone={onDone} />;

@@ -1,56 +1,10 @@
 import { useMemo } from 'react';
 import { useApp } from '../state.jsx';
 import { navigate } from '../router.js';
-import { LAYERS, LAYER_BY_ID } from '../data/curriculum.js';
+import { LAYER_BY_ID } from '../data/curriculum.js';
 import { computeStats, pct } from '../engine/stats.js';
 import { BackButton, ProgressBar, ScreenHeader } from '../components/ui.jsx';
 import Icon from '../components/Icon.jsx';
-
-export function Layers() {
-  const { questions, reviews } = useApp();
-  const stats = useMemo(() => computeStats(questions, reviews), [questions, reviews]);
-  return (
-    <div className="screen with-tabs">
-      <ScreenHeader eyebrow={`${questions.length} questions`} title="Layers" />
-
-      <button className="row-card" onClick={() => navigate('/tree')} style={{ borderColor: 'var(--accent)' }}>
-        <span style={{ color: 'var(--accent)' }}>
-          <Icon name="tree" />
-        </span>
-        <div className="stack" style={{ flex: 1, gap: 2 }}>
-          <div style={{ fontSize: 15, fontWeight: 600 }}>Ratio tree</div>
-          <div className="caption" style={{ fontSize: 12 }}>
-            DuPont and ROIC trees with live what-if sliders
-          </div>
-        </div>
-        <Icon name="chevron" size={18} />
-      </button>
-
-      {LAYERS.map((l) => {
-        const count = questions.filter((q) => q.layer === l.id).length;
-        return (
-          <button key={l.id} className="row-card" onClick={() => navigate('/layer', { id: l.id })}>
-            <div className="mono" style={{ fontSize: 13, color: 'var(--accent)', width: 18 }}>
-              {String(l.id).padStart(2, '0')}
-            </div>
-            <div className="stack" style={{ flex: 1, gap: 6 }}>
-              <div className="row-between">
-                <div style={{ fontSize: 15, fontWeight: 500 }}>{l.name}</div>
-                <div className="caption" style={{ fontSize: 12 }}>
-                  {l.topics.length} topics · {count} q
-                </div>
-              </div>
-              <ProgressBar value={stats.layerMastery[l.id]} label={`${l.name} mastery`} />
-            </div>
-            <div className="mono" style={{ fontSize: 14, width: 40, textAlign: 'right' }}>
-              {pct(stats.layerMastery[l.id])}
-            </div>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
 
 export function LayerDetail({ params }) {
   const { questions, reviews } = useApp();
@@ -61,7 +15,7 @@ export function LayerDetail({ params }) {
   return (
     <div className="screen with-tabs">
       <div className="row">
-        <BackButton to="/layers" />
+        <BackButton to="/library" />
         <div className="eyebrow">Layer {layer.id}</div>
       </div>
       <ScreenHeader title={layer.name} />

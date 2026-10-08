@@ -75,7 +75,7 @@ export default function RatioTree({ params }) {
   return (
     <div className="screen with-tabs" style={{ gap: 18 }}>
       <div className="row">
-        <BackButton to="/layers" />
+        <BackButton to="/library" />
         <div className="stack" style={{ gap: 2 }}>
           <div className="eyebrow">L3 · Interactions</div>
           <h1 className="title" style={{ fontSize: 26 }}>

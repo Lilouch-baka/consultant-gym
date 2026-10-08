@@ -1,8 +1,9 @@
 import { useApp } from './state.jsx';
-import { useRoute } from './router.js';
+import { navigate, useRoute } from './router.js';
 import { Spinner, TabBar } from './components/ui.jsx';
-import Today from './screens/Today.jsx';
-import { Layers, LayerDetail } from './screens/Layers.jsx';
+import Home from './screens/Home.jsx';
+import Library from './screens/Library.jsx';
+import { LayerDetail } from './screens/Layers.jsx';
 import Session from './screens/Session.jsx';
 import Progress from './screens/Progress.jsx';
 import Mentor from './screens/Mentor.jsx';
@@ -10,19 +11,26 @@ import RatioTree from './screens/RatioTree.jsx';
 import Settings from './screens/Settings.jsx';
 
 const ROUTES = {
-  '/': { C: Today, tab: '/' },
-  '/layers': { C: Layers, tab: '/layers' },
-  '/layer': { C: LayerDetail, tab: '/layers' },
-  '/tree': { C: RatioTree, tab: '/layers' },
+  '/': { C: Home, tab: '/' },
+  '/library': { C: Library, tab: '/library' },
+  '/layer': { C: LayerDetail, tab: '/library' },
+  '/tree': { C: RatioTree, tab: '/library' },
   '/mentor': { C: Mentor, tab: '/mentor' },
   '/progress': { C: Progress, tab: '/progress' },
   '/settings': { C: Settings, tab: null },
   '/session': { C: Session, tab: null },
 };
 
+// Old bookmarks from the first version.
+const REDIRECTS = { '/layers': '/library' };
+
 export default function App() {
   const { ready } = useApp();
   const route = useRoute();
+  if (REDIRECTS[route.path]) {
+    navigate(REDIRECTS[route.path]);
+    return null;
+  }
   const r = ROUTES[route.path] || ROUTES['/'];
 
   if (!ready) {

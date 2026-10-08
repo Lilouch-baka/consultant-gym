@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import * as db from './storage/db.js';
-import { SEED_QUESTIONS } from './data/questions.js';
+import { DEFAULT_COMPANY_MODE, loadAccounting, loadFundamentals, loadPartner } from './data/tracks.js';
 import { newReview, schedule } from './engine/srs.js';
 import { DEFAULT_COMPANY, sanitizeCompany } from './finance/model.js';
 import { clearApiKey, loadApiKey, saveApiKey } from './storage/secrets.js';
@@ -8,6 +8,8 @@ import { clearApiKey, loadApiKey, saveApiKey } from './storage/secrets.js';
 // The API key is NOT a setting: it lives encrypted in storage/secrets.js and only in memory here.
 export const DEFAULT_SETTINGS = {
   workspaceId: '',
+  companyMode: DEFAULT_COMPANY_MODE,
+  partnerQuick: false,
   theme: 'light',
   timers: { easy: 30, medium: 60, hard: 90 },
   company: DEFAULT_COMPANY,
@@ -43,9 +45,13 @@ export function AppProvider({ children }) {
   const [apiKey, setApiKeyState] = useState('');
   const [usage, setUsage] = useState({ session: { input: 0, output: 0, calls: 0 }, total: { input: 0, output: 0, calls: 0 } });
   const [diagnosis, setDiagnosis] = useState(null);
+  const [fundamentals, setFundamentals] = useState([]);
+  const [partner, setPartner] = useState(null); // { playbook, items } once loaded
+  const [accountingItems, setAccountingItems] = useState(null);
+  const [partnerAttempts, setPartnerAttempts] = useState([]);
 
   const load = useCallback(async () => {
-    const [s, m, rs, cq, ml, u, dg] = await Promise.all([
+    const [s, m, rs, cq, ml, u, dg, pa, fund] = await Promise.all([
       db.kvGet('settings'),
       db.kvGet('meta'),
       db.getAll('reviews'),
@@ -53,7 +59,11 @@ export function AppProvider({ children }) {
       db.getAll('mentor_log'),
       db.kvGet('usage_total'),
       db.kvGet('diagnosis'),
+      db.getAll('partner_attempts'),
+      loadFundamentals(),
     ]);
+    setFundamentals(fund);
+    setPartnerAttempts(pa.sort((a, b) => b.ts - a.ts));
     // Migrate a key saved in plain text by the first version into encrypted storage.
     if (s && s.apiKey) {
       await saveApiKey(s.apiKey);
@@ -79,14 +89,28 @@ export function AppProvider({ children }) {
   useEffect(() => {
     load();
     db.requestPersistence();
+    // The other two tracks load in the background after the first screen.
+    loadPartner().then(setPartner);
+    loadAccounting().then(setAccountingItems);
   }, [load]);
 
+  // Fundamentals (plus any custom questions). Kept under the old name for existing screens.
   const questions = useMemo(() => {
-    const ids = new Set(SEED_QUESTIONS.map((q) => q.id));
-    return [...SEED_QUESTIONS, ...customQuestions.filter((q) => !ids.has(q.id))];
-  }, [customQuestions]);
+    const ids = new Set(fundamentals.map((q) => q.id));
+    return [...fundamentals, ...customQuestions.filter((q) => !ids.has(q.id)).map((q) => ({ track: 'fundamentals', ...q }))];
+  }, [fundamentals, customQuestions]);
 
-  const questionById = useMemo(() => Object.fromEntries(questions.map((q) => [q.id, q])), [questions]);
+  const partnerItems = useMemo(() => (partner ? partner.items : []), [partner]);
+
+  // Every item from every track; ids are unique across tracks.
+  const allItems = useMemo(() => [...questions, ...(accountingItems || []), ...partnerItems], [questions, accountingItems, partnerItems]);
+  const questionById = useMemo(() => Object.fromEntries(allItems.map((q) => [q.id, q])), [allItems]);
+
+  const addPartnerAttempt = useCallback(async (attempt) => {
+    const rec = { ...attempt, ts: Date.now() };
+    const id = await db.put('partner_attempts', rec);
+    setPartnerAttempts((prev) => [{ ...rec, id }, ...prev]);
+  }, []);
 
   const updateSettings = useCallback(async (patch) => {
     setSettings((prev) => {
@@ -176,17 +200,23 @@ export function AppProvider({ children }) {
   }, []);
 
   const exportData = useCallback(async () => {
-    const [rs, cq, ml] = await Promise.all([db.getAll('reviews'), db.getAll('custom_questions'), db.getAll('mentor_log')]);
+    const [rs, cq, ml, pa] = await Promise.all([
+      db.getAll('reviews'),
+      db.getAll('custom_questions'),
+      db.getAll('mentor_log'),
+      db.getAll('partner_attempts'),
+    ]);
     // Settings never contain the API key, and the encrypted key is not exported.
     return {
       app: 'consultant-gym',
-      version: 2,
+      version: 3,
       exportedAt: new Date().toISOString(),
       settings,
       meta,
       reviews: rs,
       custom_questions: cq,
       mentor_log: ml,
+      partner_attempts: pa,
     };
   }, [settings, meta]);
 
@@ -200,6 +230,7 @@ export function AppProvider({ children }) {
         reviews: Array.isArray(data.reviews) ? data.reviews : [],
         custom_questions: Array.isArray(data.custom_questions) ? data.custom_questions : [],
         mentor_log: Array.isArray(data.mentor_log) ? data.mentor_log : [],
+        partner_attempts: Array.isArray(data.partner_attempts) ? data.partner_attempts : [],
         kv: { settings: nextSettings, meta: { ...DEFAULT_META, ...(data.meta || {}) } },
       });
       await load();
@@ -222,6 +253,12 @@ export function AppProvider({ children }) {
     reviews,
     questions,
     questionById,
+    allItems,
+    partner,
+    partnerItems,
+    accountingItems,
+    partnerAttempts,
+    addPartnerAttempt,
     customQuestions,
     saveCustomQuestion,
     deleteCustomQuestion,

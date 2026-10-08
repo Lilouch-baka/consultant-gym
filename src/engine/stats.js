@@ -62,6 +62,34 @@ export function computeStats(questions, reviews, now = Date.now()) {
   return { attempts: attempts.length, accuracy, avgMentalMs, byDifficulty, topicMastery, layerMastery, weakest, totalAnswered };
 }
 
+export function trackMastery(items, reviews) {
+  return items.length ? mean(items.map((q) => questionMastery(reviews[q.id]))) : 0;
+}
+
+export function attemptedCount(items, reviews) {
+  return items.filter((q) => reviews[q.id] && reviews[q.id].history && reviews[q.id].history.length).length;
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// Most frequent error this week: partner error patterns first, then written-answer tags.
+export function weeklyTopError(partnerAttempts, mentorLog, now = Date.now()) {
+  const since = now - 7 * DAY_MS;
+  const recent = partnerAttempts.filter((a) => a.ts >= since);
+  const count = {};
+  for (const a of recent) for (const p of a.patterns || []) count[p] = (count[p] || 0) + 1;
+  let source = 'partner';
+  let total = recent.length;
+  if (!Object.keys(count).length) {
+    const graded = mentorLog.filter((m) => m.ts >= since && typeof m.score === 'number');
+    for (const m of graded) if (m.tag) count[m.tag] = (count[m.tag] || 0) + 1;
+    source = 'written';
+    total = graded.length;
+  }
+  const top = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
+  return top ? { label: top[0], n: top[1], total, source } : null;
+}
+
 export function pct(x) {
   if (x === null || x === undefined) return '–';
   return `${Math.round(x * 100)}%`;

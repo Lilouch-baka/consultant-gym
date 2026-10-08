@@ -163,8 +163,8 @@ export function ErrorNote({ error }) {
 
 export function TabBar({ current }) {
   const tabs = [
-    { id: '/', label: 'Today', icon: 'today' },
-    { id: '/layers', label: 'Layers', icon: 'layers' },
+    { id: '/', label: 'Home', icon: 'home' },
+    { id: '/library', label: 'Library', icon: 'layers' },
     { id: '/mentor', label: 'Mentor', icon: 'mentor' },
     { id: '/progress', label: 'Progress', icon: 'progress' },
   ];

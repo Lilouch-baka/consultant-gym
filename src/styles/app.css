@@ -999,6 +999,97 @@ button.row-card:active {
   color: var(--text-2);
 }
 
+/* ---------- Home (three tracks) ---------- */
+.mix-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  min-height: 72px;
+  background: var(--accent);
+  border: 0;
+  border-radius: 16px;
+  color: var(--on-accent);
+  text-align: left;
+  width: 100%;
+}
+
+.mix-btn:active:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.track-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--text);
+  text-align: left;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+.track-card:active {
+  background: var(--surface-2);
+}
+
+.hint-card {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+  width: 100%;
+}
+
+.hint-card b {
+  color: var(--text);
+}
+
+.layer-map {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.layer-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 2px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.layer-step:not(:last-child)::after {
+  content: '›';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 14px;
+  z-index: 1;
+}
+
+.layer-step.value {
+  justify-content: center;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
 /* ---------- Misc ---------- */
 .empty {
   padding: 28px 16px;
