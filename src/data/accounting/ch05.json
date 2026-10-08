@@ -1,0 +1,260 @@
+[
+  {
+    "id": "A:05-001", "chapter": 5, "section_tag": "Classification", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 1, when is an asset classified as current?",
+    "options": [
+      "When it is expected to be realised within the normal operating cycle or within 12 months, is held for trading, or is cash",
+      "Only when it will be sold within 30 days",
+      "When it was bought this year",
+      "When its value exceeds 10% of total assets"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Operating cycle or 12 months, held for trading, or unrestricted cash.", "Everything else is non-current."] },
+    "why_it_matters": "Current/non-current classification drives liquidity ratios and covenant tests.",
+    "interactions": [{ "label": "Current ratio", "dir": "mixed" }],
+    "common_trap": "Ignoring the operating cycle (e.g. whisky or aircraft inventories taking years are still current).",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Classification in the Balance Sheet", "page": "5-5" }
+  },
+  {
+    "id": "A:05-002", "chapter": 5, "section_tag": "Classification", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "At year end a company breaches a loan covenant, making a 5-year loan repayable on demand. The bank grants a 15-month waiver two weeks after year end, before the statements are authorised. How is the loan classified under IFRS?",
+    "options": [
+      "Current, because at the reporting date the company had no right to defer settlement for at least 12 months",
+      "Non-current, because the waiver was obtained before the statements were issued",
+      "Half current, half non-current",
+      "It is not a liability"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 1 looks at the rights that exist at the reporting date.", "A waiver received after year end is a non-adjusting event (disclosed), not a reason to reclassify."] },
+    "why_it_matters": "A sudden jump in current liabilities can signal a covenant breach; read the borrowings note.",
+    "interactions": [{ "label": "Current ratio", "dir": "down" }, { "label": "Liquidity risk", "dir": "up" }],
+    "common_trap": "Applying the US GAAP rule under IFRS.",
+    "ifrs_gaap": { "ifrs": "IAS 1: current unless the waiver giving at least 12 months existed at the reporting date.", "us_gaap": "ASC 470: may be non-current if the waiver for more than a year is obtained before the statements are issued." },
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "IFRS Insights", "page": "5-58" }
+  },
+  {
+    "id": "A:05-003", "chapter": 5, "section_tag": "Presentation", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Many IFRS reporters list non-current assets first and equity before liabilities. Is this allowed?",
+    "options": [
+      "Yes: IAS 1 does not prescribe an order, and this 'reverse liquidity' layout is common in Europe",
+      "No: current assets must come first",
+      "Only for banks",
+      "Only if the company also reports under US GAAP"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 1 specifies minimum line items, not their order.", "US practice usually lists current assets first, in decreasing liquidity."] },
+    "why_it_matters": "Don't misread a statement because the order differs from what you expect.",
+    "interactions": [{ "label": "Comparability", "dir": "mixed" }],
+    "common_trap": "Assuming the first line is always cash.",
+    "ifrs_gaap": { "ifrs": "No required order; non-current first is common. 'Statement of financial position' is the IAS 1 name.", "us_gaap": "Current items first in order of liquidity is usual practice; called the balance sheet." },
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Report Form", "page": "5-15" }
+  },
+  {
+    "id": "A:05-004", "chapter": 5, "section_tag": "Working capital", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Current assets 860, current liabilities 540. Working capital?",
+    "answer": { "value": 320, "unit": "", "tolerance": 0 },
+    "check": "860 - 540",
+    "explanation": { "reasoning": ["Working capital = current assets − current liabilities = 320"], "shortcut": "Subtract." },
+    "why_it_matters": "Accounting working capital includes cash and short-term debt; operating working capital excludes them. Know which one a ratio uses.",
+    "interactions": [{ "label": "Liquidity", "dir": "up" }],
+    "common_trap": "Dividing instead of subtracting (that is the current ratio, 1.59x).",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Classification in the Balance Sheet", "page": "5-5" }
+  },
+  {
+    "id": "A:05-005", "chapter": 5, "section_tag": "Cash flows", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS (IAS 7), where may a company classify interest paid and dividends paid?",
+    "options": [
+      "Interest paid: operating or financing; dividends paid: financing or operating, applied consistently",
+      "Both must be operating",
+      "Both must be financing",
+      "Interest paid must be investing"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 7 offers choices for interest and dividends paid and received.", "US GAAP fixes them: interest paid operating, dividends paid financing."] },
+    "why_it_matters": "CFO can differ by the amount of interest paid just from classification; adjust before comparing.",
+    "interactions": [{ "label": "CFO", "dir": "mixed" }],
+    "common_trap": "Comparing CFO across companies without checking the classification policy.",
+    "ifrs_gaap": { "ifrs": "Interest/dividends received: operating or investing; interest/dividends paid: operating or financing. (IFRS 18 narrows the choices from 2027.)", "us_gaap": "Interest paid and received, dividends received: operating; dividends paid: financing." },
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "IFRS Insights", "page": "5-58" }
+  },
+  {
+    "id": "A:05-006", "chapter": 5, "section_tag": "Free cash flow", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Using the textbook-style definition (CFO − capital expenditure − dividends): CFO 900, capex 520, dividends 150. Free cash flow?",
+    "answer": { "value": 230, "unit": "", "tolerance": 0 },
+    "check": "900 - 520 - 150",
+    "explanation": { "reasoning": ["900 − 520 − 150 = 230"], "shortcut": "Operating cash less what must be spent to sustain the business and its payout." },
+    "why_it_matters": "FCF definitions vary (before or after dividends, interest, leases). Always state which one you use.",
+    "interactions": [{ "label": "Financial flexibility", "dir": "up" }],
+    "common_trap": "Mixing a pre-dividend FCF with a post-dividend one when comparing companies.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Usefulness of the Statement of Cash Flows", "page": "5-21" }
+  },
+  {
+    "id": "A:05-007", "chapter": 5, "section_tag": "Cash flows", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Buying shares of another company as a long-term investment is shown in which section of the cash flow statement?",
+    "options": ["Investing activities", "Operating activities", "Financing activities", "It is not shown"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Acquisitions of long-term assets and investments are investing.", "Issuing or buying back your own shares is financing."] },
+    "why_it_matters": "Confusing investments in others with transactions in your own shares misreads capital allocation.",
+    "interactions": [{ "label": "CFI", "dir": "down" }],
+    "common_trap": "Putting it in financing because shares are involved.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Content of the Statement of Cash Flows", "page": "5-18" }
+  },
+  {
+    "id": "A:05-008", "chapter": 5, "section_tag": "Ratios", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Cash 50, short-term investments 30, receivables 120, inventory 200, current liabilities 250. Acid-test (quick) ratio?",
+    "answer": { "value": 0.8, "unit": "x", "tolerance": 0.01 },
+    "check": "(50 + 30 + 120) / 250",
+    "explanation": { "reasoning": ["Quick assets = 200", "200 / 250 = 0.8x"], "shortcut": "Leave out inventory and prepayments." },
+    "why_it_matters": "A quick ratio below 1 means paying current liabilities depends on selling stock.",
+    "interactions": [{ "label": "Liquidity", "dir": "down" }],
+    "common_trap": "Including inventory (gives 1.6x).",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Using Ratios to Analyze Performance", "page": "5-30" }
+  },
+  {
+    "id": "A:05-009", "chapter": 5, "section_tag": "Ratios", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Total liabilities 600, total assets 1,500. Debt-to-assets ratio (as a percentage)?",
+    "answer": { "value": 40, "unit": "%", "tolerance": 0.1 },
+    "check": "600 / 1500 * 100",
+    "explanation": { "reasoning": ["600 / 1,500 = 40%", "Creditors fund 40% of the assets; owners fund 60%"], "shortcut": "6/15 = 2/5." },
+    "why_it_matters": "A solvency snapshot; combine it with interest cover and cash-flow ratios.",
+    "interactions": [{ "label": "Equity multiplier", "dir": "up" }],
+    "common_trap": "Calling this debt/equity (that would be 0.67x).",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Using Ratios to Analyze Performance", "page": "5-30" }
+  },
+  {
+    "id": "A:05-010", "chapter": 5, "section_tag": "Limitations", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Which is a limitation of the balance sheet?",
+    "options": [
+      "Many items are at historical cost, some rely on estimates, and valuable items like internally built brands are omitted",
+      "It shows cash flows",
+      "It cannot show liabilities",
+      "It includes too much fair value"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Mixed measurement, estimation, and omitted intangibles limit what book value means."] },
+    "why_it_matters": "Book value can be far from market value; P/B must be read with ROE and the nature of the assets.",
+    "interactions": [{ "label": "P/B", "dir": "mixed" }],
+    "common_trap": "Treating book equity as what the company is worth.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Limitations of the Balance Sheet", "page": "5-4" }
+  },
+  {
+    "id": "A:05-011", "chapter": 5, "section_tag": "Subsequent events", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "After year end, but before the statements are authorised, a major customer owing 500 at year end goes bankrupt because of losses that existed at year end. What should the company do?",
+    "options": [
+      "Adjust: increase the loss allowance at year end, because the event gives evidence about conditions that existed at the reporting date",
+      "Only disclose it",
+      "Ignore it until next year",
+      "Restate the prior year"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 10: adjusting events provide evidence of conditions at the reporting date.", "A fire after year end would be non-adjusting (disclose only)."] },
+    "why_it_matters": "Subsequent-event notes can reveal problems the year-end numbers don't show yet.",
+    "interactions": [{ "label": "Receivables", "dir": "down" }],
+    "common_trap": "Treating every post-year-end event as disclosure-only.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Notes to the Financial Statements", "page": "5-25" }
+  },
+  {
+    "id": "A:05-012", "chapter": 5, "section_tag": "Disclosure", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Notes to the financial statements",
+    "answer": {
+      "meaning": "Explanations and detail that are part of the statements: policies, estimates, contingencies, commitments, segments, related parties, subsequent events.",
+      "formula": "Statements + notes = complete financial statements",
+      "interpretation": "Where judgements and risks are disclosed.",
+      "high_signals": "Specific, quantified notes on judgements and sensitivities.",
+      "low_signals": "Boilerplate text; vague related-party or commitment notes."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "A partner reads the notes before the numbers. Debt definitions, leases and contingencies live there.",
+    "interactions": [{ "label": "Transparency", "dir": "up" }],
+    "common_trap": "Skipping the notes in a time-pressed analysis.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Notes to the Financial Statements", "page": "5-25" }
+  },
+  {
+    "id": "A:05-013", "chapter": 5, "section_tag": "Cash flows", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Three sections of the cash flow statement",
+    "answer": {
+      "meaning": "Operating (day-to-day revenue activities), investing (long-term assets and investments), financing (equity and borrowings).",
+      "formula": "Net change in cash = CFO + CFI + CFF",
+      "interpretation": "A healthy mature firm: positive CFO funds CFI and returns cash via CFF.",
+      "high_signals": "CFO consistently above net income: strong cash conversion.",
+      "low_signals": "Negative CFO funded by CFF (borrowing or share issues): dependence on capital markets."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The sign pattern of the three sections tells you the company's life-cycle stage in seconds.",
+    "interactions": [{ "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Judging liquidity from net change in cash alone.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Content of the Statement of Cash Flows", "page": "5-18" }
+  },
+  {
+    "id": "A:05-014", "chapter": 5, "section_tag": "Cash flows", "difficulty": "hard", "format": "mcq", "style": "diagnosis",
+    "prompt": "A company shows CFO −50, CFI −200, CFF +260 for three years running. What life-cycle stage or situation does this suggest?",
+    "options": [
+      "A young, fast-growing company (or a struggling one) funding operations and investment with external capital",
+      "A mature cash cow returning cash to shareholders",
+      "A company in run-off, selling assets",
+      "A company with excess cash and no debt"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Negative CFO and heavy investment, both covered by financing inflows.", "Fine for a start-up with a plan; dangerous if markets close."] },
+    "why_it_matters": "Reliance on CFF is a refinancing risk; check runway and access to capital.",
+    "interactions": [{ "label": "Funding risk", "dir": "up" }],
+    "common_trap": "Looking only at the positive net change in cash.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Usefulness of the Statement of Cash Flows", "page": "5-21" }
+  },
+  {
+    "id": "A:05-015", "chapter": 5, "section_tag": "Classification", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A 10-year loan requires 100 of principal to be repaid each year. How is it presented at year end?",
+    "options": [
+      "The next 12 months' repayment (100) as current; the rest as non-current",
+      "All as non-current",
+      "All as current",
+      "Only the interest is shown"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The portion due within 12 months is a current liability.", "This is the 'current portion of long-term debt'."] },
+    "why_it_matters": "The current portion signals near-term cash needs; compare it with CFO and cash.",
+    "interactions": [{ "label": "Current ratio", "dir": "down" }],
+    "common_trap": "Leaving long-term debt entirely non-current.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Classification in the Balance Sheet", "page": "5-5" }
+  },
+  {
+    "id": "A:05-016", "chapter": 5, "section_tag": "Non-cash", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company acquires land by issuing shares worth 2,000. How does this appear in the cash flow statement?",
+    "options": [
+      "It is excluded from the cash flows and disclosed as a significant non-cash investing and financing activity",
+      "Investing outflow 2,000 and financing inflow 2,000",
+      "Operating outflow 2,000",
+      "It is ignored entirely"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["No cash moved, so it cannot be in the statement.", "It is disclosed because it is a significant investing/financing transaction."] },
+    "why_it_matters": "Large share- or debt-funded acquisitions can be missing from CFI; read the non-cash note to see true capital spending.",
+    "interactions": [{ "label": "Capex (true)", "dir": "up" }],
+    "common_trap": "Grossing it up as inflow and outflow.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Preparation of the Statement of Cash Flows", "page": "5-19" }
+  },
+  {
+    "id": "A:05-017", "chapter": 5, "section_tag": "Ratios", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Net cash from operating activities 360; average current liabilities 300. Current cash debt coverage?",
+    "answer": { "value": 1.2, "unit": "x", "tolerance": 0.01 },
+    "check": "360 / 300",
+    "explanation": { "reasoning": ["360 / 300 = 1.2x"], "shortcut": "CFO over average current liabilities." },
+    "why_it_matters": "A cash-based liquidity ratio that cannot be flattered by slow-moving inventory.",
+    "interactions": [{ "label": "Liquidity", "dir": "up" }],
+    "common_trap": "Using year-end instead of average liabilities when the question specifies average.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Usefulness of the Statement of Cash Flows", "page": "5-21" }
+  },
+  {
+    "id": "A:05-018", "chapter": 5, "section_tag": "Gross vs net", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "When may assets and liabilities be offset (netted) on the balance sheet, and why does it matter for analysis?",
+    "answer": {
+      "model_answer": "Offsetting is generally prohibited. Under IAS 32 a financial asset and liability may be netted only if the entity currently has a legally enforceable right to set off and intends to settle net or simultaneously. It matters because netting shrinks reported assets and liabilities, making leverage and total-asset ratios look better (common with derivatives and cash pooling). Analysts should check gross amounts in the notes (offsetting disclosures) before computing leverage, and remember that US GAAP permits more netting of derivatives under master netting agreements than IFRS.",
+      "rubric": ["General prohibition", "IAS 32 conditions", "Effect on leverage/asset ratios", "Read offsetting disclosures", "US GAAP more permissive for derivatives"]
+    },
+    "explanation": { "reasoning": ["State the rule, the conditions, and the analytical consequence."] },
+    "why_it_matters": "Bank balance sheets can differ by large amounts between IFRS and US GAAP purely due to netting.",
+    "interactions": [{ "label": "Leverage", "dir": "mixed" }],
+    "common_trap": "Assuming net presentation reflects lower risk.",
+    "book_ref": { "book": "IA17", "chapter": 5, "section": "Evolving Issue: Balance Sheet Reporting: Gross or Net?", "page": "5-30" }
+  }
+]

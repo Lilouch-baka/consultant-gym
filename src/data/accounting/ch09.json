@@ -1,0 +1,239 @@
+[
+  {
+    "id": "A:09-001", "chapter": 9, "section_tag": "LCNRV", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Inventory costs 50,000. Its net realisable value at year end is 46,000. Record the write-down directly against inventory.",
+    "answer": {
+      "lines": [{ "account": "Inventory write-down", "debit": 4000 }, { "account": "Inventory", "credit": 4000 }],
+      "effects": { "IS": [["Inventory write-down", -4000]], "BS": [["Inventory", -4000, "A"], ["Retained earnings", -4000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["IAS 2: inventory is carried at the lower of cost and NRV.", "Write down by 50,000 − 46,000 = 4,000, usually within cost of sales."] },
+    "why_it_matters": "Write-downs signal weak demand or pricing; they also reset the cost base, so later margins can look better.",
+    "interactions": [{ "label": "Gross margin", "dir": "down" }, { "label": "Inventory", "dir": "down" }],
+    "common_trap": "Writing inventory up when NRV exceeds cost.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Recording NRV Instead of Cost", "page": "9-5" }
+  },
+  {
+    "id": "A:09-002", "chapter": 9, "section_tag": "LCNRV", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Same write-down of 4,000, but the company keeps inventory at cost in its records and uses an allowance account. Record it.",
+    "answer": {
+      "lines": [{ "account": "Inventory write-down", "debit": 4000 }, { "account": "Allowance to reduce inventory to NRV", "credit": 4000 }],
+      "effects": { "IS": [["Inventory write-down", -4000]], "BS": [["Inventory (net)", -4000, "A"], ["Retained earnings", -4000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["The allowance is a contra-asset; inventory records stay at cost.", "Net inventory shown = 46,000."] },
+    "why_it_matters": "The allowance keeps cost information intact and makes later reversals easy to track.",
+    "interactions": [{ "label": "Inventory", "dir": "down" }],
+    "common_trap": "Thinking the allowance method gives a different profit; it doesn't.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Use of an Allowance", "page": "9-6" }
+  },
+  {
+    "id": "A:09-003", "chapter": 9, "section_tag": "Reversal", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Next year the same items (cost 50,000, written down to 46,000 via the allowance) are still unsold and their NRV recovers to 48,500. Record the adjustment under IFRS.",
+    "answer": {
+      "lines": [{ "account": "Allowance to reduce inventory to NRV", "debit": 2500 }, { "account": "Inventory write-down", "credit": 2500 }],
+      "effects": { "IS": [["Reversal of write-down", 2500]], "BS": [["Inventory (net)", 2500, "A"], ["Retained earnings", 2500, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["IAS 2 requires reversal when NRV recovers, capped at original cost.", "New carrying amount 48,500, so reverse 2,500 (reducing this year's expense)."] },
+    "why_it_matters": "Reversals lift margins without any operational improvement; strip them out when judging performance.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Writing back above the original cost, or not reversing at all under IFRS.",
+    "ifrs_gaap": { "ifrs": "IAS 2: write-downs are reversed (up to original cost) when NRV recovers.", "us_gaap": "ASC 330: the written-down amount becomes the new cost basis; reversals are not allowed." },
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "IFRS Insights", "page": "9-54" }
+  },
+  {
+    "id": "A:09-004", "chapter": 9, "section_tag": "Purchase commitments", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company has a non-cancellable contract to buy materials next year for 600,000. At year end the market price for the same materials has fallen to 560,000. Record the loss.",
+    "answer": {
+      "lines": [{ "account": "Loss on purchase commitments", "debit": 40000 }, { "account": "Provision", "credit": 40000 }],
+      "effects": { "IS": [["Loss on purchase commitments", -40000]], "BS": [["Provision (onerous contract)", 40000, "L"], ["Retained earnings", -40000, "E"]], "CFS": [], "note": "cash paid next year" }
+    },
+    "explanation": { "reasoning": ["The contract has become onerous: unavoidable cost exceeds the value of what will be received.", "Recognise the expected loss now (IAS 37)."] },
+    "why_it_matters": "Unfavourable fixed-price purchase contracts are hidden liabilities; read the commitments note when input prices fall.",
+    "interactions": [{ "label": "Provisions", "dir": "up" }, { "label": "Net income", "dir": "down" }],
+    "common_trap": "Waiting until the goods are delivered to recognise the loss.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Purchase Commitments—A Special Problem", "page": "9-13" }
+  },
+  {
+    "id": "A:09-005", "chapter": 9, "section_tag": "Losses", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Uninsured inventory with a cost of 12,000 is destroyed by a flood. Record the loss.",
+    "answer": {
+      "lines": [{ "account": "Impairment loss", "debit": 12000 }, { "account": "Inventory", "credit": 12000 }],
+      "effects": { "IS": [["Loss on destroyed inventory", -12000]], "BS": [["Inventory", -12000, "A"], ["Retained earnings", -12000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["The inventory no longer exists, so it is written off.", "If it were insured, an insurance receivable would reduce the loss."] },
+    "why_it_matters": "Disclosed separately as an unusual item, it should be excluded from normalised margins.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Leaving it in inventory until the year-end count.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "The Gross Profit Method of Estimating Inventory", "page": "9-15" }
+  },
+  {
+    "id": "A:09-006", "chapter": 9, "section_tag": "LCNRV", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Item by item: A cost 100, NRV 120; B cost 80, NRV 60; C cost 50, NRV 45. Carrying amount of the inventory?",
+    "answer": { "value": 205, "unit": "", "tolerance": 0 },
+    "check": "Math.min(100,120) + Math.min(80,60) + Math.min(50,45)",
+    "explanation": { "reasoning": ["Lower of cost and NRV for each item: 100 + 60 + 45 = 205"], "shortcut": "Take the lower number on each line." },
+    "why_it_matters": "Applying the test item by item prevents gains on some items hiding losses on others.",
+    "interactions": [{ "label": "Inventory", "dir": "down" }],
+    "common_trap": "Comparing totals (230 vs 225) and taking 225.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Methods of Applying LCNRV", "page": "9-4" }
+  },
+  {
+    "id": "A:09-007", "chapter": 9, "section_tag": "NRV", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Estimated selling price 90, costs to complete 10, costs to sell 5. Net realisable value?",
+    "answer": { "value": 75, "unit": "", "tolerance": 0 },
+    "check": "90 - 10 - 5",
+    "explanation": { "reasoning": ["NRV = selling price − costs to complete − costs to sell = 75"], "shortcut": "Price less everything still to spend." },
+    "why_it_matters": "NRV is entity-specific, unlike fair value.",
+    "interactions": [{ "label": "Inventory", "dir": "down" }],
+    "common_trap": "Forgetting the costs to complete.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Definition of Net Realizable Value", "page": "9-3" }
+  },
+  {
+    "id": "A:09-008", "chapter": 9, "section_tag": "Gross profit method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Opening inventory 40,000; purchases 160,000; sales 250,000; normal gross margin 30% of sales. Estimated ending inventory?",
+    "answer": { "value": 25000, "unit": "", "tolerance": 0 },
+    "check": "40000 + 160000 - 250000 * 0.7",
+    "explanation": { "reasoning": ["Estimated COGS = 250,000 × 70% = 175,000", "Goods available 200,000 − 175,000 = 25,000"], "shortcut": "Available minus sales at cost." },
+    "why_it_matters": "Used for interim reports and insurance claims; auditors use it to test reasonableness.",
+    "interactions": [{ "label": "Inventory", "dir": "mixed" }],
+    "common_trap": "Applying 30% instead of 70% to get cost of sales.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Computation of Gross Profit Percentage", "page": "9-16" }
+  },
+  {
+    "id": "A:09-009", "chapter": 9, "section_tag": "Gross profit method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Goods are marked up 25% on cost. What is the gross margin as a percentage of selling price?",
+    "answer": { "value": 20, "unit": "%", "tolerance": 0.1 },
+    "check": "25 / 125 * 100",
+    "explanation": { "reasoning": ["Cost 100, price 125, profit 25", "25 / 125 = 20%"], "shortcut": "Margin = markup / (1 + markup)." },
+    "why_it_matters": "Confusing markup and margin is one of the most common errors in pricing discussions.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Answering 25%.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Computation of Gross Profit Percentage", "page": "9-16" }
+  },
+  {
+    "id": "A:09-010", "chapter": 9, "section_tag": "Retail method", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Goods available for sale: cost 60,000, retail 100,000. Sales at retail 70,000. Estimated ending inventory at cost (retail method, average cost ratio)?",
+    "answer": { "value": 18000, "unit": "", "tolerance": 0 },
+    "check": "(100000 - 70000) * 60000 / 100000",
+    "explanation": { "reasoning": ["Ending inventory at retail = 30,000", "Cost-to-retail ratio = 60%", "30,000 × 60% = 18,000"], "shortcut": "Retail left × cost ratio." },
+    "why_it_matters": "Retailers value stock this way; markdown assumptions directly move margin.",
+    "interactions": [{ "label": "Inventory", "dir": "mixed" }],
+    "common_trap": "Applying the ratio to sales instead of ending retail.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Retail Inventory Method", "page": "9-18" }
+  },
+  {
+    "id": "A:09-011", "chapter": 9, "section_tag": "Analysis", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Cost of goods sold 600,000; average inventory 100,000. Inventory turnover?",
+    "answer": { "value": 6, "unit": "x", "tolerance": 0 },
+    "check": "600000 / 100000",
+    "explanation": { "reasoning": ["600,000 / 100,000 = 6 times", "Average days in inventory ≈ 365 / 6 ≈ 61"], "shortcut": "COGS over average inventory." },
+    "why_it_matters": "Falling turnover often comes before write-downs.",
+    "interactions": [{ "label": "DIO", "dir": "down" }],
+    "common_trap": "Using sales instead of cost of sales.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Analysis of Inventories", "page": "9-25" }
+  },
+  {
+    "id": "A:09-012", "chapter": 9, "section_tag": "LCNRV", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "How is the lower of cost and NRV normally applied under IAS 2?",
+    "options": [
+      "Item by item, or to groups of similar or related items; not to whole categories such as 'all finished goods'",
+      "Only to total inventory",
+      "Only to raw materials",
+      "Only at the end of a product's life"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Item-by-item is the norm; grouping is allowed for related items in the same product line.", "Category-level netting would hide losses."] },
+    "why_it_matters": "Broad grouping lets profitable items absorb losses on obsolete ones.",
+    "interactions": [{ "label": "Inventory", "dir": "down" }],
+    "common_trap": "Netting gains and losses across unrelated products.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Methods of Applying LCNRV", "page": "9-4" }
+  },
+  {
+    "id": "A:09-013", "chapter": 9, "section_tag": "NRV", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Net realisable value (NRV)",
+    "answer": {
+      "meaning": "The estimated selling price in the ordinary course of business, less estimated costs of completion and costs to sell.",
+      "formula": "NRV = selling price − costs to complete − costs to sell",
+      "interpretation": "An entity-specific value; inventory cannot be carried above it.",
+      "high_signals": "NRV well above cost: healthy margins.",
+      "low_signals": "NRV near or below cost: write-down risk, pricing pressure."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The NRV test is where demand problems first reach the accounts.",
+    "interactions": [{ "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Confusing NRV with replacement cost or fair value.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Definition of Net Realizable Value", "page": "9-3" }
+  },
+  {
+    "id": "A:09-014", "chapter": 9, "section_tag": "Agriculture", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS, how is agricultural produce (e.g. harvested milk or grain) measured at the point of harvest?",
+    "options": ["At fair value less costs to sell (IAS 41), which becomes its cost for IAS 2", "At historical cost of growing it", "At zero until sold", "At the farmer's selling price without deductions"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 41 measures biological assets and harvested produce at fair value less costs to sell.", "After harvest, IAS 2 applies using that amount as cost."] },
+    "why_it_matters": "Dairy and poultry companies (e.g. Almarai) report fair-value gains on biological assets; separate them from operating margin.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Treating biological fair-value gains as recurring operating profit.",
+    "ifrs_gaap": { "ifrs": "IAS 41: biological assets and produce at harvest at fair value less costs to sell (bearer plants under IAS 16 at cost).", "us_gaap": "No equivalent standard; generally historical cost, with some industry practice for NRV." },
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Valuation at Net Realizable Value", "page": "9-11" }
+  },
+  {
+    "id": "A:09-015", "chapter": 9, "section_tag": "Reversal", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "An IFRS company wrote inventory down by 10 million last year; this year it reverses 6 million. What happens to this year's reported gross margin?",
+    "options": [
+      "It is flattered by 6 million that does not come from current trading",
+      "It is reduced by 6 million",
+      "It is unaffected because reversals go to OCI",
+      "It is unaffected because reversals go to retained earnings"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Reversals reduce the inventory expense in profit or loss.", "Margins improve without any change in pricing or costs."] },
+    "why_it_matters": "Swings in write-downs and reversals can make margins look volatile or artificially strong; check the inventory note.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Crediting management for a margin recovery.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "IFRS Insights", "page": "9-54" }
+  },
+  {
+    "id": "A:09-016", "chapter": 9, "section_tag": "Retail method", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Retail inventory method",
+    "answer": {
+      "meaning": "Estimates ending inventory at cost by converting ending inventory at retail prices using a cost-to-retail ratio.",
+      "formula": "Ending inventory (cost) = Ending inventory (retail) × (cost of goods available / retail value of goods available)",
+      "interpretation": "Practical for retailers with thousands of SKUs; IFRS allows it if results approximate cost.",
+      "high_signals": "—",
+      "low_signals": "Large markdowns not reflected in the ratio overstate inventory."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Markdown assumptions are a lever on retailers' margins.",
+    "interactions": [{ "label": "Inventory", "dir": "mixed" }],
+    "common_trap": "Ignoring markdowns when computing the ratio.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Retail-Method Concepts", "page": "9-19" }
+  },
+  {
+    "id": "A:09-017", "chapter": 9, "section_tag": "Relative sales value", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A developer buys land for 300,000 and divides it into 3 lots selling for 100,000, 200,000 and 300,000. How is cost allocated?",
+    "options": [
+      "By relative sales value: 50,000, 100,000 and 150,000",
+      "Equally: 100,000 each",
+      "All to the first lot sold",
+      "By area only, ignoring prices"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Total sales value 600,000; cost is half of sales value.", "Each lot gets cost in proportion to its selling price."] },
+    "why_it_matters": "Allocation choices for joint costs drive the margin reported on each sale.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Equal allocation, which front-loads profit on expensive lots.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Valuation Using Relative Sales Value", "page": "9-12" }
+  },
+  {
+    "id": "A:09-018", "chapter": 9, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A new CEO books a large inventory write-down in her first year. Margins rise sharply the following year. How do you interpret this?",
+    "answer": {
+      "model_answer": "Possibly a 'big bath': writing inventory down heavily in a year already blamed on the predecessor lowers the cost base, so the same stock sold later produces higher margins (and under IFRS some may even be reversed). Part of next year's margin gain is therefore an accounting artefact. Test it: compare the write-down with the age profile and turnover of inventory; check sales of written-down stock and reversals in the inventory note; look at gross margin excluding write-downs/reversals over several years; compare with peers facing the same market. Normalise margins before valuing the business.",
+      "rubric": ["Big-bath explanation", "Lower cost base lifts later margins", "IFRS reversal possibility", "Tests using notes and turnover", "Normalise margins"]
+    },
+    "explanation": { "reasoning": ["Link the write-down to the next year's margin mechanically, then test with evidence."] },
+    "why_it_matters": "Management changes are a classic moment for earnings management.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Crediting the new CEO with a turnaround.",
+    "book_ref": { "book": "IA17", "chapter": 9, "section": "Presentation of Inventories", "page": "9-24" }
+  }
+]

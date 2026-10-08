@@ -1,0 +1,228 @@
+[
+  {
+    "id": "A:01-001", "chapter": 1, "section_tag": "Objective", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "What is the objective of general-purpose financial reporting under the IASB's Conceptual Framework?",
+    "options": [
+      "To provide information useful to existing and potential investors, lenders and other creditors in deciding whether to provide resources to the entity",
+      "To show the market value of the company",
+      "To calculate the company's taxable profit",
+      "To satisfy the information needs of management"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The primary users are capital providers who cannot demand tailored information.", "Valuation, tax and internal reporting are not the objective."] },
+    "why_it_matters": "Every standard is judged against this purpose: does it help capital providers estimate future cash flows and assess management?",
+    "interactions": [{ "label": "Decision-usefulness", "dir": "up" }],
+    "common_trap": "Thinking the balance sheet aims to show what the company is worth.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "Objective of Financial Reporting", "page": "1-4" }
+  },
+  {
+    "id": "A:01-002", "chapter": 1, "section_tag": "Standard setters", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "IFRS standard-setting structure",
+    "answer": {
+      "meaning": "The IFRS Foundation (trustees, overseen by a Monitoring Board of public authorities) appoints the IASB, which issues IFRS Standards; the IFRS Interpretations Committee issues interpretations.",
+      "formula": "Monitoring Board → IFRS Foundation trustees → IASB (standards) + Interpretations Committee",
+      "interpretation": "Independent, due-process standard setting; adoption is decided by each jurisdiction.",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Knowing who sets the rules tells you how quickly and how independently they can change.",
+    "interactions": [{ "label": "Comparability", "dir": "up" }],
+    "common_trap": "Confusing the IASB (sets standards) with IOSCO or national regulators (enforce them).",
+    "ifrs_gaap": { "ifrs": "IASB issues IFRS Standards; endorsement is national (e.g. the EU adopts them by regulation).", "us_gaap": "FASB issues US GAAP through the Accounting Standards Codification; the SEC has legal authority for listed companies." },
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "International Accounting Standards", "page": "1-18" }
+  },
+  {
+    "id": "A:01-003", "chapter": 1, "section_tag": "Standard setters", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which body has legal authority over financial reporting by US-listed companies?",
+    "options": ["The Securities and Exchange Commission (SEC)", "The FASB", "The AICPA", "The IASB"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The SEC has statutory authority and has delegated standard setting to the FASB.", "The AICPA was an earlier standard setter; the IASB sets IFRS."] },
+    "why_it_matters": "Enforcement quality matters as much as the standards themselves when you rely on reported numbers.",
+    "interactions": [{ "label": "Reporting quality", "dir": "up" }],
+    "common_trap": "Thinking the FASB has legal power; its authority comes from the SEC's recognition.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "Securities and Exchange Commission (SEC)", "page": "1-7" }
+  },
+  {
+    "id": "A:01-004", "chapter": 1, "section_tag": "Standards", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "IFRS is often described as more principles-based than US GAAP. What does this mean in practice?",
+    "options": [
+      "IFRS relies more on broad principles and professional judgement, with fewer bright-line rules and industry-specific exceptions",
+      "IFRS has no rules at all",
+      "IFRS allows companies to choose any treatment they like",
+      "IFRS financial statements are not audited"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["US GAAP historically contains detailed rules, thresholds and industry guidance.", "IFRS sets principles and expects judgement applied consistently with them."] },
+    "why_it_matters": "More judgement means more need to read accounting-policy notes before comparing companies.",
+    "interactions": [{ "label": "Comparability", "dir": "mixed" }],
+    "common_trap": "Equating principles-based with 'anything goes'.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "International Accounting Standards", "page": "1-18" }
+  },
+  {
+    "id": "A:01-005", "chapter": 1, "section_tag": "Objective", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Stewardship",
+    "answer": {
+      "meaning": "How efficiently and effectively management has used the entity's resources entrusted to it.",
+      "formula": "Assessed through performance (profit, returns on capital) and changes in resources and claims.",
+      "interpretation": "Financial reports help owners hold management to account, not only forecast cash flows.",
+      "high_signals": "Strong returns on the capital management controls.",
+      "low_signals": "Value-destroying investments, repeated impairments, poor cash conversion."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Return on capital is the stewardship scorecard every CFO is judged on.",
+    "interactions": [{ "label": "ROIC", "dir": "up" }],
+    "common_trap": "Thinking reporting is only about predicting cash flows.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "Objective of Financial Reporting", "page": "1-4" }
+  },
+  {
+    "id": "A:01-006", "chapter": 1, "section_tag": "Capital allocation", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "How does high-quality financial reporting affect a company's cost of capital?",
+    "options": [
+      "It lowers it, because investors face less information risk and demand a smaller premium",
+      "It raises it, because disclosure is expensive",
+      "It has no effect; only interest rates matter",
+      "It only affects the cost of debt, not equity"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Investors price uncertainty about the numbers.", "Credible, comparable information reduces that uncertainty, so capital is cheaper and flows to better uses."] },
+    "why_it_matters": "This is why CFOs invest in reporting quality and why accounting scandals raise funding costs sharply.",
+    "interactions": [{ "label": "WACC", "dir": "down" }],
+    "common_trap": "Treating reporting purely as a compliance cost.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "Accounting and Capital Allocation", "page": "1-4" }
+  },
+  {
+    "id": "A:01-007", "chapter": 1, "section_tag": "Challenges", "difficulty": "medium", "format": "written", "style": "rhetorical",
+    "prompt": "What is the 'expectations gap' in financial reporting, and what narrows it?",
+    "answer": {
+      "model_answer": "It is the gap between what the public thinks accountants and auditors should deliver (for example, detecting every fraud or guaranteeing a company's health) and what standards and audits can reasonably provide (reasonable assurance that statements are free of material misstatement). Failures such as Enron or Wirecard widen it. It narrows through better standards and enforcement, stronger audit and governance (audit committees, internal control reporting), clearer communication of what an audit is, and investor education.",
+      "rubric": ["Public expectation vs reasonable assurance", "Examples of failures", "Remedies: standards, enforcement, governance, communication"]
+    },
+    "explanation": { "reasoning": ["Define both sides of the gap.", "Explain why scandals widen it and what closes it."] },
+    "why_it_matters": "Clean audit opinions do not mean healthy businesses; analysts still need their own checks.",
+    "interactions": [{ "label": "Trust in reports", "dir": "mixed" }],
+    "common_trap": "Believing an unqualified audit opinion rules out fraud.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "The Expectations Gap", "page": "1-16" }
+  },
+  {
+    "id": "A:01-008", "chapter": 1, "section_tag": "International", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "How can a non-US company that reports under IFRS (as issued by the IASB) list its shares in the United States?",
+    "options": [
+      "It can file IFRS statements with the SEC without reconciling to US GAAP",
+      "It must restate everything into US GAAP",
+      "It cannot list in the US",
+      "It must provide a US GAAP reconciliation of net income and equity"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Since 2007 the SEC accepts IASB IFRS from foreign private issuers without a US GAAP reconciliation.", "US domestic issuers must still use US GAAP."] },
+    "why_it_matters": "Peer sets often mix IFRS and US GAAP reporters; you must adjust for the differences yourself.",
+    "interactions": [{ "label": "Comparability", "dir": "down" }],
+    "common_trap": "Assuming all US-listed companies report under US GAAP.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "International Accounting Standards", "page": "1-18" }
+  },
+  {
+    "id": "A:01-009", "chapter": 1, "section_tag": "Politics", "difficulty": "hard", "format": "mcq", "style": "rhetorical",
+    "prompt": "Companies lobbied hard against expensing employee stock options. What does this episode illustrate?",
+    "options": [
+      "Accounting rules have economic consequences, so standard setting operates in a political environment",
+      "Stock options have no cost",
+      "Standard setters always follow industry preferences",
+      "Expensing options changes a company's cash flows"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Expensing options lowers reported profit without changing cash, so companies resisted.", "Standard setters must balance neutrality against pressure from preparers."] },
+    "why_it_matters": "When a rule change hits reported profit, ask whether economics changed or only presentation.",
+    "interactions": [{ "label": "Reported EPS", "dir": "down" }, { "label": "Cash flow", "dir": "mixed" }],
+    "common_trap": "Thinking a non-cash expense is not a real cost to shareholders.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "GAAP in a Political Environment", "page": "1-14" }
+  },
+  {
+    "id": "A:01-010", "chapter": 1, "section_tag": "Standards", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Why do we need accounting standards at all?",
+    "options": [
+      "So that information is comparable and consistent across companies and over time, reducing the cost of analysing it",
+      "To make all companies report the same profit",
+      "To replace auditing",
+      "Because tax authorities require identical figures"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Without common rules each company would choose its own measures.", "Users could not compare or trust them without huge effort."] },
+    "why_it_matters": "Ratio analysis only works because the inputs follow common rules.",
+    "interactions": [{ "label": "Comparability", "dir": "up" }],
+    "common_trap": "Thinking standards make numbers 'true'; they make them comparable.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "The Need to Develop Standards", "page": "1-6" }
+  },
+  {
+    "id": "A:01-011", "chapter": 1, "section_tag": "Interpretations", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS, which body addresses newly identified reporting issues not specifically covered by a standard?",
+    "options": ["The IFRS Interpretations Committee", "The SEC", "The Monitoring Board", "The FASB Emerging Issues Task Force"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The IFRS Interpretations Committee issues IFRIC Interpretations, approved by the IASB.", "The EITF plays a similar role for US GAAP."] },
+    "why_it_matters": "Interpretations can change practice quickly (e.g. on cloud computing costs); watch them for sector-wide effects.",
+    "interactions": [{ "label": "Comparability", "dir": "up" }],
+    "common_trap": "Thinking interpretations are optional guidance.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "International Accounting Standards", "page": "1-18" }
+  },
+  {
+    "id": "A:01-012", "chapter": 1, "section_tag": "Ethics", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Your manager asks you to delay recording a large repair invoice into next year so this year's bonus target is met. What is the right response?",
+    "options": [
+      "Record it in the period the cost was incurred and raise the issue through proper channels if pressure continues",
+      "Delay it, since it will be recorded next year anyway",
+      "Record it as an asset to avoid hitting profit",
+      "Ask the supplier to re-date the invoice"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Accrual accounting requires the cost in the period it was incurred.", "Shifting it misstates both years and is unethical; escalate if pressured."] },
+    "why_it_matters": "Incentive-driven timing games are the most common route to misstatement. Bonuses tied to profit targets are a risk indicator.",
+    "interactions": [{ "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Thinking a timing difference is harmless because it reverses.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "Ethics in the Environment of Financial Accounting", "page": "1-19" }
+  },
+  {
+    "id": "A:01-013", "chapter": 1, "section_tag": "Hierarchy", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS (IAS 8), if no standard applies to a transaction, what should management do first?",
+    "options": [
+      "Look to standards dealing with similar issues, then the Conceptual Framework, to develop a relevant and reliable policy",
+      "Use US GAAP directly",
+      "Use whatever policy gives the highest profit",
+      "Use the tax rules"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 8 sets a hierarchy: analogous IFRS requirements, then Framework definitions and recognition criteria.", "Pronouncements of other standard setters may be considered if consistent."] },
+    "why_it_matters": "Gaps in standards are where policy choices hide; read the accounting-policy note.",
+    "interactions": [{ "label": "Judgement", "dir": "up" }],
+    "common_trap": "Thinking US GAAP automatically fills gaps in IFRS.",
+    "ifrs_gaap": { "ifrs": "IAS 8 hierarchy: analogous IFRS → Conceptual Framework → (optionally) other standard setters' guidance.", "us_gaap": "The FASB Accounting Standards Codification is the single source of authoritative non-SEC GAAP." },
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "FASB Codification", "page": "1-13" }
+  },
+  {
+    "id": "A:01-014", "chapter": 1, "section_tag": "Codification", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "FASB Accounting Standards Codification",
+    "answer": {
+      "meaning": "The single authoritative source of US GAAP, organised by topic (e.g. ASC 606 revenue, ASC 842 leases).",
+      "formula": "Topic → Subtopic → Section → Paragraph",
+      "interpretation": "Everything outside the Codification (and SEC rules) is non-authoritative.",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Knowing the US topic numbers (606, 842, 718) lets you read US filings and compare them with IFRS 15, IFRS 16 and IFRS 2.",
+    "interactions": [{ "label": "Comparability", "dir": "up" }],
+    "common_trap": "Thinking the Codification created new rules; it reorganised existing ones.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "FASB Codification", "page": "1-13" }
+  },
+  {
+    "id": "A:01-015", "chapter": 1, "section_tag": "International", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "You are comparing a European IFRS reporter with a US GAAP peer. Name four accounting differences that could distort ratios and say which ratio each affects.",
+    "answer": {
+      "model_answer": "(1) Inventory: LIFO is allowed under US GAAP but not IFRS, so a US LIFO user shows lower inventory and gross margin when prices rise (affects gross margin, inventory turnover, current ratio). (2) Development costs: IFRS capitalises development costs that meet criteria; US GAAP expenses most R&D, so the IFRS firm has higher EBITDA and assets (EBITDA margin, ROA). (3) Revaluation: IFRS allows PP&E and intangibles at revalued amounts; US GAAP uses cost, so asset bases and equity differ (asset turnover, ROE, gearing). (4) Leases: under IFRS 16 all lessee leases put depreciation and interest below EBITDA; under US GAAP operating leases show a single straight-line expense in operating costs (EBITDA, interest cover). Also: interest paid can be financing under IFRS but must be operating under US GAAP (CFO).",
+      "rubric": ["LIFO", "Development costs", "Revaluation", "Leases", "Ratio affected for each", "Cash-flow classification bonus"]
+    },
+    "explanation": { "reasoning": ["List the difference, the direction, and the ratio it moves."] },
+    "why_it_matters": "Cross-border peer comparisons are worthless until these are adjusted.",
+    "interactions": [{ "label": "EBITDA margin", "dir": "mixed" }, { "label": "ROE", "dir": "mixed" }],
+    "common_trap": "Comparing headline EBITDA multiples across GAAPs without adjustment.",
+    "book_ref": { "book": "IA17", "chapter": 1, "section": "IFRS Insights", "page": "1-28" }
+  }
+]

@@ -1,0 +1,297 @@
+[
+  {
+    "id": "A:07-001", "chapter": 7, "section_tag": "Transaction price", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Goods are sold on credit for 10,000 with terms 2/10, net 30. Based on experience the customer is expected to take the discount. Record the sale (ignore cost of sales).",
+    "answer": {
+      "lines": [{ "account": "Trade receivables", "debit": 9800 }, { "account": "Sales revenue", "credit": 9800 }],
+      "effects": { "IS": [["Sales revenue", 9800]], "BS": [["Trade receivables", 9800, "A"], ["Retained earnings", 9800, "E"]], "CFS": [], "note": "cash due within 10 days" }
+    },
+    "explanation": { "reasoning": ["Early-payment discounts are variable consideration under IFRS 15.", "If the discount is expected to be taken, revenue is the amount expected: 10,000 × 98% = 9,800."] },
+    "why_it_matters": "Revenue is the amount the company expects to keep, not the list price. Generous discounts show up as lower revenue, not as an expense.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }, { "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Recording 10,000 and later booking the discount as a finance cost.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Measurement of the Transaction Price", "page": "7-8" }
+  },
+  {
+    "id": "A:07-002", "chapter": 7, "section_tag": "Allowance", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Trade receivables are 200,000 and expected credit losses are estimated at 3%. The allowance already has a credit balance of 1,500 before adjustment. Record the year-end adjustment.",
+    "answer": {
+      "lines": [{ "account": "Bad debt expense", "debit": 4500 }, { "account": "Allowance for doubtful accounts", "credit": 4500 }],
+      "effects": { "IS": [["Impairment of receivables", -4500]], "BS": [["Receivables (net)", -4500, "A"], ["Retained earnings", -4500, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Required allowance = 200,000 × 3% = 6,000.", "Top up the existing 1,500 by 4,500."] },
+    "why_it_matters": "Under-provisioning flatters profit until the losses arrive. Compare the allowance as % of receivables over time and with peers.",
+    "interactions": [{ "label": "Net receivables", "dir": "down" }, { "label": "Net income", "dir": "down" }],
+    "common_trap": "Expensing the full 6,000 and ignoring the existing balance.",
+    "ifrs_gaap": { "ifrs": "IFRS 9 expected-credit-loss model; trade receivables usually use the simplified approach (lifetime ECL from day one).", "us_gaap": "CECL (ASC 326) also requires lifetime expected losses for receivables measured at amortised cost." },
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Allowance Method for Uncollectible Accounts", "page": "7-12" }
+  },
+  {
+    "id": "A:07-003", "chapter": 7, "section_tag": "Write-off", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A customer owing 800 goes bankrupt and the account is written off. The company uses the allowance method. Record the write-off.",
+    "answer": {
+      "lines": [{ "account": "Allowance for doubtful accounts", "debit": 800 }, { "account": "Trade receivables", "credit": 800 }],
+      "effects": { "IS": [], "BS": [["Allowance (contra-asset)", 800, "A"], ["Trade receivables", -800, "A"]], "CFS": [], "note": "net receivables unchanged" }
+    },
+    "explanation": { "reasoning": ["The loss was already expensed when the allowance was built.", "Writing off removes both the receivable and part of the allowance: net receivables are unchanged."] },
+    "why_it_matters": "Write-offs don't hit profit under the allowance method; the expense was recognised earlier. Look at the provision charge, not write-offs, for the cost of credit.",
+    "interactions": [{ "label": "Gross receivables", "dir": "down" }],
+    "common_trap": "Debiting bad debt expense again (double counting).",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Allowance Method for Uncollectible Accounts", "page": "7-12" }
+  },
+  {
+    "id": "A:07-004", "chapter": 7, "section_tag": "Recovery", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "A customer whose 300 balance was written off last year unexpectedly pays in full. Record the net effect in one entry (reinstate and collect).",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 300 }, { "account": "Allowance for doubtful accounts", "credit": 300 }],
+      "effects": { "IS": [], "BS": [["Cash", 300, "A"], ["Allowance (contra-asset)", -300, "A"]], "CFS": [["Operating: cash from customers", 300]] }
+    },
+    "explanation": { "reasoning": ["Reinstate: Dr receivable / Cr allowance 300. Collect: Dr cash / Cr receivable 300.", "Net: Dr cash / Cr allowance. The higher allowance is trued up at the next estimate."] },
+    "why_it_matters": "Recoveries replenish the allowance; a company with frequent recoveries may be over-reserving (a cookie jar).",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Crediting revenue for the recovery.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Allowance Method for Uncollectible Accounts", "page": "7-12" }
+  },
+  {
+    "id": "A:07-005", "chapter": 7, "section_tag": "Bank reconciliation", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The bank statement shows bank charges of 40 and a customer's cheque for 500 returned unpaid (NSF), neither yet in the books. Record the adjustment in the company's books.",
+    "answer": {
+      "lines": [{ "account": "Bank charges", "debit": 40 }, { "account": "Trade receivables", "debit": 500 }, { "account": "Cash", "credit": 540 }],
+      "effects": { "IS": [["Bank charges", -40]], "BS": [["Cash", -540, "A"], ["Trade receivables", 500, "A"], ["Retained earnings", -40, "E"]], "CFS": [["Operating: cash outflow", -540]] }
+    },
+    "explanation": { "reasoning": ["Items on the bank statement not yet in the books are adjusted in the books.", "The bounced cheque means the customer owes the money again."] },
+    "why_it_matters": "Bank reconciliations are a key cash control; unreconciled differences are a fraud red flag.",
+    "interactions": [{ "label": "Cash", "dir": "down" }],
+    "common_trap": "Adjusting the books for outstanding cheques or deposits in transit (those are bank-side items).",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Reconciliation of Bank Balances", "page": "7-33" }
+  },
+  {
+    "id": "A:07-006", "chapter": 7, "section_tag": "Factoring", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company sells 100,000 of receivables to a factor without recourse (substantially all risks transferred) for 97,000 cash. Record the sale.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 97000 }, { "account": "Loss on sale of receivables", "debit": 3000 }, { "account": "Trade receivables", "credit": 100000 }],
+      "effects": { "IS": [["Loss on sale of receivables", -3000]], "BS": [["Cash", 97000, "A"], ["Trade receivables", -100000, "A"], ["Retained earnings", -3000, "E"]], "CFS": [["Operating: cash from receivables", 97000]] }
+    },
+    "explanation": { "reasoning": ["Risks and rewards have passed, so the receivables are derecognised (IFRS 9).", "The 3,000 discount is the cost of early cash."] },
+    "why_it_matters": "Factoring lowers DSO and lifts CFO without customers paying faster. Add factored amounts back to compare working capital over time.",
+    "interactions": [{ "label": "DSO", "dir": "down" }, { "label": "CFO", "dir": "up" }],
+    "common_trap": "Derecognising receivables sold with recourse; those usually stay on the balance sheet with a borrowing.",
+    "ifrs_gaap": { "ifrs": "IFRS 9: derecognise if substantially all risks and rewards transfer; otherwise continue to recognise (or apply continuing involvement).", "us_gaap": "ASC 860: focuses on surrender of control (legal isolation, transferee's right to pledge, no effective control kept)." },
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Disposition of Accounts and Notes Receivable", "page": "7-22" }
+  },
+  {
+    "id": "A:07-007", "chapter": 7, "section_tag": "Notes receivable", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "On 1 October the company accepted a 12,000, 6-month note bearing 8% interest. Record the interest accrual at 31 December.",
+    "answer": {
+      "lines": [{ "account": "Interest receivable", "debit": 240 }, { "account": "Interest income", "credit": 240 }],
+      "effects": { "IS": [["Interest income", 240]], "BS": [["Interest receivable", 240, "A"], ["Retained earnings", 240, "E"]], "CFS": [], "note": "paid at maturity" }
+    },
+    "explanation": { "reasoning": ["12,000 × 8% × 3/12 = 240."] },
+    "why_it_matters": "Interest income accrues with time; it belongs in finance income, not operating revenue.",
+    "interactions": [{ "label": "Finance income", "dir": "up" }],
+    "common_trap": "Recording the full 6 months' interest (480).",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Recognition of Notes Receivable", "page": "7-17" }
+  },
+  {
+    "id": "A:07-008", "chapter": 7, "section_tag": "Petty cash", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The petty cash fund is replenished for 180 of receipts: 120 for office supplies and 60 for postage. Record the replenishment.",
+    "answer": {
+      "lines": [{ "account": "Supplies expense", "debit": 120 }, { "account": "Postage expense", "debit": 60 }, { "account": "Cash", "credit": 180 }],
+      "effects": { "IS": [["Supplies expense", -120], ["Postage expense", -60]], "BS": [["Cash", -180, "A"], ["Retained earnings", -180, "E"]], "CFS": [["Operating: expenses paid", -180]] }
+    },
+    "explanation": { "reasoning": ["Expenses are recorded when the fund is replenished.", "The petty cash account itself stays at its fixed (imprest) amount."] },
+    "why_it_matters": "Imprest systems are a basic cash control; small but frequent leakages show up here.",
+    "interactions": [{ "label": "Opex", "dir": "up" }],
+    "common_trap": "Crediting petty cash instead of the bank account.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "The Imprest Petty Cash System", "page": "7-31" }
+  },
+  {
+    "id": "A:07-009", "chapter": 7, "section_tag": "Cash", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which item is a cash equivalent?",
+    "options": [
+      "A treasury bill with three months to maturity when acquired",
+      "Shares in a listed company held for trading",
+      "A one-year fixed deposit",
+      "Postdated cheques from customers"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cash equivalents are short-term, highly liquid, with insignificant risk of value change (typically maturity of three months or less when acquired).", "Equities fluctuate in value; postdated cheques are receivables."] },
+    "why_it_matters": "Net debt depends on what counts as cash. Aggressive classification overstates liquidity.",
+    "interactions": [{ "label": "Net debt", "dir": "down" }],
+    "common_trap": "Counting any short-term investment as cash.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Reporting Cash", "page": "7-4" }
+  },
+  {
+    "id": "A:07-010", "chapter": 7, "section_tag": "Cash", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company has 5,000 held in a bank account it cannot use for two years because of a court order. How is it shown?",
+    "options": ["Separately as restricted cash, non-current, and excluded from cash available for operations", "As ordinary cash", "As an expense", "It is not recognised"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Restricted cash is disclosed separately and classified by when the restriction ends.", "It should not be treated as available liquidity."] },
+    "why_it_matters": "Trapped or restricted cash should be removed from net-debt calculations.",
+    "interactions": [{ "label": "Liquidity", "dir": "down" }],
+    "common_trap": "Netting restricted cash against debt.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Summary of Cash-Related Items", "page": "7-5" }
+  },
+  {
+    "id": "A:07-011", "chapter": 7, "section_tag": "Allowance", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Ageing schedule: 100,000 current at 1% expected loss, 30,000 31–60 days at 5%, 10,000 over 60 days at 20%. Required allowance?",
+    "answer": { "value": 4500, "unit": "", "tolerance": 0 },
+    "check": "100000 * 0.01 + 30000 * 0.05 + 10000 * 0.2",
+    "explanation": { "reasoning": ["1,000 + 1,500 + 2,000 = 4,500"], "shortcut": "Rate each bucket, then add." },
+    "why_it_matters": "A provision matrix by age is the standard practical expedient for the IFRS 9 simplified approach.",
+    "interactions": [{ "label": "Net receivables", "dir": "down" }],
+    "common_trap": "Applying one average rate to all buckets.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Allowance Method for Uncollectible Accounts", "page": "7-12" }
+  },
+  {
+    "id": "A:07-012", "chapter": 7, "section_tag": "Analysis", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Net credit sales 730,000; average trade receivables 73,000. Average collection period in days?",
+    "answer": { "value": 36.5, "unit": "days", "tolerance": 0.2 },
+    "check": "365 / (730000 / 73000)",
+    "explanation": { "reasoning": ["Receivables turnover = 10x", "365 / 10 = 36.5 days"], "shortcut": "Receivables are 10% of sales, so 10% of a year." },
+    "why_it_matters": "Compare with credit terms; a rising collection period ties up cash.",
+    "interactions": [{ "label": "DSO", "dir": "up" }],
+    "common_trap": "Using total sales including cash sales.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Presentation and Analysis", "page": "7-27" }
+  },
+  {
+    "id": "A:07-013", "chapter": 7, "section_tag": "Write-off methods", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Why is the direct write-off method not acceptable under IFRS (except where immaterial)?",
+    "options": [
+      "It recognises credit losses only when an account is written off, so receivables are overstated and the loss falls in the wrong period",
+      "It is too complicated",
+      "It uses expected losses",
+      "It is only allowed for banks"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IFRS 9 requires expected credit losses to be recognised before a default occurs.", "Direct write-off records losses late and lumpily."] },
+    "why_it_matters": "Late loss recognition flatters profit in good times; credit losses then arrive all at once.",
+    "interactions": [{ "label": "Receivables", "dir": "up" }],
+    "common_trap": "Thinking direct write-off is acceptable because it is objective.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Direct Write-off Method for Uncollectible Accounts", "page": "7-12" }
+  },
+  {
+    "id": "A:07-014", "chapter": 7, "section_tag": "Factoring", "difficulty": "hard", "format": "mcq", "style": "diagnosis",
+    "prompt": "A company factors receivables WITH recourse: it must reimburse the factor for any customer defaults. Under IFRS 9, what is the usual treatment?",
+    "options": [
+      "Keep the receivables on the balance sheet and record the cash received as a borrowing",
+      "Derecognise the receivables and record a gain",
+      "Record the cash as revenue",
+      "Offset the cash against trade payables"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The company keeps substantially all the credit risk.", "In substance it has borrowed against its receivables."] },
+    "why_it_matters": "Recourse factoring is debt; if a company presents it as a sale, its leverage is understated.",
+    "interactions": [{ "label": "Net debt", "dir": "up" }],
+    "common_trap": "Accepting a recourse arrangement as a true sale.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Disposition of Accounts and Notes Receivable", "page": "7-22" }
+  },
+  {
+    "id": "A:07-015", "chapter": 7, "section_tag": "Bank reconciliation", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "In a bank reconciliation, which item adjusts the BANK balance rather than the books?",
+    "options": ["Outstanding cheques", "Bank service charges", "Interest credited by the bank", "A customer's NSF cheque"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Outstanding cheques are already recorded in the books but not yet cleared by the bank.", "The other items are known to the bank and must be recorded in the books."] },
+    "why_it_matters": "Only book-side items need journal entries.",
+    "interactions": [{ "label": "Cash control", "dir": "up" }],
+    "common_trap": "Journalising bank-side items.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Reconciliation of Bank Balances", "page": "7-33" }
+  },
+  {
+    "id": "A:07-016", "chapter": 7, "section_tag": "Notes receivable", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A customer gives a 2-year, zero-interest note for 10,000 in exchange for services. The market rate is 10%. At what amount is the note (and revenue) recorded?",
+    "answer": { "value": 8264.46, "unit": "", "tolerance": 2 },
+    "check": "10000 / Math.pow(1.1, 2)",
+    "explanation": { "reasoning": ["The note contains a financing component: record it at present value.", "10,000 / 1.21 = 8,264; the remaining 1,736 is interest income over two years."], "shortcut": "Discount the face value at the market rate." },
+    "why_it_matters": "Long payment terms turn part of 'revenue' into interest; recording face value overstates revenue.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }, { "label": "Finance income", "dir": "up" }],
+    "common_trap": "Recording 10,000 as revenue.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Recognition of Notes Receivable", "page": "7-17" }
+  },
+  {
+    "id": "A:07-017", "chapter": 7, "section_tag": "ECL", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Expected credit loss (ECL) — simplified approach",
+    "answer": {
+      "meaning": "For trade receivables (and contract assets) without a significant financing component, the loss allowance is always measured at lifetime expected credit losses.",
+      "formula": "Allowance = Σ (balance in bucket × expected loss rate), often via a provision matrix by age, adjusted for forward-looking information",
+      "interpretation": "Losses are recognised before customers default.",
+      "high_signals": "Allowance rising as % of receivables: deteriorating customer credit or ageing.",
+      "low_signals": "Allowance falling while receivables age: possible under-provisioning."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Releases of the allowance are a common way to meet earnings targets.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Waiting for objective evidence of default (the old IAS 39 incurred-loss model).",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Appendix 7B: Collectibility Assessment Based on Expected Cash Flows", "page": "7-35" }
+  },
+  {
+    "id": "A:07-018", "chapter": 7, "section_tag": "Variable consideration", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company expects 5% of this month's 100,000 of sales to be returned for refund. How much revenue does it recognise?",
+    "options": ["95,000, with a 5,000 refund liability", "100,000, with returns expensed when they happen", "100,000 and no liability", "Nothing until the return period ends"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Expected returns are variable consideration.", "Revenue is limited to the amount not expected to be reversed; a refund liability covers the rest."] },
+    "why_it_matters": "Generous return policies reduce reported revenue; sudden falls in the return estimate flatter it.",
+    "interactions": [{ "label": "Revenue", "dir": "down" }],
+    "common_trap": "Recognising gross sales and expensing returns later.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Variable Consideration", "page": "7-9" }
+  },
+  {
+    "id": "A:07-019", "chapter": 7, "section_tag": "Bank reconciliation", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Bank reconciliation",
+    "answer": {
+      "meaning": "A schedule explaining the difference between the bank statement balance and the cash balance in the books.",
+      "formula": "Bank balance + deposits in transit − outstanding cheques ± bank errors = Book balance + bank credits (interest, collections) − bank charges − NSF cheques ± book errors",
+      "interpretation": "Both sides end at the same correct cash balance.",
+      "high_signals": "Old, unexplained reconciling items: control weakness or fraud risk.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Several frauds (e.g. fictitious cash balances) hid behind weak reconciliations.",
+    "interactions": [{ "label": "Cash control", "dir": "up" }],
+    "common_trap": "Adjusting the books for bank-side timing items.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Reconciliation of Bank Balances", "page": "7-33" }
+  },
+  {
+    "id": "A:07-020", "chapter": 7, "section_tag": "Cash", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS, when can a bank overdraft be included in cash and cash equivalents in the cash flow statement?",
+    "options": [
+      "When it is repayable on demand and forms an integral part of the company's cash management (e.g. the balance often swings positive)",
+      "Never",
+      "Always",
+      "Only if it is secured"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 7 allows such overdrafts as a component of cash.", "On the balance sheet they are still shown as liabilities unless offset criteria are met."] },
+    "why_it_matters": "Overdrafts netted in 'cash' can hide borrowing; check the cash reconciliation note.",
+    "interactions": [{ "label": "Net debt", "dir": "mixed" }],
+    "common_trap": "Treating all overdrafts as cash, or none.",
+    "ifrs_gaap": { "ifrs": "IAS 7: overdrafts repayable on demand and integral to cash management may be included in cash and cash equivalents.", "us_gaap": "Overdrafts are generally liabilities and their changes are financing cash flows." },
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "IFRS Insights", "page": "7-63" }
+  },
+  {
+    "id": "A:07-021", "chapter": 7, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "Revenue grew 8% but trade receivables grew 35% and the loss allowance fell as a % of receivables. Diagnose and say what you would check.",
+    "answer": {
+      "model_answer": "DSO has risen sharply, so revenue is not converting to cash, while the allowance is shrinking relative to a riskier, older book: profit is likely flattered twice. Possible stories: aggressive revenue recognition near year end (bill-and-hold, channel stuffing), extended credit terms to win sales, a weakening customer base, or under-provisioning. Checks: receivables ageing and overdue amounts; credit notes and returns after year end; customer concentration; revenue by month (quarter-end spike); allowance policy and write-off history; factoring that may hide even worse DSO. Impact: CFO below profit, higher working capital, and a risk of future write-offs and restatement.",
+      "rubric": ["DSO up", "Allowance falling is a second red flag", "Possible stories", "Specific checks", "Impact on cash and future profit"]
+    },
+    "explanation": { "reasoning": ["Compare growth rates, then test the provision, then list evidence to request."] },
+    "why_it_matters": "This combination preceded many earnings restatements.",
+    "interactions": [{ "label": "DSO", "dir": "up" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Accepting 'timing' without looking at ageing and post-year-end credit notes.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Presentation and Analysis", "page": "7-27" }
+  },
+  {
+    "id": "A:07-022", "chapter": 7, "section_tag": "Securitisation", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "Explain why securitising receivables can make a company look more liquid and less levered than it is.",
+    "answer": {
+      "model_answer": "Securitisation sells (or appears to sell) receivables to a special-purpose vehicle for cash. If treated as a sale, receivables leave the balance sheet, DSO falls, CFO rises (cash received early), and no debt is recorded. But the company often keeps risk through recourse, subordinated retained interests or servicing obligations; economically it has borrowed against its receivables. IFRS 9 derecognition and IFRS 10 consolidation tests may keep the assets and a liability on the balance sheet, but where they don't, analysts should add back the securitised receivables and treat the proceeds as debt when computing leverage and working-capital trends.",
+      "rubric": ["Mechanics", "Effects on DSO, CFO, leverage", "Retained risk = economic borrowing", "Derecognition/consolidation tests", "Analyst adjustment"]
+    },
+    "explanation": { "reasoning": ["Describe the mechanics, then the accounting effects, then the economic substance."] },
+    "why_it_matters": "Off-balance-sheet receivable financing was central to several corporate collapses.",
+    "interactions": [{ "label": "Hidden leverage", "dir": "up" }],
+    "common_trap": "Treating securitisation proceeds as operating cash generation.",
+    "book_ref": { "book": "IA17", "chapter": 7, "section": "Disposition of Accounts and Notes Receivable", "page": "7-22" }
+  }
+]

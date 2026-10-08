@@ -1,0 +1,281 @@
+[
+  {
+    "id": "A:10-001", "chapter": 10, "section_tag": "Cost of equipment", "difficulty": "easy", "format": "journal_entry", "style": "calculation",
+    "prompt": "A machine is bought for 40,000 cash. The company also pays 1,000 delivery, 2,000 installation and 200 transit insurance, all in cash. Record the acquisition.",
+    "answer": {
+      "lines": [{ "account": "Equipment", "debit": 43200 }, { "account": "Cash", "credit": 43200 }],
+      "effects": { "IS": [], "BS": [["Equipment", 43200, "A"], ["Cash", -43200, "A"]], "CFS": [["Investing: purchase of PP&E", -43200]] }
+    },
+    "explanation": { "reasoning": ["Cost includes all costs to bring the asset to the location and condition for its intended use (IAS 16).", "40,000 + 1,000 + 2,000 + 200 = 43,200."] },
+    "why_it_matters": "Capitalised costs reach profit only through depreciation; what is capitalised shapes EBITDA and capex.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }, { "label": "Capex", "dir": "up" }],
+    "common_trap": "Expensing installation and delivery.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Cost of Equipment", "page": "10-5" }
+  },
+  {
+    "id": "A:10-002", "chapter": 10, "section_tag": "Lump-sum purchase", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Land and a building are bought together for 900,000 cash. Their fair values are 400,000 (land) and 600,000 (building). Record the purchase.",
+    "answer": {
+      "lines": [{ "account": "Land", "debit": 360000 }, { "account": "Buildings", "debit": 540000 }, { "account": "Cash", "credit": 900000 }],
+      "effects": { "IS": [], "BS": [["Land", 360000, "A"], ["Buildings", 540000, "A"], ["Cash", -900000, "A"]], "CFS": [["Investing: purchase of PP&E", -900000]] }
+    },
+    "explanation": { "reasoning": ["Allocate the price by relative fair values: 40% / 60%.", "Land 360,000; building 540,000."] },
+    "why_it_matters": "Land is not depreciated, so shifting cost towards land lowers future depreciation and lifts profit.",
+    "interactions": [{ "label": "Depreciation", "dir": "mixed" }],
+    "common_trap": "Splitting 50/50 or putting everything in one account.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Lump-Sum Purchases", "page": "10-14" }
+  },
+  {
+    "id": "A:10-003", "chapter": 10, "section_tag": "Subsequent costs", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Routine servicing of a delivery van costs 1,500, paid in cash. Record it.",
+    "answer": {
+      "lines": [{ "account": "Repairs and maintenance expense", "debit": 1500 }, { "account": "Cash", "credit": 1500 }],
+      "effects": { "IS": [["Repairs and maintenance", -1500]], "BS": [["Cash", -1500, "A"], ["Retained earnings", -1500, "E"]], "CFS": [["Operating: expenses paid", -1500]] }
+    },
+    "explanation": { "reasoning": ["Day-to-day servicing maintains the asset; it does not add future benefits beyond those expected.", "Expense it."] },
+    "why_it_matters": "Capitalising repairs inflates EBITDA and CFO, and moves cash to investing (the WorldCom fraud in a nutshell).",
+    "interactions": [{ "label": "Opex", "dir": "up" }],
+    "common_trap": "Capitalising routine maintenance.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Repairs", "page": "10-23" }
+  },
+  {
+    "id": "A:10-004", "chapter": 10, "section_tag": "Borrowing costs", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "During construction of a new plant (a qualifying asset), the company pays 30,000 of interest on a specific construction loan. Record the interest under IAS 23.",
+    "answer": {
+      "lines": [{ "account": "Construction in progress", "debit": 30000 }, { "account": "Cash", "credit": 30000 }],
+      "effects": { "IS": [], "BS": [["Construction in progress", 30000, "A"], ["Cash", -30000, "A"]], "CFS": [["Investing or operating (policy): capitalised interest paid", -30000]] }
+    },
+    "explanation": { "reasoning": ["Borrowing costs directly attributable to a qualifying asset are capitalised during construction.", "They are depreciated with the asset once it is in use."] },
+    "why_it_matters": "Capitalised interest lowers reported interest expense and flatters interest cover; add it back when testing debt service.",
+    "interactions": [{ "label": "Interest cover", "dir": "up" }, { "label": "CWIP", "dir": "up" }],
+    "common_trap": "Expensing the interest, or continuing to capitalise after the plant is ready for use.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Interest Costs During Construction", "page": "10-6" }
+  },
+  {
+    "id": "A:10-005", "chapter": 10, "section_tag": "Disposal", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Equipment that cost 50,000 with accumulated depreciation of 35,000 is sold for 12,000 cash. Record the sale.",
+    "answer": {
+      "lines": [
+        { "account": "Cash", "debit": 12000 },
+        { "account": "Accumulated depreciation", "debit": 35000 },
+        { "account": "Loss on disposal", "debit": 3000 },
+        { "account": "Equipment", "credit": 50000 }
+      ],
+      "effects": { "IS": [["Loss on disposal", -3000]], "BS": [["Cash", 12000, "A"], ["Equipment (net)", -15000, "A"], ["Retained earnings", -3000, "E"]], "CFS": [["Investing: proceeds from sale of PP&E", 12000]] }
+    },
+    "explanation": { "reasoning": ["Carrying amount = 50,000 − 35,000 = 15,000.", "Proceeds 12,000 → loss 3,000."] },
+    "why_it_matters": "Repeated disposal losses suggest depreciation was too slow; gains suggest it was too fast.",
+    "interactions": [{ "label": "Investing cash flow", "dir": "up" }],
+    "common_trap": "Recording the proceeds in operating cash flow.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Sale of Plant Assets", "page": "10-24" }
+  },
+  {
+    "id": "A:10-006", "chapter": 10, "section_tag": "Shares issued", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Land is acquired by issuing 10,000 shares with a nominal value of 1 each and a fair value of 25 each. Record the acquisition.",
+    "answer": {
+      "lines": [{ "account": "Land", "debit": 250000 }, { "account": "Share capital", "credit": 10000 }, { "account": "Share premium", "credit": 240000 }],
+      "effects": { "IS": [], "BS": [["Land", 250000, "A"], ["Share capital", 10000, "E"], ["Share premium", 240000, "E"]], "CFS": [], "note": "non-cash: disclosed separately" }
+    },
+    "explanation": { "reasoning": ["The asset is measured at fair value (of the shares or the asset, whichever is more reliable).", "Nominal value to share capital; the excess to share premium."] },
+    "why_it_matters": "Share-funded acquisitions don't appear in investing cash flow; read the non-cash note to see true capital spending.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Share count", "dir": "up" }],
+    "common_trap": "Recording the land at nominal value (10,000).",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Issuance of Stock", "page": "10-14" }
+  },
+  {
+    "id": "A:10-007", "chapter": 10, "section_tag": "Government grants", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company receives a 20,000 government grant in cash towards equipment it has bought, and chooses to deduct grants from the asset's carrying amount (IAS 20). Record the grant.",
+    "answer": {
+      "lines": [{ "account": "Cash", "debit": 20000 }, { "account": "Equipment", "credit": 20000 }],
+      "effects": { "IS": [], "BS": [["Cash", 20000, "A"], ["Equipment", -20000, "A"]], "CFS": [["Investing (or financing): grant received", 20000]] }
+    },
+    "explanation": { "reasoning": ["IAS 20 allows asset-related grants to be deducted from the asset (or shown as deferred income).", "Depreciation is then charged on the lower net cost."] },
+    "why_it_matters": "Grant accounting changes asset intensity and depreciation; compare companies on a consistent basis.",
+    "interactions": [{ "label": "PP&E", "dir": "down" }, { "label": "Depreciation", "dir": "down" }],
+    "common_trap": "Recognising the whole grant as income on receipt.",
+    "ifrs_gaap": { "ifrs": "IAS 20: recognise when there is reasonable assurance of compliance; asset grants deducted from cost or shown as deferred income.", "us_gaap": "No specific standard for business entities' government grants; practice often follows IAS 20 by analogy (ASC 832 adds disclosures)." },
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Appendix 10A: Accounting for Contributions", "page": "10-25" }
+  },
+  {
+    "id": "A:10-008", "chapter": 10, "section_tag": "Cost of land", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which cost is NOT part of the cost of land?",
+    "options": ["A new car park with a 15-year life", "Legal fees on purchase", "Demolishing an old building on the site, net of salvage", "Clearing and levelling the site"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Land has an unlimited life and is not depreciated.", "Improvements with limited lives (car parks, fences) are separate assets and are depreciated."] },
+    "why_it_matters": "Loading costs into land avoids depreciation forever.",
+    "interactions": [{ "label": "Depreciation", "dir": "down" }],
+    "common_trap": "Putting land improvements into the land account.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Cost of Land", "page": "10-4" }
+  },
+  {
+    "id": "A:10-009", "chapter": 10, "section_tag": "Borrowing costs", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A specific 1,000,000 loan at 6% funds a plant under construction all year. Unspent funds were temporarily invested and earned 5,000. How much borrowing cost is capitalised under IAS 23?",
+    "answer": { "value": 55000, "unit": "", "tolerance": 0 },
+    "check": "1000000 * 0.06 - 5000",
+    "explanation": { "reasoning": ["Interest on the specific loan: 60,000", "Less investment income on temporarily invested borrowings: 5,000", "Capitalise 55,000"], "shortcut": "Actual cost less temporary investment income." },
+    "why_it_matters": "Capitalised interest is invisible in interest expense; check it in the borrowing note.",
+    "interactions": [{ "label": "Interest expense", "dir": "down" }],
+    "common_trap": "Ignoring the investment income under IFRS.",
+    "ifrs_gaap": { "ifrs": "IAS 23: deduct investment income earned on temporarily invested specific borrowings.", "us_gaap": "ASC 835-20: generally no offset of investment income (except limited cases)." },
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Amount to Capitalize", "page": "10-8" }
+  },
+  {
+    "id": "A:10-010", "chapter": 10, "section_tag": "Borrowing costs", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "What is a qualifying asset for capitalising borrowing costs?",
+    "options": [
+      "An asset that necessarily takes a substantial period to get ready for use or sale (e.g. a plant, a ship, a building)",
+      "Any asset bought with borrowed money",
+      "Inventory produced in large quantities on a repetitive basis",
+      "Any asset costing more than 1 million"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The key is the long period to get ready.", "Routinely manufactured inventory is excluded."] },
+    "why_it_matters": "Capitalisation stops when the asset is substantially ready; long delays with continued capitalisation are a red flag.",
+    "interactions": [{ "label": "CWIP", "dir": "up" }],
+    "common_trap": "Capitalising interest on ready-to-use purchases.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Qualifying Assets", "page": "10-7" }
+  },
+  {
+    "id": "A:10-011", "chapter": 10, "section_tag": "Deferred payment", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Equipment is bought by signing a 100,000 note due in 2 years with no stated interest. The market rate is 8%. At what cost is the equipment recorded?",
+    "answer": { "value": 85733.88, "unit": "", "tolerance": 3 },
+    "check": "100000 / Math.pow(1.08, 2)",
+    "explanation": { "reasoning": ["Record at the present value of the payment: 100,000 / 1.1664 = 85,734", "The 14,266 difference is interest over two years"], "shortcut": "Discount the face value at the market rate." },
+    "why_it_matters": "Recording the face value overstates the asset and hides interest in depreciation.",
+    "interactions": [{ "label": "PP&E", "dir": "down" }, { "label": "Interest expense", "dir": "up" }],
+    "common_trap": "Capitalising 100,000.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Deferred-Payment Contracts", "page": "10-13" }
+  },
+  {
+    "id": "A:10-012", "chapter": 10, "section_tag": "Exchanges", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company swaps an old machine for a different type of machine and the exchange has commercial substance. How is the new asset measured?",
+    "options": [
+      "At the fair value of the asset given up (plus any cash paid), recognising a gain or loss on the old asset",
+      "At the carrying amount of the old machine, with no gain or loss",
+      "At the list price of the new machine",
+      "At zero"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["With commercial substance (future cash flows change), the exchange is measured at fair value.", "Without it, the carrying amount carries over."] },
+    "why_it_matters": "Asset swaps can create accounting gains; check whether the exchange really changed cash flows.",
+    "interactions": [{ "label": "Gains", "dir": "mixed" }],
+    "common_trap": "Recognising gains on swaps that lack commercial substance.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Exchanges of Nonmonetary Assets", "page": "10-15" }
+  },
+  {
+    "id": "A:10-013", "chapter": 10, "section_tag": "Replacements", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A building's roof is replaced at a cost of 80,000. Under IAS 16's component approach, what happens?",
+    "options": [
+      "Capitalise the new roof and derecognise the carrying amount of the old roof",
+      "Expense 80,000 as a repair",
+      "Add 80,000 to the building without removing anything",
+      "Record it in equity"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Significant parts are separate components with their own lives.", "Replacing one means removing the old part and capitalising the new one."] },
+    "why_it_matters": "Componentisation spreads depreciation more accurately; ignoring it overstates assets.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }],
+    "common_trap": "Leaving the old roof on the books while adding the new one.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Improvements and Replacements", "page": "10-21" }
+  },
+  {
+    "id": "A:10-014", "chapter": 10, "section_tag": "Self-constructed", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A company builds its own machine: materials 50,000, direct labour 30,000, directly attributable overheads 10,000, general administration 5,000. Cost of the machine?",
+    "answer": { "value": 90000, "unit": "", "tolerance": 0 },
+    "check": "50000 + 30000 + 10000",
+    "explanation": { "reasoning": ["Include directly attributable costs: 90,000", "General administration is not directly attributable: expense it"], "shortcut": "Direct costs plus directly attributable overhead only." },
+    "why_it_matters": "Over-capitalising overheads into self-built assets inflates assets and EBITDA.",
+    "interactions": [{ "label": "PP&E", "dir": "up" }],
+    "common_trap": "Including the 5,000 general admin.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Self-Constructed Assets", "page": "10-6" }
+  },
+  {
+    "id": "A:10-015", "chapter": 10, "section_tag": "Revaluation", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 16, a company may choose the revaluation model for a class of PP&E. What does that involve?",
+    "options": [
+      "Carrying the whole class at fair value less subsequent depreciation, with regular revaluations; increases go to a revaluation surplus in OCI",
+      "Revaluing individual assets whenever prices rise",
+      "Recording revaluation gains in profit",
+      "It is not allowed under IFRS"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The model applies to an entire class and needs regular revaluations.", "Gains go to OCI (unless reversing a previous loss in profit)."] },
+    "why_it_matters": "Revalued assets lower ROA and asset turnover and change gearing; adjust before comparing with cost-model peers.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Asset turnover", "dir": "down" }],
+    "common_trap": "Cherry-picking individual assets to revalue.",
+    "ifrs_gaap": { "ifrs": "IAS 16: cost model or revaluation model by class.", "us_gaap": "Cost model only; upward revaluations are not allowed." },
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Other Asset Valuation Methods", "page": "10-19" }
+  },
+  {
+    "id": "A:10-016", "chapter": 10, "section_tag": "Involuntary conversion", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A warehouse with a carrying amount of 300,000 is destroyed by fire and insurance pays 360,000. How is this reported?",
+    "options": [
+      "Derecognise the warehouse and recognise a 60,000 gain (insurance compensation recognised when receivable)",
+      "Defer the gain until a new warehouse is built",
+      "Add the 360,000 to the cost of the replacement",
+      "Record no gain because the event was involuntary"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The loss of the asset and the insurance compensation are separate events.", "Net effect here is a 60,000 gain."] },
+    "why_it_matters": "Insurance gains are non-recurring; strip them out of underlying profit.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Netting the gain into the cost of the replacement building.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Involuntary Conversion", "page": "10-24" }
+  },
+  {
+    "id": "A:10-017", "chapter": 10, "section_tag": "Capital vs revenue", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Capital vs revenue expenditure",
+    "answer": {
+      "meaning": "Capital expenditure creates or improves an asset with future economic benefits (capitalised); revenue expenditure maintains current operations (expensed).",
+      "formula": "Capitalise if it increases future benefits beyond those originally expected (capacity, life, efficiency); otherwise expense.",
+      "interpretation": "The choice decides whether a cost hits EBITDA now or depreciation later.",
+      "high_signals": "Capex rising while repairs fall: check for reclassification.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "This single judgement was the core of the WorldCom fraud (line costs capitalised).",
+    "interactions": [{ "label": "EBITDA", "dir": "mixed" }, { "label": "Capex", "dir": "mixed" }],
+    "common_trap": "Capitalising anything large.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Summary of Costs Subsequent to Acquisition", "page": "10-23" }
+  },
+  {
+    "id": "A:10-018", "chapter": 10, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A telecom company's EBITDA and operating cash flow jumped while capex also jumped and repairs expense collapsed. What might be going on and how do you test it?",
+    "answer": {
+      "model_answer": "Costs that used to be expensed (repairs, network maintenance, line costs) may now be capitalised. That lifts EBITDA and CFO (the cash outflow moves to investing) and raises assets, while total cash spent is unchanged. Tests: compare repairs + capex combined over time (if the total is stable, it is a reclassification); read capitalisation policy notes for changes; compare capex/revenue and capex/D&A with peers; look at FCF (CFO − capex), which is unaffected; check whether new 'assets' produce revenue. If confirmed, restate EBITDA by expensing the shifted costs.",
+      "rubric": ["Reclassification hypothesis", "Effects on EBITDA, CFO, CFI", "Total spend test", "Policy notes and peer comparison", "FCF unaffected", "Adjustment"]
+    },
+    "explanation": { "reasoning": ["Look for costs moving between lines rather than changing in total."] },
+    "why_it_matters": "FCF is the antidote: classification games cannot change it.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "FCF", "dir": "mixed" }],
+    "common_trap": "Celebrating CFO growth without looking at capex.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Costs Subsequent to Acquisition", "page": "10-20" }
+  },
+  {
+    "id": "A:10-019", "chapter": 10, "section_tag": "Cash discounts", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Equipment listed at 10,000 is paid within the discount period, receiving a 2% cash discount. At what cost is it recorded?",
+    "options": ["9,800", "10,000", "10,200", "200"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Cost is the cash price actually paid (or that could have been paid).", "Discounts reduce cost; discounts lost are a finance cost, not part of the asset."] },
+    "why_it_matters": "Assets should not carry the cost of poor treasury management.",
+    "interactions": [{ "label": "PP&E", "dir": "down" }],
+    "common_trap": "Recording list price and the discount as income.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Cash Discounts", "page": "10-12" }
+  },
+  {
+    "id": "A:10-020", "chapter": 10, "section_tag": "Cash flows", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company buys equipment for 500,000, paying 100,000 cash and signing a 400,000 note to the vendor. What appears in investing cash flow at purchase?",
+    "options": [
+      "An outflow of 100,000; the 400,000 note is a non-cash transaction, and its later repayments are financing outflows",
+      "An outflow of 500,000",
+      "An outflow of 400,000",
+      "Nothing until the note is repaid"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Only cash paid appears.", "Vendor-financed capex shows up later as debt repayments in financing."] },
+    "why_it_matters": "Vendor financing understates capex in CFI and FCF; add it back for true capital intensity.",
+    "interactions": [{ "label": "FCF", "dir": "up" }, { "label": "Debt", "dir": "up" }],
+    "common_trap": "Assuming CFI capex equals additions to PP&E.",
+    "book_ref": { "book": "IA17", "chapter": 10, "section": "Deferred-Payment Contracts", "page": "10-13" }
+  }
+]

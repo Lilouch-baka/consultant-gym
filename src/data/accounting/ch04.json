@@ -1,0 +1,263 @@
+[
+  {
+    "id": "A:04-001", "chapter": 4, "section_tag": "Error correction", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "After last year's statements were issued, the company finds it forgot to record 10,000 of depreciation for that year (ignore tax). Record the correction this year.",
+    "answer": {
+      "lines": [{ "account": "Retained earnings", "debit": 10000 }, { "account": "Accumulated depreciation", "credit": 10000 }],
+      "effects": { "IS": [], "BS": [["PP&E (net)", -10000, "A"], ["Opening retained earnings", -10000, "E"]], "CFS": [], "note": "non-cash; prior year restated" }
+    },
+    "explanation": { "reasoning": ["A material prior-period error is corrected retrospectively (IAS 8): restate comparatives and adjust opening retained earnings.", "It does not go through this year's profit."] },
+    "why_it_matters": "Restatements move equity without touching current profit. Frequent restatements are a strong governance red flag.",
+    "interactions": [{ "label": "Equity", "dir": "down" }, { "label": "Credibility", "dir": "down" }],
+    "common_trap": "Debiting this year's depreciation expense, which distorts current profit.",
+    "ifrs_gaap": { "ifrs": "IAS 8: restate comparatives as if the error had never occurred; adjust opening equity of the earliest period presented.", "us_gaap": "ASC 250: same approach, called a prior-period adjustment / restatement." },
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Corrections of Errors", "page": "4-20" }
+  },
+  {
+    "id": "A:04-002", "chapter": 4, "section_tag": "OCI", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "An equity investment the company elected to measure at fair value through OCI rises in value by 5,000 during the year (ignore tax). Record the remeasurement.",
+    "answer": {
+      "lines": [{ "account": "Investments at FVOCI", "debit": 5000 }, { "account": "Other comprehensive income reserve", "credit": 5000 }],
+      "effects": { "IS": [], "BS": [["Investments at FVOCI", 5000, "A"], ["OCI reserve (equity)", 5000, "E"]], "CFS": [], "note": "unrealised" }
+    },
+    "explanation": { "reasoning": ["Under IFRS 9 the FVOCI election for equity instruments sends fair-value changes to OCI.", "They never recycle to profit, even on sale."] },
+    "why_it_matters": "Gains in OCI bypass EPS. Look at total comprehensive income to see the full change in shareholders' wealth.",
+    "interactions": [{ "label": "Comprehensive income", "dir": "up" }, { "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Crediting a gain in profit or loss.",
+    "ifrs_gaap": { "ifrs": "IFRS 9: irrevocable FVOCI election for equity investments; gains/losses stay in OCI permanently.", "us_gaap": "ASC 321: equity investments with readily determinable fair values go through net income; no OCI option." },
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Comprehensive Income", "page": "4-22" }
+  },
+  {
+    "id": "A:04-003", "chapter": 4, "section_tag": "Discontinued operations", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS 5, which of these qualifies as a discontinued operation?",
+    "options": [
+      "A separate major line of business that has been disposed of or is classified as held for sale",
+      "Closing one of 200 similar retail stores",
+      "Selling an old delivery van",
+      "A product line whose sales fell 30%"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["A discontinued operation is a component representing a separate major line of business or geographical area.", "Routine disposals or declines are part of continuing operations."] },
+    "why_it_matters": "Valuation should be based on continuing operations; the split tells you which earnings will recur.",
+    "interactions": [{ "label": "Continuing EPS", "dir": "mixed" }],
+    "common_trap": "Labelling any closure or loss-making product as discontinued.",
+    "ifrs_gaap": { "ifrs": "IFRS 5: separate major line of business or geographical area, disposed of or held for sale.", "us_gaap": "ASC 205-20: a disposal that represents a strategic shift with a major effect on operations and results." },
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Discontinued Operations", "page": "4-12" }
+  },
+  {
+    "id": "A:04-004", "chapter": 4, "section_tag": "Discontinued operations", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A discontinued division lost 300 from operations this year and 200 on disposal. Tax rate 25%. What single amount is reported for discontinued operations?",
+    "answer": { "value": -375, "unit": "", "tolerance": 0 },
+    "check": "-(300 + 200) * 0.75",
+    "explanation": { "reasoning": ["Total pre-tax loss = 500", "Net of tax: 500 × 0.75 = 375 loss", "Shown as one line after profit from continuing operations"], "shortcut": "Add the losses, apply (1 − t)." },
+    "why_it_matters": "Discontinued results are net of tax and below continuing profit, so continuing EPS is the base for forecasting.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Reporting the losses gross, or within operating profit.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Discontinued Operations", "page": "4-12" }
+  },
+  {
+    "id": "A:04-005", "chapter": 4, "section_tag": "EPS", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Net income 1,200,000, preference dividends 200,000, weighted average ordinary shares 500,000. Basic EPS?",
+    "answer": { "value": 2, "unit": "", "tolerance": 0 },
+    "check": "(1200000 - 200000) / 500000",
+    "explanation": { "reasoning": ["Earnings available to ordinary shareholders = 1,000,000", "1,000,000 / 500,000 = 2.00"], "shortcut": "Deduct preference dividends first." },
+    "why_it_matters": "EPS is the denominator of the P/E ratio; small definitional differences move valuations.",
+    "interactions": [{ "label": "P/E", "dir": "down" }],
+    "common_trap": "Forgetting to deduct preference dividends.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Earnings per Share", "page": "4-16" }
+  },
+  {
+    "id": "A:04-006", "chapter": 4, "section_tag": "EPS", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "100,000 shares were outstanding on 1 January and 30,000 more were issued for cash on 1 April. Weighted average shares for the year?",
+    "answer": { "value": 122500, "unit": "", "tolerance": 0 },
+    "check": "100000 + 30000 * 9 / 12",
+    "explanation": { "reasoning": ["New shares outstanding for 9 of 12 months: 30,000 × 9/12 = 22,500", "100,000 + 22,500 = 122,500"], "shortcut": "Time-weight only the new shares." },
+    "why_it_matters": "Weighting matches the shares to the period the new capital was earning.",
+    "interactions": [{ "label": "EPS", "dir": "down" }],
+    "common_trap": "Using the year-end count of 130,000.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Earnings per Share", "page": "4-16" }
+  },
+  {
+    "id": "A:04-007", "chapter": 4, "section_tag": "Format", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Sales 1,000; cost of sales 600; selling expenses 100; administrative expenses 80; finance costs 20; tax 25%. Profit for the year?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0 },
+    "check": "(1000 - 600 - 100 - 80 - 20) * 0.75",
+    "explanation": { "reasoning": ["Gross profit 400; operating profit 220; profit before tax 200", "Tax 50; profit 150"], "shortcut": "Walk down the lines: 400 → 220 → 200 → 150." },
+    "why_it_matters": "Intermediate subtotals (gross profit, operating profit) are what analysts compare; the bottom line mixes in financing and tax.",
+    "interactions": [{ "label": "Net margin", "dir": "up" }],
+    "common_trap": "Taxing operating profit instead of profit before tax.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Intermediate Components of the Income Statement", "page": "4-7" }
+  },
+  {
+    "id": "A:04-008", "chapter": 4, "section_tag": "Unusual items", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Under IFRS, how are material unusual items (e.g. a large restructuring charge) presented?",
+    "options": [
+      "Within profit from continuing operations, disclosed separately (on the face or in the notes); 'extraordinary items' are prohibited",
+      "As extraordinary items below net income",
+      "Directly in equity",
+      "In other comprehensive income"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 1 prohibits presenting items as extraordinary.", "Material items are disclosed separately so users can judge persistence."] },
+    "why_it_matters": "Companies that report 'one-off' charges every year are telling you they are not one-off.",
+    "interactions": [{ "label": "Adjusted EBITDA", "dir": "up" }],
+    "common_trap": "Excluding recurring 'non-recurring' charges from valuation earnings.",
+    "ifrs_gaap": { "ifrs": "IAS 1: no extraordinary items; separate disclosure of material items.", "us_gaap": "Extraordinary items were eliminated in 2015 (ASU 2015-01); unusual or infrequent items are shown separately within continuing operations." },
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Unusual and Infrequent Gains and Losses", "page": "4-12" }
+  },
+  {
+    "id": "A:04-009", "chapter": 4, "section_tag": "Accounting changes", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company revises the useful life of its machines from 10 to 8 years. How is this reported?",
+    "options": [
+      "Prospectively, as a change in estimate: depreciate the remaining carrying amount over the revised remaining life",
+      "Retrospectively, restating prior years",
+      "As a prior-period error",
+      "As a change in accounting policy"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Useful lives are estimates that are revised as information arrives.", "Changes in estimate affect the current and future periods only."] },
+    "why_it_matters": "Estimate changes are a quiet way to move profit (longer lives = lower depreciation). Check for them when margins jump.",
+    "interactions": [{ "label": "Depreciation", "dir": "up" }],
+    "common_trap": "Restating prior years for an estimate change.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Changes in Accounting Estimates", "page": "4-19" }
+  },
+  {
+    "id": "A:04-010", "chapter": 4, "section_tag": "Quality of earnings", "difficulty": "medium", "format": "mcq", "style": "diagnosis",
+    "prompt": "Which combination is the strongest signal of low earnings quality?",
+    "options": [
+      "Profit growth driven by gains on asset sales and lower bad-debt provisions, with flat operating cash flow",
+      "Profit growth with matching growth in operating cash flow",
+      "A one-off restructuring charge disclosed separately",
+      "Higher depreciation after a big capex programme"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Non-operating gains and provision releases are not repeatable and not cash.", "Flat CFO confirms the profit is not converting."] },
+    "why_it_matters": "Valuing low-quality earnings at a full multiple overpays.",
+    "interactions": [{ "label": "CFO / NI", "dir": "down" }],
+    "common_trap": "Focusing on the profit trend without asking where it came from.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Quality of Earnings", "page": "4-4" }
+  },
+  {
+    "id": "A:04-011", "chapter": 4, "section_tag": "Format", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under IAS 1, how may a company analyse its operating expenses on the face of the income statement?",
+    "options": [
+      "By nature (e.g. raw materials, staff, depreciation) or by function (e.g. cost of sales, distribution, admin), whichever is more reliable and relevant",
+      "Only by function",
+      "Only by nature",
+      "It does not need to analyse them"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 1 allows either analysis.", "If by function, extra disclosure by nature (depreciation, staff costs) is required in the notes."] },
+    "why_it_matters": "By-nature reporting reveals cost structure (materials vs staff); by-function reveals gross margin. You may need the notes to build both.",
+    "interactions": [{ "label": "Cost structure", "dir": "mixed" }],
+    "common_trap": "Assuming every company shows a gross profit line.",
+    "ifrs_gaap": { "ifrs": "IAS 1: by nature or by function (IFRS 18 from 2027 adds defined subtotals such as operating profit).", "us_gaap": "SEC registrants present expenses by function; there is no by-nature option on the face." },
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Content and Format of the Income Statement", "page": "4-6" }
+  },
+  {
+    "id": "A:04-012", "chapter": 4, "section_tag": "NCI", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "A parent owns 80% of a subsidiary that earned 1,000 this year. How is the subsidiary's profit shown in the consolidated income statement?",
+    "options": [
+      "All 1,000 is included; 200 is then attributed to non-controlling interests and 800 to owners of the parent",
+      "Only 800 is included",
+      "Only dividends received are included",
+      "1,000 is included and nothing is attributed to minorities"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Consolidation includes 100% of the subsidiary's results.", "The NCI share is shown as an allocation of profit, not an expense."] },
+    "why_it_matters": "EPS and ROE must use profit attributable to the parent; EV must include NCI to match 100% EBITDA.",
+    "interactions": [{ "label": "EPS", "dir": "mixed" }, { "label": "EV", "dir": "up" }],
+    "common_trap": "Using total profit (including NCI) for EPS.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Noncontrolling Interest in Income", "page": "4-15" }
+  },
+  {
+    "id": "A:04-013", "chapter": 4, "section_tag": "OCI", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Other comprehensive income (OCI) items under IFRS",
+    "answer": {
+      "meaning": "Gains and losses recognised outside profit or loss.",
+      "formula": "Never recycled: revaluation surplus (IAS 16/38), pension remeasurements (IAS 19), FVOCI equity investments. Recycled to profit later: FVOCI debt instruments, cash-flow hedges, foreign-currency translation of foreign operations.",
+      "interpretation": "Total comprehensive income = profit + OCI.",
+      "high_signals": "Large OCI losses: hidden balance-sheet risk (pensions, FX, hedges).",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Big OCI swings change book equity and leverage even when profit looks stable.",
+    "interactions": [{ "label": "Equity", "dir": "mixed" }],
+    "common_trap": "Assuming all OCI items eventually pass through profit.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Comprehensive Income", "page": "4-22" }
+  },
+  {
+    "id": "A:04-014", "chapter": 4, "section_tag": "Equity statement", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Statement of changes in equity",
+    "answer": {
+      "meaning": "Reconciles opening and closing balances of each equity component.",
+      "formula": "Opening + total comprehensive income + share issues − dividends − buybacks ± other = closing",
+      "interpretation": "Shows how much equity came from profit versus owners' transactions.",
+      "high_signals": "Equity growth from share issues: growth funded externally.",
+      "low_signals": "Equity shrinking through buybacks and dividends: capital being returned."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "It is the bridge you use to check that a model's equity rolls forward correctly.",
+    "interactions": [{ "label": "ROE", "dir": "mixed" }],
+    "common_trap": "Forgetting OCI and share-based payments in the roll-forward.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Statement of Stockholders' Equity", "page": "4-23" }
+  },
+  {
+    "id": "A:04-015", "chapter": 4, "section_tag": "Accounting changes", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "A company switches its inventory cost formula from weighted average to FIFO because FIFO gives more relevant information. How is this reported?",
+    "options": [
+      "Retrospectively as a change in accounting policy: restate prior periods and adjust opening retained earnings of the earliest period presented",
+      "Prospectively from the date of change",
+      "As a change in estimate",
+      "Only in the notes, with no adjustment"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Voluntary policy changes are applied retrospectively unless impracticable (IAS 8).", "This keeps periods comparable."] },
+    "why_it_matters": "Retrospective restatement means the 'old' year you compare against has changed; use restated comparatives.",
+    "interactions": [{ "label": "Comparability", "dir": "up" }],
+    "common_trap": "Treating a policy change like an estimate change.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Changes in Accounting Principle", "page": "4-19" }
+  },
+  {
+    "id": "A:04-016", "chapter": 4, "section_tag": "Comprehensive income", "difficulty": "medium", "format": "written", "style": "logical",
+    "prompt": "Why should an analyst look at total comprehensive income and not only net income?",
+    "answer": {
+      "model_answer": "OCI holds real changes in shareholders' wealth that do not pass through profit: pension remeasurements, revaluations, FX translation of foreign subsidiaries, cash-flow hedge results and FVOCI investments. These can be large and recurring (e.g. a company with big foreign operations losing value every year to a weakening currency). Ignoring them overstates performance and hides balance-sheet risk. Look at the trend of OCI, its components, and whether 'recyclable' items will hit future profit.",
+      "rubric": ["OCI components named", "Real economic effects", "Can be large and recurring", "Recycling to future profit"]
+    },
+    "explanation": { "reasoning": ["Name the components, explain why they matter, and how to read them."] },
+    "why_it_matters": "Book equity, and therefore ROE and leverage, move with OCI.",
+    "interactions": [{ "label": "Equity", "dir": "mixed" }],
+    "common_trap": "Treating OCI as accounting noise.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Comprehensive Income", "page": "4-22" }
+  },
+  {
+    "id": "A:04-017", "chapter": 4, "section_tag": "Usefulness", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which is a limitation of the income statement?",
+    "options": [
+      "Some items are measured with estimates and judgement, and some value changes are not recorded at all (e.g. internally generated brands)",
+      "It shows cash flows",
+      "It cannot show expenses",
+      "It is not audited"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Depreciation, provisions and bad debts are estimates.", "Unrecognised items (brand value, R&D outcomes) never appear."] },
+    "why_it_matters": "Two companies with the same economics can report different profits; you have to adjust.",
+    "interactions": [{ "label": "Comparability", "dir": "down" }],
+    "common_trap": "Treating reported profit as an objective fact.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Limitations of the Income Statement", "page": "4-4" }
+  },
+  {
+    "id": "A:04-018", "chapter": 4, "section_tag": "Non-GAAP", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "Management's 'adjusted EBITDA' adds back restructuring costs every year for five years, plus share-based payment expense. How do you treat these adjustments?",
+    "answer": {
+      "model_answer": "Restructuring that recurs every year is an operating cost of running this business, so I would not add it back (or would normalise it at its average level). Share-based payments are a real cost: employees are paid in shares instead of cash, diluting shareholders; I would deduct it (or count the dilution). So my EBITDA would be below management's. I would reconcile management's figure to IFRS operating profit, check the trend of the adjustments as % of revenue, and value the business on the adjusted-down figure. Persistent large adjustments also lower my confidence in management's reporting.",
+      "rubric": ["Recurring restructuring is operating", "SBC is a real cost", "Reconcile to IFRS", "Track adjustments over time", "Governance signal"]
+    },
+    "explanation": { "reasoning": ["Test each adjustment: is it truly non-recurring and non-economic?"] },
+    "why_it_matters": "Inflated adjusted EBITDA drives inflated multiples and covenant headroom.",
+    "interactions": [{ "label": "Adjusted EBITDA", "dir": "down" }, { "label": "EV / EBITDA", "dir": "up" }],
+    "common_trap": "Accepting management's adjusted numbers as the base for valuation.",
+    "book_ref": { "book": "IA17", "chapter": 4, "section": "Quality of Earnings", "page": "4-4" }
+  }
+]

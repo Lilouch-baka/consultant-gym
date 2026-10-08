@@ -1,0 +1,267 @@
+[
+  {
+    "id": "A:08-001", "chapter": 8, "section_tag": "Perpetual system", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Using a perpetual inventory system, the company buys goods for 5,000 on credit. Record the purchase.",
+    "answer": {
+      "lines": [{ "account": "Inventory", "debit": 5000 }, { "account": "Trade payables", "credit": 5000 }],
+      "effects": { "IS": [], "BS": [["Inventory", 5000, "A"], ["Trade payables", 5000, "L"]], "CFS": [], "note": "paid later" }
+    },
+    "explanation": { "reasoning": ["Perpetual systems debit inventory directly for each purchase.", "Cost of sales is recorded at each sale."] },
+    "why_it_matters": "Supplier credit finances inventory; DIO and DPO together show who funds the stock.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }, { "label": "Payables", "dir": "up" }],
+    "common_trap": "Expensing purchases immediately.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Inventory Cost Flow", "page": "8-4" }
+  },
+  {
+    "id": "A:08-002", "chapter": 8, "section_tag": "Costs included", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company pays 200 in cash for freight to bring purchased goods to its warehouse (perpetual system). Record the payment.",
+    "answer": {
+      "lines": [{ "account": "Inventory", "debit": 200 }, { "account": "Cash", "credit": 200 }],
+      "effects": { "IS": [], "BS": [["Inventory", 200, "A"], ["Cash", -200, "A"]], "CFS": [["Operating: paid to suppliers", -200]] }
+    },
+    "explanation": { "reasoning": ["Costs to bring inventory to its present location and condition are part of its cost (IAS 2).", "They reach cost of sales when the goods are sold."] },
+    "why_it_matters": "Capitalising freight-in delays expense until sale; outbound freight (to customers) is a selling expense instead.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }],
+    "common_trap": "Expensing inbound freight as a selling cost.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Costs Included in Inventory", "page": "8-10" }
+  },
+  {
+    "id": "A:08-003", "chapter": 8, "section_tag": "Sale", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "Goods that cost 3,000 are sold on credit for 4,800 (perpetual system). Record the sale and the cost of sales in one compound entry.",
+    "answer": {
+      "lines": [
+        { "account": "Trade receivables", "debit": 4800 },
+        { "account": "Cost of sales", "debit": 3000 },
+        { "account": "Sales revenue", "credit": 4800 },
+        { "account": "Inventory", "credit": 3000 }
+      ],
+      "effects": { "IS": [["Sales revenue", 4800], ["Cost of sales", -3000]], "BS": [["Trade receivables", 4800, "A"], ["Inventory", -3000, "A"], ["Retained earnings", 1800, "E"]], "CFS": [], "note": "cash collected later" }
+    },
+    "explanation": { "reasoning": ["Revenue at selling price; cost of sales at cost.", "Gross profit = 1,800 (37.5% margin)."] },
+    "why_it_matters": "Perpetual systems give gross margin per sale; shrinkage shows up only at the physical count.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Crediting inventory at the selling price.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Inventory Cost Flow", "page": "8-4" }
+  },
+  {
+    "id": "A:08-004", "chapter": 8, "section_tag": "Returns", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company returns damaged goods costing 400 to the supplier, who reduces the amount owed (perpetual system). Record the return.",
+    "answer": {
+      "lines": [{ "account": "Trade payables", "debit": 400 }, { "account": "Inventory", "credit": 400 }],
+      "effects": { "IS": [], "BS": [["Trade payables", -400, "L"], ["Inventory", -400, "A"]], "CFS": [] }
+    },
+    "explanation": { "reasoning": ["The goods leave inventory and the debt to the supplier falls."] },
+    "why_it_matters": "High purchase returns can signal quality problems in the supply chain.",
+    "interactions": [{ "label": "Payables", "dir": "down" }],
+    "common_trap": "Crediting revenue or cost of sales.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Inventory Cost Flow", "page": "8-4" }
+  },
+  {
+    "id": "A:08-005", "chapter": 8, "section_tag": "Discounts", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "The company pays a 5,000 supplier invoice within the discount period and takes a 2% discount. The purchase was recorded gross in inventory (perpetual). Record the payment.",
+    "answer": {
+      "lines": [{ "account": "Trade payables", "debit": 5000 }, { "account": "Inventory", "credit": 100 }, { "account": "Cash", "credit": 4900 }],
+      "effects": { "IS": [], "BS": [["Trade payables", -5000, "L"], ["Inventory", -100, "A"], ["Cash", -4900, "A"]], "CFS": [["Operating: paid to suppliers", -4900]] }
+    },
+    "explanation": { "reasoning": ["The discount reduces the cost of the inventory (IAS 2: trade discounts and rebates are deducted).", "Cash paid = 5,000 × 98% = 4,900."] },
+    "why_it_matters": "Discounts not taken are effectively very expensive financing (2/10 net 30 ≈ 37% a year).",
+    "interactions": [{ "label": "Inventory cost", "dir": "down" }],
+    "common_trap": "Recording the discount as income.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Costs Included in Inventory", "page": "8-10" }
+  },
+  {
+    "id": "A:08-006", "chapter": 8, "section_tag": "Shrinkage", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The perpetual records show inventory of 18,250, but the year-end count finds 18,000. Record the adjustment.",
+    "answer": {
+      "lines": [{ "account": "Cost of sales", "debit": 250 }, { "account": "Inventory", "credit": 250 }],
+      "effects": { "IS": [["Cost of sales", -250]], "BS": [["Inventory", -250, "A"], ["Retained earnings", -250, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Shrinkage (theft, damage, errors) is the difference between records and the count.", "It is normally charged to cost of sales."] },
+    "why_it_matters": "Rising shrinkage erodes gross margin; it is a key KPI in retail.",
+    "interactions": [{ "label": "Gross margin", "dir": "down" }],
+    "common_trap": "Adjusting the count to match the records.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Inventory Control", "page": "8-6" }
+  },
+  {
+    "id": "A:08-007", "chapter": 8, "section_tag": "FIFO", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Opening inventory 100 units at 10; purchases 200 units at 12, then 100 units at 13. 250 units are sold. Cost of sales under FIFO?",
+    "answer": { "value": 2800, "unit": "", "tolerance": 0 },
+    "check": "100 * 10 + 150 * 12",
+    "explanation": { "reasoning": ["FIFO sells the oldest first: 100 × 10 = 1,000", "then 150 × 12 = 1,800", "Total 2,800"], "shortcut": "Use up layers from the oldest." },
+    "why_it_matters": "In rising prices FIFO gives the lowest cost of sales and highest margin.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Starting from the most recent purchases (that is LIFO).",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "First-In, First-Out (FIFO)", "page": "8-14" }
+  },
+  {
+    "id": "A:08-008", "chapter": 8, "section_tag": "Average cost", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Same data: 100 at 10, 200 at 12, 100 at 13; 250 units sold. Cost of sales under the periodic weighted-average method?",
+    "answer": { "value": 2937.5, "unit": "", "tolerance": 0.5 },
+    "check": "(100 * 10 + 200 * 12 + 100 * 13) / 400 * 250",
+    "explanation": { "reasoning": ["Total cost 4,700 for 400 units: average 11.75", "250 × 11.75 = 2,937.50"], "shortcut": "Average once, then multiply." },
+    "why_it_matters": "Weighted average smooths price swings, sitting between FIFO and LIFO.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Averaging the three prices without weighting by units.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Average-Cost", "page": "8-13" }
+  },
+  {
+    "id": "A:08-009", "chapter": 8, "section_tag": "FIFO", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Same data under FIFO: 400 units available costing 4,700 in total, 250 sold with a cost of 2,800. Ending inventory?",
+    "answer": { "value": 1900, "unit": "", "tolerance": 0 },
+    "check": "4700 - 2800",
+    "explanation": { "reasoning": ["Goods available − cost of sales = 4,700 − 2,800 = 1,900", "Check: 50 × 12 + 100 × 13 = 600 + 1,300"], "shortcut": "Ending inventory = most recent layers under FIFO." },
+    "why_it_matters": "FIFO ending inventory is close to current cost, so the balance sheet is more relevant.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }],
+    "common_trap": "Pricing the 150 remaining units at the oldest cost.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "First-In, First-Out (FIFO)", "page": "8-14" }
+  },
+  {
+    "id": "A:08-010", "chapter": 8, "section_tag": "LIFO", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Is LIFO permitted under IFRS?",
+    "options": ["No; IAS 2 allows FIFO or weighted average (and specific identification for non-interchangeable items)", "Yes, for all companies", "Only for tax purposes", "Only for retailers"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 2 prohibits LIFO because it rarely reflects actual flows and leaves very old costs on the balance sheet.", "US GAAP still allows it."] },
+    "why_it_matters": "US LIFO users must be adjusted to FIFO (using the LIFO reserve) before comparing with IFRS peers.",
+    "interactions": [{ "label": "Comparability", "dir": "down" }],
+    "common_trap": "Assuming a global peer group uses the same cost formula.",
+    "ifrs_gaap": { "ifrs": "IAS 2: FIFO or weighted average; LIFO prohibited.", "us_gaap": "ASC 330: LIFO allowed; the LIFO reserve must be disclosed. LIFO used for tax must also be used for reporting (conformity rule)." },
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Last-In, First-Out (LIFO)", "page": "8-15" }
+  },
+  {
+    "id": "A:08-011", "chapter": 8, "section_tag": "Cost formulas", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "In a period of rising prices, which cost formula gives the highest ending inventory?",
+    "options": ["FIFO", "Weighted average", "LIFO", "They are all the same"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["FIFO leaves the newest (most expensive) units in stock.", "LIFO leaves the oldest (cheapest)."] },
+    "why_it_matters": "Higher inventory means higher current ratio and equity under FIFO.",
+    "interactions": [{ "label": "Current ratio", "dir": "up" }],
+    "common_trap": "Mixing up which layer stays and which is expensed.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Which Cost Flow Assumption to Adopt?", "page": "8-12" }
+  },
+  {
+    "id": "A:08-012", "chapter": 8, "section_tag": "Goods included", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "At year end, goods bought FOB shipping point are still in transit. Whose inventory are they?",
+    "options": ["The buyer's, because control passed when they were shipped", "The seller's, until they arrive", "Neither", "Shared 50/50"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["FOB shipping point: title and risk pass at shipment.", "FOB destination: they stay with the seller until delivery."] },
+    "why_it_matters": "Cut-off errors around year end shift revenue and inventory between periods.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }],
+    "common_trap": "Counting only goods physically in the warehouse.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Goods Included in Inventory", "page": "8-7" }
+  },
+  {
+    "id": "A:08-013", "chapter": 8, "section_tag": "Goods included", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company places goods with a retailer on consignment. Until the retailer sells them, they are…",
+    "options": ["The consignor's inventory", "The retailer's inventory", "Revenue of the consignor", "Expensed"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The consignor keeps control; the consignee is an agent.", "Revenue arises only when the end customer buys."] },
+    "why_it_matters": "Recognising consignment shipments as sales is a classic channel-stuffing trick.",
+    "interactions": [{ "label": "Revenue", "dir": "mixed" }],
+    "common_trap": "Treating delivery to the consignee as a sale.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Goods Included in Inventory", "page": "8-7" }
+  },
+  {
+    "id": "A:08-014", "chapter": 8, "section_tag": "Costs included", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which cost is included in the cost of inventory under IAS 2?",
+    "options": [
+      "Import duties on raw materials",
+      "Abnormal amounts of wasted materials",
+      "Selling costs",
+      "General administrative overheads"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Purchase price, import duties, transport, handling and conversion costs (including allocated production overheads at normal capacity) are included.", "Abnormal waste, selling and admin costs are expensed."] },
+    "why_it_matters": "Over-capitalising overheads into inventory defers expenses and lifts margins, until the stock is sold or written down.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Capitalising unused-capacity overheads.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Costs Included in Inventory", "page": "8-10" }
+  },
+  {
+    "id": "A:08-015", "chapter": 8, "section_tag": "LIFO reserve", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A US company's LIFO reserve rose from 150 to 200 during the year. By how much would cost of sales have been LOWER under FIFO?",
+    "answer": { "value": 50, "unit": "", "tolerance": 0 },
+    "check": "200 - 150",
+    "explanation": { "reasoning": ["FIFO COGS = LIFO COGS − increase in LIFO reserve", "200 − 150 = 50"], "shortcut": "The change in the reserve is the COGS difference." },
+    "why_it_matters": "This is how you convert a LIFO user's margins to a FIFO basis for comparison with IFRS peers.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Using the full reserve (200) as the COGS adjustment.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "LIFO Reserve", "page": "8-16" }
+  },
+  {
+    "id": "A:08-016", "chapter": 8, "section_tag": "LIFO liquidation", "difficulty": "hard", "format": "mcq", "style": "diagnosis",
+    "prompt": "A LIFO company's gross margin jumps while its inventory volume falls sharply. What is the likely cause?",
+    "options": [
+      "A LIFO liquidation: old, cheap cost layers were charged to cost of sales, inflating profit temporarily",
+      "Higher selling prices",
+      "Lower freight costs",
+      "A switch to FIFO"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Selling more than you buy under LIFO dips into older layers.", "Those old costs are far below current costs, so margin rises once."] },
+    "why_it_matters": "LIFO liquidation profits are non-recurring and should be stripped out.",
+    "interactions": [{ "label": "Gross margin", "dir": "up" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Crediting management with better pricing.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "LIFO Liquidation", "page": "8-18" }
+  },
+  {
+    "id": "A:08-017", "chapter": 8, "section_tag": "Errors", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "This year's ending inventory is overstated by 5,000 (periodic system). What is the effect on this year's and next year's profit?",
+    "options": [
+      "This year overstated by 5,000; next year understated by 5,000",
+      "Both years overstated",
+      "No effect on profit",
+      "This year understated; next year overstated"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Higher ending inventory means lower cost of sales this year.", "It becomes next year's opening inventory, raising next year's cost of sales."] },
+    "why_it_matters": "Inventory errors self-correct over two years, which is why inventory is a favourite place to manage earnings at a year end.",
+    "interactions": [{ "label": "Net income", "dir": "mixed" }],
+    "common_trap": "Thinking the error persists in both years' profit in the same direction.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Ending Inventory Misstated", "page": "8-29" }
+  },
+  {
+    "id": "A:08-018", "chapter": 8, "section_tag": "Systems", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Perpetual vs periodic inventory systems",
+    "answer": {
+      "meaning": "Perpetual: inventory and cost of sales are updated with every purchase and sale. Periodic: purchases are recorded in a separate account; cost of sales is worked out at period end from a count.",
+      "formula": "Periodic: COGS = opening inventory + purchases − closing inventory",
+      "interpretation": "Perpetual gives real-time margins and reveals shrinkage at the count.",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The periodic formula is the one you use to back out COGS from published balances.",
+    "interactions": [{ "label": "COGS", "dir": "mixed" }],
+    "common_trap": "Thinking periodic systems don't need a count.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Inventory Cost Flow", "page": "8-4" }
+  },
+  {
+    "id": "A:08-019", "chapter": 8, "section_tag": "Cost formulas", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Specific identification",
+    "answer": {
+      "meaning": "Each item is costed individually; required under IAS 2 for items that are not ordinarily interchangeable (e.g. custom projects, cars, jewellery).",
+      "formula": "COGS = actual cost of the specific items sold",
+      "interpretation": "Most accurate matching, but open to manipulation for interchangeable goods (choose which unit to 'sell').",
+      "high_signals": "—",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "For interchangeable goods it lets management pick high- or low-cost units to steer profit, which is why FIFO or average is required there.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Using it for interchangeable commodities.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Specific Identification", "page": "8-13" }
+  },
+  {
+    "id": "A:08-020", "chapter": 8, "section_tag": "LIFO", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "Why do many US companies choose LIFO, and how would you adjust a LIFO user to compare it with an IFRS (FIFO) peer?",
+    "answer": {
+      "model_answer": "In rising prices LIFO charges recent (higher) costs to cost of sales, lowering taxable income and cash taxes; the US conformity rule requires LIFO in the published statements if used for tax. To compare with a FIFO peer: (1) Inventory: add the LIFO reserve to LIFO inventory. (2) Cost of sales: subtract the increase in the LIFO reserve for the year. (3) Equity: add the reserve net of tax (the deferred tax on the difference). (4) Recompute gross margin, inventory turnover, current ratio and ROE on the adjusted figures. Watch for LIFO liquidations, which make LIFO margins look temporarily high.",
+      "rubric": ["Tax saving in inflation", "Conformity rule", "Inventory + reserve", "COGS − Δreserve", "Equity + reserve × (1 − t)", "Ratios to recompute"]
+    },
+    "explanation": { "reasoning": ["Explain the motive, then each adjustment and the ratios it affects."] },
+    "why_it_matters": "Without this adjustment a US LIFO company can look much less efficient and less profitable than its IFRS peers.",
+    "interactions": [{ "label": "Inventory turnover", "dir": "down" }, { "label": "Gross margin", "dir": "up" }],
+    "common_trap": "Forgetting the tax effect when adjusting equity.",
+    "book_ref": { "book": "IA17", "chapter": 8, "section": "Major Advantages of LIFO", "page": "8-24" }
+  }
+]

@@ -19,7 +19,7 @@ export const ACCOUNTS = [
   { name: 'Equipment', type: 'asset', aliases: ['Machinery', 'Plant and equipment'] },
   { name: 'Vehicles', type: 'asset' },
   { name: 'Construction in progress', type: 'asset', aliases: ['CWIP', 'Assets under construction'] },
-  { name: 'Accumulated depreciation', type: 'contra_asset' },
+  { name: 'Accumulated depreciation', type: 'contra_asset', aliases: ['Accumulated depletion', 'Accumulated impairment'] },
   { name: 'Right-of-use asset', type: 'asset', aliases: ['ROU asset', 'Lease asset'] },
   { name: 'Investment property', type: 'asset' },
   { name: 'Intangible assets', type: 'asset', aliases: ['Patents', 'Licences', 'Trademarks', 'Software'] },
@@ -113,6 +113,16 @@ export const ACCOUNTS = [
   { name: 'Loss on debt extinguishment', type: 'loss' },
   { name: 'Foreign exchange loss', type: 'loss' },
   { name: 'Lease expense', type: 'expense', aliases: ['Short-term lease expense'] },
+  { name: 'Bank charges', type: 'expense', aliases: ['Bank fees', 'Bank service charges'] },
+  { name: 'Loss on sale of receivables', type: 'loss', aliases: ['Factoring fee', 'Loss on factoring'] },
+  { name: 'Postage expense', type: 'expense' },
+  { name: 'Repairs and maintenance expense', type: 'expense', aliases: ['Repairs expense', 'Maintenance expense'] },
+  { name: 'Mineral resources', type: 'asset', aliases: ['Mine', 'Natural resources', 'Oil and gas properties'] },
+  { name: 'Loss on purchase commitments', type: 'loss', aliases: ['Onerous contract loss'] },
+  { name: 'Insurance claim receivable', type: 'asset' },
+  { name: 'Freight-in', type: 'expense', aliases: ['Transportation-in', 'Carriage inwards'] },
+  { name: 'Purchase returns and allowances', type: 'contra_expense' },
+  { name: 'Purchase discounts', type: 'contra_expense' },
 ];
 
 export const ACCOUNT_BY_NAME = Object.fromEntries(ACCOUNTS.map((a) => [a.name, a]));
@@ -121,7 +131,7 @@ export const ACCOUNT_BY_NAME = Object.fromEntries(ACCOUNTS.map((a) => [a.name, a
 export function statementOf(name) {
   const a = ACCOUNT_BY_NAME[name];
   if (!a) return null;
-  if (['revenue', 'contra_revenue', 'expense', 'gain', 'loss'].includes(a.type)) return 'IS';
+  if (['revenue', 'contra_revenue', 'expense', 'contra_expense', 'gain', 'loss'].includes(a.type)) return 'IS';
   return 'BS';
 }
 

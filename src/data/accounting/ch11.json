@@ -1,0 +1,298 @@
+[
+  {
+    "id": "A:11-001", "chapter": 11, "section_tag": "Straight-line", "difficulty": "easy", "format": "journal_entry", "style": "calculation",
+    "prompt": "A machine cost 120,000, has a residual value of 20,000 and a 5-year life. Record one year's straight-line depreciation.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 20000 }, { "account": "Accumulated depreciation", "credit": 20000 }],
+      "effects": { "IS": [["Depreciation expense", -20000]], "BS": [["PP&E (net)", -20000, "A"], ["Retained earnings", -20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["(120,000 − 20,000) / 5 = 20,000"] },
+    "why_it_matters": "Straight-line assumes even consumption; most companies use it, which keeps EBIT comparable.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Ignoring the residual value.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Methods of Depreciation", "page": "11-6" }
+  },
+  {
+    "id": "A:11-002", "chapter": 11, "section_tag": "Declining balance", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "Equipment costing 50,000 with a 5-year life is depreciated by double-declining balance. Record year-1 depreciation.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 20000 }, { "account": "Accumulated depreciation", "credit": 20000 }],
+      "effects": { "IS": [["Depreciation expense", -20000]], "BS": [["PP&E (net)", -20000, "A"], ["Retained earnings", -20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Rate = 2 × (1/5) = 40% of the opening carrying amount.", "50,000 × 40% = 20,000 (residual value is ignored in the rate but limits the final years)."] },
+    "why_it_matters": "Accelerated methods front-load expense, lowering early profits and returns on new assets.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Subtracting residual value before applying the declining-balance rate.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Methods of Depreciation", "page": "11-6" }
+  },
+  {
+    "id": "A:11-003", "chapter": 11, "section_tag": "Units of production", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A press cost 90,000 with a 10,000 residual value and is expected to produce 100,000 units. This year it produced 15,000 units. Record depreciation (units-of-production).",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 12000 }, { "account": "Accumulated depreciation", "credit": 12000 }],
+      "effects": { "IS": [["Depreciation expense", -12000]], "BS": [["PP&E (net)", -12000, "A"], ["Retained earnings", -12000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Rate = (90,000 − 10,000) / 100,000 = 0.80 per unit.", "15,000 × 0.80 = 12,000."] },
+    "why_it_matters": "Activity-based depreciation makes cost behave as variable, lowering operating leverage.",
+    "interactions": [{ "label": "Operating leverage", "dir": "down" }],
+    "common_trap": "Using total cost instead of depreciable amount.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Methods of Depreciation", "page": "11-6" }
+  },
+  {
+    "id": "A:11-004", "chapter": 11, "section_tag": "Change in estimate", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A machine cost 100,000 (no residual) and was depreciated straight-line over 10 years. After 4 years the remaining life is revised to 3 years. Record depreciation for year 5.",
+    "answer": {
+      "lines": [{ "account": "Depreciation expense", "debit": 20000 }, { "account": "Accumulated depreciation", "credit": 20000 }],
+      "effects": { "IS": [["Depreciation expense", -20000]], "BS": [["PP&E (net)", -20000, "A"], ["Retained earnings", -20000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Carrying amount after 4 years = 100,000 − 40,000 = 60,000.", "Spread over the 3 remaining years: 20,000 a year (prospective)."] },
+    "why_it_matters": "Shortening lives raises expense; lengthening them is a quiet profit booster.",
+    "interactions": [{ "label": "Depreciation", "dir": "up" }],
+    "common_trap": "Catching up prior years' depreciation in one go.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Other Depreciation Issues", "page": "11-11" }
+  },
+  {
+    "id": "A:11-005", "chapter": 11, "section_tag": "Impairment", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "A plant's carrying amount is 500,000. Its value in use is 420,000 and its fair value less costs of disposal is 400,000. Record any impairment under IAS 36.",
+    "answer": {
+      "lines": [{ "account": "Impairment loss", "debit": 80000 }, { "account": "Accumulated depreciation", "credit": 80000 }],
+      "effects": { "IS": [["Impairment loss", -80000]], "BS": [["PP&E (net)", -80000, "A"], ["Retained earnings", -80000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Recoverable amount = higher of value in use (420,000) and FVLCD (400,000) = 420,000.", "Impairment = 500,000 − 420,000 = 80,000."] },
+    "why_it_matters": "Impairments signal that past investments will not earn their cost; they also lower future depreciation.",
+    "interactions": [{ "label": "ROA (future)", "dir": "up" }, { "label": "Net income", "dir": "down" }],
+    "common_trap": "Using the lower of the two values as recoverable amount.",
+    "ifrs_gaap": { "ifrs": "IAS 36 one-step test: impair to recoverable amount (higher of VIU and FVLCD); reversals allowed (not for goodwill).", "us_gaap": "ASC 360 two-step: impair only if undiscounted cash flows < carrying amount, then write down to fair value; no reversals." },
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Measuring Impairments", "page": "11-15" }
+  },
+  {
+    "id": "A:11-006", "chapter": 11, "section_tag": "Impairment reversal", "difficulty": "hard", "format": "journal_entry", "style": "calculation",
+    "prompt": "An impaired asset is now carried at 410,000. Its recoverable amount has risen to 480,000. Had it never been impaired, its carrying amount today would be 450,000. Record the reversal under IAS 36.",
+    "answer": {
+      "lines": [{ "account": "Accumulated depreciation", "debit": 40000 }, { "account": "Impairment loss", "credit": 40000 }],
+      "effects": { "IS": [["Impairment reversal", 40000]], "BS": [["PP&E (net)", 40000, "A"], ["Retained earnings", 40000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Reversals are capped at the carrying amount that would have existed without the impairment (450,000).", "Reverse 450,000 − 410,000 = 40,000, not 70,000."] },
+    "why_it_matters": "Reversals add non-recurring profit; strip them out of underlying earnings.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Writing the asset up to its full recoverable amount.",
+    "ifrs_gaap": { "ifrs": "Reversal allowed up to the depreciated historical carrying amount.", "us_gaap": "Reversal of impairment for assets held and used is prohibited." },
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Restoration of Impairment Loss", "page": "11-16" }
+  },
+  {
+    "id": "A:11-007", "chapter": 11, "section_tag": "Depletion", "difficulty": "medium", "format": "journal_entry", "style": "calculation",
+    "prompt": "A mine's depletion base is 5,000,000 and it is expected to yield 1,000,000 tonnes. This year 120,000 tonnes were extracted (none sold yet). Record depletion.",
+    "answer": {
+      "lines": [{ "account": "Inventory", "debit": 600000 }, { "account": "Accumulated depreciation", "credit": 600000 }],
+      "effects": { "IS": [], "BS": [["Inventory", 600000, "A"], ["Mineral resources (net)", -600000, "A"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Rate = 5,000,000 / 1,000,000 = 5 per tonne.", "120,000 × 5 = 600,000, charged to the cost of the extracted inventory; it becomes expense when sold."] },
+    "why_it_matters": "Reserve estimates drive depletion; upward reserve revisions lower the charge and lift margins.",
+    "interactions": [{ "label": "Inventory", "dir": "up" }],
+    "common_trap": "Expensing depletion immediately when the ore is still unsold.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Write-off of Resource Cost", "page": "11-18" }
+  },
+  {
+    "id": "A:11-008", "chapter": 11, "section_tag": "Partial period", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "Equipment costing 36,000 (no residual, 6-year life, straight-line) is bought on 1 April. Depreciation for the year to 31 December?",
+    "answer": { "value": 4500, "unit": "", "tolerance": 0 },
+    "check": "36000 / 6 * 9 / 12",
+    "explanation": { "reasoning": ["Annual 6,000 × 9/12 = 4,500"], "shortcut": "Annual charge × months in use / 12." },
+    "why_it_matters": "Big capex late in the year hardly affects this year's depreciation but fully hits next year's.",
+    "interactions": [{ "label": "Depreciation", "dir": "up" }],
+    "common_trap": "Charging a full year.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Other Depreciation Issues", "page": "11-11" }
+  },
+  {
+    "id": "A:11-009", "chapter": 11, "section_tag": "Sum-of-years-digits", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Cost 33,000, residual 3,000, life 4 years. Year-1 depreciation using sum-of-the-years'-digits?",
+    "answer": { "value": 12000, "unit": "", "tolerance": 0 },
+    "check": "(33000 - 3000) * 4 / 10",
+    "explanation": { "reasoning": ["Sum of digits 1+2+3+4 = 10", "30,000 × 4/10 = 12,000"], "shortcut": "Depreciable amount × remaining life / sum of digits." },
+    "why_it_matters": "Accelerated methods are rare under IFRS but common in US tax and some industries.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Applying the fraction to cost instead of the depreciable amount.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Methods of Depreciation", "page": "11-6" }
+  },
+  {
+    "id": "A:11-010", "chapter": 11, "section_tag": "Declining balance", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Equipment costing 50,000 (5-year life) is depreciated at double-declining balance. Year-2 depreciation?",
+    "answer": { "value": 12000, "unit": "", "tolerance": 0 },
+    "check": "(50000 - 20000) * 0.4",
+    "explanation": { "reasoning": ["Year 1: 20,000; carrying amount 30,000", "Year 2: 30,000 × 40% = 12,000"], "shortcut": "Rate × opening carrying amount." },
+    "why_it_matters": "The charge falls each year, so EBIT rises as assets age even if nothing else changes.",
+    "interactions": [{ "label": "EBIT", "dir": "up" }],
+    "common_trap": "Applying 40% to the original cost again.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Methods of Depreciation", "page": "11-6" }
+  },
+  {
+    "id": "A:11-011", "chapter": 11, "section_tag": "Impairment", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "Carrying amount 800; value in use 650; fair value less costs of disposal 700. Impairment loss under IAS 36?",
+    "answer": { "value": 100, "unit": "", "tolerance": 0 },
+    "check": "800 - Math.max(650, 700)",
+    "explanation": { "reasoning": ["Recoverable amount = max(650, 700) = 700", "Loss = 800 − 700 = 100"], "shortcut": "Carrying amount − the higher of the two values." },
+    "why_it_matters": "The 'higher of' logic reflects what a rational owner would do: use the asset or sell it.",
+    "interactions": [{ "label": "PP&E", "dir": "down" }],
+    "common_trap": "Using value in use automatically (gives 150).",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Measuring Impairments", "page": "11-15" }
+  },
+  {
+    "id": "A:11-012", "chapter": 11, "section_tag": "Analysis", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "Accumulated depreciation is 60,000 and annual straight-line depreciation is 12,000. Approximate average age of the assets in years?",
+    "answer": { "value": 5, "unit": "years", "tolerance": 0 },
+    "check": "60000 / 12000",
+    "explanation": { "reasoning": ["Average age ≈ accumulated depreciation / annual depreciation = 5 years"], "shortcut": "Also: remaining life ≈ net PP&E / depreciation." },
+    "why_it_matters": "An ageing asset base signals coming capex (or underinvestment).",
+    "interactions": [{ "label": "Future capex", "dir": "up" }],
+    "common_trap": "Dividing gross PP&E by depreciation (that gives total useful life).",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Analysis of Property, Plant, and Equipment", "page": "11-23" }
+  },
+  {
+    "id": "A:11-013", "chapter": 11, "section_tag": "Components", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "An aircraft costs 50 million; its engines (15 million) have a 6-year life and the airframe a 20-year life. What does IAS 16 require?",
+    "options": ["Depreciate the engines and the airframe separately over their own lives", "One life for the whole aircraft", "No depreciation until the engines are replaced", "Expense the engines"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Significant parts with different useful lives are depreciated separately (component approach)."] },
+    "why_it_matters": "Component depreciation front-loads expense relative to a single blended life.",
+    "interactions": [{ "label": "Depreciation", "dir": "up" }],
+    "common_trap": "Using one blended life.",
+    "ifrs_gaap": { "ifrs": "IAS 16 requires component depreciation for significant parts.", "us_gaap": "Component depreciation is permitted but not required, and rarely used." },
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "IFRS Insights", "page": "11-50" }
+  },
+  {
+    "id": "A:11-014", "chapter": 11, "section_tag": "Impairment", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Which is an indicator that an asset may be impaired?",
+    "options": [
+      "Market interest rates rise sharply, increasing discount rates",
+      "The asset was bought last year",
+      "Depreciation is straight-line",
+      "Revenue grew in line with budget"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Higher discount rates lower value in use.", "Other indicators: obsolescence, physical damage, worse performance, market cap below book value."] },
+    "why_it_matters": "When rates rise, watch for impairments in capital-heavy sectors.",
+    "interactions": [{ "label": "Impairment risk", "dir": "up" }],
+    "common_trap": "Testing only when the asset is physically damaged.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Recognizing Impairments", "page": "11-14" }
+  },
+  {
+    "id": "A:11-015", "chapter": 11, "section_tag": "Held for sale", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "A building is classified as held for sale under IFRS 5. Which statement is correct?",
+    "options": [
+      "It is measured at the lower of carrying amount and fair value less costs to sell, and it is no longer depreciated",
+      "It continues to be depreciated",
+      "It is measured at fair value with gains in profit",
+      "It stays in PP&E"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Held-for-sale assets are presented separately and not depreciated.", "Write-downs to fair value less costs to sell go to profit."] },
+    "why_it_matters": "Stopping depreciation lifts profit while a sale is pending.",
+    "interactions": [{ "label": "Depreciation", "dir": "down" }],
+    "common_trap": "Continuing to depreciate held-for-sale assets.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Impairment of Assets to Be Disposed of", "page": "11-16" }
+  },
+  {
+    "id": "A:11-016", "chapter": 11, "section_tag": "Depreciation", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Depreciation methods",
+    "answer": {
+      "meaning": "Systematic allocation of an asset's depreciable amount over its useful life, matching the pattern in which benefits are consumed.",
+      "formula": "Straight-line: (cost − residual)/life · Units of production: (cost − residual)/total units × units used · Declining balance: rate × opening carrying amount",
+      "interpretation": "Method, life and residual are management estimates reviewed at least annually (IAS 16).",
+      "high_signals": "Long lives vs peers: profit flattered.",
+      "low_signals": "Short lives vs peers: conservative."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Depreciation policy differences can explain big EBIT margin gaps between peers.",
+    "interactions": [{ "label": "EBIT margin", "dir": "mixed" }],
+    "common_trap": "Thinking depreciation measures falling market value.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Factors Involved in the Depreciation Process", "page": "11-4" }
+  },
+  {
+    "id": "A:11-017", "chapter": 11, "section_tag": "Impairment", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Recoverable amount (IAS 36)",
+    "answer": {
+      "meaning": "The higher of an asset's (or CGU's) fair value less costs of disposal and its value in use.",
+      "formula": "Value in use = PV of future cash flows from continuing use and disposal, at a pre-tax discount rate",
+      "interpretation": "If carrying amount > recoverable amount, impair the difference.",
+      "high_signals": "Thin headroom in the impairment note: write-down risk if assumptions slip.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The sensitivity disclosures (growth, discount rate) show how close a company is to an impairment.",
+    "interactions": [{ "label": "Impairment risk", "dir": "mixed" }],
+    "common_trap": "Comparing with fair value only.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Measuring Impairments", "page": "11-15" }
+  },
+  {
+    "id": "A:11-018", "chapter": 11, "section_tag": "US impairment", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Under US GAAP, an asset has carrying amount 900, undiscounted future cash flows 950 and fair value 700. Is an impairment recorded?",
+    "options": [
+      "No: undiscounted cash flows exceed carrying amount, so the recoverability test is passed",
+      "Yes, 200",
+      "Yes, 250",
+      "Yes, 50"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["ASC 360 step 1 compares undiscounted cash flows with carrying amount.", "Only if it fails is the asset written down to fair value. Under IFRS the 900 would be compared with the recoverable amount (likely impaired)."] },
+    "why_it_matters": "US GAAP impairments are recognised later than IFRS ones; assets can sit above fair value for years.",
+    "interactions": [{ "label": "Asset values", "dir": "up" }],
+    "common_trap": "Applying the IFRS one-step test to a US company.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Recognizing Impairments", "page": "11-14" }
+  },
+  {
+    "id": "A:11-019", "chapter": 11, "section_tag": "Revaluation", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Under the IAS 16 revaluation model, land carried at 1,000 is revalued to 1,300. No previous losses were recognised. Where does the 300 go?",
+    "options": ["Other comprehensive income (revaluation surplus)", "Profit or loss", "Share premium", "Retained earnings directly"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Revaluation increases go to OCI and accumulate in the revaluation surplus.", "A later decrease first reduces that surplus, then hits profit."] },
+    "why_it_matters": "Revaluation surpluses lift equity and lower reported gearing without any cash.",
+    "interactions": [{ "label": "Equity", "dir": "up" }, { "label": "Gearing", "dir": "down" }],
+    "common_trap": "Booking revaluation gains in profit.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "IFRS Insights", "page": "11-50" }
+  },
+  {
+    "id": "A:11-020", "chapter": 11, "section_tag": "Cash", "difficulty": "easy", "format": "mcq", "style": "logical",
+    "prompt": "Which statement about depreciation and cash is correct?",
+    "options": [
+      "Depreciation does not use or create cash, but because it is tax-deductible it reduces cash taxes",
+      "Depreciation is a source of cash",
+      "Depreciation is a cash payment to replace assets",
+      "Depreciation has no effect on any cash flow"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["It allocates past capex; the cash left when the asset was bought.", "Its tax deductibility (via tax depreciation) is the only cash effect."] },
+    "why_it_matters": "This is the classic interview question behind the 'depreciation +10' walkthrough.",
+    "interactions": [{ "label": "CFO", "dir": "up" }],
+    "common_trap": "Saying depreciation 'generates' cash.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Depreciation—A Method of Cost Allocation", "page": "11-3" }
+  },
+  {
+    "id": "A:11-021", "chapter": 11, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "A transport company lengthens truck lives from 6 to 9 years and raises residual values. EBIT margin rises 2 points. How do you assess this?",
+    "answer": {
+      "model_answer": "The margin gain is an accounting estimate change, not an operational improvement: depreciation falls because the same cost is spread over longer lives with higher residuals. Cash is unchanged (and tax depreciation probably too). Tests: compare useful lives and depreciation/gross PP&E with peers; check the notes for the change in estimate and its quantified effect; see whether gains/losses on disposals historically justify the new estimates (consistent losses would mean lives were already too long); watch capex/D&A, which will now look higher. For valuation, use EBITDA−capex or restate EBIT at the old depreciation rate; don't capitalise the 2 points at the full multiple.",
+      "rubric": ["Estimate change, not operations", "No cash effect", "Peer and disposal-history tests", "Note disclosure", "Valuation adjustment"]
+    },
+    "explanation": { "reasoning": ["Separate accounting from economics, then test the estimate."] },
+    "why_it_matters": "Depreciation estimate changes are a common route to hitting earnings targets.",
+    "interactions": [{ "label": "EBIT margin", "dir": "up" }, { "label": "Earnings quality", "dir": "down" }],
+    "common_trap": "Crediting management with efficiency gains.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Analysis of Property, Plant, and Equipment", "page": "11-23" }
+  },
+  {
+    "id": "A:11-022", "chapter": 11, "section_tag": "Oil and gas", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "Two oil companies spend the same on exploration; one uses successful-efforts, the other full-cost. Which reports lower profit in a year with many dry wells?",
+    "options": [
+      "The successful-efforts company, because it expenses dry-hole costs immediately",
+      "The full-cost company",
+      "They report the same profit",
+      "Neither expenses exploration costs"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Successful-efforts capitalises only costs of successful wells.", "Full-cost capitalises all exploration costs in a cost pool and depletes them later."] },
+    "why_it_matters": "Exploration-heavy companies are not comparable without adjusting for the method.",
+    "interactions": [{ "label": "Net income", "dir": "down" }],
+    "common_trap": "Assuming both methods give the same timing.",
+    "book_ref": { "book": "IA17", "chapter": 11, "section": "Evolving Issue: Full-Cost or Successful-Efforts?", "page": "11-21" }
+  }
+]

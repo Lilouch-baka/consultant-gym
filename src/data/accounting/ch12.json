@@ -1,0 +1,257 @@
+[
+  {
+    "id": "A:12-001", "chapter": 12, "section_tag": "Acquisition", "difficulty": "easy", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The company buys a patent from an inventor for 60,000 cash. Record the purchase.",
+    "answer": {
+      "lines": [{ "account": "Intangible assets", "debit": 60000 }, { "account": "Cash", "credit": 60000 }],
+      "effects": { "IS": [], "BS": [["Intangible assets", 60000, "A"], ["Cash", -60000, "A"]], "CFS": [["Investing: purchase of intangibles", -60000]] }
+    },
+    "explanation": { "reasoning": ["Purchased intangibles are recognised at cost.", "The cash outflow is investing."] },
+    "why_it_matters": "Bought intangibles appear on the balance sheet; equivalent ones built internally usually don't. That distorts comparisons.",
+    "interactions": [{ "label": "Intangibles", "dir": "up" }],
+    "common_trap": "Expensing a purchased patent.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Valuation", "page": "12-4" }
+  },
+  {
+    "id": "A:12-002", "chapter": 12, "section_tag": "Amortisation", "difficulty": "easy", "format": "journal_entry", "style": "calculation",
+    "prompt": "The 60,000 patent has 15 years of legal protection but is expected to be useful for 10 years. Record one year's amortisation (no residual value).",
+    "answer": {
+      "lines": [{ "account": "Amortisation expense", "debit": 6000 }, { "account": "Accumulated amortisation", "credit": 6000 }],
+      "effects": { "IS": [["Amortisation expense", -6000]], "BS": [["Intangible assets (net)", -6000, "A"], ["Retained earnings", -6000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Amortise over the shorter of legal and useful life: 10 years.", "60,000 / 10 = 6,000."] },
+    "why_it_matters": "Amortisation of acquired intangibles is often excluded from 'adjusted' earnings; decide whether it reflects a real cost.",
+    "interactions": [{ "label": "EBIT", "dir": "down" }],
+    "common_trap": "Using the 15-year legal life.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Amortization of Intangibles", "page": "12-4" }
+  },
+  {
+    "id": "A:12-003", "chapter": 12, "section_tag": "R&D", "difficulty": "hard", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "This year the company spent 30,000 on research and 80,000 on development of a product that now meets all IAS 38 capitalisation criteria. All paid in cash. Record the costs under IFRS.",
+    "answer": {
+      "lines": [{ "account": "Research expense", "debit": 30000 }, { "account": "Development costs (intangible)", "debit": 80000 }, { "account": "Cash", "credit": 110000 }],
+      "effects": { "IS": [["Research expense", -30000]], "BS": [["Development costs", 80000, "A"], ["Cash", -110000, "A"], ["Retained earnings", -30000, "E"]], "CFS": [["Operating: research", -30000], ["Investing: capitalised development", -80000]] }
+    },
+    "explanation": { "reasoning": ["Research is always expensed.", "Development is capitalised once technical feasibility, intention, ability, probable benefits, resources and reliable measurement are shown."] },
+    "why_it_matters": "IFRS companies capitalising development report higher EBITDA and CFO than US peers who expense it.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }, { "label": "Capex", "dir": "up" }],
+    "common_trap": "Capitalising research, or expensing qualifying development under IFRS.",
+    "ifrs_gaap": { "ifrs": "IAS 38: research expensed; development capitalised when six criteria are met.", "us_gaap": "ASC 730: R&D expensed as incurred (exceptions: certain software development costs)." },
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Accounting for R&D Activities", "page": "12-20" }
+  },
+  {
+    "id": "A:12-004", "chapter": 12, "section_tag": "Goodwill impairment", "difficulty": "medium", "format": "journal_entry", "style": "walkthrough",
+    "prompt": "The annual test shows goodwill allocated to a cash-generating unit is impaired by 25,000. Record the impairment.",
+    "answer": {
+      "lines": [{ "account": "Impairment loss", "debit": 25000 }, { "account": "Goodwill", "credit": 25000 }],
+      "effects": { "IS": [["Impairment loss", -25000]], "BS": [["Goodwill", -25000, "A"], ["Retained earnings", -25000, "E"]], "CFS": [], "note": "non-cash" }
+    },
+    "explanation": { "reasoning": ["Goodwill is tested annually and when there are indicators.", "Goodwill impairments can never be reversed."] },
+    "why_it_matters": "A goodwill write-down admits the acquisition price was too high: a capital-allocation report card.",
+    "interactions": [{ "label": "Goodwill", "dir": "down" }, { "label": "Equity", "dir": "down" }],
+    "common_trap": "Thinking it affects cash or can be reversed later.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Impairment of Goodwill", "page": "12-16" }
+  },
+  {
+    "id": "A:12-005", "chapter": 12, "section_tag": "Goodwill", "difficulty": "medium", "format": "mental_math", "style": "calculation",
+    "prompt": "A company pays 1,000,000 for 100% of a business whose identifiable net assets have a fair value of 850,000. Goodwill?",
+    "answer": { "value": 150000, "unit": "", "tolerance": 0 },
+    "check": "1000000 - 850000",
+    "explanation": { "reasoning": ["Goodwill = consideration − fair value of identifiable net assets = 150,000"], "shortcut": "Price paid above fair value of what you can identify." },
+    "why_it_matters": "Goodwill is the premium for synergies and assembled workforce; it must earn a return like any other capital.",
+    "interactions": [{ "label": "Invested capital", "dir": "up" }],
+    "common_trap": "Using book values of the target's net assets instead of fair values.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Goodwill", "page": "12-11" }
+  },
+  {
+    "id": "A:12-006", "chapter": 12, "section_tag": "Recognition", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "A company has built a famous brand over 50 years. Is the brand on its balance sheet?",
+    "options": [
+      "No: internally generated brands (and goodwill) are not recognised",
+      "Yes, at fair value",
+      "Yes, at total advertising spent",
+      "Only if the company chooses to revalue it"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IAS 38 prohibits recognising internally generated brands, mastheads and customer lists.", "The same brand bought in an acquisition would be recognised."] },
+    "why_it_matters": "Brand-led companies look asset-light with very high ROIC; acquirers of brands look asset-heavy.",
+    "interactions": [{ "label": "ROIC", "dir": "up" }],
+    "common_trap": "Comparing ROIC of organic brand builders and acquirers without adjustment.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Marketing-Related Intangible Assets", "page": "12-6" }
+  },
+  {
+    "id": "A:12-007", "chapter": 12, "section_tag": "Indefinite life", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "How are intangibles with indefinite useful lives (e.g. some broadcast licences) treated?",
+    "options": [
+      "Not amortised; tested for impairment annually and whenever there is an indication",
+      "Amortised over 40 years",
+      "Expensed immediately",
+      "Amortised over 10 years by default"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Indefinite does not mean infinite; it means no foreseeable limit.", "The life assessment is reviewed each year."] },
+    "why_it_matters": "Large indefinite-life intangibles carry impairment risk; check the headroom disclosures.",
+    "interactions": [{ "label": "Impairment risk", "dir": "up" }],
+    "common_trap": "Thinking indefinite-life assets are never written down.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Impairment of Indefinite-Life Intangibles Other Than Goodwill", "page": "12-15" }
+  },
+  {
+    "id": "A:12-008", "chapter": 12, "section_tag": "R&D", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "IAS 38 criteria for capitalising development costs",
+    "answer": {
+      "meaning": "Capitalise development only when all are shown: technical feasibility; intention to complete; ability to use or sell; probable future economic benefits; adequate resources to complete; reliable measurement of costs.",
+      "formula": "Mnemonic: PIRATE — Probable benefits, Intention, Resources, Ability, Technical feasibility, Expenditure measurable",
+      "interpretation": "Costs before all criteria are met stay expensed; no reinstatement later.",
+      "high_signals": "High capitalisation rate vs peers: aggressive.",
+      "low_signals": "Expensing nearly all: conservative."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "The capitalisation rate (capitalised / total R&D) is a key earnings-quality ratio for tech and auto companies.",
+    "interactions": [{ "label": "EBITDA", "dir": "up" }],
+    "common_trap": "Capitalising past costs once the criteria are met.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "IFRS Insights", "page": "12-43" }
+  },
+  {
+    "id": "A:12-009", "chapter": 12, "section_tag": "Goodwill", "difficulty": "hard", "format": "mental_math", "style": "calculation",
+    "prompt": "A cash-generating unit's carrying amount is 1,200 including goodwill of 150. Its recoverable amount is 1,000. By how much is goodwill reduced?",
+    "answer": { "value": 150, "unit": "", "tolerance": 0 },
+    "check": "Math.min(150, 1200 - 1000)",
+    "explanation": { "reasoning": ["Impairment = 1,200 − 1,000 = 200", "Allocated first to goodwill (wiping all 150)", "The remaining 50 is allocated pro rata to the CGU's other assets"], "shortcut": "Goodwill absorbs the loss first." },
+    "why_it_matters": "Once goodwill is gone, further losses hit operating assets, which can be reversed later; goodwill cannot.",
+    "interactions": [{ "label": "Goodwill", "dir": "down" }],
+    "common_trap": "Spreading the loss pro rata across all assets including goodwill.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Impairment of Goodwill", "page": "12-16" }
+  },
+  {
+    "id": "A:12-010", "chapter": 12, "section_tag": "Goodwill", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A buyer pays less than the fair value of the identifiable net assets acquired (a bargain purchase). What does IFRS 3 require?",
+    "options": [
+      "Reassess the identification and measurement, then recognise any remaining excess as a gain in profit or loss",
+      "Record negative goodwill as a liability",
+      "Reduce the share capital",
+      "Ignore the difference"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Bargain purchases are rare, so values are re-checked first.", "Any remaining difference is an immediate gain."] },
+    "why_it_matters": "Bargain-purchase gains are non-recurring and often follow distressed deals.",
+    "interactions": [{ "label": "Net income", "dir": "up" }],
+    "common_trap": "Treating the gain as operating profit.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Goodwill", "page": "12-11" }
+  },
+  {
+    "id": "A:12-011", "chapter": 12, "section_tag": "Types", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Identifiable intangible asset",
+    "answer": {
+      "meaning": "A non-monetary asset without physical substance that is identifiable: either separable (can be sold or licensed) or arising from contractual or legal rights.",
+      "formula": "Examples: patents, trademarks, licences, customer contracts, software, franchises",
+      "interpretation": "Goodwill is not identifiable; it is the residual.",
+      "high_signals": "Large acquired customer relationships: watch amortisation and impairment.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "In acquisitions, more value assigned to amortising intangibles means lower future EPS than if left in goodwill.",
+    "interactions": [{ "label": "Amortisation", "dir": "up" }],
+    "common_trap": "Calling goodwill an identifiable intangible.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Characteristics", "page": "12-3" }
+  },
+  {
+    "id": "A:12-012", "chapter": 12, "section_tag": "R&D", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which activity is research rather than development?",
+    "options": [
+      "Searching for alternative materials with no specific product in mind",
+      "Building and testing a pre-production prototype",
+      "Designing tools and moulds for a new product",
+      "Running a pilot plant for a product about to launch"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Research is original investigation to gain new knowledge.", "Development applies knowledge to a plan or design before commercial production."] },
+    "why_it_matters": "The research/development boundary is where capitalisation judgement sits.",
+    "interactions": [{ "label": "R&D expense", "dir": "up" }],
+    "common_trap": "Classifying early exploratory work as development to capitalise it.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Identifying R&D Activities", "page": "12-19" }
+  },
+  {
+    "id": "A:12-013", "chapter": 12, "section_tag": "Expensed costs", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "How are start-up costs, training costs and advertising campaigns treated under IAS 38?",
+    "options": ["Expensed as incurred", "Capitalised as intangible assets", "Capitalised into goodwill", "Deferred until revenue arises"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["They do not create an identifiable asset the company controls.", "They are expensed when incurred."] },
+    "why_it_matters": "Companies sometimes label these 'investments' in presentations; the accounts must expense them.",
+    "interactions": [{ "label": "Opex", "dir": "up" }],
+    "common_trap": "Capitalising advertising because it builds the brand.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Costs Similar to R&D Costs", "page": "12-21" }
+  },
+  {
+    "id": "A:12-014", "chapter": 12, "section_tag": "Revaluation", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "When can an intangible asset be carried under the revaluation model under IAS 38?",
+    "options": [
+      "Only when fair value can be measured by reference to an active market (rare, e.g. some taxi licences or quotas)",
+      "Whenever management wishes",
+      "For all brands",
+      "Never"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Most intangibles are unique, so no active market exists.", "Hence nearly all intangibles are at cost."] },
+    "why_it_matters": "Book value almost never reflects intangible value; use market-based measures instead.",
+    "interactions": [{ "label": "P/B", "dir": "up" }],
+    "common_trap": "Assuming IFRS lets brands be revalued.",
+    "ifrs_gaap": { "ifrs": "IAS 38: revaluation only with an active market.", "us_gaap": "Revaluation of intangibles is not allowed." },
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "IFRS Insights", "page": "12-43" }
+  },
+  {
+    "id": "A:12-015", "chapter": 12, "section_tag": "Business combinations", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "In an acquisition, the target has a valuable customer list it never recognised. What does the acquirer do?",
+    "options": [
+      "Recognise the customer list separately at fair value (it is identifiable), reducing goodwill",
+      "Leave it inside goodwill",
+      "Expense it",
+      "Ignore it because the target didn't recognise it"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Acquired identifiable intangibles are recognised even if the target never did.", "This is why acquirers show intangibles that organic peers don't."] },
+    "why_it_matters": "The purchase price allocation determines future amortisation and EPS.",
+    "interactions": [{ "label": "Amortisation", "dir": "up" }, { "label": "Goodwill", "dir": "down" }],
+    "common_trap": "Lumping everything into goodwill.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Customer-Related Intangible Assets", "page": "12-7" }
+  },
+  {
+    "id": "A:12-016", "chapter": 12, "section_tag": "Goodwill", "difficulty": "hard", "format": "mcq", "style": "logical",
+    "prompt": "How is goodwill treated after acquisition under IFRS compared with US GAAP for public companies?",
+    "options": [
+      "Both: not amortised, tested for impairment at least annually; IFRS tests at CGU level, US GAAP at reporting-unit level",
+      "IFRS amortises over 10 years; US GAAP does not",
+      "Both amortise over 40 years",
+      "Neither tests for impairment"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Both frameworks use impairment-only approaches for listed companies.", "Private US companies may elect to amortise goodwill (PCC alternative)."] },
+    "why_it_matters": "Without amortisation, goodwill stays until impaired, so impairments come in large lumps.",
+    "interactions": [{ "label": "Goodwill", "dir": "mixed" }],
+    "common_trap": "Assuming goodwill is amortised under IFRS.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Impairment of Goodwill", "page": "12-16" }
+  },
+  {
+    "id": "A:12-017", "chapter": 12, "section_tag": "Analysis", "difficulty": "hard", "format": "written", "style": "diagnosis",
+    "prompt": "Compare two software companies: A (IFRS) capitalises 40% of its development spend; B (US GAAP) expenses all R&D. How would you put them on a comparable basis?",
+    "answer": {
+      "model_answer": "A's EBITDA, EBIT (partly) and CFO are higher because capitalised development moves to investing and is amortised over time; its assets and invested capital are larger. To compare: (1) Expense A's capitalised development in the year (add it back to opex, remove amortisation) to get an 'all-expensed' EBITDA and EBIT. (2) Or capitalise B's R&D with an assumed life to build a comparable asset base. (3) Compare FCF (CFO − capex − capitalised development), which is unaffected by the choice. (4) Look at total R&D as % of revenue, not just the expensed part. Then compare margins and ROIC on the same basis.",
+      "rubric": ["Direction of the distortion", "Expense-everything adjustment", "Or capitalise-everything adjustment", "FCF unaffected", "Total R&D intensity"]
+    },
+    "explanation": { "reasoning": ["Name the distortion, then two consistent adjustments."] },
+    "why_it_matters": "Tech valuations on EV/EBITDA are meaningless across GAAPs without this adjustment.",
+    "interactions": [{ "label": "EBITDA", "dir": "mixed" }, { "label": "ROIC", "dir": "mixed" }],
+    "common_trap": "Comparing EBITDA margins directly.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Evolving Issue: Recognition of R&D and Internally Generated Intangibles", "page": "12-24" }
+  },
+  {
+    "id": "A:12-018", "chapter": 12, "section_tag": "Presentation", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Where is goodwill presented?",
+    "options": ["As a separate non-current asset line", "Within current assets", "As a deduction from equity", "Within inventory"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Goodwill is non-current and shown separately (or in intangibles with disclosure)."] },
+    "why_it_matters": "Analysts often deduct goodwill to compute tangible book value for credit and bank analysis.",
+    "interactions": [{ "label": "Tangible equity", "dir": "down" }],
+    "common_trap": "Counting goodwill as collateral value in credit analysis.",
+    "book_ref": { "book": "IA17", "chapter": 12, "section": "Presentation of Intangible Assets", "page": "12-18" }
+  }
+]

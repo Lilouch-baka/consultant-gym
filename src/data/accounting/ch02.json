@@ -1,0 +1,273 @@
+[
+  {
+    "id": "A:02-001", "chapter": 2, "section_tag": "Qualitative characteristics", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Which are the two fundamental qualitative characteristics of useful financial information?",
+    "options": ["Relevance and faithful representation", "Comparability and verifiability", "Timeliness and understandability", "Prudence and consistency"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Relevance and faithful representation are fundamental.", "Comparability, verifiability, timeliness and understandability are enhancing characteristics."] },
+    "why_it_matters": "When a standard trades relevance (fair value) against reliability of measurement (cost), this is the framework behind the choice.",
+    "interactions": [{ "label": "Decision-usefulness", "dir": "up" }],
+    "common_trap": "Listing comparability as fundamental.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-002", "chapter": 2, "section_tag": "Relevance", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Relevance",
+    "answer": {
+      "meaning": "Information is relevant if it can make a difference to users' decisions.",
+      "formula": "Ingredients: predictive value, confirmatory value, materiality (entity-specific).",
+      "interpretation": "Information helps forecast outcomes or confirm (correct) past expectations.",
+      "high_signals": "Segment data, fair values of financial instruments, forward-looking disclosures.",
+      "low_signals": "Old historical costs of long-held assets in fast-changing markets."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Analysts lean on the most relevant disclosures (segments, guidance) even when they are less precise.",
+    "interactions": [{ "label": "Forecasting", "dir": "up" }],
+    "common_trap": "Thinking materiality is a fixed percentage set by the standards.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-003", "chapter": 2, "section_tag": "Faithful representation", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Faithful representation",
+    "answer": {
+      "meaning": "Numbers and descriptions match what really exists or happened.",
+      "formula": "Complete + neutral + free from error (prudence supports neutrality under the 2018 IASB Framework).",
+      "interpretation": "Substance over legal form: report the economics, not just the contract wording.",
+      "high_signals": "Clear disclosure of estimates, consistent policies.",
+      "low_signals": "Off-balance-sheet structures, one-sided estimates."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Most accounting scandals are failures of faithful representation (e.g. hiding debt).",
+    "interactions": [{ "label": "Earnings quality", "dir": "up" }],
+    "common_trap": "Equating 'free from error' with perfectly accurate; estimates can still be faithful.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-004", "chapter": 2, "section_tag": "Enhancing characteristics", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "A company applies the same depreciation method every year. Which enhancing characteristic does this mainly support?",
+    "options": ["Comparability (consistency over time)", "Verifiability", "Timeliness", "Understandability"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Consistency is a means of achieving comparability across periods.", "It does not by itself make information verifiable or timely."] },
+    "why_it_matters": "Policy changes break trend analysis; always check whether a ratio moved because the policy did.",
+    "interactions": [{ "label": "Trend analysis", "dir": "up" }],
+    "common_trap": "Treating consistency as a separate qualitative characteristic.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-005", "chapter": 2, "section_tag": "Materiality", "difficulty": "easy", "format": "mental_math", "style": "calculation",
+    "prompt": "An auditor uses 5% of profit before tax as a rule of thumb for materiality. Profit before tax is 2,400,000. Materiality threshold?",
+    "answer": { "value": 120000, "unit": "", "tolerance": 0 },
+    "check": "2400000 * 0.05",
+    "explanation": { "reasoning": ["2,400,000 × 5% = 120,000"], "shortcut": "10% is 240,000; half of it is 120,000." },
+    "why_it_matters": "Materiality is a judgement, not a rule; small items can be material by nature (e.g. related-party or illegal payments).",
+    "interactions": [{ "label": "Disclosure", "dir": "up" }],
+    "common_trap": "Treating anything below the threshold as automatically immaterial.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-006", "chapter": 2, "section_tag": "Elements", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under the 2018 IASB Conceptual Framework, an asset is…",
+    "options": [
+      "A present economic resource controlled by the entity as a result of past events",
+      "Anything the company owns legally",
+      "A resource that will certainly produce future cash",
+      "A cost that has been paid but not expensed"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["An economic resource is a right with the potential to produce economic benefits.", "Control matters, not legal ownership; certainty of benefits is not required."] },
+    "why_it_matters": "The control test is why leased assets (right-of-use) come onto the balance sheet.",
+    "interactions": [{ "label": "Total assets", "dir": "mixed" }],
+    "common_trap": "Requiring legal ownership or probable inflows (the old definition).",
+    "ifrs_gaap": { "ifrs": "2018 Framework: asset = present economic resource (a right with potential to produce benefits) controlled from past events.", "us_gaap": "FASB Concepts Statement 8 (2021): an asset is a present right of an entity to an economic benefit; similar idea, different wording." },
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Elements", "page": "2-13" }
+  },
+  {
+    "id": "A:02-007", "chapter": 2, "section_tag": "Elements", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Liability (Conceptual Framework)",
+    "answer": {
+      "meaning": "A present obligation of the entity to transfer an economic resource as a result of past events.",
+      "formula": "Obligation (no practical ability to avoid) + transfer of a resource + past event",
+      "interpretation": "Constructive obligations count (e.g. a published refund policy), not only legal ones.",
+      "high_signals": "Large provisions or commitments relative to equity: check their probability and timing.",
+      "low_signals": "—"
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Debt-like items (provisions, leases, pensions) hide in liabilities that are not 'borrowings'. Add them back when measuring leverage.",
+    "interactions": [{ "label": "Net debt (adjusted)", "dir": "up" }],
+    "common_trap": "Recognising a liability for future operating losses or planned spending.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Elements", "page": "2-13" }
+  },
+  {
+    "id": "A:02-008", "chapter": 2, "section_tag": "Assumptions", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Why are assets normally carried at depreciated cost rather than liquidation value?",
+    "options": ["Because of the going-concern assumption", "Because of the monetary-unit assumption", "Because of the periodicity assumption", "Because of the economic-entity assumption"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["If the business will continue, assets will be used, not sold off.", "If going concern fails, a different (liquidation) basis is needed."] },
+    "why_it_matters": "A going-concern warning in the audit report changes the meaning of every number in the statements.",
+    "interactions": [{ "label": "Asset values", "dir": "mixed" }],
+    "common_trap": "Confusing going concern with conservatism.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Going Concern Assumption", "page": "2-15" }
+  },
+  {
+    "id": "A:02-009", "chapter": 2, "section_tag": "Assumptions", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "The owner of a private company pays for a family holiday from the company bank account and books it as travel expense. Which assumption is breached?",
+    "options": ["Economic entity", "Going concern", "Monetary unit", "Periodicity"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The entity's transactions must be kept separate from its owners'.", "The payment is a distribution (or loan) to the owner, not a business expense."] },
+    "why_it_matters": "In private-company due diligence, normalising owner expenses is a standard EBITDA adjustment.",
+    "interactions": [{ "label": "Adjusted EBITDA", "dir": "up" }],
+    "common_trap": "Accepting owner-related costs as operating expenses.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Economic Entity Assumption", "page": "2-14" }
+  },
+  {
+    "id": "A:02-010", "chapter": 2, "section_tag": "Measurement", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Which measurement bases does the IASB Conceptual Framework identify?",
+    "options": [
+      "Historical cost and current value (fair value, value in use / fulfilment value, current cost)",
+      "Only historical cost",
+      "Only fair value",
+      "Replacement cost and liquidation value only"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["The Framework describes historical cost and several current-value bases.", "Each standard chooses the basis that gives the most useful information."] },
+    "why_it_matters": "Mixed measurement means book equity is a blend of old costs and current values; P/B comparisons need care.",
+    "interactions": [{ "label": "Book value", "dir": "mixed" }],
+    "common_trap": "Thinking IFRS is a fair-value system. Most operating assets are still at cost.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  },
+  {
+    "id": "A:02-011", "chapter": 2, "section_tag": "Fair value", "difficulty": "medium", "format": "flashcard", "style": "definition",
+    "prompt": "Fair value (IFRS 13) and the fair-value hierarchy",
+    "answer": {
+      "meaning": "The price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participants at the measurement date (an exit price).",
+      "formula": "Level 1: quoted prices in active markets · Level 2: other observable inputs · Level 3: unobservable inputs (models)",
+      "interpretation": "The lower the level number, the more reliable the measurement.",
+      "high_signals": "Large Level 3 balances: model risk and room for management judgement.",
+      "low_signals": "Mostly Level 1: values are market-verifiable."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Level 3 assets drove many bank losses in 2008; always check the share of Level 3 in equity.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Calling fair value an entry (purchase) price.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  },
+  {
+    "id": "A:02-012", "chapter": 2, "section_tag": "Recognition", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "A company has a contract to buy raw materials next year at today's price. Neither party has performed. What does it recognise today?",
+    "options": [
+      "Nothing, unless the contract is onerous; it is an executory contract (disclose if material)",
+      "An asset for the materials and a liability for the price",
+      "An expense for the full contract price",
+      "Revenue for the supplier's side"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Equally unperformed contracts are generally not recognised.", "If the contract becomes loss-making (onerous), a provision is needed."] },
+    "why_it_matters": "Purchase commitments can be large hidden obligations; read the commitments note.",
+    "interactions": [{ "label": "Off-balance-sheet obligations", "dir": "up" }],
+    "common_trap": "Grossing up both sides of an executory contract.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  },
+  {
+    "id": "A:02-013", "chapter": 2, "section_tag": "Expense recognition", "difficulty": "medium", "format": "mcq", "style": "logical",
+    "prompt": "Sales commissions are recognised in the same period as the related sales. Which principle is this?",
+    "options": ["Matching expenses with the revenues they help generate", "Going concern", "Historical cost", "Full disclosure"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Costs directly linked to revenue are recognised when that revenue is recognised.", "Under IFRS the underlying test is still that the expense meets the definition (a decrease in assets or increase in liabilities)."] },
+    "why_it_matters": "Matching is why profit, not cash, measures period performance.",
+    "interactions": [{ "label": "Gross margin", "dir": "mixed" }],
+    "common_trap": "Using matching to justify deferring costs that are not assets.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  },
+  {
+    "id": "A:02-014", "chapter": 2, "section_tag": "Constraint", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Why do standards sometimes exempt small or private companies from detailed disclosures?",
+    "options": ["Because of the cost constraint: the benefits of the information must justify its cost", "Because private companies have no users", "Because of the going-concern assumption", "Because small companies do not need audits"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Information is costly to prepare and use.", "The Framework accepts less information where costs exceed benefits."] },
+    "why_it_matters": "Private targets may disclose far less; diligence must fill the gaps.",
+    "interactions": [{ "label": "Disclosure", "dir": "down" }],
+    "common_trap": "Thinking reduced disclosure means reduced measurement standards.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Cost Constraint", "page": "2-21" }
+  },
+  {
+    "id": "A:02-015", "chapter": 2, "section_tag": "Prudence", "difficulty": "hard", "format": "mcq", "style": "rhetorical",
+    "prompt": "The 2018 IASB Framework reintroduced 'prudence'. What does it mean there?",
+    "options": [
+      "Exercising caution when making judgements under uncertainty, without deliberately understating assets or overstating liabilities",
+      "Always choosing the lowest possible profit",
+      "Building hidden reserves for bad years",
+      "Never recognising gains until cash is received"
+    ],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Prudence supports neutrality; it does not license bias.", "Deliberate understatement would make later periods look artificially good."] },
+    "why_it_matters": "'Cookie-jar' reserves built in good years are released to smooth bad years; prudence does not permit them.",
+    "interactions": [{ "label": "Earnings smoothing", "dir": "down" }],
+    "common_trap": "Equating prudence with conservatism at any cost.",
+    "ifrs_gaap": { "ifrs": "2018 Framework: prudence = caution under uncertainty, supporting neutrality.", "us_gaap": "FASB concepts do not include prudence; conservatism is not a qualitative characteristic, though some rules (e.g. gain contingencies) remain asymmetric." },
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "IFRS Insights", "page": "2-38" }
+  },
+  {
+    "id": "A:02-016", "chapter": 2, "section_tag": "Disclosure", "difficulty": "easy", "format": "flashcard", "style": "definition",
+    "prompt": "Full disclosure principle",
+    "answer": {
+      "meaning": "Provide all information important enough to influence an informed user, in the statements, the notes or supplementary information.",
+      "formula": "Statements (recognition) + notes (policies, estimates, commitments, contingencies)",
+      "interpretation": "The notes are part of the financial statements, not optional reading.",
+      "high_signals": "Long, specific notes on risks and judgements.",
+      "low_signals": "Boilerplate notes that say little."
+    },
+    "explanation": { "reasoning": [] },
+    "why_it_matters": "Most red flags (related parties, commitments, policy changes) are in the notes, not on the face of the statements.",
+    "interactions": [{ "label": "Transparency", "dir": "up" }],
+    "common_trap": "Thinking disclosure can fix a wrong accounting treatment.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  },
+  {
+    "id": "A:02-017", "chapter": 2, "section_tag": "Trade-offs", "difficulty": "hard", "format": "written", "style": "logical",
+    "prompt": "Explain the trade-off between relevance and faithful representation using investment property as an example.",
+    "answer": {
+      "model_answer": "Fair value of an investment property is highly relevant: it reflects current market conditions and helps predict future returns. But if there is no active market it relies on valuation models and assumptions (Level 3), which are harder to verify, so faithful representation (free from error, neutral) is weaker. Historical cost is easy to verify but can be decades old and say little about value. IAS 40 lets companies choose the fair value model or the cost model (with fair value disclosed), accepting the trade-off and relying on disclosure of valuation methods and inputs.",
+      "rubric": ["Fair value is relevant", "Measurement uncertainty weakens faithful representation", "Cost is verifiable but less relevant", "IAS 40 choice plus disclosure"]
+    },
+    "explanation": { "reasoning": ["State both sides, give the example, then the standard's compromise."] },
+    "why_it_matters": "Real-estate companies' NAVs depend on these valuations; sensitivity disclosures are essential reading.",
+    "interactions": [{ "label": "Earnings volatility", "dir": "up" }],
+    "common_trap": "Saying one characteristic always beats the other.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Qualitative Characteristics of Accounting Information", "page": "2-6" }
+  },
+  {
+    "id": "A:02-018", "chapter": 2, "section_tag": "Assumptions", "difficulty": "easy", "format": "mcq", "style": "definition",
+    "prompt": "Why can companies publish quarterly results even though the business runs continuously?",
+    "options": ["The periodicity (time-period) assumption", "The going-concern assumption", "The monetary-unit assumption", "The historical-cost principle"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["Activity is divided into artificial periods so users get timely information.", "The shorter the period, the more estimates (accruals) are needed."] },
+    "why_it_matters": "Quarterly numbers carry more estimation noise; avoid over-reading one quarter.",
+    "interactions": [{ "label": "Estimates", "dir": "up" }],
+    "common_trap": "Confusing periodicity with going concern.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Periodicity Assumption", "page": "2-16" }
+  },
+  {
+    "id": "A:02-019", "chapter": 2, "section_tag": "Monetary unit", "difficulty": "medium", "format": "written", "style": "rhetorical",
+    "prompt": "The monetary-unit assumption ignores changes in purchasing power. When does that become a real problem for analysts, and what does IFRS do about it?",
+    "answer": {
+      "model_answer": "When inflation is high, historical costs of long-lived assets become far below current prices, so depreciation is understated, profit and ROIC overstated, and comparisons over time misleading. Revenue is in current money while asset costs are in old money. IFRS addresses extreme cases with IAS 29 (hyperinflationary economies), which requires restating figures into current purchasing power. Otherwise analysts should adjust: look at replacement-cost capex, inflation-adjusted growth, and be wary of ROIC on old asset bases.",
+      "rubric": ["Inflation distorts historical costs", "Understated depreciation, overstated returns", "IAS 29 for hyperinflation", "Analyst adjustments"]
+    },
+    "explanation": { "reasoning": ["Link the assumption to its failure case and the remedy."] },
+    "why_it_matters": "Relevant for companies in Egypt, Turkey or Argentina, and for any capital-heavy business after an inflation burst.",
+    "interactions": [{ "label": "ROIC", "dir": "up" }, { "label": "Real growth", "dir": "down" }],
+    "common_trap": "Taking nominal growth in an inflationary economy as real growth.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Monetary Unit Assumption", "page": "2-15" }
+  },
+  {
+    "id": "A:02-020", "chapter": 2, "section_tag": "Revenue recognition", "difficulty": "medium", "format": "mcq", "style": "definition",
+    "prompt": "Under the revenue recognition principle, when is revenue recognised?",
+    "options": ["When the entity satisfies a performance obligation by transferring control of goods or services", "When cash is received", "When the order is signed", "At the end of the year"],
+    "answer": { "index": 0 },
+    "explanation": { "reasoning": ["IFRS 15 / ASC 606 tie revenue to transfer of control.", "Cash timing and order dates are not the trigger."] },
+    "why_it_matters": "The timing of revenue is the single most manipulated number in financial statements.",
+    "interactions": [{ "label": "Revenue", "dir": "mixed" }],
+    "common_trap": "Recognising revenue when invoiced.",
+    "book_ref": { "book": "IA17", "chapter": 2, "section": "Basic Principles of Accounting", "page": "2-16" }
+  }
+]
